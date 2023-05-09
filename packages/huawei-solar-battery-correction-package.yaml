@@ -8,6 +8,69 @@
 # - sensor.battery_day_discharge_with_loss
 # - sensor.battery_day_charge_with_loss
 #
+# ########## Start: Automation for Battery Discharge/Charge Correction ##########
+#
+automation:
+  - id: "huawei_solar_battery_discharge_charge_correction"
+    alias: Huawei Solar - Battery Discharge/Charge Correction
+    description: Huawei Solar - Battery Discharge/Charge Correction
+    trigger:
+      - platform: state
+        entity_id: sensor.inverter_loss_daily
+        not_from:
+          - unknown
+          - unavailable
+          - none
+        not_to:
+          - unknown
+          - unavailable
+          - none
+      - platform: time
+        at: "00:00:00"
+        id: midnight
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id: midnight
+            sequence:
+              - service: input_number.set_value
+                data:
+                  value: 0
+                target:
+                  entity_id:
+                    - input_number.battery_charge_loss_daily
+                    - input_number.battery_discharge_loss_daily
+          - conditions:
+              - condition: template
+                value_template: >-
+                  {{ states('sensor.battery_charge_discharge_power')|float(0) >= 0 }}
+            sequence:
+              - service: input_number.set_value
+                data:
+                  value: >
+                    {% set total_loss = states('sensor.inverter_loss_daily')|float(0) %}
+                    {% set bat_out_loss = states('input_number.battery_discharge_loss_daily')|float(0) %}
+                    {{ total_loss - bat_out_loss }}
+                target:
+                  entity_id: input_number.battery_charge_loss_daily
+          - conditions:
+              - condition: template
+                value_template: "{{ states('sensor.battery_charge_discharge_power')|float(0) < 0 }}"
+            sequence:
+              - service: input_number.set_value
+                data:
+                  value: >
+                    {% set total_loss = states('sensor.inverter_loss_daily')|float(0) %}
+                    {% set bat_in_loss = states('input_number.battery_charge_loss_daily')|float(0) %}
+                    {{ total_loss - bat_in_loss }}
+                target:
+                  entity_id: input_number.battery_discharge_loss_daily
+    mode: single
+#
+# ########## End: Automation for Battery Discharge/Charge Correction ##########
+#
 # ########## Start: Persistent Input Numbers ##########
 #
 # - for Persistent Sensor states after HA or huawei_solar integration restart
@@ -21,7 +84,7 @@ input_number:
     name: battery_discharge_loss_daily
     #unique_id: battery_discharge_loss_daily
     #friendly_name: "battery_discharge_loss_daily"
-    initial: 0
+    #initial: 0
     min: -10
     max: 100
     step: 1
@@ -35,7 +98,7 @@ input_number:
     name: battery_charge_loss_daily
     #unique_id: battery_charge_loss_daily
     #friendly_name: "battery_charge_loss_daily"
-    initial: 0
+    #initial: 0
     min: -10
     max: 100
     step: 1

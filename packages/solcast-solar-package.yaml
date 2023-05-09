@@ -8,7 +8,8 @@
 # API Update
 #
 automation:
-  - id: solcast_pv_forecast_api_update
+  - id: "solcast_pv_forecast_api_update"
+    # name: solcast_pv_forecast_api_update
     alias: "SolCast PV Forecast - API Update"
     description: >-
       Update the SolCast PV Forecast data every 90 minutes while the sun is at least 10 degrees above the horizon.
