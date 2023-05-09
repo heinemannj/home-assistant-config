@@ -9,12 +9,12 @@
 # - sensor.battery_day_discharge_with_loss
 # - sensor.battery_day_charge_with_loss
 #
-# ########## Start: Automation for Battery Discharge/Charge Correction ##########
+# ########## Start: Automation for Battery Charge/Discharge Correction ##########
 #
 automation:
-  - id: "huawei_solar_battery_discharge_charge_correction"
-    alias: Huawei Solar - Battery Discharge/Charge Correction
-    description: Huawei Solar - Battery Discharge/Charge Correction
+  - id: 'battery_charge_discharge_correction'
+    alias: Huawei Solar - Battery Charge/Discharge Correction
+    description: Huawei Solar - Battery Charge/Discharge Correction
     trigger:
       - platform: state
         entity_id: sensor.inverter_loss_daily
@@ -70,7 +70,7 @@ automation:
                   entity_id: input_number.battery_discharge_loss_daily
     mode: single
 #
-# ########## End: Automation for Battery Discharge/Charge Correction ##########
+# ########## End: Automation for Battery Charge/Discharge Correction ##########
 #
 # ########## Start: Persistent Input Numbers ##########
 #
