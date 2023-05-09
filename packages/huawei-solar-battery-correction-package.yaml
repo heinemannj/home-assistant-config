@@ -2,7 +2,7 @@
 #
 # huawei-solar-battery-correction-package.yaml
 #
-# - automation.huawei_solar_battery_discharge_charge_correction
+# - automation.battery_discharge_charge_correction
 # - input_number.battery_discharge_loss_daily
 # - input_number.battery_charge_loss_daily
 # - sensor.inverter_loss_daily
@@ -12,7 +12,7 @@
 # ########## Start: Automation for Battery Charge/Discharge Correction ##########
 #
 automation:
-  - id: 'battery_charge_discharge_correction'
+  - id: "battery_charge_discharge_correction"
     alias: Huawei Solar - Battery Charge/Discharge Correction
     description: Huawei Solar - Battery Charge/Discharge Correction
     trigger:
@@ -282,5 +282,6 @@ template:
               and (states('sensor.power_meter_consumption_energy_daily')|is_number)
               and (states('sensor.battery_day_charge_with_loss')|is_number)
               and (states('sensor.battery_day_discharge_with_loss')|is_number) }}
+
 #
 # ########## End: Normal Template Sensors ##########
