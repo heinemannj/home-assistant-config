@@ -2,23 +2,18 @@
 #
 # local-calendar-package.yaml
 #
-# - automation.huawei_solar_battery_charge_discharge_correction
-# - input_number.battery_discharge_loss_daily
-# - input_number.battery_charge_loss_daily
-# - sensor.inverter_loss_daily
-# - sensor.battery_day_discharge_with_loss
-# - sensor.battery_day_charge_with_loss
+# - xxx
 #
-# calender
-#
-
 sensor:
   - platform: time_date
     display_options:
       - "date"
-
+#
+# ########## Start: Normal Template Sensors ##########
+#
 template:
   - sensor:
+      #
       # Biomuell
       # calendar.biomuell
       #
@@ -31,7 +26,7 @@ template:
           {% set event = state_attr('calendar.biomuell', 'start_time') | as_datetime | as_local %}
           {% set delta = event - midnight %}
           {{ delta.days | int }}
-
+      #
       # Gelber-Sack
       # calendar.gelber_sack
       #
@@ -44,7 +39,7 @@ template:
           {% set event = state_attr('calendar.gelber_sack', 'start_time') | as_datetime | as_local %}
           {% set delta = event - midnight %}
           {{ delta.days | int }}
-
+      #
       # Papier
       # calendar.papier
       #
@@ -57,7 +52,7 @@ template:
           {% set event = state_attr('calendar.papier', 'start_time') | as_datetime | as_local %}
           {% set delta = event - midnight %}
           {{ delta.days | int }}
-
+      #
       # Restmuell
       # calendar.restmuell
       #
@@ -70,7 +65,7 @@ template:
           {% set event = state_attr('calendar.restmuell', 'start_time') | as_datetime | as_local %}
           {% set delta = event - midnight %}
           {{ delta.days | int }}
-
+      #
       # Schadstoffe
       # calendar.schadstoffe
       #
@@ -83,3 +78,5 @@ template:
           {% set event = state_attr('calendar.schadstoffe', 'start_time') | as_datetime | as_local %}
           {% set delta = event - midnight %}
           {{ delta.days | int }}
+#
+# ########## End: Normal Template Sensors ##########
