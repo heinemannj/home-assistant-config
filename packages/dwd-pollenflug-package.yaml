@@ -2,9 +2,16 @@
 #
 # dwd-pollenflug-package.yaml
 #
-# -
-# - xxx
-#   yyy
+# - sensor.dwd_pollen
+#
+#   sensor.dwd_pollen_ambrosia
+#   sensor.dwd_pollen_beifuss
+#   sensor.dwd_pollen_birke
+#   sensor.dwd_pollen_erle
+#   sensor.dwd_pollen_esche
+#   sensor.dwd_pollen_graeser
+#   sensor.dwd_pollen_hasel
+#   sensor.dwd_pollen_roggen
 #
 ## ########## Start: Sensor ##########
 #
@@ -45,23 +52,8 @@ sensor:
 
   - platform: template
     sensors:
-      dwd_pollen_erle:
-        icon_template: "mdi:tree-outline"
-        friendly_name: "Erle"
-        value_template: >-
-          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Erle')['today'] %}
-          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-        attribute_templates:
-          today: >-
-            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Erle')['today'] %}
-            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-          tomorrow: >-
-            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Erle')['tomorrow'] %}
-            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-
-  - platform: template
-    sensors:
       dwd_pollen_beifuss:
+        unique_id: dwd_pollen_beifuss
         icon_template: "mdi:tree-outline"
         friendly_name: "Beifuss"
         value_template: >-
@@ -78,6 +70,7 @@ sensor:
   - platform: template
     sensors:
       dwd_pollen_birke:
+        unique_id: dwd_pollen_birke
         icon_template: "mdi:tree-outline"
         friendly_name: "Birke"
         value_template: >-
@@ -93,7 +86,25 @@ sensor:
 
   - platform: template
     sensors:
+      dwd_pollen_erle:
+        unique_id: dwd_pollen_erle
+        icon_template: "mdi:tree-outline"
+        friendly_name: "Erle"
+        value_template: >-
+          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Erle')['today'] %}
+          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+        attribute_templates:
+          today: >-
+            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Erle')['today'] %}
+            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+          tomorrow: >-
+            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Erle')['tomorrow'] %}
+            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+
+  - platform: template
+    sensors:
       dwd_pollen_esche:
+        unique_id: dwd_pollen_esche
         icon_template: "mdi:tree-outline"
         friendly_name: "Esche"
         value_template: >-
@@ -109,23 +120,8 @@ sensor:
 
   - platform: template
     sensors:
-      dwd_pollen_hasel:
-        icon_template: "mdi:tree-outline"
-        friendly_name: "Hasel"
-        value_template: >-
-          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Hasel')['today'] %}
-          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-        attribute_templates:
-          today: >-
-            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Hasel')['today'] %}
-            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-          tomorrow: >-
-            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Hasel')['tomorrow'] %}
-            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-
-  - platform: template
-    sensors:
       dwd_pollen_graeser:
+        unique_id: dwd_pollen_graeser
         icon_template: "mdi:tree-outline"
         friendly_name: "Graeser"
         value_template: >-
@@ -141,7 +137,25 @@ sensor:
 
   - platform: template
     sensors:
+      dwd_pollen_hasel:
+        unique_id: dwd_pollen_hasel
+        icon_template: "mdi:tree-outline"
+        friendly_name: "Hasel"
+        value_template: >-
+          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Hasel')['today'] %}
+          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+        attribute_templates:
+          today: >-
+            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Hasel')['today'] %}
+            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+          tomorrow: >-
+            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Hasel')['tomorrow'] %}
+            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+
+  - platform: template
+    sensors:
       dwd_pollen_roggen:
+        unique_id: dwd_pollen_roggen
         icon_template: "mdi:tree-outline"
         friendly_name: "Roggen"
         value_template: >-
