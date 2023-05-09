@@ -91,6 +91,7 @@ template:
           {{ (states('sensor.inverter_daily_yield')|is_number)
               and (states('sensor.battery_day_discharge')|is_number)
               and (states('sensor.battery_day_charge')|is_number) }}
+
       - name: inverter_total_solar_yield
         unique_id: inverter_total_solar_yield
         #friendly_name: "FusionSolar Ertrag Solar excl. Batterie (Lifetime)"
