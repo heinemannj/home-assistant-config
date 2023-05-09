@@ -2,6 +2,7 @@
 #
 # huawei-solar-battery-correction-package.yaml
 #
+# - automation.huawei_solar_battery_discharge_charge_correction
 # - input_number.battery_discharge_loss_daily
 # - input_number.battery_charge_loss_daily
 # - sensor.inverter_loss_daily
