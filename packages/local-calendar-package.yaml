@@ -4,12 +4,16 @@
 #
 # - calendar.biomuell
 #   sensor.event_day_biomuell
+#
 # - calendar.gelber_sack
 #   sensor.event_day_gelber_sack
+#
 # - calendar.papier
 #   sensor.event_day_papier
+#
 # - calendar.restmuell
 #   sensor.event_day_restmuell
+#
 # - calendar.schadstoffe
 #   sensor.event_day_schadstoffe
 #
