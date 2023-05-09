@@ -1,10 +1,18 @@
-# DWD Pollenflug Informationen
+# ########## DWD Pollenflug Informationen ##########
 #
-
+# dwd-pollenflug-package.yaml
+#
+# -
+# - xxx
+#   yyy
+#
+## ########## Start: Sensor ##########
+#
 sensor:
   - platform: rest
     scan_interval: 3600
     name: "DWD Pollen"
+    unique_id: dwd_pollen
     resource: https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json
     json_attributes_path: "$..content[?(@.partregion_id==41)].Pollen"
     json_attributes:
@@ -17,6 +25,23 @@ sensor:
       - Graeser
       - Roggen
     value_template: "{{ value_json.last_update }}"
+
+  - platform: template
+    sensors:
+      dwd_pollen_ambrosia:
+        unique_id: dwd_pollen_ambrosia
+        icon_template: "mdi:tree-outline"
+        friendly_name: "Ambrosia"
+        value_template: >-
+          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Ambrosia')['today'] %}
+          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+        attribute_templates:
+          today: >-
+            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Ambrosia')['today'] %}
+            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+          tomorrow: >-
+            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Ambrosia')['tomorrow'] %}
+            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
 
   - platform: template
     sensors:
@@ -48,22 +73,6 @@ sensor:
             {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
           tomorrow: >-
             {% set dwd_state = state_attr('sensor.dwd_pollen', 'Beifuss')['tomorrow'] %}
-            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-
-  - platform: template
-    sensors:
-      dwd_pollen_ambrosia:
-        icon_template: "mdi:tree-outline"
-        friendly_name: "Ambrosia"
-        value_template: >-
-          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Ambrosia')['today'] %}
-          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-        attribute_templates:
-          today: >-
-            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Ambrosia')['today'] %}
-            {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
-          tomorrow: >-
-            {% set dwd_state = state_attr('sensor.dwd_pollen', 'Ambrosia')['tomorrow'] %}
             {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
 
   - platform: template
@@ -145,3 +154,5 @@ sensor:
           tomorrow: >-
             {% set dwd_state = state_attr('sensor.dwd_pollen', 'Roggen')['tomorrow'] %}
             {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+#
+## ########## End: Sensor ##########
