@@ -1,3 +1,14 @@
+# ########## HA Local Calendar Integration ##########
+#
+# local-calendar-package.yaml
+#
+# - automation.huawei_solar_battery_charge_discharge_correction
+# - input_number.battery_discharge_loss_daily
+# - input_number.battery_charge_loss_daily
+# - sensor.inverter_loss_daily
+# - sensor.battery_day_discharge_with_loss
+# - sensor.battery_day_charge_with_loss
+#
 # calender
 #
 

@@ -43,7 +43,7 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
   packages:
-    calender: !include packages/calender-package.yaml
+    local_calendar: !include packages/local-calendar-package.yaml
     dwd_pollenflug: !include packages/dwd-pollenflug-package.yaml
     dwd_weather_warnings: !include packages/dwd-weather-warnings-package.yaml
     geo_rss_feeds: !include packages/geo-rss-feeds-package.yaml
