@@ -77,6 +77,5 @@ template:
           {% set event = state_attr('calendar.schadstoffe', 'start_time') | as_datetime | as_local %}
           {% set delta = event - midnight %}
           {{ delta.days | int }}
-
 #
 # ########## End: Normal Template Sensors ##########
