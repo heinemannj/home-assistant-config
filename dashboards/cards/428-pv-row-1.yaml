@@ -1,0 +1,5 @@
+type: entities
+entities:
+  - entity: switch.inverter_inverter_on_off
+    name: Inverter ON/OFF
+title: Inverter

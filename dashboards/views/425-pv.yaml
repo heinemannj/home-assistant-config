@@ -1,0 +1,8 @@
+title: 425-PV
+path: 425-pv
+type: sidebar
+icon: mdi:solar-power-variant
+badges: []
+cards:
+  - !include /config/dashboards/cards/425-pv-row-1.yaml
+  - !include /config/dashboards/cards/425-pv-row-2.yaml

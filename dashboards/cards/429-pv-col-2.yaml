@@ -1,0 +1,79 @@
+type: vertical-stack
+cards:
+  - type: custom:power-flow-card-plus
+    title: Power Flows (Now)
+    min_flow_rate: 3
+    max_flow_rate: 10
+    watt_threshold: 7800
+    kw_decimals: 3
+    w_decimals: 0
+    clickable_entities: true
+    entities:
+      home:
+        entity: sensor.house_consumption_power
+      solar:
+        entity: sensor.inverter_input_power
+      battery:
+        entity: sensor.battery_charge_discharge_power_with_loss
+        state_of_charge: sensor.battery_state_of_capacity
+        color_circle: true
+      grid:
+        entity: sensor.power_meter_active_power
+      fossil_fuel_percentage:
+        entity: sensor.co2_signal_grid_fossil_fuel_percentage
+        icon: mdi:pine-tree
+        color_icon: true
+        display_zero: true
+        name: Low-carbon
+        state_type: power
+    inverted_entities: grid,battery
+    card_mod:
+      style:
+        $: |
+          .card-header {
+            line-height: 0px !important;
+            padding-top: 18px !important;
+            padding-bottom: 20px !important;
+            color: var(--secondary-text-color) !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+          }
+        .: |
+          ha-card {
+            width: 360px;
+            height: 380px;
+          }
+  - type: custom:system-energy-flow-card
+    title: Energy Flows (Today)
+    entities:
+      battery:
+        consumption: sensor.battery_day_discharge_with_loss
+        production: sensor.battery_day_charge_with_loss
+      battery_charge: sensor.battery_state_of_capacity
+      grid:
+        consumption: sensor.power_meter_consumption_energy_daily
+        production: sensor.power_meter_exported_energy_daily
+      solar: sensor.solar_yield_daily
+      kwh_decimals: 3
+    card_mod:
+      style:
+        $: |
+          .card-header {
+            line-height: 0px !important;
+            padding-top: 18px !important;
+            padding-bottom: 20px !important;
+            color: var(--secondary-text-color) !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+          }
+        .: |
+          ha-card {
+            width: 360px;
+            height: 380px;
+          }

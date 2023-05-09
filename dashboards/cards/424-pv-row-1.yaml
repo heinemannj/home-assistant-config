@@ -1,0 +1,60 @@
+type: custom:apexcharts-card
+header:
+  show: true
+  title: Inverter - Loss (24h)
+  show_states: false
+  colorize_states: true
+apex_config:
+  chart:
+    height: 240px;
+  tooltip:
+    enabled: true
+    shared: true
+    followCursor: true
+all_series_config:
+  type: area
+  opacity: 0.1
+  stroke_width: 1
+graph_span: 24h
+series:
+  - entity: sensor.inverter_loss_daily
+    name: Inv-Total
+    float_precision: 3
+    type: line
+    yaxis_id: kWh
+    color: grey
+    opacity: 1
+    stroke_width: 1
+    group_by:
+      func: last
+      duration: 5m
+      fill: last
+  - entity: input_number.battery_charge_loss_daily
+    name: Bat-In
+    float_precision: 3
+    type: line
+    yaxis_id: kWh
+    color: "#f06292"
+    opacity: 1
+    stroke_width: 1
+    group_by:
+      func: last
+      duration: 5m
+      fill: last
+  - entity: input_number.battery_discharge_loss_daily
+    name: Bat-Out
+    float_precision: 3
+    type: line
+    yaxis_id: kWh
+    color: "#4db6ac"
+    opacity: 1
+    stroke_width: 1
+    group_by:
+      func: last
+      duration: 5m
+      fill: last
+yaxis:
+  - id: kWh
+    show: true
+    opposite: false
+    decimals: 2

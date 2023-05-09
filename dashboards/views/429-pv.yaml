@@ -1,0 +1,15 @@
+title: 429-PV
+path: 429-pv
+type: custom:grid-layout
+icon: mdi:solar-power-variant
+badges: []
+cards:
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - !include /config/dashboards/cards/429-pv-col-1.yaml
+      - !include /config/dashboards/cards/429-pv-col-2.yaml
+    layout:
+      grid-template-columns: 1280px 365px
+      margin: 0px;
+      padding: 0px;

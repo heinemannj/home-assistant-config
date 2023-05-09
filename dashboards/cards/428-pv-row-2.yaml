@@ -1,0 +1,31 @@
+type: entities
+entities:
+  - entity: select.battery_capacity_control_mode
+    name: Capacity Control Mode
+  - entity: switch.battery_charge_from_grid
+    name: Charge from grid
+  - entity: number.battery_end_of_charge_soc
+    name: End-of-charge SOC
+  - entity: number.battery_end_of_discharge_soc
+    name: End-of-discharge SOC
+  - entity: select.battery_excess_pv_energy_use_in_tou
+    name: Excess PV energy use in TOU
+  - entity: number.battery_grid_charge_cutoff_soc
+    name: Grid charge cutoff SOC
+  - entity: number.battery_grid_charge_maximum_power
+    name: Grid charge maximum power
+  - entity: number.battery_maximum_charging_power
+    name: Maximum charging power
+  - entity: number.battery_maximum_discharging_power
+    name: Maximum discharging power
+  - entity: number.battery_peak_shaving_soc
+    name: Peak Shaving SOC
+  - entity: select.battery_working_mode
+    name: Working Mode
+  - entity: sensor.battery_capacity_control_periods
+    name: Capacity control periods
+  - entity: sensor.battery_fixed_charging_periods
+    name: Fixed charging periods
+  - entity: sensor.battery_time_of_use_periods
+    name: Time Of use periods
+title: Battery

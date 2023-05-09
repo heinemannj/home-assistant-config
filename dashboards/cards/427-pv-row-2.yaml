@@ -1,0 +1,70 @@
+type: custom:apexcharts-card
+header:
+  show: true
+  title: Power Flows (3h)
+  show_states: false
+  colorize_states: true
+apex_config:
+  chart:
+    height: 175px
+  tooltip:
+    enabled: true
+    shared: true
+    followCursor: true
+all_series_config:
+  type: area
+  opacity: 0.1
+  stroke_width: 1
+graph_span: 3h
+series:
+  - entity: sensor.inverter_input_power
+    name: Inv-In
+    color: "#ff9800"
+    yaxis_id: watts
+    group_by:
+      func: avg
+      duration: 5m
+  - entity: sensor.inverter_active_power
+    name: Inv-Out
+    color: yellow
+    yaxis_id: watts
+    group_by:
+      func: avg
+      duration: 5m
+  - entity: sensor.battery_charge_discharge_power
+    name: Bat-In
+    transform: return Math.max(0,x);
+    color: "#f06292"
+    yaxis_id: watts
+    group_by:
+      func: avg
+      duration: 5m
+  - entity: sensor.battery_charge_discharge_power
+    name: Bat-Out
+    transform: return -Math.min(0,x);
+    color: "#4db6ac"
+    yaxis_id: watts
+    group_by:
+      func: avg
+      duration: 5m
+  - entity: sensor.power_meter_active_power
+    name: Grid-In
+    transform: return -Math.min(0,x);
+    color: "#488fc2"
+    yaxis_id: watts
+    group_by:
+      func: avg
+      duration: 5m
+  - entity: sensor.power_meter_active_power
+    name: Grid-Out
+    transform: return Math.max(0,x);
+    color: "#a280db"
+    yaxis_id: watts
+    group_by:
+      func: avg
+      duration: 5m
+yaxis:
+  - id: watts
+    show: true
+    decimals: 0
+    align_to: 250

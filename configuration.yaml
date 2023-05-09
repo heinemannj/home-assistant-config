@@ -14,13 +14,13 @@ frontend:
 lovelace:
   mode: storage
   # Add yaml dashboards
-  # dashboards:
-  #  lovelace-yaml:
-  #    mode: yaml
-  #    title: My Energy
-  #    icon: mdi:home-lightning-bolt
-  #    show_in_sidebar: true
-  #    filename: lovelace-my-energy.yaml
+  dashboards:
+    lovelace-yaml:
+      mode: yaml
+      title: 420_PV_YAML
+      icon: mdi:solar-power-variant
+      show_in_sidebar: true
+      filename: dashboards/420-pv.yaml
 
 python_script:
 

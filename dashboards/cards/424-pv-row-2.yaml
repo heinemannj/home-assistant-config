@@ -1,0 +1,60 @@
+type: custom:apexcharts-card
+header:
+  show: true
+  title: Solar Yield (24h)
+  show_states: false
+  colorize_states: true
+apex_config:
+  chart:
+    height: 240px;
+  tooltip:
+    enabled: true
+    shared: true
+    followCursor: true
+all_series_config:
+  type: area
+  opacity: 0.1
+  stroke_width: 1
+graph_span: 24h
+series:
+  - entity: sensor.inverter_daily_yield
+    name: Inv-Out
+    float_precision: 3
+    type: line
+    yaxis_id: kWh
+    color: grey
+    opacity: 1
+    stroke_width: 1
+    group_by:
+      func: last
+      duration: 5m
+      fill: last
+  - entity: sensor.solar_yield_daily
+    name: Inv-In (with correction)
+    float_precision: 3
+    type: line
+    yaxis_id: kWh
+    color: "#ff9800"
+    opacity: 1
+    stroke_width: 1
+    group_by:
+      func: last
+      duration: 5m
+      fill: last
+  - entity: sensor.solar_yield_without_correction_daily
+    name: Inv-In (without correction)
+    float_precision: 3
+    type: line
+    yaxis_id: kWh
+    color: "#f06292"
+    opacity: 1
+    stroke_width: 1
+    group_by:
+      func: last
+      duration: 5m
+      fill: last
+yaxis:
+  - id: kWh
+    show: true
+    opposite: false
+    decimals: 2

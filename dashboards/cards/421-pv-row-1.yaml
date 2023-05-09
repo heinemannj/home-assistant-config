@@ -1,0 +1,18 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+cards:
+  - type: custom:hourly-weather
+    entity: weather.dwd_weather_raesfeld_ka_1h
+    num_segments: 60
+    offset: 0
+    label_spacing: 2
+    icons: true
+    show_date: boundary
+    show_wind: false
+    show_precipitation_amounts: false
+    show_precipitation_probability: false
+    name: ""
+layout:
+  grid-template-columns: auto
+  margin: 0px;
+  padding: 0px;

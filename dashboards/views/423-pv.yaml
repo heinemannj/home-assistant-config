@@ -1,0 +1,16 @@
+title: 423-PV
+theme: Backend-selected
+path: 423-pv
+type: custom:grid-layout
+icon: mdi:solar-power-variant
+badges: []
+cards:
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - !include /config/dashboards/cards/423-pv-col-1.yaml
+      - !include /config/dashboards/cards/423-pv-col-2.yaml
+    layout:
+      grid-template-columns: 1280px 365px
+      margin: 0px;
+      padding: 0px;
