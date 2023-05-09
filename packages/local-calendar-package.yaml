@@ -2,20 +2,23 @@
 #
 # local-calendar-package.yaml
 #
-# - xxx
+# - calendar.biomuell
+#   sensor.event_day_biomuell
+# - calendar.gelber_sack
+#   sensor.event_day_gelber_sack
+# - calendar.papier
+#   sensor.event_day_papier
+# - calendar.restmuell
+#   sensor.event_day_restmuell
+# - calendar.schadstoffe
+#   sensor.event_day_schadstoffe
 #
-sensor:
-  - platform: time_date
-    display_options:
-      - "date"
-#
-# ########## Start: Normal Template Sensors ##########
+## ########## Start: Normal Template Sensors ##########
 #
 template:
   - sensor:
       #
       # Biomuell
-      # calendar.biomuell
       #
       - name: Event Day Biomuell
         unique_id: event_day_biomuell
@@ -28,7 +31,6 @@ template:
           {{ delta.days | int }}
       #
       # Gelber-Sack
-      # calendar.gelber_sack
       #
       - name: Event Day Gelber-Sack
         unique_id: event_day_gelber_sack
@@ -41,7 +43,6 @@ template:
           {{ delta.days | int }}
       #
       # Papier
-      # calendar.papier
       #
       - name: Event Day Papier
         unique_id: event_day_papier
@@ -54,7 +55,6 @@ template:
           {{ delta.days | int }}
       #
       # Restmuell
-      # calendar.restmuell
       #
       - name: Event Day Restmuell
         unique_id: event_day_restmuell
@@ -67,7 +67,6 @@ template:
           {{ delta.days | int }}
       #
       # Schadstoffe
-      # calendar.schadstoffe
       #
       - name: Event Day Schadstoffe
         unique_id: event_day_schadstoffe
@@ -78,5 +77,6 @@ template:
           {% set event = state_attr('calendar.schadstoffe', 'start_time') | as_datetime | as_local %}
           {% set delta = event - midnight %}
           {{ delta.days | int }}
+
 #
 # ########## End: Normal Template Sensors ##########
