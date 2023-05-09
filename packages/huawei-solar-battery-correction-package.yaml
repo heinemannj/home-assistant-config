@@ -254,6 +254,7 @@ template:
   # ########## End: Persistent Template Sensors ##########
   #
   # ########## Start: Normal Template Sensors ##########
+  #
   # Optional
   #
   - sensor:
@@ -281,6 +282,5 @@ template:
               and (states('sensor.power_meter_consumption_energy_daily')|is_number)
               and (states('sensor.battery_day_charge_with_loss')|is_number)
               and (states('sensor.battery_day_discharge_with_loss')|is_number) }}
-
 #
 # ########## End: Normal Template Sensors ##########
