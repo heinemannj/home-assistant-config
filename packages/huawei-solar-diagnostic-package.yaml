@@ -1,0 +1,116 @@
+# ########## Huawei Solar Integration ##########
+#
+# huawei-solar-diagnostic-package.yaml
+#
+# - sensor.inverter_pv_1_power
+# - sensor.inverter_pv_2_power
+# - sensor.inverter_pv_power
+# - sensor.inverter_daily_solar_yield
+# - sensor.inverter_total_solar_yield
+#
+template:
+  - sensor:
+      # ########## Start: PV Strings - Power ##########
+      #
+      - name: inverter_pv_1_power
+        unique_id: inverter_pv_1_power
+        #friendly_name: 'Inverter PV 1 Power'
+        state_class: "measurement"
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: >-
+          {% set pv_current = states('sensor.inverter_pv_1_current')|float(0) %}
+          {% set pv_voltage = states('sensor.inverter_pv_1_voltage')|float(0) %}
+          {{ (pv_current * pv_voltage)|float(0) }}
+        availability: >-
+          {{ (states('sensor.inverter_pv_1_current')|is_number)
+              and (states('sensor.inverter_pv_1_voltage')|is_number) }}
+
+      - name: inverter_pv_2_power
+        unique_id: inverter_pv_2_power
+        #friendly_name: "Inverter PV 2 Power"
+        state_class: "measurement"
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: >-
+          {% set pv_current = states('sensor.inverter_pv_2_current')|float(0) %}
+          {% set pv_voltage = states('sensor.inverter_pv_2_voltage')|float(0) %}
+          {{ (pv_current * pv_voltage)|float(0) }}
+        availability: >-
+          {{ (states('sensor.inverter_pv_2_current')|is_number)
+              and (states('sensor.inverter_pv_2_voltage')|is_number) }}
+
+      - name: inverter_pv_power
+        unique_id: inverter_pv_power
+        #friendly_name: "Inverter PV Sum Power"
+        state_class: "measurement"
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: >-
+          {% set pv1_power = states('sensor.inverter_pv_1_power')|float(0) %}
+          {% set pv2_power = states('sensor.inverter_pv_2_power')|float(0) %}
+
+          {{ (pv1_power + pv2_power)|float(0)|round(0) }}
+        availability: >-
+          {{ (states('sensor.inverter_pv_1_power')|is_number)
+              and (states('sensor.inverter_pv_2_power')|is_number) }}
+      #
+      # ########## End: PV Strings - Power ##########
+      #
+      # ########## Start: FusionSolar: PV Yield ##########
+      #
+      # - only for monitoring purpose and as an evidence about the poor quality of FusionSolar Portal ...
+      #
+      # Log Errors: state class total_increasing, but its state is negative
+      #
+      # - Energy consumed by the inverter is missing
+      # - Includes also battery charge from the grid
+      # - Energy left in the battery from yesterday
+      #
+      - name: inverter_daily_solar_yield
+        unique_id: inverter_daily_solar_yield
+        #friendly_name: "FusionSolar Tagesertrag Solar excl. Batterie"
+        state_class: "total"
+        device_class: "energy"
+        unit_of_measurement: "kWh"
+        icon: "mdi:solar-power"
+        state: >-
+          {% set inv_out = states('sensor.inverter_daily_yield')|float(0) %}
+          {% set bat_in = states('sensor.battery_day_charge')|float(0) %}
+          {% set bat_out = states('sensor.battery_day_discharge')|float(0) %}
+          {% set solar_yield = (inv_out - bat_out + bat_in)|float(0) %}
+          {% if solar_yield > 0 %}
+            {{ solar_yield }}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+        availability: >-
+          {{ (states('sensor.inverter_daily_yield')|is_number)
+              and (states('sensor.battery_day_discharge')|is_number)
+              and (states('sensor.battery_day_charge')|is_number) }}
+      - name: inverter_total_solar_yield
+        unique_id: inverter_total_solar_yield
+        #friendly_name: "FusionSolar Ertrag Solar excl. Batterie (Lifetime)"
+        state_class: "total"
+        device_class: "energy"
+        unit_of_measurement: "kWh"
+        icon: "mdi:solar-power"
+        state: >-
+          {% set inv_out = states('sensor.inverter_total_yield')|float(0) %}
+          {% set bat_in = states('sensor.battery_total_charge')|float(0) %}
+          {% set bat_out = states('sensor.battery_total_discharge')|float(0) %}
+          {% set solar_yield = (inv_out - bat_out + bat_in)|float(0) %}
+          {% if solar_yield > 0 %}
+            {{ solar_yield }}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+        availability: >-
+          {{ (states('sensor.inverter_total_yield')|is_number)
+              and (states('sensor.battery_total_discharge')|is_number)
+              and (states('sensor.battery_total_charge')|is_number) }}
+      #
+      # ########## Start: FusionSolar: PV Yield ##########

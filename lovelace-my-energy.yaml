@@ -1,0 +1,625 @@
+title: My Awesome Home
+views:
+    # View tab title.
+  - title: Example
+    cards:
+        # The markdown card will render markdown text.
+      - type: markdown
+        title: Dashboard
+        content: >
+          Welcome to your **dashboard**.
+
+    #########################  Energy  #########################
+  - title: "My Energy"
+    icon: mdi:home-lightning-bolt
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: sensor
+            graph: line
+            detail: 2
+            entity: sensor.electric_home_voltage
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.electric_home_l1_voltage
+                name: Electric L1 Voltage
+                min: 110
+                max: 130
+                needle: true
+                unit: V
+                severity:
+                  green: 114
+                  yellow: 126
+                  red: 131
+              - type: gauge
+                entity: sensor.electric_home_l2_voltage
+                name: Electric L2 Voltage
+                min: 110
+                max: 130
+                needle: true
+                unit: V
+                severity:
+                  green: 114
+                  yellow: 126
+                  red: 131
+          - type: sensor
+            graph: line
+            detail: 2
+            entity: sensor.electric_home_total_power
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.p1_00_total_power
+                name: Electric P1 Total Power
+                min: 0
+                max: 36000
+                needle: true
+                severity:
+                  green: 0
+                  yellow: 24000
+                  red: 32000
+              - type: gauge
+                entity: sensor.p2_00_total_power
+                name: Electric P2 Total Power
+                min: 0
+                max: 36000
+                needle: true
+                severity:
+                  green: 0
+                  yellow: 24000
+                  red: 32000
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: "Energy Consumption"
+            entities:
+              - type: section
+              - entity: sensor.light_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Lights
+                icon: mdi:lightbulb-multiple
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.light_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.light_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.light_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.kitchen_appliance_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Kitchen Appliances
+                icon: mdi:fridge-outline
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.kitchen_appliance_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.kitchen_appliance_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.kitchen_appliance_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.other_appliance_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Other Appliances
+                icon: mdi:power-plug
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.other_appliance_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.other_appliance_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.other_appliance_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.technology_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Technology
+                icon: mdi:network
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.technology_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.technology_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.technology_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.washer_dryer_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Washer Dryer
+                icon: mdi:hanger
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.washer_dryer_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.washer_dryer_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.washer_dryer_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.water_heater_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Water Heater
+                icon: mdi:water-boiler
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.water_heater_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.water_heater_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.water_heater_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.hvac_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: HVAC
+                icon: mdi:hvac
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.hvac_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.hvac_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.hvac_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.garage_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Garage
+                icon: mdi:garage
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.garage_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.garage_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.garage_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.pool_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Pool
+                icon: mdi:pool
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.pool_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.pool_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.pool_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - entity: sensor.other_group_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Other
+                icon: mdi:crosshairs-question
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.other_group_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.other_group_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.other_group_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+              - type: section
+              - entity: sensor.electric_home_daily_total_energy_cost
+                type: custom:multiple-entity-row
+                name: Whole Home
+                icon: mdi:home
+                state_header: Today $
+                secondary_info: false
+                format: precision2
+                unit: false
+                styles:
+                  font-weight: bold
+                  color: green
+                entities:
+                  - entity: sensor.electric_home_monthly_total_energy
+                    name: Month kWh
+                    format: precision1
+                    unit: false
+                  - entity: sensor.electric_home_monthly_total_energy_cost
+                    name: Month $
+                    format: precision2
+                    unit: false
+                    styles:
+                      font-weight: bold
+                      color: green
+                  - entity: sensor.electric_home_daily_total_energy
+                    name: Day kWh
+                    format: precision1
+                    unit: false
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: "Power Usage By Group"
+            entities:
+              - type: section
+              - type: custom:fold-entity-row
+                head: sensor.light_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.light_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.kitchen_appliance_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.kitchen_appliance_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.other_appliance_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.other_appliance_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.technology_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.technology_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.washer_dryer_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.washer_dryer_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.water_heater_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.water_heater_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.hvac_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.hvac_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.garage_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.garage_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.pool_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.pool_group_total_power
+              - type: custom:fold-entity-row
+                head: sensor.other_group_total_power
+                name: ""
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - group: group.other_group_total_power
+              - type: section
+              - type: custom:fold-entity-row
+                head: sensor.electric_home_total_power
+                entities:
+                  - type: custom:auto-entities
+                    show_empty: false
+                    card:
+                      type: entities
+                      title: ""
+                      show_header_toggle: false
+                    sort:
+                      method: state
+                      reverse: true
+                      numeric: true
+                    filter:
+                      include:
+                        - entity_id: "sensor.p1_*_power"
+                        - entity_id: "sensor.p2_*_power"
+                      exclude:
+                        - entity_id: "*_total_power"
+
+          - type: entities
+            title: "Power Usage By Circuit"
+            entities:
+              - type: section
+              - type: custom:fold-entity-row
+                head: sensor.electric_home_total_power
+                entities:
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: sensor.p1_00_total_power
+                      name: Electric Panel 1
+                    entities:
+                      - type: custom:auto-entities
+                        show_empty: false
+                        card:
+                          type: entities
+                          title: ""
+                          show_header_toggle: false
+                        sort:
+                          method: entity_id
+                          reverse: false
+                          numeric: true
+                        filter:
+                          include:
+                            - entity_id: "sensor.p1_*_power"
+                              options:
+                                name: this.entity_id
+                          exclude:
+                            - entity_id: "*_total_power"
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: sensor.p2_00_total_power
+                      name: Electric Panel 2
+                    entities:
+                      - type: custom:auto-entities
+                        show_empty: false
+                        card:
+                          type: entities
+                          title: ""
+                          show_header_toggle: false
+                        sort:
+                          method: entity_id
+                          reverse: false
+                          numeric: true
+                        filter:
+                          include:
+                            - entity_id: "sensor.p2_*_power"
+                              options:
+                                name: this.entity_id
+                          exclude:
+                            - entity_id: "*_total_power"

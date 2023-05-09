@@ -1,0 +1,170 @@
+# ########## Huawei Solar Integration ##########
+#
+# huawei-solar-battery-card-package.yaml
+#
+# - sensor.battery_discharge_power
+# - sensor.battery_charge_power
+# - sensor.battery_state_of_capacity_energy
+# - sensor.battery_state_of_capacity_remaining_discharge_time
+# - sensor.battery_state_of_capacity_remaining_charge_energy
+# - sensor.battery_state_of_capacity_remaining_charge_time
+# - sensor.battery_charge_power_average_last_30mins
+# - sensor.battery_discharge_power_average_last_24h
+#
+# ########## Start: Battery Card ##########
+#
+template:
+  - sensor:
+      #
+      # Battery Discharge power for
+      # - sensor.battery_discharge_power_average_last_24h
+      # - sensor.battery_state_of_capacity_remaining_discharge_time
+      #
+      - name: battery_discharge_power
+        unique_id: battery_discharge_power
+        #friendly_name: "Battery Discharge power"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: >-
+          {% set bat_power = states('sensor.battery_charge_discharge_power')|float(0) %}
+          {% if bat_power < 0 %}
+            {{ (-1 * bat_power)|float(0) }}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+        attributes:
+          hour_last_updated: "{{ now().hour }}"
+        availability: >-
+          {{ (states('sensor.battery_charge_discharge_power')|is_number) }}
+      #
+      # Battery Charge power for
+      # - sensor.battery_charge_power_average_last_30mins
+      # - sensor.battery_state_of_capacity_remaining_charge_time
+      #
+      - name: battery_charge_power
+        unique_id: battery_charge_power
+        #friendly_name: "Battery Discharge power"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: >-
+          {% set bat_power = states('sensor.battery_charge_discharge_power')|float(0) %}
+          {% if bat_power > 0 %}
+            {{ bat_power|float(0) }}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+        attributes:
+          minute_last_updated: "{{ now().minute }}"
+        availability: >-
+          {{ (states('sensor.battery_charge_discharge_power')|is_number) }}
+      #
+      # Battery Remaining Energy for
+      # - sensor.battery_state_of_capacity_remaining_discharge_time
+      #
+      - name: battery_state_of_capacity_energy
+        unique_id: battery_state_of_capacity_energy
+        #friendly_name: "Battery Remaining Energy"
+        state_class: "total"
+        device_class: energy
+        unit_of_measurement: "kWh"
+        icon: mdi:solar-power
+        state: >-
+          {% set bat_state = states('sensor.battery_state_of_capacity')|float(0) / 100 %}
+          {% set bat_total = 10.0 %}
+          {{ (bat_total * bat_state) }}
+        availability: >-
+          {{ (states('sensor.battery_state_of_capacity')|is_number) }}
+      #
+      # Estimation of remaining battery discharge time
+      #
+      - name: battery_state_of_capacity_remaining_discharge_time
+        unique_id: battery_state_of_capacity_remaining_discharge_time
+        state: >-
+          {% set bat_charge = states('sensor.battery_state_of_capacity_energy')|float(0) * 1000 %}
+          {% set bat_discharge_power = states('sensor.battery_charge_discharge_power')|float(0) %}
+          {% if bat_discharge_power < 0 %}
+            {% set bat_discharge_power = (bat_discharge_power * -1) %}
+          {% else %}
+            {% set bat_discharge_power = states('sensor.battery_discharge_power_average_last_24h')|float(0) %}
+          {% endif %}
+
+          {% if bat_discharge_power > 0 %}
+            {% set decimal_hours = bat_charge / bat_discharge_power %}
+            {% set minutes = (decimal_hours % 1 * 60) | round(0) %}
+            {{ decimal_hours | int(0) ~ 'h ' ~ minutes ~ 'min' }}
+          {% else %}
+            {{ 'empty' }}
+          {% endif %}
+        availability: >-
+          {{ (states('sensor.battery_charge_discharge_power')|is_number)
+              and (states('sensor.battery_discharge_power_average_last_24h')|is_number)
+              and (states('sensor.battery_state_of_capacity_energy')|is_number) }}
+      #
+      # Estimation of remaining battery charge energy for
+      # - sensor.battery_state_of_capacity_remaining_charge_time
+      #
+      - name: battery_state_of_capacity_remaining_charge_energy
+        unique_id: battery_state_of_capacity_remaining_charge_energy
+        #friendly_name: "Battery Remaining Charge Energy"
+        state_class: "total"
+        device_class: energy
+        unit_of_measurement: "kWh"
+        icon: mdi:solar-power
+        state: >-
+          {% set bat_state = states('sensor.battery_state_of_capacity')|float(0) %}
+          {{ 11500 * (1 - bat_state / 100) }}
+        availability: >-
+          {{ (states('sensor.battery_state_of_capacity')|is_number) }}
+      #
+      # Estimation of remaining battery charge time
+      #
+      - name: battery_state_of_capacity_remaining_charge_time
+        unique_id: battery_state_of_capacity_remaining_charge_time
+        state: >-
+          {% set bat_state = states('sensor.battery_state_of_capacity')|float(0) %}
+          {% set bat_charge_power = states('sensor.battery_charge_power_average_last_30mins')|float(0) %}
+          {% set bat_charge = states('sensor.battery_state_of_capacity_remaining_charge_energy')|float(0) %}
+
+          {% if bat_charge_power > 0 %}
+            {% set decimal_hours = bat_charge / bat_charge_power %}
+            {% set minutes = (decimal_hours % 1 * 60) | round(0) %}
+            {{ decimal_hours | int(0) ~ 'h ' ~ minutes ~ 'min' }}
+          {% else %}
+            {{ bat_state }} %
+          {% endif %}
+        availability: >-
+          {{ (states('sensor.battery_state_of_capacity_remaining_charge_energy')|is_number)
+              and (states('sensor.battery_charge_power_average_last_30mins')|is_number)
+              and (states('sensor.battery_state_of_capacity')|is_number) }}
+#
+# ########## End: Battery Card ##########
+#
+# ########## Start: Statistics Sensors ##########
+#
+sensor:
+  #
+  # Average of Battery Discharge Power (W) in last 24h
+  #
+  - platform: statistics
+    name: battery_discharge_power_average_last_24h
+    unique_id: battery_discharge_power_average_last_24h
+    entity_id: sensor.battery_discharge_power
+    state_characteristic: mean
+    max_age:
+      hours: 24
+  #
+  # Average of Battery Charge Power (W) in last 30mins
+  #
+  - platform: statistics
+    name: battery_charge_power_average_last_30mins
+    unique_id: battery_charge_power_average_last_30mins
+    entity_id: sensor.battery_charge_power
+    state_characteristic: mean
+    max_age:
+      hours: 0.5
+#
+# ########## End: Statistics Sensors ##########

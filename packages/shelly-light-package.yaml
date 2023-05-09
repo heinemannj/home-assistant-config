@@ -1,0 +1,499 @@
+# light
+#
+
+utility_meter:
+  101_buro_licht_schreibtisch_energy_hourly:
+    unique_id: "101_buro_licht_schreibtisch_energy_hourly"
+    name: "101_buro_licht_schreibtisch_energy_hourly"
+    # friendly_name: "101_Büro-Licht-Schreibtisch - Energy hourly"
+    source: sensor.101_buro_licht_schreibtisch_energy
+    cycle: hourly
+  101_buro_licht_schreibtisch_energy_daily:
+    unique_id: "101_buro_licht_schreibtisch_energy_daily"
+    name: "101_buro_licht_schreibtisch_energy_daily"
+    # friendly_name: "101_Büro-Licht-Schreibtisch - Energy daily"
+    source: sensor.101_buro_licht_schreibtisch_energy
+    cycle: daily
+  101_buro_licht_schreibtisch_energy_weekly:
+    unique_id: "101_buro_licht_schreibtisch_energy_weekly"
+    name: "101_buro_licht_schreibtisch_energy_weekly"
+    # friendly_name: "101_Büro-Licht-Schreibtisch - Energy weekly"
+    source: sensor.101_buro_licht_schreibtisch_energy
+    cycle: weekly
+  101_buro_licht_schreibtisch_energy_monthly:
+    unique_id: "101_buro_licht_schreibtisch_energy_monthly"
+    name: "101_buro_licht_schreibtisch_energy_monthly"
+    # friendly_name: "101_Büro-Licht-Schreibtisch - Energy monthly"
+    source: sensor.101_buro_licht_schreibtisch_energy
+    cycle: monthly
+  101_buro_licht_schreibtisch_energy_yearly:
+    unique_id: "101_buro_licht_schreibtisch_energy_yearly"
+    name: "101_buro_licht_schreibtisch_energy_yearly"
+    # friendly_name: "101_Büro-Licht-Schreibtisch - Energy yearly"
+    source: sensor.101_buro_licht_schreibtisch_energy
+    cycle: yearly
+
+  101_buro_licht_treppe_energy_hourly:
+    unique_id: "101_buro_licht_treppe_energy_hourly"
+    name: "101_buro_licht_treppe_energy_hourly"
+    # friendly_name: "101_Büro-Licht-Treppe - Energy hourly"
+    source: sensor.101_buro_licht_treppe_energy
+    cycle: hourly
+  101_buro_licht_treppe_energy_daily:
+    unique_id: "101_buro_licht_treppe_energy_daily"
+    name: "101_buro_licht_treppe_energy_daily"
+    # friendly_name: "101_Büro-Licht-Treppe - Energy daily"
+    source: sensor.101_buro_licht_treppe_energy
+    cycle: daily
+  101_buro_licht_treppe_energy_weekly:
+    unique_id: "101_buro_licht_treppe_energy_weekly"
+    name: "101_buro_licht_treppe_energy_weekly"
+    # friendly_name: "101_Büro-Licht-Treppe - Energy weekly"
+    source: sensor.101_buro_licht_treppe_energy
+    cycle: weekly
+  101_buro_licht_treppe_energy_monthly:
+    unique_id: "101_buro_licht_treppe_energy_monthly"
+    name: "101_buro_licht_treppe_energy_monthly"
+    # friendly_name: "101_Büro-Licht-Treppe - Energy monthly"
+    source: sensor.101_buro_licht_treppe_energy
+    cycle: monthly
+  101_buro_licht_treppe_energy_yearly:
+    unique_id: "101_buro_licht_treppe_energy_yearly"
+    name: "101_buro_licht_treppe_energy_yearly"
+    # friendly_name: "101_Büro-Licht-Treppe - Energy yearly"
+    source: sensor.101_buro_licht_treppe_energy
+    cycle: yearly
+
+  202_bad_licht_dusche_energy_hourly:
+    unique_id: "202_bad_licht_dusche_energy_hourly"
+    name: "202_bad_licht_dusche_energy_hourly"
+    # friendly_name: "202_Bad-Licht-Dusche - Energy hourly"
+    source: sensor.202_bad_licht_dusche_energy
+    cycle: hourly
+  202_bad_licht_dusche_energy_daily:
+    unique_id: "202_bad_licht_dusche_energy_daily"
+    name: "202_bad_licht_dusche_energy_daily"
+    # friendly_name: "202_Bad-Licht-Dusche - Energy daily"
+    source: sensor.202_bad_licht_dusche_energy
+    cycle: daily
+  202_bad_licht_dusche_energy_weekly:
+    unique_id: "202_bad_licht_dusche_energy_weekly"
+    name: "202_bad_licht_dusche_energy_weekly"
+    # friendly_name: "202_Bad-Licht-Dusche - Energy weekly"
+    source: sensor.202_bad_licht_dusche_energy
+    cycle: weekly
+  202_bad_licht_dusche_energy_monthly:
+    unique_id: "202_bad_licht_dusche_energy_monthly"
+    name: "202_bad_licht_dusche_energy_monthly"
+    # friendly_name: "202_Bad-Licht-Dusche - Energy monthly"
+    source: sensor.202_bad_licht_dusche_energy
+    cycle: monthly
+  202_bad_licht_dusche_energy_yearly:
+    unique_id: "202_bad_licht_dusche_energy_yearly"
+    name: "202_bad_licht_dusche_energy_yearly"
+    # friendly_name: "202_Bad-Licht-Dusche - Energy yearly"
+    source: sensor.202_bad_licht_dusche_energy
+    cycle: yearly
+
+  202_bad_licht_wanne_energy_hourly:
+    unique_id: "202_bad_licht_wanne_energy_hourly"
+    name: "202_bad_licht_wanne_energy_hourly"
+    # friendly_name: "202_Bad-Licht-Wanne - Energy hourly"
+    source: sensor.202_bad_licht_wanne_energy
+    cycle: hourly
+  202_bad_licht_wanne_energy_daily:
+    unique_id: "202_bad_licht_wanne_energy_daily"
+    name: "202_bad_licht_wanne_energy_daily"
+    # friendly_name: "202_Bad-Licht-Wanne - Energy daily"
+    source: sensor.202_bad_licht_wanne_energy
+    cycle: daily
+  202_bad_licht_wanne_energy_weekly:
+    unique_id: "202_bad_licht_wanne_energy_weekly"
+    name: "202_bad_licht_wanne_energy_weekly"
+    # friendly_name: "202_Bad-Licht-Wanne - Energy weekly"
+    source: sensor.202_bad_licht_wanne_energy
+    cycle: weekly
+  202_bad_licht_wanne_energy_monthly:
+    unique_id: "202_bad_licht_wanne_energy_monthly"
+    name: "202_bad_licht_wanne_energy_monthly"
+    # friendly_name: "202_Bad-Licht-Wanne - Energy monthly"
+    source: sensor.202_bad_licht_wanne_energy
+    cycle: monthly
+  202_bad_licht_wanne_energy_yearly:
+    unique_id: "202_bad_licht_wanne_energy_yearly"
+    name: "202_bad_licht_wanne_energy_yearly"
+    # friendly_name: "202_Bad-Licht-Wanne - Energy yearly"
+    source: sensor.202_bad_licht_wanne_energy
+    cycle: yearly
+
+  204_schlafen_licht_bett_energy_hourly:
+    unique_id: "204_schlafen_licht_bett_energy_hourly"
+    name: "204_schlafen_licht_bett_energy_hourly"
+    # friendly_name: "204_Schlafen-Licht-Bett - Energy hourly"
+    source: sensor.204_schlafen_licht_bett_energy
+    cycle: hourly
+  204_schlafen_licht_bett_energy_daily:
+    unique_id: "204_schlafen_licht_bett_energy_daily"
+    name: "204_schlafen_licht_bett_energy_daily"
+    # friendly_name: "204_Schlafen-Licht-Bett - Energy daily"
+    source: sensor.204_schlafen_licht_bett_energy
+    cycle: daily
+  204_schlafen_licht_bett_energy_weekly:
+    unique_id: "204_schlafen_licht_bett_energy_weekly"
+    name: "204_schlafen_licht_bett_energy_weekly"
+    # friendly_name: "204_Schlafen-Licht-Bett - Energy weekly"
+    source: sensor.204_schlafen_licht_bett_energy
+    cycle: weekly
+  204_schlafen_licht_bett_energy_monthly:
+    unique_id: "204_schlafen_licht_bett_energy_monthly"
+    name: "204_schlafen_licht_bett_energy_monthly"
+    # friendly_name: "204_Schlafen-Licht-Bett - Energy monthly"
+    source: sensor.204_schlafen_licht_bett_energy
+    cycle: monthly
+  204_schlafen_licht_bett_energy_yearly:
+    unique_id: "204_schlafen_licht_bett_energy_yearly"
+    name: "204_schlafen_licht_bett_energy_yearly"
+    # friendly_name: "204_Schlafen-Licht-Bett - Energy yearly"
+    source: sensor.204_schlafen_licht_bett_energy
+    cycle: yearly
+
+  204_schlafen_licht_decke_energy_hourly:
+    unique_id: "204_schlafen_licht_decke_energy_hourly"
+    name: "204_schlafen_licht_decke_energy_hourly"
+    # friendly_name: "204_Schlafen-Licht-Decke - Energy hourly"
+    source: sensor.204_schlafen_licht_decke_energy
+    cycle: hourly
+  204_schlafen_licht_decke_energy_daily:
+    unique_id: "204_schlafen_licht_decke_energy_daily"
+    name: "204_schlafen_licht_decke_energy_daily"
+    # friendly_name: "204_Schlafen-Licht-Decke - Energy daily"
+    source: sensor.204_schlafen_licht_decke_energy
+    cycle: daily
+  204_schlafen_licht_decke_energy_weekly:
+    unique_id: "204_schlafen_licht_decke_energy_weekly"
+    name: "204_schlafen_licht_decke_energy_weekly"
+    # friendly_name: "204_Schlafen-Licht-Decke - Energy weekly"
+    source: sensor.204_schlafen_licht_decke_energy
+    cycle: weekly
+  204_schlafen_licht_decke_energy_monthly:
+    unique_id: "204_schlafen_licht_decke_energy_monthly"
+    name: "204_schlafen_licht_decke_energy_monthly"
+    # friendly_name: "204_Schlafen-Licht-Decke - Energy monthly"
+    source: sensor.204_schlafen_licht_decke_energy
+    cycle: monthly
+  204_schlafen_licht_decke_energy_yearly:
+    unique_id: "204_schlafen_licht_decke_energy_yearly"
+    name: "204_schlafen_licht_decke_energy_yearly"
+    # friendly_name: "204_Schlafen-Licht-Decke - Energy yearly"
+    source: sensor.204_schlafen_licht_decke_energy
+    cycle: yearly
+
+  301_wc_luftung_licht_decke_energy_hourly:
+    unique_id: "301_wc_luftung_licht_decke_energy_hourly"
+    name: "301_wc_luftung_licht_decke_energy_hourly"
+    # friendly_name: "301_WC-Lüftung/Licht-Decke - Energy hourly"
+    source: sensor.301_wc_luftung_licht_decke_energy
+    cycle: hourly
+  301_wc_luftung_licht_decke_energy_daily:
+    unique_id: "301_wc_luftung_licht_decke_energy_daily"
+    name: "301_wc_luftung_licht_decke_energy_daily"
+    # friendly_name: "301_WC-Lüftung/Licht-Decke - Energy daily"
+    source: sensor.301_wc_luftung_licht_decke_energy
+    cycle: daily
+  301_wc_luftung_licht_decke_energy_weekly:
+    unique_id: "301_wc_luftung_licht_decke_energy_weekly"
+    name: "301_wc_luftung_licht_decke_energy_weekly"
+    # friendly_name: "301_WC-Lüftung/Licht-Decke - Energy weekly"
+    source: sensor.301_wc_luftung_licht_decke_energy
+    cycle: weekly
+  301_wc_luftung_licht_decke_energy_monthly:
+    unique_id: "301_wc_luftung_licht_decke_energy_monthly"
+    name: "301_wc_luftung_licht_decke_energy_monthly"
+    # friendly_name: "301_WC-Lüftung/Licht-Decke - Energy monthly"
+    source: sensor.301_wc_luftung_licht_decke_energy
+    cycle: monthly
+  301_wc_luftung_licht_decke_energy_yearly:
+    unique_id: "301_wc_luftung_licht_decke_energy_yearly"
+    name: "301_wc_luftung_licht_decke_energy_yearly"
+    # friendly_name: "301_WC-Lüftung/Licht-Decke - Energy yearly"
+    source: sensor.301_wc_luftung_licht_decke_energy
+    cycle: yearly
+
+  401_flur_licht_decke_energy_hourly:
+    unique_id: "401_flur_licht_decke_energy_hourly"
+    name: "401_flur_licht_decke_energy_hourly"
+    # friendly_name: "401_Flur-Licht-Decke - Energy hourly"
+    source: sensor.401_flur_licht_decke_energy
+    cycle: hourly
+  401_flur_licht_decke_energy_daily:
+    unique_id: "401_flur_licht_decke_energy_daily"
+    name: "401_flur_licht_decke_energy_daily"
+    # friendly_name: "401_Flur-Licht-Decke - Energy daily"
+    source: sensor.401_flur_licht_decke_energy
+    cycle: daily
+  401_flur_licht_decke_energy_weekly:
+    unique_id: "401_flur_licht_decke_energy_weekly"
+    name: "401_flur_licht_decke_energy_weekly"
+    # friendly_name: "401_Flur-Licht-Decke - Energy weekly"
+    source: sensor.401_flur_licht_decke_energy
+    cycle: weekly
+  401_flur_licht_decke_energy_monthly:
+    unique_id: "401_flur_licht_decke_energy_monthly"
+    name: "401_flur_licht_decke_energy_monthly"
+    # friendly_name: "401_Flur-Licht-Decke - Energy monthly"
+    source: sensor.401_flur_licht_decke_energy
+    cycle: monthly
+  401_flur_licht_decke_energy_yearly:
+    unique_id: "401_flur_licht_decke_energy_yearly"
+    name: "401_flur_licht_decke_energy_yearly"
+    # friendly_name: "401_Flur-Licht-Decke - Energy yearly"
+    source: sensor.401_flur_licht_decke_energy
+    cycle: yearly
+
+  401_flur_licht_treppe_energy_hourly:
+    unique_id: "401_flur_licht_treppe_energy_hourly"
+    name: "401_flur_licht_treppe_energy_hourly"
+    # friendly_name: "401_Flur-Licht-Treppe - Energy hourly"
+    source: sensor.401_flur_licht_treppe_energy
+    cycle: hourly
+  401_flur_licht_treppe_energy_daily:
+    unique_id: "401_flur_licht_treppe_energy_daily"
+    name: "401_flur_licht_treppe_energy_daily"
+    # friendly_name: "401_Flur-Licht-Treppe - Energy daily"
+    source: sensor.401_flur_licht_treppe_energy
+    cycle: daily
+  401_flur_licht_treppe_energy_weekly:
+    unique_id: "401_flur_licht_treppe_energy_weekly"
+    name: "401_flur_licht_treppe_energy_weekly"
+    # friendly_name: "401_Flur-Licht-Treppe - Energy weekly"
+    source: sensor.401_flur_licht_treppe_energy
+    cycle: weekly
+  401_flur_licht_treppe_energy_monthly:
+    unique_id: "401_flur_licht_treppe_energy_monthly"
+    name: "401_flur_licht_treppe_energy_monthly"
+    # friendly_name: "401_Flur-Licht-Treppe - Energy monthly"
+    source: sensor.401_flur_licht_treppe_energy
+    cycle: monthly
+  401_flur_licht_treppe_energy_yearly:
+    unique_id: "401_flur_licht_treppe_energy_yearly"
+    name: "401_flur_licht_treppe_energy_yearly"
+    # friendly_name: "401_Flur-Licht-Treppe - Energy yearly"
+    source: sensor.401_flur_licht_treppe_energy
+    cycle: yearly
+
+  401_heizungsraum_licht_energy_hourly:
+    unique_id: "401_heizungsraum_licht_energy_hourly"
+    name: "401_heizungsraum_licht_energy_hourly"
+    # friendly_name: "401_Heizungsraum-Licht - Energy hourly"
+    source: sensor.401_heizungsraum_licht_energy
+    cycle: hourly
+  401_heizungsraum_licht_energy_daily:
+    unique_id: "401_heizungsraum_licht_energy_daily"
+    name: "401_heizungsraum_licht_energy_daily"
+    # friendly_name: "401_Heizungsraum-Licht - Energy daily"
+    source: sensor.401_heizungsraum_licht_energy
+    cycle: daily
+  401_heizungsraum_licht_energy_weekly:
+    unique_id: "401_heizungsraum_licht_energy_weekly"
+    name: "401_heizungsraum_licht_energy_weekly"
+    # friendly_name: "401_Heizungsraum-Licht - Energy weekly"
+    source: sensor.401_heizungsraum_licht_energy
+    cycle: weekly
+  401_heizungsraum_licht_energy_monthly:
+    unique_id: "401_heizungsraum_licht_energy_monthly"
+    name: "401_heizungsraum_licht_energy_monthly"
+    # friendly_name: "401_Heizungsraum-Licht - Energy monthly"
+    source: sensor.401_heizungsraum_licht_energy
+    cycle: monthly
+  401_heizungsraum_licht_energy_yearly:
+    unique_id: "401_heizungsraum_licht_energy_yearly"
+    name: "401_heizungsraum_licht_energy_yearly"
+    # friendly_name: "401_Heizungsraum-Licht - Energy yearly"
+    source: sensor.401_heizungsraum_licht_energy
+    cycle: yearly
+
+  402_vorrat_licht_energy_hourly:
+    unique_id: "402_vorrat_licht_energy_hourly"
+    name: "402_vorrat_licht_energy_hourly"
+    # friendly_name: "402_Vorrat-Licht - Energy hourly"
+    source: sensor.402_vorrat_licht_energy
+    cycle: hourly
+  402_vorrat_licht_energy_daily:
+    unique_id: "402_vorrat_licht_energy_daily"
+    name: "402_vorrat_licht_energy_daily"
+    # friendly_name: "402_Vorrat-Licht - Energy daily"
+    source: sensor.402_vorrat_licht_energy
+    cycle: daily
+  402_vorrat_licht_energy_weekly:
+    unique_id: "402_vorrat_licht_energy_weekly"
+    name: "402_vorrat_licht_energy_weekly"
+    # friendly_name: "402_Vorrat-Licht - Energy weekly"
+    source: sensor.402_vorrat_licht_energy
+    cycle: weekly
+  402_vorrat_licht_energy_monthly:
+    unique_id: "402_vorrat_licht_energy_monthly"
+    name: "402_vorrat_licht_energy_monthly"
+    # friendly_name: "402_Vorrat-Licht - Energy monthly"
+    source: sensor.402_vorrat_licht_energy
+    cycle: monthly
+  402_vorrat_licht_energy_yearly:
+    unique_id: "402_vorrat_licht_energy_yearly"
+    name: "402_vorrat_licht_energy_yearly"
+    # friendly_name: "402_Vorrat-Licht - Energy yearly"
+    source: sensor.402_vorrat_licht_energy
+    cycle: yearly
+
+  403_bad_licht_decke_energy_hourly:
+    unique_id: "403_bad_licht_decke_energy_hourly"
+    name: "403_bad_licht_decke_energy_hourly"
+    # friendly_name: "403_Bad-Licht-Decke - Energy hourly"
+    source: sensor.403_bad_licht_decke_energy
+    cycle: hourly
+  403_bad_licht_decke_energy_daily:
+    unique_id: "403_bad_licht_decke_energy_daily"
+    name: "403_bad_licht_decke_energy_daily"
+    # friendly_name: "403_Bad-Licht-Decke - Energy daily"
+    source: sensor.403_bad_licht_decke_energy
+    cycle: daily
+  403_bad_licht_decke_energy_weekly:
+    unique_id: "403_bad_licht_decke_energy_weekly"
+    name: "403_bad_licht_decke_energy_weekly"
+    # friendly_name: "403_Bad-Licht-Decke - Energy weekly"
+    source: sensor.403_bad_licht_decke_energy
+    cycle: weekly
+  403_bad_licht_decke_energy_monthly:
+    unique_id: "403_bad_licht_decke_energy_monthly"
+    name: "403_bad_licht_decke_energy_monthly"
+    # friendly_name: "403_Bad-Licht-Decke - Energy monthly"
+    source: sensor.403_bad_licht_decke_energy
+    cycle: monthly
+  403_bad_licht_decke_energy_yearly:
+    unique_id: "403_bad_licht_decke_energy_yearly"
+    name: "403_bad_licht_decke_energy_yearly"
+    # friendly_name: "403_Bad-Licht-Decke - Energy yearly"
+    source: sensor.403_bad_licht_decke_energy
+    cycle: yearly
+
+  403_bad_licht_spiegel_energy_hourly:
+    unique_id: "403_bad_licht_spiegel_energy_hourly"
+    name: "403_bad_licht_spiegel_energy_hourly"
+    # friendly_name: "403_Bad-Licht-Spiegel - Energy hourly"
+    source: sensor.403_bad_licht_spiegel_energy
+    cycle: hourly
+  403_bad_licht_spiegel_energy_daily:
+    unique_id: "403_bad_licht_spiegel_energy_daily"
+    name: "403_bad_licht_spiegel_energy_daily"
+    # friendly_name: "403_Bad-Licht-Spiegel - Energy daily"
+    source: sensor.403_bad_licht_spiegel_energy
+    cycle: daily
+  403_bad_licht_spiegel_energy_weekly:
+    unique_id: "403_bad_licht_spiegel_energy_weekly"
+    name: "403_bad_licht_spiegel_energy_weekly"
+    # friendly_name: "403_Bad-Licht-Spiegel - Energy weekly"
+    source: sensor.403_bad_licht_spiegel_energy
+    cycle: weekly
+  403_bad_licht_spiegel_energy_monthly:
+    unique_id: "403_bad_licht_spiegel_energy_monthly"
+    name: "403_bad_licht_spiegel_energy_monthly"
+    # friendly_name: "403_Bad-Licht-Spiegel - Energy monthly"
+    source: sensor.403_bad_licht_spiegel_energy
+    cycle: monthly
+  403_bad_licht_spiegel_energy_yearly:
+    unique_id: "403_bad_licht_spiegel_energy_yearly"
+    name: "403_bad_licht_spiegel_energy_yearly"
+    # friendly_name: "403_Bad-Licht-Spiegel - Energy yearly"
+    source: sensor.403_bad_licht_spiegel_energy
+    cycle: yearly
+
+  404_gaste_licht_decke_energy_hourly:
+    unique_id: "404_gaste_licht_decke_energy_hourly"
+    name: "404_gaste_licht_decke_energy_hourly"
+    # friendly_name: "404_Gäste-Licht-Decke - Energy hourly"
+    source: sensor.404_gaste_licht_decke_energy
+    cycle: hourly
+  404_gaste_licht_decke_energy_daily:
+    unique_id: "404_gaste_licht_decke_energy_daily"
+    name: "404_gaste_licht_decke_energy_daily"
+    # friendly_name: "404_Gäste-Licht-Decke - Energy daily"
+    source: sensor.404_gaste_licht_decke_energy
+    cycle: daily
+  404_gaste_licht_decke_energy_weekly:
+    unique_id: "404_gaste_licht_decke_energy_weekly"
+    name: "404_gaste_licht_decke_energy_weekly"
+    # friendly_name: "404_Gäste-Licht-Decke - Energy weekly"
+    source: sensor.404_gaste_licht_decke_energy
+    cycle: weekly
+  404_gaste_licht_decke_energy_monthly:
+    unique_id: "404_gaste_licht_decke_energy_monthly"
+    name: "404_gaste_licht_decke_energy_monthly"
+    # friendly_name: "404_Gäste-Licht-Decke - Energy monthly"
+    source: sensor.404_gaste_licht_decke_energy
+    cycle: monthly
+  404_gaste_licht_decke_energy_yearly:
+    unique_id: "404_gaste_licht_decke_energy_yearly"
+    name: "404_gaste_licht_decke_energy_yearly"
+    # friendly_name: "404_Gäste-Licht-Decke - Energy yearly"
+    source: sensor.404_gaste_licht_decke_energy
+    cycle: yearly
+
+  404_gaste_licht_schrank_energy_hourly:
+    unique_id: "404_gaste_licht_schrank_energy_hourly"
+    name: "404_gaste_licht_schrank_energy_hourly"
+    # friendly_name: "404_Gäste-Licht-Schrank - Energy hourly"
+    source: sensor.404_gaste_licht_schrank_energy
+    cycle: hourly
+  404_gaste_licht_schrank_energy_daily:
+    unique_id: "404_gaste_licht_schrank_energy_daily"
+    name: "404_gaste_licht_schrank_energy_daily"
+    # friendly_name: "404_Gäste-Licht-Schrank - Energy daily"
+    source: sensor.404_gaste_licht_schrank_energy
+    cycle: daily
+  404_gaste_licht_schrank_energy_weekly:
+    unique_id: "404_gaste_licht_schrank_energy_weekly"
+    name: "404_gaste_licht_schrank_energy_weekly"
+    # friendly_name: "404_Gäste-Licht-Schrank - Energy weekly"
+    source: sensor.404_gaste_licht_schrank_energy
+    cycle: weekly
+  404_gaste_licht_schrank_energy_monthly:
+    unique_id: "404_gaste_licht_schrank_energy_monthly"
+    name: "404_gaste_licht_schrank_energy_monthly"
+    # friendly_name: "404_Gäste-Licht-Schrank - Energy monthly"
+    source: sensor.404_gaste_licht_schrank_energy
+    cycle: monthly
+  404_gaste_licht_schrank_energy_yearly:
+    unique_id: "404_gaste_licht_schrank_energy_yearly"
+    name: "404_gaste_licht_schrank_energy_yearly"
+    # friendly_name: "404_Gäste-Licht-Schrank - Energy yearly"
+    source: sensor.404_gaste_licht_schrank_energy
+    cycle: yearly
+
+  404_werkstatt_licht_energy_hourly:
+    unique_id: "404_werkstatt_licht_energy_hourly"
+    name: "404_werkstatt_licht_energy_hourly"
+    # friendly_name: "404_Werkstatt-Licht - Energy hourly"
+    source: sensor.404_werkstatt_licht_energy
+    cycle: hourly
+  404_werkstatt_licht_energy_daily:
+    unique_id: "404_werkstatt_licht_energy_daily"
+    name: "404_werkstatt_licht_energy_daily"
+    # friendly_name: "404_Werkstatt-Licht - Energy daily"
+    source: sensor.404_werkstatt_licht_energy
+    cycle: daily
+  404_werkstatt_licht_energy_weekly:
+    unique_id: "404_werkstatt_licht_energy_weekly"
+    name: "404_werkstatt_licht_energy_weekly"
+    # friendly_name: "404_Werkstatt-Licht - Energy weekly"
+    source: sensor.404_werkstatt_licht_energy
+    cycle: weekly
+  404_werkstatt_licht_energy_monthly:
+    unique_id: "404_werkstatt_licht_energy_monthly"
+    name: "404_werkstatt_licht_energy_monthly"
+    # friendly_name: "404_Werkstatt-Licht - Energy monthly"
+    source: sensor.404_werkstatt_licht_energy
+    cycle: monthly
+  404_werkstatt_licht_energy_yearly:
+    unique_id: "404_werkstatt_licht_energy_yearly"
+    name: "404_werkstatt_licht_energy_yearly"
+    # friendly_name: "404_Werkstatt-Licht - Energy yearly"
+    source: sensor.404_werkstatt_licht_energy
+    cycle: yearly

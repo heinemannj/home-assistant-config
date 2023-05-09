@@ -1,0 +1,8 @@
+# Illuminance
+#
+
+sensor:
+  - platform: illuminance
+    name: Estimated Illuminance
+    entity_id: weather.forecast_home
+    mode: normal

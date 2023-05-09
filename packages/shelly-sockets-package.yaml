@@ -1,0 +1,251 @@
+# sockets
+#
+
+utility_meter:
+  310_garten_teich_1_uv_lampe_energy_hourly:
+    unique_id: "310_garten_teich_1_uv_lampe_energy_hourly"
+    name: "310_garten_teich_1_uv_lampe_energy_hourly"
+    # friendly_name: "310_Garten-Teich-1-UV-Lampe - Energy hourly"
+    source: sensor.310_garten_teich_1_uv_lampe_energy
+    cycle: hourly
+  310_garten_teich_1_uv_lampe_energy_daily:
+    unique_id: "310_garten_teich_1_uv_lampe_energy_daily"
+    name: "310_garten_teich_1_uv_lampe_energy_daily"
+    # friendly_name: "310_Garten-Teich-1-UV-Lampe - Energy daily"
+    source: sensor.310_garten_teich_1_uv_lampe_energy
+    cycle: daily
+  310_garten_teich_1_uv_lampe_energy_weekly:
+    unique_id: "310_garten_teich_1_uv_lampe_energy_weekly"
+    name: "310_garten_teich_1_uv_lampe_energy_weekly"
+    # friendly_name: "310_Garten-Teich-1-UV-Lampe - Energy weekly"
+    source: sensor.310_garten_teich_1_uv_lampe_energy
+    cycle: weekly
+  310_garten_teich_1_uv_lampe_energy_monthly:
+    unique_id: "310_garten_teich_1_uv_lampe_energy_monthly"
+    name: "310_garten_teich_1_uv_lampe_energy_monthly"
+    # friendly_name: "310_Garten-Teich-1-UV-Lampe - Energy monthly"
+    source: sensor.310_garten_teich_1_uv_lampe_energy
+    cycle: monthly
+  310_garten_teich_1_uv_lampe_energy_yearly:
+    unique_id: "310_garten_teich_1_uv_lampe_energy_yearly"
+    name: "310_garten_teich_1_uv_lampe_energy_yearly"
+    # friendly_name: "310_Garten-Teich-1-UV-Lampe - Energy yearly"
+    source: sensor.310_garten_teich_1_uv_lampe_energy
+    cycle: yearly
+
+  310_garten_teich_2_monitor_mc_energy_hourly:
+    unique_id: "310_garten_teich_2_monitor_mc_energy_hourly"
+    name: "310_garten_teich_2_monitor_mc_energy_hourly"
+    # friendly_name: "310_Garten-Teich-2-Monitor-MC - Energy hourly"
+    source: sensor.310_garten_teich_2_monitor_mc_energy
+    cycle: hourly
+  310_garten_teich_2_monitor_mc_energy_daily:
+    unique_id: "310_garten_teich_2_monitor_mc_energy_daily"
+    name: "310_garten_teich_2_monitor_mc_energy_daily"
+    # friendly_name: "310_Garten-Teich-2-Monitor-MC - Energy daily"
+    source: sensor.310_garten_teich_2_monitor_mc_energy
+    cycle: daily
+  310_garten_teich_2_monitor_mc_energy_weekly:
+    unique_id: "310_garten_teich_2_monitor_mc_energy_weekly"
+    name: "310_garten_teich_2_monitor_mc_energy_weekly"
+    # friendly_name: "310_Garten-Teich-2-Monitor-MC - Energy weekly"
+    source: sensor.310_garten_teich_2_monitor_mc_energy
+    cycle: weekly
+  310_garten_teich_2_monitor_mc_energy_monthly:
+    unique_id: "310_garten_teich_2_monitor_mc_energy_monthly"
+    name: "310_garten_teich_2_monitor_mc_energy_monthly"
+    # friendly_name: "310_Garten-Teich-2-Monitor-MC - Energy monthly"
+    source: sensor.310_garten_teich_2_monitor_mc_energy
+    cycle: monthly
+  310_garten_teich_2_monitor_mc_energy_yearly:
+    unique_id: "310_garten_teich_2_monitor_mc_energy_yearly"
+    name: "310_garten_teich_2_monitor_mc_energy_yearly"
+    # friendly_name: "310_Garten-Teich-2-Monitor-MC - Energy yearly"
+    source: sensor.310_garten_teich_2_monitor_mc_energy
+    cycle: yearly
+
+  310_garten_teich_3_frei_energy_hourly:
+    unique_id: "310_garten_teich_3_frei_energy_hourly"
+    name: "310_garten_teich_3_frei_energy_hourly"
+    # friendly_name: "310_Garten-Teich-3-frei - Energy hourly"
+    source: sensor.310_garten_teich_3_frei_energy
+    cycle: hourly
+  310_garten_teich_3_frei_energy_daily:
+    unique_id: "310_garten_teich_3_frei_energy_daily"
+    name: "310_garten_teich_3_frei_energy_daily"
+    # friendly_name: "310_Garten-Teich-3-frei - Energy daily"
+    source: sensor.310_garten_teich_3_frei_energy
+    cycle: daily
+  310_garten_teich_3_frei_energy_weekly:
+    unique_id: "310_garten_teich_3_frei_energy_weekly"
+    name: "310_garten_teich_3_frei_energy_weekly"
+    # friendly_name: "310_Garten-Teich-3-frei - Energy weekly"
+    source: sensor.310_garten_teich_3_frei_energy
+    cycle: weekly
+  310_garten_teich_3_frei_energy_monthly:
+    unique_id: "310_garten_teich_3_frei_energy_monthly"
+    name: "310_garten_teich_3_frei_energy_monthly"
+    # friendly_name: "310_Garten-Teich-3-frei - Energy monthly"
+    source: sensor.310_garten_teich_3_frei_energy
+    cycle: monthly
+  310_garten_teich_3_frei_energy_yearly:
+    unique_id: "310_garten_teich_3_frei_energy_yearly"
+    name: "310_garten_teich_3_frei_energy_yearly"
+    # friendly_name: "310_Garten-Teich-3-frei - Energy yearly"
+    source: sensor.310_garten_teich_3_frei_energy
+    cycle: yearly
+
+  310_garten_teich_4_frei_energy_hourly:
+    unique_id: "310_garten_teich_4_frei_energy_hourly"
+    name: "310_garten_teich_4_frei_energy_hourly"
+    # friendly_name: "310_Garten-Teich-4-frei - Energy hourly"
+    source: sensor.310_garten_teich_4_frei_energy
+    cycle: hourly
+  310_garten_teich_4_frei_energy_daily:
+    unique_id: "310_garten_teich_4_frei_energy_daily"
+    name: "310_garten_teich_4_frei_energy_daily"
+    # friendly_name: "310_Garten-Teich-4-frei - Energy daily"
+    source: sensor.310_garten_teich_4_frei_energy
+    cycle: daily
+  310_garten_teich_4_frei_energy_weekly:
+    unique_id: "310_garten_teich_4_frei_energy_weekly"
+    name: "310_garten_teich_4_frei_energy_weekly"
+    # friendly_name: "310_Garten-Teich-4-frei - Energy weekly"
+    source: sensor.310_garten_teich_4_frei_energy
+    cycle: weekly
+  310_garten_teich_4_frei_energy_monthly:
+    unique_id: "310_garten_teich_4_frei_energy_monthly"
+    name: "310_garten_teich_4_frei_energy_monthly"
+    # friendly_name: "310_Garten-Teich-4-frei - Energy monthly"
+    source: sensor.310_garten_teich_4_frei_energy
+    cycle: monthly
+  310_garten_teich_4_frei_energy_yearly:
+    unique_id: "310_garten_teich_4_frei_energy_yearly"
+    name: "310_garten_teich_4_frei_energy_yearly"
+    # friendly_name: "310_Garten-Teich-4-frei - Energy yearly"
+    source: sensor.310_garten_teich_4_frei_energy
+    cycle: yearly
+
+  310_garten_teich_5_kugel_energy_hourly:
+    unique_id: "310_garten_teich_5_kugel_energy_hourly"
+    name: "310_garten_teich_5_kugel_energy_hourly"
+    # friendly_name: "310_Garten-Teich-5-Kugel - Energy hourly"
+    source: sensor.310_garten_teich_5_kugel_energy
+    cycle: hourly
+  310_garten_teich_5_kugel_energy_daily:
+    unique_id: "310_garten_teich_5_kugel_energy_daily"
+    name: "310_garten_teich_5_kugel_energy_daily"
+    # friendly_name: "310_Garten-Teich-5-Kugel - Energy daily"
+    source: sensor.310_garten_teich_5_kugel_energy
+    cycle: daily
+  310_garten_teich_5_kugel_energy_weekly:
+    unique_id: "310_garten_teich_5_kugel_energy_weekly"
+    name: "310_garten_teich_5_kugel_energy_weekly"
+    # friendly_name: "310_Garten-Teich-5-Kugel - Energy weekly"
+    source: sensor.310_garten_teich_5_kugel_energy
+    cycle: weekly
+  310_garten_teich_5_kugel_energy_monthly:
+    unique_id: "310_garten_teich_5_kugel_energy_monthly"
+    name: "310_garten_teich_5_kugel_energy_monthly"
+    # friendly_name: "310_Garten-Teich-5-Kugel - Energy monthly"
+    source: sensor.310_garten_teich_5_kugel_energy
+    cycle: monthly
+  310_garten_teich_5_kugel_energy_yearly:
+    unique_id: "310_garten_teich_5_kugel_energy_yearly"
+    name: "310_garten_teich_5_kugel_energy_yearly"
+    # friendly_name: "310_Garten-Teich-5-Kugel - Energy yearly"
+    source: sensor.310_garten_teich_5_kugel_energy
+    cycle: yearly
+
+  310_garten_teich_6_stern_energy_hourly:
+    unique_id: "310_garten_teich_6_stern_energy_hourly"
+    name: "310_garten_teich_6_stern_energy_hourly"
+    # friendly_name: "310_Garten-Teich-6-Stern - Energy hourly"
+    source: sensor.310_garten_teich_6_stern_energy
+    cycle: hourly
+  310_garten_teich_6_stern_energy_daily:
+    unique_id: "310_garten_teich_6_stern_energy_daily"
+    name: "310_garten_teich_6_stern_energy_daily"
+    # friendly_name: "310_Garten-Teich-6-Stern - Energy daily"
+    source: sensor.310_garten_teich_6_stern_energy
+    cycle: daily
+  310_garten_teich_6_stern_energy_weekly:
+    unique_id: "310_garten_teich_6_stern_energy_weekly"
+    name: "310_garten_teich_6_stern_energy_weekly"
+    # friendly_name: "310_Garten-Teich-6-Stern - Energy weekly"
+    source: sensor.310_garten_teich_6_stern_energy
+    cycle: weekly
+  310_garten_teich_6_stern_energy_monthly:
+    unique_id: "310_garten_teich_6_stern_energy_monthly"
+    name: "310_garten_teich_6_stern_energy_monthly"
+    # friendly_name: "310_Garten-Teich-6-Stern - Energy monthly"
+    source: sensor.310_garten_teich_6_stern_energy
+    cycle: monthly
+  310_garten_teich_6_stern_energy_yearly:
+    unique_id: "310_garten_teich_6_stern_energy_yearly"
+    name: "310_garten_teich_6_stern_energy_yearly"
+    # friendly_name: "310_Garten-Teich-6-Stern - Energy yearly"
+    source: sensor.310_garten_teich_6_stern_energy
+    cycle: yearly
+
+  310_garten_teich_7_wasserpumpe_energy_hourly:
+    unique_id: "310_garten_teich_7_wasserpumpe_energy_hourly"
+    name: "310_garten_teich_7_wasserpumpe_energy_hourly"
+    # friendly_name: "310_Garten-Teich-7-Wasserpumpe - Energy hourly"
+    source: sensor.310_garten_teich_7_wasserpumpe_energy
+    cycle: hourly
+  310_garten_teich_7_wasserpumpe_energy_daily:
+    unique_id: "310_garten_teich_7_wasserpumpe_energy_daily"
+    name: "310_garten_teich_7_wasserpumpe_energy_daily"
+    # friendly_name: "310_Garten-Teich-7-Wasserpumpe - Energy daily"
+    source: sensor.310_garten_teich_7_wasserpumpe_energy
+    cycle: daily
+  310_garten_teich_7_wasserpumpe_energy_weekly:
+    unique_id: "310_garten_teich_7_wasserpumpe_energy_weekly"
+    name: "310_garten_teich_7_wasserpumpe_energy_weekly"
+    # friendly_name: "310_Garten-Teich-7-Wasserpumpe - Energy weekly"
+    source: sensor.310_garten_teich_7_wasserpumpe_energy
+    cycle: weekly
+  310_garten_teich_7_wasserpumpe_energy_monthly:
+    unique_id: "310_garten_teich_7_wasserpumpe_energy_monthly"
+    name: "310_garten_teich_7_wasserpumpe_energy_monthly"
+    # friendly_name: "310_Garten-Teich-7-Wasserpumpe - Energy monthly"
+    source: sensor.310_garten_teich_7_wasserpumpe_energy
+    cycle: monthly
+  310_garten_teich_7_wasserpumpe_energy_yearly:
+    unique_id: "310_garten_teich_7_wasserpumpe_energy_yearly"
+    name: "310_garten_teich_7_wasserpumpe_energy_yearly"
+    # friendly_name: "310_Garten-Teich-7-Wasserpumpe - Energy yearly"
+    source: sensor.310_garten_teich_7_wasserpumpe_energy
+    cycle: yearly
+
+  310_garten_teich_8_dosierer_energy_hourly:
+    unique_id: "310_garten_teich_8_dosierer_energy_hourly"
+    name: "310_garten_teich_8_dosierer_energy_hourly"
+    # friendly_name: "310_Garten-Teich-8-Dosierer - Energy hourly"
+    source: sensor.310_garten_teich_8_dosierer_energy
+    cycle: hourly
+  310_garten_teich_8_dosierer_energy_daily:
+    unique_id: "310_garten_teich_8_dosierer_energy_daily"
+    name: "310_garten_teich_8_dosierer_energy_daily"
+    # friendly_name: "310_Garten-Teich-8-Dosierer - Energy daily"
+    source: sensor.310_garten_teich_8_dosierer_energy
+    cycle: daily
+  310_garten_teich_8_dosierer_energy_weekly:
+    unique_id: "310_garten_teich_8_dosierer_energy_weekly"
+    name: "310_garten_teich_8_dosierer_energy_weekly"
+    # friendly_name: "310_Garten-Teich-8-Dosierer - Energy weekly"
+    source: sensor.310_garten_teich_8_dosierer_energy
+    cycle: weekly
+  310_garten_teich_8_dosierer_energy_monthly:
+    unique_id: "310_garten_teich_8_dosierer_energy_monthly"
+    name: "310_garten_teich_8_dosierer_energy_monthly"
+    # friendly_name: "310_Garten-Teich-8-Dosierer - Energy monthly"
+    source: sensor.310_garten_teich_8_dosierer_energy
+    cycle: monthly
+  310_garten_teich_8_dosierer_energy_yearly:
+    unique_id: "310_garten_teich_8_dosierer_energy_yearly"
+    name: "310_garten_teich_8_dosierer_energy_yearly"
+    # friendly_name: "310_Garten-Teich-8-Dosierer - Energy yearly"
+    source: sensor.310_garten_teich_8_dosierer_energy
+    cycle: yearly

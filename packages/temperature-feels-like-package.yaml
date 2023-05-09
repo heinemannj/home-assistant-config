@@ -1,0 +1,76 @@
+# temperature_feels_like
+#
+
+sensor:
+  - platform: temperature_feels_like
+    name: "310_Garten-Wetter-Temperatur-feels-like"
+    unique_id: 310_garten_wetter_temperature_feels_like
+    source:
+      #- weather.dwd_weather_raesfeld_ka
+      - sensor.310_garten_wetter_luft_temperatur_ds18b20
+      - sensor.310_garten_wetter_humidity_bme280
+      - sensor.wind_speed_raesfeld_ka
+      - sensor.wind_gusts_raesfeld_ka
+
+  - platform: template
+    sensors:
+      310_garten_wetter_jagti_windchill:
+        friendly_name: "310_Garten-Wetter-Jag/Ti-Wchill"
+        unique_id: 310_garten_wetter_jagti_windchill
+        device_class: temperature
+        unit_of_measurement: "°C"
+        # Tchill(°C) = 13,12 + 0,6215*Tair + 0.3965*(Tair - 28,676)*S10m0,16
+        # S10m = windspeed (km/h) at anemometer_height = 10 m, Tair in °C
+        value_template: >
+          {% set temperature = (states('sensor.310_garten_wetter_luft_temperatur_ds18b20')|float) %}
+          {% set wind_speed = (states('sensor.wind_speed_raesfeld_ka')|float) %}
+          {% if(temperature >= -45 and temperature <= 10 and wind > 0) %}
+          {{ (13.12 + 0.6215*temperature + 0.3965*(temperature - 28.676) *(wind_speed*3.6)**0.16) | round(2) }}
+          {% else %}
+            {# outside_calculable_range #}
+          None
+          {% endif %}
+        availability_template: >-
+          {{ (states('sensor.310_garten_wetter_luft_temperatur_ds18b20') not in [ 'unavailable', 'none', 'unknown' ])
+              and (states('sensor.wind_speed_raesfeld_ka') not in [ 'unavailable', 'none', 'unknown' ]) }}
+
+      310_garten_wetter_jagti_windchill_2:
+        friendly_name: "310_Garten-Wetter-Jag/Ti-Wchill v2"
+        unique_id: 310_garten_wetter_jagti_windchill_2
+        device_class: temperature
+        unit_of_measurement: "°C"
+        #G  =13,12+0,6215*T-11,37*(W*3,6)^0,16+0,3965*T*(W*3,6)^0,16
+        #Invoerveld T = Temperatuur in Graden Celsius
+        #Invoerveld W = Wind in meter / seconde
+        value_template: >
+          {% set temperature = (states('sensor.310_garten_wetter_luft_temperatur_ds18b20')|float) %}
+          {% set wind_speed = (states('sensor.wind_speed_raesfeld_ka')|float) %}
+          {% if(temperature >= -45 and temperature <= 10 and wind > 0) %}
+          {{(13.12 +0.6215*temperature -11.37*(wind_speed*3.6)**0.16 +0.3965*temperature*(wind_speed*3.6)**0.16) | round(2) }}
+          {% else %}
+            {# outside_calculable_range #}
+          None
+          {% endif %}
+        availability_template: >-
+          {{ (states('sensor.310_garten_wetter_luft_temperatur_ds18b20') not in [ 'unavailable', 'none', 'unknown' ])
+              and (states('sensor.wind_speed_raesfeld_ka') not in [ 'unavailable', 'none', 'unknown' ]) }}
+
+      310_garten_wetter_steadman_windchill:
+        friendly_name: 310_Garten-Wetter-Steadman Wchill
+        unique_id: 310_garten_wetter_steadman_windchill
+        device_class: temperature
+        unit_of_measurement: "°C"
+        # Tchill(°C) = 1.41 - 1.162*S + 0.98*Tair+0.0124*S2 + 0.0185*S*Tair
+        # Tair in °C en S= in m/s.
+        value_template: >
+          {% set temperature = (states('sensor.310_garten_wetter_luft_temperatur_ds18b20')|float) %}
+          {% set wind_speed = (states('sensor.wind_speed_raesfeld_ka')|float / 1000 / 60 / 60) %}
+          {% if(temperature >= -45 and temperature <= 10 and wind > 0) %}
+          {{ (1.41 - 1.162*wind_speed + 0.98*temperature + 0.124*wind_speed**2 +0.0185*wind_speed*temperature) | round(2) }}
+          {% else %}
+            {# outside_calculable_range #}
+          None
+          {% endif %}
+        availability_template: >-
+          {{ (states('sensor.310_garten_wetter_luft_temperatur_ds18b20') not in [ 'unavailable', 'none', 'unknown' ])
+              and (states('sensor.wind_speed_raesfeld_ka') not in [ 'unavailable', 'none', 'unknown' ]) }}

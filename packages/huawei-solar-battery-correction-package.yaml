@@ -1,0 +1,222 @@
+# ########## Huawei Solar Integration ##########
+#
+# huawei-solar-battery-correction-package.yaml
+#
+# - input_number.battery_discharge_loss_daily
+# - input_number.battery_charge_loss_daily
+# - sensor.inverter_loss_daily
+# - sensor.battery_day_discharge_with_loss
+# - sensor.battery_day_charge_with_loss
+#
+# ########## Start: Persistent Input Numbers ##########
+#
+# - for Persistent Sensor states after HA or huawei_solar integration restart
+# - used by automation
+#
+input_number:
+  #
+  # Battery Charge/Discharge Loss (Energy)
+  #
+  battery_discharge_loss_daily:
+    name: battery_discharge_loss_daily
+    #unique_id: battery_discharge_loss_daily
+    #friendly_name: "battery_discharge_loss_daily"
+    initial: 0
+    min: -10
+    max: 100
+    step: 1
+    mode: box
+    #state_class: "total"
+    #device_class: energy
+    unit_of_measurement: kWh
+    icon: mdi:solar-power
+
+  battery_charge_loss_daily:
+    name: battery_charge_loss_daily
+    #unique_id: battery_charge_loss_daily
+    #friendly_name: "battery_charge_loss_daily"
+    initial: 0
+    min: -10
+    max: 100
+    step: 1
+    mode: box
+    #state_class: "total"
+    #device_class: energy
+    unit_of_measurement: kWh
+    icon: mdi:solar-power
+#
+# ########## End: Persistent Input Numbers ##########
+#
+# ########## Start: Persistent Template Sensors ##########
+#
+# - for Persistent Template Sensor states after HA or huawei_solar integration restart
+# - for resetting sensor states at 00:00:00
+#
+template:
+  #
+  # Inverter Loss (Energy)
+  #
+  - trigger:
+      - platform: state
+        entity_id: sensor.inverter_daily_yield
+        not_from:
+          - "unknown"
+          - "unavailable"
+          - "none"
+        not_to:
+          - "unknown"
+          - "unavailable"
+          - "none"
+      - platform: time
+        at: "00:00:00"
+    sensor:
+      - name: inverter_loss_daily
+        unique_id: inverter_loss_daily
+        #friendly_name: "Inverter Loss - Daily"
+        state_class: "total"
+        device_class: energy
+        unit_of_measurement: "kWh"
+        icon: mdi:solar-power
+        state: >-
+          {% if trigger.platform == 'state' %}
+            {% set inv_in = states('sensor.solar_yield_daily')|float(0) %}
+            {% set inv_out = states('sensor.inverter_daily_yield')|float(0) %}
+            {% set bat_in = states('sensor.battery_day_charge')|float(0) %}
+            {% set bat_out = states('sensor.battery_day_discharge')|float(0) %}
+            {% set bat_total_loss = (inv_in + bat_out - bat_in - inv_out)|float(0) %}
+
+            {% if bat_total_loss > 0 %}
+              {{ bat_total_loss }}
+            {% else %}
+              {{ states('sensor.inverter_loss_daily')|float(0) }}
+            {% endif %}
+          {% elif trigger.platform == 'time' %}
+            {{ 0.0 }}
+          {% endif %}
+        attributes:
+          last_update: "{{ now() }}"
+        availability: >-
+          {{ (states('sensor.solar_yield_daily')|is_number)
+              and (states('sensor.inverter_daily_yield')|is_number)
+              and (states('sensor.battery_day_charge')|is_number)
+              and (states('sensor.battery_day_discharge')|is_number)
+              and (states('sensor.battery_charge_discharge_power')|is_number) }}
+  #
+  # Battery Day Discharge with Loss
+  #
+  - trigger:
+      - platform: state
+        entity_id: input_number.battery_discharge_loss_daily
+        not_from:
+          - "unknown"
+          - "unavailable"
+          - "none"
+        not_to:
+          - "unknown"
+          - "unavailable"
+          - "none"
+      - platform: time
+        at: "00:00:00"
+    sensor:
+      - name: battery_day_discharge_with_loss
+        unique_id: battery_day_discharge_with_loss
+        #friendly_name: "Battery discharge with Loss - Daily"
+        state_class: "total"
+        device_class: energy
+        unit_of_measurement: "kWh"
+        icon: mdi:solar-power
+        state: >-
+          {% if trigger.platform == 'state' %}
+            {% set bat_out = states('sensor.battery_day_discharge')|float(0) %}
+            {% set bat_out_loss = states('input_number.battery_discharge_loss_daily')|float(0) %}
+            {% set bat_out_with_loss = (bat_out - bat_out_loss)|float(0) %}
+            {% if bat_out_with_loss > 0 %}
+              {{ bat_out_with_loss }}
+            {% else %}
+              {{ states('sensor.battery_day_discharge_with_loss')|float(0) }}
+            {% endif %}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+        attributes:
+          last_update: "{{ now() }}"
+        availability: >-
+          {{ (states('sensor.battery_day_discharge')|is_number)
+              and (states('input_number.battery_discharge_loss_daily')|is_number) }}
+  #
+  # Battery Day Charge with Loss
+  #
+  - trigger:
+      - platform: state
+        entity_id: input_number.battery_charge_loss_daily
+        not_from:
+          - "unknown"
+          - "unavailable"
+          - "none"
+        not_to:
+          - "unknown"
+          - "unavailable"
+          - "none"
+      - platform: time
+        at: "00:00:05"
+    sensor:
+      - name: battery_day_charge_with_loss
+        unique_id: battery_day_charge_with_loss
+        #friendly_name: "Battery Day Charge with Loss - Daily"
+        state_class: "total"
+        device_class: energy
+        unit_of_measurement: "kWh"
+        icon: mdi:solar-power
+        state: >-
+          {% if trigger.platform == 'state' %}
+            {% set bat_in = states('sensor.battery_day_charge')|float(0) %}
+            {% set bat_in_loss = states('input_number.battery_charge_loss_daily')|float(0) %}
+            {% set bat_in_with_loss = (bat_in + bat_in_loss)|float(0) %}
+            {% if bat_in_with_loss > 0 %}
+              {{ bat_in_with_loss }}
+            {% else %}
+              {{ states('sensor.battery_day_charge_with_loss')|float(0) }}
+            {% endif %}
+          {% else %}
+            {{ 0.0 }}
+          {% endif %}
+        attributes:
+          last_update: "{{ now() }}"
+        availability: >-
+          {{ (states('sensor.battery_day_charge')|is_number)
+              and (states('input_number.battery_charge_loss_daily')|is_number) }}
+
+  #
+  # ########## End: Persistent Template Sensors ##########
+  #
+  # ########## Start: Normal Template Sensors ##########
+  # Optional
+  #
+  - sensor:
+      #
+      # Control if Solar Yield and Battery Correction is fitting to real House Load
+      # (Solar Yield with Inverter Correction and Battery Loss)
+      #
+      - name: house_consumption_energy_daily_control
+        unique_id: house_consumption_energy_daily_control
+        #friendly_name: "Hausverbrauch Total Control"
+        state_class: "total"
+        device_class: energy
+        unit_of_measurement: "kWh"
+        icon: mdi:home
+        state: >-
+          {% set inv_in = states('sensor.solar_yield_daily')|float(0) %}
+          {% set grid_out = states('sensor.power_meter_exported_energy_daily')|float(0) %}
+          {% set grid_in = states('sensor.power_meter_consumption_energy_daily')|float(0) %}
+          {% set bat_in = states('sensor.battery_day_charge_with_loss')|float(0) %}
+          {% set bat_out = states('sensor.battery_day_discharge_with_loss')|float(0) %}
+          {{ inv_in - bat_in - grid_out + grid_in + bat_out }}
+        availability: >-
+          {{ (states('sensor.solar_yield_daily')|is_number)
+              and (states('sensor.power_meter_exported_energy_daily')|is_number)
+              and (states('sensor.power_meter_consumption_energy_daily')|is_number)
+              and (states('sensor.battery_day_charge_with_loss')|is_number)
+              and (states('sensor.battery_day_discharge_with_loss')|is_number) }}
+
+#
+# ########## End: Normal Template Sensors ##########

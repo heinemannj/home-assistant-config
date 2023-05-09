@@ -1,0 +1,253 @@
+- id: '1673671915301'
+  alias: 301_thermostat_eg_update
+  description: Update thermostat eg
+  trigger:
+  - platform: state
+    entity_id:
+    - climate.hm_tc_it_wm_w_eu_meq1330232
+  condition: []
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: '{{ state_attr(''climate.hm_tc_it_wm_w_eu_meq1330232'', ''temperature'')
+        }}'
+    target:
+      entity_id: climate.thermostat_eg
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: climate.hm_tc_it_wm_w_eu_meq1330232
+        below: 0
+        value_template: '{{ float(state.attributes.current_temperature - state.attributes.temperature)
+          }}'
+      sequence:
+      - service: climate.turn_on
+        data: {}
+        target:
+          entity_id: climate.thermostat_eg
+    - conditions:
+      - condition: numeric_state
+        entity_id: climate.hm_tc_it_wm_w_eu_meq1330232
+        above: 0
+        value_template: '{{ float(state.attributes.current_temperature - state.attributes.temperature)
+          }}'
+      sequence:
+      - service: climate.turn_off
+        data: {}
+        target:
+          entity_id: climate.thermostat_eg
+  mode: single
+- id: '1675134679618'
+  alias: OpenUV - API Update
+  description: Update the UV index data every 20 minutes while the sun is at least
+    10 degrees above the horizon.
+  trigger:
+  - platform: time_pattern
+    minutes: /20
+  condition:
+  - condition: numeric_state
+    entity_id: sun.sun
+    value_template: '{{ state.attributes.elevation }}'
+    above: 10
+  action:
+  - service: homeassistant.update_entity
+    target:
+      entity_id: sensor.current_uv_index
+    data: {}
+  mode: single
+- id: '1681909810971'
+  alias: Huawei Solar - Inverter Fan Control
+  description: Turns On a fan if Huawei SUN2000-3/4/5/6/8/10KTL-M1 Inverter temperature
+    gets higher than 45°C
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.inverter_internal_temperature
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.inverter_internal_temperature
+        below: 43
+      sequence:
+      - service: fan.turn_off
+        data: {}
+        target:
+          entity_id: fan.xiaomi_smart_fan
+      - service: xiaomi_miio_fan.fan_set_buzzer_off
+        data:
+          entity_id: fan.xiaomi_smart_fan
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.inverter_internal_temperature
+        above: 45
+      sequence:
+      - service: fan.turn_on
+        data:
+          percentage: 33
+        target:
+          entity_id: fan.xiaomi_smart_fan
+      - service: fan.oscillate
+        data:
+          oscillating: true
+        target:
+          entity_id: fan.xiaomi_smart_fan
+      - service: xiaomi_miio_fan.fan_set_buzzer_off
+        data:
+          entity_id: fan.xiaomi_smart_fan
+  mode: single
+- id: '1682155206287'
+  alias: Huawei Solar - Battery Discharge/Charge Correction
+  description: Huawei Solar - Battery Discharge/Charge Correction
+  trigger:
+  - platform: state
+    entity_id: sensor.inverter_loss_daily
+    not_from:
+    - unknown
+    - unavailable
+    - none
+    not_to:
+    - unknown
+    - unavailable
+    - none
+  - platform: time
+    at: 00:00:00
+    id: midnight
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: midnight
+      sequence:
+      - service: input_number.set_value
+        data:
+          value: 0
+        target:
+          entity_id:
+          - input_number.battery_charge_loss_daily
+          - input_number.battery_discharge_loss_daily
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.battery_charge_discharge_power'')|float(0)
+          >= 0 }}'
+      sequence:
+      - service: input_number.set_value
+        data:
+          value: '{% set total_loss = states(''sensor.inverter_loss_daily'')|float(0)
+            %} {% set bat_out_loss = states(''input_number.battery_discharge_loss_daily'')|float(0)
+            %}          {{ total_loss - bat_out_loss }}
+
+            '
+        target:
+          entity_id: input_number.battery_charge_loss_daily
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.battery_charge_discharge_power'')|float(0)
+          < 0 }}'
+      sequence:
+      - service: input_number.set_value
+        data:
+          value: '{% set total_loss = states(''sensor.inverter_loss_daily'')|float(0)
+            %} {% set bat_in_loss = states(''input_number.battery_charge_loss_daily'')|float(0)
+            %}          {{ total_loss - bat_in_loss }}
+
+            '
+        target:
+          entity_id: input_number.battery_discharge_loss_daily
+  mode: single
+- id: '1682421838247'
+  alias: Huawei Solar - Battery Maximum Charging Power
+  description: 'Set Maximum Charging Power for Huawei LUNA2000-5/10/15-S0 connected
+    to Huawei SUN2000-3/4/5/6/8/10KTL-M1 Inverter
+
+    '
+  trigger:
+  - platform: state
+    entity_id: sensor.inverter_input_power
+    not_from:
+    - unknown
+    - unavailable
+    - none
+    not_to:
+    - unknown
+    - unavailable
+    - none
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{% set inv_rated_output_power = 6000 %} {% set inv_in_power
+          = states(''sensor.inverter_input_power'')|float(0) %}
+
+          {{ inv_in_power > inv_rated_output_power }}
+
+          '
+      sequence:
+      - service: number.set_value
+        data:
+          value: "{% set inv_rated_output_power = 6000 %} {% set inv_max_charge_power
+            = 5000 %} {% set inv_in_power = states('sensor.inverter_input_power')|float(0)
+            %}\n{% set bat_charge_power = (inv_in_power - inv_rated_output_power)|float(0)
+            %}\n{% if bat_charge_power < inv_max_charge_power %}\n  {{ bat_charge_power
+            }}\n{% else %}\n  {{ inv_max_charge_power }}\n{% endif %}\n"
+        target:
+          entity_id: number.battery_maximum_charging_power
+    - conditions:
+      - condition: time
+        after: '14:00'
+      sequence:
+      - service: number.set_value
+        data:
+          value: '{% set inv_max_charge_power = 5000 %}
+
+            {{ inv_max_charge_power }}
+
+            '
+        target:
+          entity_id: number.battery_maximum_charging_power
+    - conditions:
+      - condition: template
+        value_template: '{% set charge_energy = states(''sensor.battery_state_of_capacity_remaining_charge_energy'')|float(0)
+          %} {% set solcast_forecast = state_attr(''sensor.solcast_forecast_remaining_today_every_minute'',
+          ''expected_battery_charge_end_energy'')|float(0) %}
+
+          {{ solcast_forecast > (charge_energy * 2.5 / 1000) }}
+
+          '
+      sequence:
+      - service: number.set_value
+        data:
+          value: "{% set inv_max_charge_power = 5000 %} {% set expected_charge_end_time
+            = '14:00' %}                 {% set charge_energy = states('sensor.battery_state_of_capacity_remaining_charge_energy')|float(0)
+            %}\n{% set charge_time = ((today_at(expected_charge_end_time).timestamp()
+            - now().timestamp()) / 3600) %} {% set bat_charge_power = (charge_energy
+            / charge_time)|float(0) %}\n{% if bat_charge_power < inv_max_charge_power
+            %}\n  {{ bat_charge_power }}\n{% else %}\n  {{ inv_max_charge_power }}\n{%
+            endif %}\n"
+        target:
+          entity_id: number.battery_maximum_charging_power
+    default:
+    - service: number.set_value
+      data:
+        value: '{% set inv_max_charge_power = 5000 %}
+
+          {{ inv_max_charge_power }}
+
+          '
+      target:
+        entity_id: number.battery_maximum_charging_power
+  mode: single
+- id: '1683527834702'
+  alias: Push updates to HitHub
+  description: Automatic backup HA config folder on HitHub.
+  trigger:
+  - platform: time
+    at: '22:05:46'
+  condition: []
+  action:
+  - service: shell_command.pushupdates_to_github
+    data: {}
+  mode: single

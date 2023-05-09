@@ -1,0 +1,74 @@
+# calender
+#
+
+sensor:
+  - platform: time_date
+    display_options:
+      - "date"
+
+template:
+  - sensor:
+      # Biomuell
+      # calendar.biomuell
+      #
+      - name: Event Day Biomuell
+        unique_id: event_day_biomuell
+        icon: mdi:trash-can-outline
+        state: >
+          {% set t = now() %}
+          {% set midnight = today_at() %}
+          {% set event = state_attr('calendar.biomuell', 'start_time') | as_datetime | as_local %}
+          {% set delta = event - midnight %}
+          {{ delta.days | int }}
+
+      # Gelber-Sack
+      # calendar.gelber_sack
+      #
+      - name: Event Day Gelber-Sack
+        unique_id: event_day_gelber_sack
+        icon: mdi:trash-can-outline
+        state: >
+          {% set t = now() %}
+          {% set midnight = today_at() %}
+          {% set event = state_attr('calendar.gelber_sack', 'start_time') | as_datetime | as_local %}
+          {% set delta = event - midnight %}
+          {{ delta.days | int }}
+
+      # Papier
+      # calendar.papier
+      #
+      - name: Event Day Papier
+        unique_id: event_day_papier
+        icon: mdi:trash-can-outline
+        state: >
+          {% set t = now() %}
+          {% set midnight = today_at() %}
+          {% set event = state_attr('calendar.papier', 'start_time') | as_datetime | as_local %}
+          {% set delta = event - midnight %}
+          {{ delta.days | int }}
+
+      # Restmuell
+      # calendar.restmuell
+      #
+      - name: Event Day Restmuell
+        unique_id: event_day_restmuell
+        icon: mdi:trash-can-outline
+        state: >
+          {% set t = now() %}
+          {% set midnight = today_at() %}
+          {% set event = state_attr('calendar.restmuell', 'start_time') | as_datetime | as_local %}
+          {% set delta = event - midnight %}
+          {{ delta.days | int }}
+
+      # Schadstoffe
+      # calendar.schadstoffe
+      #
+      - name: Event Day Schadstoffe
+        unique_id: event_day_schadstoffe
+        icon: mdi:trash-can-outline
+        state: >
+          {% set t = now() %}
+          {% set midnight = today_at() %}
+          {% set event = state_attr('calendar.schadstoffe', 'start_time') | as_datetime | as_local %}
+          {% set delta = event - midnight %}
+          {{ delta.days | int }}

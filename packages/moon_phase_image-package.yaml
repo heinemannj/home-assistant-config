@@ -1,0 +1,33 @@
+# Moon Phase images
+#
+
+sensor:
+  - platform: template
+    sensors:
+      moon_phase_image:
+        #entity_id: sensor.moon
+        friendly_name: "Moon Phase image"
+        value_template: >
+          {{ states('sensor.moon_phase') }}
+        icon_template: >
+          moon:{{ states('sensor.moon_phase') }}
+        entity_picture_template: >-
+          {% if is_state('sensor.moon_phase', 'new_moon') -%}
+          /local/images/moon/new_moon.png
+          {% elif is_state('sensor.moon_phase', 'waxing_crescent') -%}
+          /local/images/moon/waxing_crescent.png
+          {% elif is_state('sensor.moon_phase', 'first_quarter') -%}
+          /local/images/moon/first_quarter.png
+          {% elif is_state('sensor.moon_phase', 'waxing_gibbous') -%}
+          /local/images/moon/waxing_gibbous.png
+          {% elif is_state('sensor.moon_phase', 'full_moon') -%}
+          /local/images/moon/full_moon.png
+          {% elif is_state('sensor.moon_phase', 'waning_gibbous') -%}
+          /local/images/moon/waning_gibbous.png
+          {% elif is_state('sensor.moon_phase', 'last_quarter') -%}
+          /local/images/moon/last_quarter.png
+          {% elif is_state('sensor.moon_phase', 'waning_crescent') -%}
+          /local/images/moon/waning_crescent.png
+          {%- endif %}
+        availability_template: >-
+          {{ (states('sensor.moon_phase') not in [ 'unavailable', 'none', 'unknown' ]) }}

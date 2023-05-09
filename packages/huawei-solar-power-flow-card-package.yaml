@@ -1,0 +1,64 @@
+# ########## Huawei Solar Integration ##########
+#
+# huawei-solar-power-flow-card-package.yaml
+#
+# - sensor.house_consumption_power
+# - sensor.battery_charge_discharge_power_with_loss
+#
+template:
+  - sensor:
+      # ########## Start: Power Flow Card ##########
+      #
+      # custom:power-flow-card
+      # https://github.com/ulic75/power-flow-card
+      #
+      # or with some improvements
+      # custom:system-energy-flow-card-plus
+      # https://github.com/flixlix/power-flow-card-plus
+      #
+      # solar               : sensor.inverter_input_power
+      # battery             : sensor.battery_charge_discharge_power_with_loss
+      # grid                : sensor.power_meter_active_power
+      # house               : sensor.house_consumption_power
+      # load (FusionSolar)  : sensor.house_consumption_power
+      #
+      # Real house load
+      #
+      - name: house_consumption_power
+        unique_id: house_consumption_power
+        #friendly_name: "Power meter House power"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: >-
+          {% set inv_active_power = states('sensor.inverter_active_power')|float(0) %}
+          {% set pm_active_power = states('sensor.power_meter_active_power')|float(0) %}
+          {% set house_power =  (inv_active_power - pm_active_power)|float(0)|round(0) %}
+          {% if house_power > 0 %}
+            {{ house_power }}
+          {% else %}
+            {{ states('sensor.house_consumption_power')|float(0) }}
+          {% endif %}
+        availability: >-
+          {{ (states('sensor.inverter_active_power')|is_number)
+              and (states('sensor.power_meter_active_power')|is_number) }}
+      #
+      # Correction for Battery Charge/Discharge power (with loss)
+      #
+      - name: battery_charge_discharge_power_with_loss
+        unique_id: battery_charge_discharge_power_with_loss
+        #friendly_name: "Battery Charge/Discharge power"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: >-
+          {% set inv_input_power = states('sensor.inverter_input_power')|float(0) %}
+          {% set inv_active_power = states('sensor.inverter_active_power')|float(0) %}
+          {{ (inv_input_power - inv_active_power)|float(0)|round(0) }}
+        availability: >-
+          {{ (states('sensor.inverter_input_power')|is_number)
+              and (states('sensor.inverter_active_power')|is_number) }}
+      #
+      # ########## End: Power Flow Card ##########

@@ -1,0 +1,10 @@
+# mold_indicator
+#
+
+sensor:
+  - platform: mold_indicator
+    name: "307_Wohnen - Mold Indicator"
+    indoor_temp_sensor: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_temperature
+    indoor_humidity_sensor: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_humidity
+    outdoor_temp_sensor: sensor.temperature_raesfeld_ka
+    calibration_factor: 2.0

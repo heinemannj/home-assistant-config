@@ -1,0 +1,1099 @@
+utility_meter:
+  pulsemeter_00_energy_total:
+    unique_id: "pulsemeter_00_energy_total"
+    name: pulsemeter_00_energy_total
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_00_counter
+  pulsemeter_00_energy_hourly:
+    unique_id: "pulsemeter_00_energy_hourly"
+    name: "pulsemeter_00_energy_hourly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_00_energy_total
+    cycle: hourly
+  pulsemeter_00_energy_daily:
+    unique_id: "pulsemeter_00_energy_daily"
+    name: "pulsemeter_00_energy_daily"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_00_energy_total
+    cycle: daily
+  pulsemeter_00_energy_weekly:
+    unique_id: "pulsemeter_00_energy_weekly"
+    name: "pulsemeter_00_energy_weekly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_00_energy_total
+    cycle: weekly
+  pulsemeter_00_energy_monthly:
+    unique_id: "pulsemeter_00_energy_monthly"
+    name: "pulsemeter_00_energy_monthly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_00_energy_total
+    cycle: monthly
+  pulsemeter_00_energy_yearly:
+    unique_id: "pulsemeter_00_energy_yearly"
+    name: "pulsemeter_00_energy_yearly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_00_energy_total
+    cycle: yearly
+
+  pulsemeter_01_energy_total:
+    unique_id: "pulsemeter_01_energy_total"
+    name: pulsemeter_01_energy_total
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_01_counter
+  pulsemeter_01_energy_hourly:
+    unique_id: "pulsemeter_01_energy_hourly"
+    name: "pulsemeter_01_energy_hourly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_01_energy_total
+    cycle: hourly
+  pulsemeter_01_energy_daily:
+    unique_id: "pulsemeter_01_energy_daily"
+    name: "pulsemeter_01_energy_daily"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_01_energy_total
+    cycle: daily
+  pulsemeter_01_energy_weekly:
+    unique_id: "pulsemeter_01_energy_weekly"
+    name: "pulsemeter_01_energy_weekly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_01_energy_total
+    cycle: weekly
+  pulsemeter_01_energy_monthly:
+    unique_id: "pulsemeter_01_energy_monthly"
+    name: "pulsemeter_01_energy_monthly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_01_energy_total
+    cycle: monthly
+  pulsemeter_01_energy_yearly:
+    unique_id: "pulsemeter_01_energy_yearly"
+    name: "pulsemeter_01_energy_yearly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_01_energy_total
+    cycle: yearly
+
+  pulsemeter_02_energy_total:
+    unique_id: "pulsemeter_02_energy_total"
+    name: pulsemeter_02_energy_total
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_02_counter
+  pulsemeter_02_energy_hourly:
+    unique_id: "pulsemeter_02_energy_hourly"
+    name: "pulsemeter_02_energy_hourly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_02_energy_total
+    cycle: hourly
+  pulsemeter_02_energy_daily:
+    unique_id: "pulsemeter_02_energy_daily"
+    name: "pulsemeter_02_energy_daily"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_02_energy_total
+    cycle: daily
+  pulsemeter_02_energy_weekly:
+    unique_id: "pulsemeter_02_energy_weekly"
+    name: "pulsemeter_02_energy_weekly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_02_energy_total
+    cycle: weekly
+  pulsemeter_02_energy_monthly:
+    unique_id: "pulsemeter_02_energy_monthly"
+    name: "pulsemeter_02_energy_monthly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_02_energy_total
+    cycle: monthly
+  pulsemeter_02_energy_yearly:
+    unique_id: "pulsemeter_02_energy_yearly"
+    name: "pulsemeter_02_energy_yearly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_02_energy_total
+    cycle: yearly
+
+  pulsemeter_03_energy_total:
+    unique_id: "pulsemeter_03_energy_total"
+    name: pulsemeter_03_energy_total
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_03_counter
+  pulsemeter_03_energy_hourly:
+    unique_id: "pulsemeter_03_energy_hourly"
+    name: "pulsemeter_03_energy_hourly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_03_energy_total
+    cycle: hourly
+  pulsemeter_03_energy_daily:
+    unique_id: "pulsemeter_03_energy_daily"
+    name: "pulsemeter_03_energy_daily"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_03_energy_total
+    cycle: daily
+  pulsemeter_03_energy_weekly:
+    unique_id: "pulsemeter_03_energy_weekly"
+    name: "pulsemeter_03_energy_weekly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_03_energy_total
+    cycle: weekly
+  pulsemeter_03_energy_monthly:
+    unique_id: "pulsemeter_03_energy_monthly"
+    name: "pulsemeter_03_energy_monthly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_03_energy_total
+    cycle: monthly
+  pulsemeter_03_energy_yearly:
+    unique_id: "pulsemeter_03_energy_yearly"
+    name: "pulsemeter_03_energy_yearly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_03_energy_total
+    cycle: yearly
+
+  # GPIO4
+  # To be excluded because GPIO4 is counting every second without a connected S0 counter.
+  #
+  # Frei
+  #
+
+  # GPIO5
+  #
+  # Frei
+  #
+
+  # GPIO6
+  #
+  # Frei
+  #
+
+  # GPIO7
+  #
+  # Frei
+  #
+
+  pulsemeter_08_energy_total:
+    unique_id: "pulsemeter_08_energy_total"
+    name: pulsemeter_08_energy_total
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_08_counter
+  pulsemeter_08_energy_hourly:
+    unique_id: "pulsemeter_08_energy_hourly"
+    name: "pulsemeter_08_energy_hourly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_08_energy_total
+    cycle: hourly
+  pulsemeter_08_energy_daily:
+    unique_id: "pulsemeter_08_energy_daily"
+    name: "pulsemeter_08_energy_daily"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_08_energy_total
+    cycle: daily
+  pulsemeter_08_energy_weekly:
+    unique_id: "pulsemeter_08_energy_weekly"
+    name: "pulsemeter_08_energy_weekly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_08_energy_total
+    cycle: weekly
+  pulsemeter_08_energy_monthly:
+    unique_id: "pulsemeter_08_energy_monthly"
+    name: "pulsemeter_08_energy_monthly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_08_energy_total
+    cycle: monthly
+  pulsemeter_08_energy_yearly:
+    unique_id: "pulsemeter_08_energy_yearly"
+    name: "pulsemeter_08_energy_yearly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_08_energy_total
+    cycle: yearly
+
+  pulsemeter_09_energy_total:
+    unique_id: "pulsemeter_09_energy_total"
+    name: pulsemeter_09_energy_total
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_09_counter
+  pulsemeter_09_energy_hourly:
+    unique_id: "pulsemeter_09_energy_hourly"
+    name: "pulsemeter_09_energy_hourly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_09_energy_total
+    cycle: hourly
+  pulsemeter_09_energy_daily:
+    unique_id: "pulsemeter_09_energy_daily"
+    name: "pulsemeter_09_energy_daily"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_09_energy_total
+    cycle: daily
+  pulsemeter_09_energy_weekly:
+    unique_id: "pulsemeter_09_energy_weekly"
+    name: "pulsemeter_09_energy_weekly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_09_energy_total
+    cycle: weekly
+  pulsemeter_09_energy_monthly:
+    unique_id: "pulsemeter_09_energy_monthly"
+    name: "pulsemeter_09_energy_monthly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_09_energy_total
+    cycle: monthly
+  pulsemeter_09_energy_yearly:
+    unique_id: "pulsemeter_09_energy_yearly"
+    name: "pulsemeter_09_energy_yearly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_09_energy_total
+    cycle: yearly
+
+  pulsemeter_10_energy_total:
+    unique_id: "pulsemeter_10_energy_total"
+    name: pulsemeter_10_energy_total
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_10_counter
+  pulsemeter_10_energy_hourly:
+    unique_id: "pulsemeter_10_energy_hourly"
+    name: "pulsemeter_10_energy_hourly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_10_energy_total
+    cycle: hourly
+  pulsemeter_10_energy_daily:
+    unique_id: "pulsemeter_10_energy_daily"
+    name: "pulsemeter_10_energy_daily"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_10_energy_total
+    cycle: daily
+  pulsemeter_10_energy_weekly:
+    unique_id: "pulsemeter_10_energy_weekly"
+    name: "pulsemeter_10_energy_weekly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_10_energy_total
+    cycle: weekly
+  pulsemeter_10_energy_monthly:
+    unique_id: "pulsemeter_10_energy_monthly"
+    name: "pulsemeter_10_energy_monthly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_10_energy_total
+    cycle: monthly
+  pulsemeter_10_energy_yearly:
+    unique_id: "pulsemeter_10_energy_yearly"
+    name: "pulsemeter_10_energy_yearly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_10_energy_total
+    cycle: yearly
+
+  pulsemeter_11_energy_total:
+    unique_id: "pulsemeter_11_energy_total"
+    name: pulsemeter_11_energy_total
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_11_counter
+  pulsemeter_11_energy_hourly:
+    unique_id: "pulsemeter_11_energy_hourly"
+    name: "pulsemeter_11_energy_hourly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_11_energy_total
+    cycle: hourly
+  pulsemeter_11_energy_daily:
+    unique_id: "pulsemeter_11_energy_daily"
+    name: "pulsemeter_11_energy_daily"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_11_energy_total
+    cycle: daily
+  pulsemeter_11_energy_weekly:
+    unique_id: "pulsemeter_11_energy_weekly"
+    name: "pulsemeter_11_energy_weekly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_11_energy_total
+    cycle: weekly
+  pulsemeter_11_energy_monthly:
+    unique_id: "pulsemeter_11_energy_monthly"
+    name: "pulsemeter_11_energy_monthly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_11_energy_total
+    cycle: monthly
+  pulsemeter_11_energy_yearly:
+    unique_id: "pulsemeter_11_energy_yearly"
+    name: "pulsemeter_11_energy_yearly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_11_energy_total
+    cycle: yearly
+
+  pulsemeter_12_energy_total:
+    unique_id: "pulsemeter_12_energy_total"
+    name: pulsemeter_12_energy_total
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_12_counter
+  pulsemeter_12_energy_hourly:
+    unique_id: "pulsemeter_12_energy_hourly"
+    name: "pulsemeter_12_energy_hourly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_12_energy_total
+    cycle: hourly
+  pulsemeter_12_energy_daily:
+    unique_id: "pulsemeter_12_energy_daily"
+    name: "pulsemeter_12_energy_daily"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_12_energy_total
+    cycle: daily
+  pulsemeter_12_energy_weekly:
+    unique_id: "pulsemeter_12_energy_weekly"
+    name: "pulsemeter_12_energy_weekly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_12_energy_total
+    cycle: weekly
+  pulsemeter_12_energy_monthly:
+    unique_id: "pulsemeter_12_energy_monthly"
+    name: "pulsemeter_12_energy_monthly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_12_energy_total
+    cycle: monthly
+  pulsemeter_12_energy_yearly:
+    unique_id: "pulsemeter_12_energy_yearly"
+    name: "pulsemeter_12_energy_yearly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_12_energy_total
+    cycle: yearly
+
+  pulsemeter_13_energy_total:
+    unique_id: "pulsemeter_13_energy_total"
+    name: pulsemeter_13_energy_total
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_13_counter
+  pulsemeter_13_energy_hourly:
+    unique_id: "pulsemeter_13_energy_hourly"
+    name: "pulsemeter_13_energy_hourly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_13_energy_total
+    cycle: hourly
+  pulsemeter_13_energy_daily:
+    unique_id: "pulsemeter_13_energy_daily"
+    name: "pulsemeter_13_energy_daily"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_13_energy_total
+    cycle: daily
+  pulsemeter_13_energy_weekly:
+    unique_id: "pulsemeter_13_energy_weekly"
+    name: "pulsemeter_13_energy_weekly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_13_energy_total
+    cycle: weekly
+  pulsemeter_13_energy_monthly:
+    unique_id: "pulsemeter_13_energy_monthly"
+    name: "pulsemeter_13_energy_monthly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_13_energy_total
+    cycle: monthly
+  pulsemeter_13_energy_yearly:
+    unique_id: "pulsemeter_13_energy_yearly"
+    name: "pulsemeter_13_energy_yearly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_13_energy_total
+    cycle: yearly
+
+  pulsemeter_14_energy_total:
+    unique_id: "pulsemeter_14_energy_total"
+    name: pulsemeter_14_energy_total
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_14_counter
+  pulsemeter_14_energy_hourly:
+    unique_id: "pulsemeter_14_energy_hourly"
+    name: "pulsemeter_14_energy_hourly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_14_energy_total
+    cycle: hourly
+  pulsemeter_14_energy_daily:
+    unique_id: "pulsemeter_14_energy_daily"
+    name: "pulsemeter_14_energy_daily"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_14_energy_total
+    cycle: daily
+  pulsemeter_14_energy_weekly:
+    unique_id: "pulsemeter_14_energy_weekly"
+    name: "pulsemeter_14_energy_weekly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_14_energy_total
+    cycle: weekly
+  pulsemeter_14_energy_monthly:
+    unique_id: "pulsemeter_14_energy_monthly"
+    name: "pulsemeter_14_energy_monthly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_14_energy_total
+    cycle: monthly
+  pulsemeter_14_energy_yearly:
+    unique_id: "pulsemeter_14_energy_yearly"
+    name: "pulsemeter_14_energy_yearly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_14_energy_total
+    cycle: yearly
+
+  # GPIO15
+  #
+  # Frei
+  #
+
+  pulsemeter_16_energy_total:
+    unique_id: "pulsemeter_16_energy_total"
+    name: pulsemeter_16_energy_total
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_16_counter
+  pulsemeter_16_energy_hourly:
+    unique_id: "pulsemeter_16_energy_hourly"
+    name: "pulsemeter_16_energy_hourly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_16_energy_total
+    cycle: hourly
+  pulsemeter_16_energy_daily:
+    unique_id: "pulsemeter_16_energy_daily"
+    name: "pulsemeter_16_energy_daily"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_16_energy_total
+    cycle: daily
+  pulsemeter_16_energy_weekly:
+    unique_id: "pulsemeter_16_energy_weekly"
+    name: "pulsemeter_16_energy_weekly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_16_energy_total
+    cycle: weekly
+  pulsemeter_16_energy_monthly:
+    unique_id: "pulsemeter_16_energy_monthly"
+    name: "pulsemeter_16_energy_monthly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_16_energy_total
+    cycle: monthly
+  pulsemeter_16_energy_yearly:
+    unique_id: "pulsemeter_16_energy_yearly"
+    name: "pulsemeter_16_energy_yearly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_16_energy_total
+    cycle: yearly
+
+  pulsemeter_17_energy_total:
+    unique_id: "pulsemeter_17_energy_total"
+    name: pulsemeter_17_energy_total
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_17_counter
+  pulsemeter_17_energy_hourly:
+    unique_id: "pulsemeter_17_energy_hourly"
+    name: "pulsemeter_17_energy_hourly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_17_energy_total
+    cycle: hourly
+  pulsemeter_17_energy_daily:
+    unique_id: "pulsemeter_17_energy_daily"
+    name: "pulsemeter_17_energy_daily"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_17_energy_total
+    cycle: daily
+  pulsemeter_17_energy_weekly:
+    unique_id: "pulsemeter_17_energy_weekly"
+    name: "pulsemeter_17_energy_weekly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_17_energy_total
+    cycle: weekly
+  pulsemeter_17_energy_monthly:
+    unique_id: "pulsemeter_17_energy_monthly"
+    name: "pulsemeter_17_energy_monthly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_17_energy_total
+    cycle: monthly
+  pulsemeter_17_energy_yearly:
+    unique_id: "pulsemeter_17_energy_yearly"
+    name: "pulsemeter_17_energy_yearly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_17_energy_total
+    cycle: yearly
+
+  pulsemeter_18_energy_total:
+    unique_id: "pulsemeter_18_energy_total"
+    name: pulsemeter_18_energy_total
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_18_counter
+  pulsemeter_18_energy_hourly:
+    unique_id: "pulsemeter_18_energy_hourly"
+    name: "pulsemeter_18_energy_hourly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_18_energy_total
+    cycle: hourly
+  pulsemeter_18_energy_daily:
+    unique_id: "pulsemeter_18_energy_daily"
+    name: "pulsemeter_18_energy_daily"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_18_energy_total
+    cycle: daily
+  pulsemeter_18_energy_weekly:
+    unique_id: "pulsemeter_18_energy_weekly"
+    name: "pulsemeter_18_energy_weekly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_18_energy_total
+    cycle: weekly
+  pulsemeter_18_energy_monthly:
+    unique_id: "pulsemeter_18_energy_monthly"
+    name: "pulsemeter_18_energy_monthly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_18_energy_total
+    cycle: monthly
+  pulsemeter_18_energy_yearly:
+    unique_id: "pulsemeter_18_energy_yearly"
+    name: "pulsemeter_18_energy_yearly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_18_energy_total
+    cycle: yearly
+
+  pulsemeter_19_energy_total:
+    unique_id: "pulsemeter_19_energy_total"
+    name: pulsemeter_19_energy_total
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_19_counter
+  pulsemeter_19_energy_hourly:
+    unique_id: "pulsemeter_19_energy_hourly"
+    name: "pulsemeter_19_energy_hourly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_19_energy_total
+    cycle: hourly
+  pulsemeter_19_energy_daily:
+    unique_id: "pulsemeter_19_energy_daily"
+    name: "pulsemeter_19_energy_daily"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_19_energy_total
+    cycle: daily
+  pulsemeter_19_energy_weekly:
+    unique_id: "pulsemeter_19_energy_weekly"
+    name: "pulsemeter_19_energy_weekly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_19_energy_total
+    cycle: weekly
+  pulsemeter_19_energy_monthly:
+    unique_id: "pulsemeter_19_energy_monthly"
+    name: "pulsemeter_19_energy_monthly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_19_energy_total
+    cycle: monthly
+  pulsemeter_19_energy_yearly:
+    unique_id: "pulsemeter_19_energy_yearly"
+    name: "pulsemeter_19_energy_yearly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_19_energy_total
+    cycle: yearly
+
+  pulsemeter_20_energy_total:
+    unique_id: "pulsemeter_20_energy_total"
+    name: pulsemeter_20_energy_total
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_20_counter
+  pulsemeter_20_energy_hourly:
+    unique_id: "pulsemeter_20_energy_hourly"
+    name: "pulsemeter_20_energy_hourly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_20_energy_total
+    cycle: hourly
+  pulsemeter_20_energy_daily:
+    unique_id: "pulsemeter_20_energy_daily"
+    name: "pulsemeter_20_energy_daily"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_20_energy_total
+    cycle: daily
+  pulsemeter_20_energy_weekly:
+    unique_id: "pulsemeter_20_energy_weekly"
+    name: "pulsemeter_20_energy_weekly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_20_energy_total
+    cycle: weekly
+  pulsemeter_20_energy_monthly:
+    unique_id: "pulsemeter_20_energy_monthly"
+    name: "pulsemeter_20_energy_monthly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_20_energy_total
+    cycle: monthly
+  pulsemeter_20_energy_yearly:
+    unique_id: "pulsemeter_20_energy_yearly"
+    name: "pulsemeter_20_energy_yearly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_20_energy_total
+    cycle: yearly
+
+  pulsemeter_21_energy_total:
+    unique_id: "pulsemeter_21_energy_total"
+    name: pulsemeter_21_energy_total
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_21_counter
+  pulsemeter_21_energy_hourly:
+    unique_id: "pulsemeter_21_energy_hourly"
+    name: "pulsemeter_21_energy_hourly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_21_energy_total
+    cycle: hourly
+  pulsemeter_21_energy_daily:
+    unique_id: "pulsemeter_21_energy_daily"
+    name: "pulsemeter_21_energy_daily"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_21_energy_total
+    cycle: daily
+  pulsemeter_21_energy_weekly:
+    unique_id: "pulsemeter_21_energy_weekly"
+    name: "pulsemeter_21_energy_weekly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_21_energy_total
+    cycle: weekly
+  pulsemeter_21_energy_monthly:
+    unique_id: "pulsemeter_21_energy_monthly"
+    name: "pulsemeter_21_energy_monthly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_21_energy_total
+    cycle: monthly
+  pulsemeter_21_energy_yearly:
+    unique_id: "pulsemeter_21_energy_yearly"
+    name: "pulsemeter_21_energy_yearly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_21_energy_total
+    cycle: yearly
+  # GPIO22
+  # To be excluded!
+  #
+  # The pin GPIO22 is not usable on ESP32-S3s.
+  #
+
+  # GPIO23
+  # To be excluded!
+  #
+  # The pin GPIO23 is not usable on ESP32-S3s.
+  #
+
+  # GPIO24
+  # To be excluded!
+  #
+  # The pin GPIO24 is not usable on ESP32-S3s.
+  #
+
+  # GPIO25
+  # To be excluded!
+  #
+  # The pin GPIO25 is not usable on ESP32-S3s.
+  #
+
+  # GPIO26
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s and is already used by the SPI/PSRAM interface(function: SPICS1).
+  #
+
+  # GPIO27
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s and is already used by the SPI/PSRAM interface(function: SPIHD).
+  #
+
+  # GPIO28
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s and is already used by the SPI/PSRAM interface(function: SPIWP).
+  #
+
+  # GPIO29
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s and is already used by the SPI/PSRAM interface(function: SPICS0).
+  #
+
+  # GPIO30
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s and is already used by the SPI/PSRAM interface(function: SPICLK).
+  #
+
+  # GPIO31
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s and is already used by the SPI/PSRAM interface(function: SPIQ).
+  #
+
+  # GPIO32
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s and is already used by the SPI/PSRAM interface(function: SPID).
+  #
+
+  # GPIO33
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s because physically not available.
+  #
+
+  # GPIO34
+  # To be excluded!
+  #
+  # This pin cannot be used on ESP32-S3s because physically not available.
+  #
+
+  # GPIO35
+  # To be excluded!
+  #
+  # WARNING GPIO35 is used by the PSRAM interface on ESP32-S3R8 / ESP32-S3R8V and should be avoided on these models
+  #
+
+  # GPIO36
+  # To be excluded!
+  #
+  # WARNING GPIO36 is used by the PSRAM interface on ESP32-S3R8 / ESP32-S3R8V and should be avoided on these models
+  #
+
+  # GPIO37
+  # To be excluded!
+  #
+  # WARNING GPIO37 is used by the PSRAM interface on ESP32-S3R8 / ESP32-S3R8V and should be avoided on these models
+  #
+
+  # GPIO38
+  # To be excluded because GPIO38 is used by onboard RGB LED.
+  #
+  # 406_Heizung-Stromkreiszähler - Power
+  #
+
+  pulsemeter_39_energy_total:
+    unique_id: "pulsemeter_39_energy_total"
+    name: pulsemeter_39_energy_total
+    # friendly_name: "pulsemeter_39 - Energy total"
+    source: sensor.pulsemeter_39_counter
+  pulsemeter_39_energy_hourly:
+    unique_id: "pulsemeter_39_energy_hourly"
+    name: "pulsemeter_39_energy_hourly"
+    # friendly_name: "pulsemeter_39 - Energy hourly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: hourly
+  pulsemeter_39_energy_daily:
+    unique_id: "pulsemeter_39_energy_daily"
+    name: "pulsemeter_39_energy_daily"
+    # friendly_name: "pulsemeter_39 - Energy daily"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: daily
+  pulsemeter_39_energy_weekly:
+    unique_id: "pulsemeter_39_energy_weekly"
+    name: "pulsemeter_39_energy_weekly"
+    # friendly_name: "pulsemeter_39 - Energy weekly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: weekly
+  pulsemeter_39_energy_monthly:
+    unique_id: "pulsemeter_39_energy_monthly"
+    name: "pulsemeter_39_energy_monthly"
+    # friendly_name: "pulsemeter_39 - Energy monthly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: monthly
+  pulsemeter_39_energy_yearly:
+    unique_id: "pulsemeter_39_energy_yearly"
+    name: "pulsemeter_39_energy_yearly"
+    # friendly_name: "pulsemeter_39 - Energy yearly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: yearly
+
+  pulsemeter_40_energy_total:
+    unique_id: "pulsemeter_40_energy_total"
+    name: pulsemeter_40_energy_total
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_40_counter
+  pulsemeter_40_energy_hourly:
+    unique_id: "pulsemeter_40_energy_hourly"
+    name: "pulsemeter_40_energy_hourly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: hourly
+  pulsemeter_40_energy_daily:
+    unique_id: "pulsemeter_40_energy_daily"
+    name: "pulsemeter_40_energy_daily"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: daily
+  pulsemeter_40_energy_weekly:
+    unique_id: "pulsemeter_40_energy_weekly"
+    name: "pulsemeter_40_energy_weekly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: weekly
+  pulsemeter_40_energy_monthly:
+    unique_id: "pulsemeter_40_energy_monthly"
+    name: "pulsemeter_40_energy_monthly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: monthly
+  pulsemeter_40_energy_yearly:
+    unique_id: "pulsemeter_40_energy_yearly"
+    name: "pulsemeter_40_energy_yearly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: yearly
+
+  pulsemeter_41_energy_total:
+    unique_id: "pulsemeter_41_energy_total"
+    name: pulsemeter_41_energy_total
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_41_counter
+  pulsemeter_41_energy_hourly:
+    unique_id: "pulsemeter_41_energy_hourly"
+    name: "pulsemeter_41_energy_hourly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: hourly
+  pulsemeter_41_energy_daily:
+    unique_id: "pulsemeter_41_energy_daily"
+    name: "pulsemeter_41_energy_daily"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: daily
+  pulsemeter_41_energy_weekly:
+    unique_id: "pulsemeter_41_energy_weekly"
+    name: "pulsemeter_41_energy_weekly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: weekly
+  pulsemeter_41_energy_monthly:
+    unique_id: "pulsemeter_41_energy_monthly"
+    name: "pulsemeter_41_energy_monthly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: monthly
+  pulsemeter_41_energy_yearly:
+    unique_id: "pulsemeter_41_energy_yearly"
+    name: "pulsemeter_41_energy_yearly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: yearly
+
+  pulsemeter_42_energy_total:
+    unique_id: "pulsemeter_42_energy_total"
+    name: pulsemeter_42_energy_total
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_42_counter
+  pulsemeter_42_energy_hourly:
+    unique_id: "pulsemeter_42_energy_hourly"
+    name: "pulsemeter_42_energy_hourly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: hourly
+  pulsemeter_42_energy_daily:
+    unique_id: "pulsemeter_42_energy_daily"
+    name: "pulsemeter_42_energy_daily"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: daily
+  pulsemeter_42_energy_weekly:
+    unique_id: "pulsemeter_42_energy_weekly"
+    name: "pulsemeter_42_energy_weekly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: weekly
+  pulsemeter_42_energy_monthly:
+    unique_id: "pulsemeter_42_energy_monthly"
+    name: "pulsemeter_42_energy_monthly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: monthly
+  pulsemeter_42_energy_yearly:
+    unique_id: "pulsemeter_42_energy_yearly"
+    name: "pulsemeter_42_energy_yearly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: yearly
+
+  pulsemeter_43_energy_total:
+    unique_id: "pulsemeter_43_energy_total"
+    name: pulsemeter_43_energy_total
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_43_counter
+  pulsemeter_43_energy_hourly:
+    unique_id: "pulsemeter_43_energy_hourly"
+    name: "pulsemeter_43_energy_hourly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: hourly
+  pulsemeter_43_energy_daily:
+    unique_id: "pulsemeter_43_energy_daily"
+    name: "pulsemeter_43_energy_daily"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: daily
+  pulsemeter_43_energy_weekly:
+    unique_id: "pulsemeter_43_energy_weekly"
+    name: "pulsemeter_43_energy_weekly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: weekly
+  pulsemeter_43_energy_monthly:
+    unique_id: "pulsemeter_43_energy_monthly"
+    name: "pulsemeter_43_energy_monthly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: monthly
+  pulsemeter_43_energy_yearly:
+    unique_id: "pulsemeter_43_energy_yearly"
+    name: "pulsemeter_43_energy_yearly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: yearly
+
+  pulsemeter_44_energy_total:
+    unique_id: "pulsemeter_44_energy_total"
+    name: pulsemeter_44_energy_total
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_44_counter
+  pulsemeter_44_energy_hourly:
+    unique_id: "pulsemeter_44_energy_hourly"
+    name: "pulsemeter_44_energy_hourly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: hourly
+  pulsemeter_44_energy_daily:
+    unique_id: "pulsemeter_44_energy_daily"
+    name: "pulsemeter_44_energy_daily"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: daily
+  pulsemeter_44_energy_weekly:
+    unique_id: "pulsemeter_44_energy_weekly"
+    name: "pulsemeter_44_energy_weekly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: weekly
+  pulsemeter_44_energy_monthly:
+    unique_id: "pulsemeter_44_energy_monthly"
+    name: "pulsemeter_44_energy_monthly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: monthly
+  pulsemeter_44_energy_yearly:
+    unique_id: "pulsemeter_44_energy_yearly"
+    name: "pulsemeter_44_energy_yearly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: yearly
+
+  pulsemeter_45_energy_total:
+    unique_id: "pulsemeter_45_energy_total"
+    name: pulsemeter_45_energy_total
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_45_counter
+  pulsemeter_45_energy_hourly:
+    unique_id: "pulsemeter_45_energy_hourly"
+    name: "pulsemeter_45_energy_hourly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: hourly
+  pulsemeter_45_energy_daily:
+    unique_id: "pulsemeter_45_energy_daily"
+    name: "pulsemeter_45_energy_daily"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: daily
+  pulsemeter_45_energy_weekly:
+    unique_id: "pulsemeter_45_energy_weekly"
+    name: "pulsemeter_45_energy_weekly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: weekly
+  pulsemeter_45_energy_monthly:
+    unique_id: "pulsemeter_45_energy_monthly"
+    name: "pulsemeter_45_energy_monthly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: monthly
+  pulsemeter_45_energy_yearly:
+    unique_id: "pulsemeter_45_energy_yearly"
+    name: "pulsemeter_45_energy_yearly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: yearly
+
+  pulsemeter_46_energy_total:
+    unique_id: "pulsemeter_46_energy_total"
+    name: pulsemeter_46_energy_total
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_46_counter
+  pulsemeter_46_energy_hourly:
+    unique_id: "pulsemeter_46_energy_hourly"
+    name: "pulsemeter_46_energy_hourly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: hourly
+  pulsemeter_46_energy_daily:
+    unique_id: "pulsemeter_46_energy_daily"
+    name: "pulsemeter_46_energy_daily"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: daily
+  pulsemeter_46_energy_weekly:
+    unique_id: "pulsemeter_46_energy_weekly"
+    name: "pulsemeter_46_energy_weekly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: weekly
+  pulsemeter_46_energy_monthly:
+    unique_id: "pulsemeter_46_energy_monthly"
+    name: "pulsemeter_46_energy_monthly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: monthly
+  pulsemeter_46_energy_yearly:
+    unique_id: "pulsemeter_46_energy_yearly"
+    name: "pulsemeter_46_energy_yearly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: yearly
+
+  pulsemeter_47_energy_total:
+    unique_id: "pulsemeter_47_energy_total"
+    name: pulsemeter_47_energy_total
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_47_counter
+  pulsemeter_47_energy_hourly:
+    unique_id: "pulsemeter_47_energy_hourly"
+    name: "pulsemeter_47_energy_hourly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: hourly
+  pulsemeter_47_energy_daily:
+    unique_id: "pulsemeter_47_energy_daily"
+    name: "pulsemeter_47_energy_daily"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: daily
+  pulsemeter_47_energy_weekly:
+    unique_id: "pulsemeter_47_energy_weekly"
+    name: "pulsemeter_47_energy_weekly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: weekly
+  pulsemeter_47_energy_monthly:
+    unique_id: "pulsemeter_47_energy_monthly"
+    name: "pulsemeter_47_energy_monthly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: monthly
+  pulsemeter_47_energy_yearly:
+    unique_id: "pulsemeter_47_energy_yearly"
+    name: "pulsemeter_47_energy_yearly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: yearly
+
+  pulsemeter_48_energy_total:
+    unique_id: "pulsemeter_48_energy_total"
+    name: pulsemeter_48_energy_total
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy total"
+    source: sensor.pulsemeter_48_counter
+  pulsemeter_48_energy_hourly:
+    unique_id: "pulsemeter_48_energy_hourly"
+    name: "pulsemeter_48_energy_hourly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: hourly
+  pulsemeter_48_energy_daily:
+    unique_id: "pulsemeter_48_energy_daily"
+    name: "pulsemeter_48_energy_daily"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: daily
+  pulsemeter_48_energy_weekly:
+    unique_id: "pulsemeter_48_energy_weekly"
+    name: "pulsemeter_48_energy_weekly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: weekly
+  pulsemeter_48_energy_monthly:
+    unique_id: "pulsemeter_48_energy_monthly"
+    name: "pulsemeter_48_energy_monthly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: monthly
+  pulsemeter_48_energy_yearly:
+    unique_id: "pulsemeter_48_energy_yearly"
+    name: "pulsemeter_48_energy_yearly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: yearly

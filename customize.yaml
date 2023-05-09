@@ -1,0 +1,15 @@
+# Add an entry for each entity that you want to overwrite.
+sensor.air_quality_index:
+  unit_of_measurement: AQI
+sensor.ozone_o3:
+  unit_of_measurement: AQI
+sensor.particulate_matter_pm25:
+  unit_of_measurement: AQI
+sensor.particulate_matter_pm10:
+  unit_of_measurement: AQI
+sensor.nitrogen_dioxide_no2:
+  unit_of_measurement: AQI
+sensor.sulphur_dioxide_so2:
+  unit_of_measurement: AQI
+sensor.carbon_monoxide_co:
+  unit_of_measurement: AQI

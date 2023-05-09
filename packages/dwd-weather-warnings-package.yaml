@@ -1,0 +1,13 @@
+# dwd_weather_warnings
+#
+
+sensor:
+  - platform: dwd_weather_warnings
+    region_name: "Gemeinde Schermbeck"
+    name: "DWD Wetterwarnungen Schermbeck"
+    # unique_id: dwd_weather_warnings_schermbeck
+#camera:
+#  - platform: generic
+#    still_image_url: "https://www.dwd.de/DWD/warnungen/warnstatus/SchilderEM.jpg"
+#    name: "DWD Wetterwarnungen NRW"
+#    # unique_id: dwd_weather_warnings_nrw

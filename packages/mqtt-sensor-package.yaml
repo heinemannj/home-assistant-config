@@ -1,0 +1,231 @@
+# mqtt sensors without auto discovery
+#
+
+mqtt:
+  sensor:
+    # ESPEasy - http://192.168.178.33/
+    #
+    - name: "310_Garten_Wetter_Wasser_Temperatur"
+      unique_id: 310_garten_wetter_wasser_temperatur
+      state_topic: "Teich_1/Wasser_Temperatur/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "310_Garten_Wetter_Luft_Temperatur_DS18b20"
+      unique_id: 310_garten_wetter_luft_temperatur_ds18b20
+      state_topic: "Teich_1/Luft_Temperatur/temperature_DS18b20"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "310_Garten_Wetter_Luft_Temperatur_BME280"
+      unique_id: 310_garten_wetter_luft_temperatur_bme280
+      state_topic: "Teich_1/Wetter/temperature_BME280"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "310_Garten_Wetter_Humidity_BME280"
+      unique_id: 310_garten_wetter_humidity_bme280
+      state_topic: "Teich_1/Wetter/humidity_BME280"
+      state_class: measurement
+      device_class: humidity
+      unit_of_measurement: "%"
+      icon: mdi:water-percent
+    - name: "310_Garten_Wetter_Pressure_BME280"
+      unique_id: 310_garten_wetter_pressure_bme280
+      state_topic: "Teich_1/Wetter/pressure"
+      state_class: measurement
+      device_class: pressure
+      unit_of_measurement: hPa
+      icon: mdi:gauge
+    - name: "310_Garten_Wetter_pH"
+      unique_id: 310_Garten_Wetter_ph
+      state_topic: "Teich_1/pH/pH"
+      state_class: measurement
+      unit_of_measurement: pH
+      icon: mdi:ph
+    - name: "310_Garten_Wetter_pH_Voltage"
+      unique_id: 310_garten_wetter_ph_voltage
+      state_topic: "Teich_1/pH/Voltage"
+      state_class: measurement
+      device_class: voltage
+      unit_of_measurement: V
+      icon: mdi:flash
+
+    # FHEM-2 - 1-wire
+    #
+    - name: "101_Buero-HK1-Ruecklauf"
+      unique_id: fhem_DS18B20_FFED7E301703_temperature
+      state_topic: "fhem/DS18B20_FFED7E301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "101_Buero-HK1-Vorlauf"
+      unique_id: fhem_DS18B20_FF3238301703_temperature
+      state_topic: "fhem/DS18B20_FF3238301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-HK1-Ruecklauf-Keller"
+      unique_id: fhem_DS18B20_FF0804301704_temperature
+      state_topic: "fhem/DS18B20_FF0804301704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-HK1-Ruecklauf-DG"
+      unique_id: fhem_DS18B20_FF1E14301703_temperature
+      state_topic: "fhem/DS18B20_FF1E14301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-HK1-Vorlauf"
+      unique_id: fhem_DS18B20_FF4558301703_temperature
+      state_topic: "fhem/DS18B20_FF4558301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-HK2-Ruecklauf"
+      unique_id: fhem_DS18B20_FFE835301703_temperature
+      state_topic: "fhem/DS18B20_FFE835301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-HK2-Vorlauf"
+      unique_id: fhem_DS18B20_FFE13A301703_temperature
+      state_topic: "fhem/DS18B20_FFE13A301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-Kessel-Ruecklauf"
+      unique_id: fhem_DS18B20_FFE142301703_temperature
+      state_topic: "fhem/DS18B20_FFE142301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-Kessel-Vorlauf"
+      unique_id: fhem_DS18B20_FFBF31301703_temperature
+      state_topic: "fhem/DS18B20_FFBF31301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-Warmwasser-Ruecklauf-Speicher"
+      unique_id: fhem_DS18B20_FFA10A501704_temperature
+      state_topic: "fhem/DS18B20_FFA10A501704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "406_Heizung-Warmwasser-Vorlauf-Speicher"
+      unique_id: fhem_DS18B20_FFD4CB501704_temperature
+      state_topic: "fhem/DS18B20_FFD4CB501704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "404_Gaeste-Wandtemperatur"
+      unique_id: fhem_DS18B20_FF6974301703_temperature
+      state_topic: "fhem/DS18B20_FF6974301703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "301_Flur-Wandtemperatur"
+      unique_id: fhem_DS18B20_FF6B68601703_temperature
+      state_topic: "fhem/DS18B20_FF6B68601703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "202_Bad-Wandtemperatur"
+      unique_id: fhem_DS18B20_FFAA77501704_temperature
+      state_topic: "fhem/DS18B20_FFAA77501704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "201_Flur-Wandtemperatur"
+      unique_id: fhem_DS18B20_FF3E68511704_temperature
+      state_topic: "fhem/DS18B20_FF3E68511704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "204_Schlafen-Wandtemperatur"
+      unique_id: fhem_DS18B20_FFE8F1501704_temperature
+      state_topic: "fhem/DS18B20_FFE8F1501704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "101_Buero-Wandtemperatur-Suedseite"
+      unique_id: fhem_DS18B20_FFA341501704_temperature
+      state_topic: "fhem/DS18B20_FFA341501704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "101_Buero-Wandtemperatur-Nordseite"
+      unique_id: fhem_DS18B20_FF9D66511704_temperature
+      state_topic: "fhem/DS18B20_FF9D66511704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "402_Vorrat-Wandtemperatur"
+      unique_id: fhem_DS18B20_FFF5D6501704_temperature
+      state_topic: "fhem/DS18B20_FFF5D6501704/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "404_Werkstatt-Wandtemperatur"
+      unique_id: fhem_DS18B20_FFC00E601703_temperature
+      state_topic: "fhem/DS18B20_FFC00E601703/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+    - name: "403_Bad-Wandtemperatur"
+      unique_id: fhem_DS18B20_FF8E52601705_temperature
+      state_topic: "fhem/DS18B20_FF8E52601705/temperature"
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: °C
+      icon: mdi:thermometer
+
+group:
+  one_wire_sensors:
+    name: "056.2_1-Wire-Sensors"
+    entities:
+      - sensor.101_buero_hk1_ruecklauf
+      - sensor.101_buero_hk1_vorlauf
+      - sensor.101_buero_wandtemperatur_nordseite
+      - sensor.101_buero_wandtemperatur_suedseite
+      - sensor.201_flur_wandtemperatur
+      - sensor.202_bad_wandtemperatur
+      - sensor.204_schlafen_wandtemperatur
+      - sensor.301_flur_wandtemperatur
+      - sensor.402_vorrat_wandtemperatur
+      - sensor.403_bad_wandtemperatur
+      - sensor.404_gaeste_wandtemperatur
+      - sensor.404_werkstatt_wandtemperatur
+      - sensor.406_heizung_hk1_ruecklauf_dg
+      - sensor.406_heizung_hk1_ruecklauf_keller
+      - sensor.406_heizung_hk1_vorlauf
+      - sensor.406_heizung_hk2_ruecklauf
+      - sensor.406_heizung_hk2_vorlauf
+      - sensor.406_heizung_kessel_ruecklauf
+      - sensor.406_heizung_kessel_vorlauf
+      - sensor.406_heizung_warmwasser_ruecklauf_speicher
+      - sensor.406_heizung_warmwasser_vorlauf_speicher

@@ -1,0 +1,400 @@
+# heating
+#
+
+climate:
+  - platform: smart_thermostat
+    name: thermostat_eg
+    unique_id: thermostat_eg
+    heater:
+      - entity_id: climate.floor_thermostat_wc
+        pid_params: 0.001, 0.0001, 0
+        pid_sample_period: "00:01:00"
+        min: 16
+        max: 32.5
+      - entity_id: climate.floor_thermostat_wohnen_1
+        pid_params: 0.001, 0.0001, 0
+        pid_sample_period: "00:01:00"
+        min: 16
+        max: 32.5
+      - entity_id: climate.floor_thermostat_wohnen_2
+        pid_params: 0.001, 0.0001, 0
+        pid_sample_period: "00:01:00"
+        min: 16
+        max: 32.5
+      - entity_id: climate.floor_thermostat_kueche
+        pid_params: 0.001, 0.0001, 0
+        pid_sample_period: "00:01:00"
+        min: 16
+        max: 32.5
+      - entity_id: climate.floor_thermostat_flur_1
+        pid_params: 0.001, 0.0001, 0
+        pid_sample_period: "00:01:00"
+        min: 16
+        max: 32.5
+      - entity_id: climate.floor_thermostat_flur_2
+        pid_params: 0.001, 0.0001, 0
+        pid_sample_period: "00:01:00"
+        min: 16
+        max: 32.5
+    # cooler: input_boolean.thermostat_livingroom_demand_cool
+    target_sensor: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_temperature
+    # sensor_stale_duration: "00:30:00"
+    initial_hvac_mode: "off"
+    heat_cool_cold_tolerance: 0
+    min_temp: 16
+    max_temp: 24
+    precision: 0.1
+
+  - platform: smart_thermostat
+    name: floor_thermostat_wc
+    unique_id: floor_thermostat_wc
+    heater:
+      entity_id: switch.301_heizkreis_wc
+      # PID params comma-separated string or array in the format Kp, Ki, Kd (Always positive, will be inverted internally for cool mode).
+      # pid_params: 10, 0.004, 0
+      # pid_sample_period: "00:01:00"
+      # pwm_period: "00:15:00"
+      pid_params: 30, 0.005, 0
+      pid_sample_period: "00:01:00"
+      pwm_period: "00:15:00"
+      # min_cycle_duration: "00:15:00"
+      # cold_tolerance: 0
+      # hot_tolerance: 0
+    target_sensor: sensor.301_heizkreis_wc_fb
+    min_temp: 16
+    max_temp: 32.5
+    precision: 0.1
+
+  - platform: smart_thermostat
+    name: floor_thermostat_wohnen_1
+    unique_id: floor_thermostat_wohnen_1
+    heater:
+      entity_id: switch.301_heizkreis_wohnen_1
+      # pid_params: 10, 0.004, 0
+      # pid_sample_period: "00:01:00"
+      # pwm_period: "00:15:00"
+      pid_params: 30, 0.005, 0
+      pid_sample_period: "00:01:00"
+      pwm_period: "00:15:00"
+      # min_cycle_duration: "00:15:00"
+      # cold_tolerance: 0
+      # hot_tolerance: 0
+    target_sensor: sensor.301_heizkreis_wohnen_1_fb
+    min_temp: 16
+    max_temp: 32.5
+    precision: 0.1
+
+  - platform: smart_thermostat
+    name: floor_thermostat_wohnen_2
+    unique_id: floor_thermostat_wohnen_2
+    heater:
+      entity_id: switch.301_heizkreis_wohnen_2
+      # pid_params: 10, 0.004, 0
+      # pid_sample_period: "00:01:00"
+      # pwm_period: "00:15:00"
+      pid_params: 30, 0.005, 0
+      pid_sample_period: "00:01:00"
+      pwm_period: "00:15:00"
+      # min_cycle_duration: "00:15:00"
+      # cold_tolerance: 0
+      # hot_tolerance: 0
+    target_sensor: sensor.301_heizkreis_wohnen_2_fb
+    min_temp: 16
+    max_temp: 32.5
+    precision: 0.1
+
+  - platform: smart_thermostat
+    name: floor_thermostat_kueche
+    unique_id: floor_thermostat_kueche
+    heater:
+      entity_id: switch.301_heizkreis_kueche
+      # pid_params: 10, 0.004, 0
+      # pid_sample_period: "00:01:00"
+      # pwm_period: "00:15:00"
+      pid_params: 30, 0.005, 0
+      pid_sample_period: "00:01:00"
+      pwm_period: "00:15:00"
+      # min_cycle_duration: "00:15:00"
+      # cold_tolerance: 0
+      # hot_tolerance: 0
+    target_sensor: sensor.301_heizkreis_kueche_fb
+    min_temp: 16
+    max_temp: 32.5
+    precision: 0.1
+
+  - platform: smart_thermostat
+    name: floor_thermostat_flur_1
+    unique_id: floor_thermostat_flur_1
+    heater:
+      entity_id: switch.301_heizkreis_flur_1
+      # pid_params: 10, 0.004, 0
+      # pid_sample_period: "00:01:00"
+      # pwm_period: "00:15:00"
+      pid_params: 30, 0.005, 0
+      pid_sample_period: "00:01:00"
+      pwm_period: "00:15:00"
+      # min_cycle_duration: "00:15:00"
+      # cold_tolerance: 0
+      # hot_tolerance: 0
+    target_sensor: sensor.301_heizkreis_flur_1_fb
+    min_temp: 16
+    max_temp: 32.5
+    precision: 0.1
+
+  - platform: smart_thermostat
+    name: floor_thermostat_flur_2
+    unique_id: floor_thermostat_flur_2
+    heater:
+      entity_id: switch.301_heizkreis_flur_2
+      # pid_params: 10, 0.004, 0
+      # pid_sample_period: "00:01:00"
+      # pwm_period: "00:15:00"
+      pid_params: 30, 0.005, 0
+      pid_sample_period: "00:01:00"
+      pwm_period: "00:15:00"
+      # min_cycle_duration: "00:15:00"
+      # cold_tolerance: 0
+      # hot_tolerance: 0
+    target_sensor: sensor.301_heizkreis_flur_2_fb
+    min_temp: 16
+    max_temp: 32.5
+    precision: 0.1
+
+sensor:
+  - platform: template
+    sensors:
+      301_heizkreis_wc_valve_position:
+        friendly_name: "301_heizkreis_wc valve position"
+        value_template: >-
+          {% set hvac_action = state_attr('climate.floor_thermostat_wc', 'hvac_action') %}
+          {% if hvac_action == "heating" %}{{ state_attr('climate.floor_thermostat_wc', 'ctrl_301_heizkreis_wc')['pwm_value'] | float}}
+          {% else %}0
+          {% endif %}
+        unit_of_measurement: "%"
+      301_heizkreis_wohnen_1_valve_position:
+        friendly_name: "301_heizkreis_wohnen_1 valve position"
+        value_template: >-
+          {% set hvac_action = state_attr('climate.floor_thermostat_wohnen_1', 'hvac_action') %}
+          {% if hvac_action == "heating" %}{{ state_attr('climate.floor_thermostat_wohnen_1', 'ctrl_301_heizkreis_wohnen_1')['pwm_value'] | float}}
+          {% else %}0
+          {% endif %}
+        unit_of_measurement: "%"
+      301_heizkreis_wohnen_2_valve_position:
+        friendly_name: "301_heizkreis_wohnen_2 valve position"
+        value_template: >-
+          {% set hvac_action = state_attr('climate.floor_thermostat_wohnen_2', 'hvac_action') %}
+          {% if hvac_action == "heating" %}{{ state_attr('climate.floor_thermostat_wohnen_2', 'ctrl_301_heizkreis_wohnen_2')['pwm_value'] | float}}
+          {% else %}0
+          {% endif %}
+        unit_of_measurement: "%"
+      301_heizkreis_kueche_valve_position:
+        friendly_name: "301_heizkreis_kueche valve position"
+        value_template: >-
+          {% set hvac_action = state_attr('climate.floor_thermostat_kueche', 'hvac_action') %}
+          {% if hvac_action == "heating" %}{{ state_attr('climate.floor_thermostat_kueche', 'ctrl_301_heizkreis_kueche')['pwm_value'] | float}}
+          {% else %}0
+          {% endif %}
+        unit_of_measurement: "%"
+      301_heizkreis_flur_1_valve_position:
+        friendly_name: "301_heizkreis_flur_1 valve position"
+        value_template: >-
+          {% set hvac_action = state_attr('climate.floor_thermostat_flur_1', 'hvac_action') %}
+          {% if hvac_action == "heating" %}{{ state_attr('climate.floor_thermostat_flur_1', 'ctrl_301_heizkreis_flur_1')['pwm_value'] | float}}
+          {% else %}0
+          {% endif %}
+        unit_of_measurement: "%"
+      301_heizkreis_flur_2_valve_position:
+        friendly_name: "301_heizkreis_flur_2 valve position"
+        value_template: >-
+          {% set hvac_action = state_attr('climate.floor_thermostat_flur_2', 'hvac_action') %}
+          {% if hvac_action == "heating" %}{{ state_attr('climate.floor_thermostat_flur_2', 'ctrl_301_heizkreis_flur_2')['pwm_value'] | float}}
+          {% else %}0
+          {% endif %}
+        unit_of_measurement: "%"
+
+utility_meter:
+  301_heizkreis_wc_energy_hourly:
+    unique_id: "301_heizkreis_wc_energy_hourly"
+    name: "301_heizkreis_wc_energy_hourly"
+    # friendly_name: "301_Heizkreis-WC - Energy hourly"
+    source: sensor.301_heizkreis_wc_energy
+    cycle: hourly
+  301_heizkreis_wc_energy_daily:
+    unique_id: "301_heizkreis_wc_energy_daily"
+    name: "301_heizkreis_wc_energy_daily"
+    # friendly_name: "301_Heizkreis-WC - Energy daily"
+    source: sensor.301_heizkreis_wc_energy
+    cycle: daily
+  301_heizkreis_wc_energy_weekly:
+    unique_id: "301_heizkreis_wc_energy_weekly"
+    name: "301_heizkreis_wc_energy_weekly"
+    # friendly_name: "301_Heizkreis-WC - Energy weekly"
+    source: sensor.301_heizkreis_wc_energy
+    cycle: weekly
+  301_heizkreis_wc_energy_monthly:
+    unique_id: "301_heizkreis_wc_energy_monthly"
+    name: "301_heizkreis_wc_energy_monthly"
+    # friendly_name: "301_Heizkreis-WC - Energy monthly"
+    source: sensor.301_heizkreis_wc_energy
+    cycle: monthly
+  301_heizkreis_wc_energy_yearly:
+    unique_id: "301_heizkreis_wc_energy_yearly"
+    name: "301_heizkreis_wc_energy_yearly"
+    # friendly_name: "301_Heizkreis-WC - Energy yearly"
+    source: sensor.301_heizkreis_wc_energy
+    cycle: yearly
+
+  301_heizkreis_wohnen_1_energy_hourly:
+    unique_id: "301_heizkreis_wohnen_1_energy_hourly"
+    name: "301_heizkreis_wohnen_1_energy_hourly"
+    # friendly_name: "301_Heizkreis-Wohnen-1 - Energy hourly"
+    source: sensor.301_heizkreis_wohnen_1_energy
+    cycle: hourly
+  301_heizkreis_wohnen_1_energy_daily:
+    unique_id: "301_heizkreis_wohnen_1_energy_daily"
+    name: "301_heizkreis_wohnen_1_energy_daily"
+    # friendly_name: "301_Heizkreis-Wohnen-1 - Energy daily"
+    source: sensor.301_heizkreis_wohnen_1_energy
+    cycle: daily
+  301_heizkreis_wohnen_1_energy_weekly:
+    unique_id: "301_heizkreis_wohnen_1_energy_weekly"
+    name: "301_heizkreis_wohnen_1_energy_weekly"
+    # friendly_name: "301_Heizkreis-Wohnen-1 - Energy weekly"
+    source: sensor.301_heizkreis_wohnen_1_energy
+    cycle: weekly
+  301_heizkreis_wohnen_1_energy_monthly:
+    unique_id: "301_heizkreis_wohnen_1_energy_monthly"
+    name: "301_heizkreis_wohnen_1_energy_monthly"
+    # friendly_name: "301_Heizkreis-Wohnen-1 - Energy monthly"
+    source: sensor.301_heizkreis_wohnen_1_energy
+    cycle: monthly
+  301_heizkreis_wohnen_1_energy_yearly:
+    unique_id: "301_heizkreis_wohnen_1_energy_yearly"
+    name: "301_heizkreis_wohnen_1_energy_yearly"
+    # friendly_name: "301_Heizkreis-Wohnen-1 - Energy yearly"
+    source: sensor.301_heizkreis_wohnen_1_energy
+    cycle: yearly
+
+  301_heizkreis_wohnen_2_energy_hourly:
+    unique_id: "301_heizkreis_wohnen_2_energy_hourly"
+    name: "301_heizkreis_wohnen_2_energy_hourly"
+    # friendly_name: "301_Heizkreis-Wohnen-2 - Energy hourly"
+    source: sensor.301_heizkreis_wohnen_2_energy
+    cycle: hourly
+  301_heizkreis_wohnen_2_energy_daily:
+    unique_id: "301_heizkreis_wohnen_2_energy_daily"
+    name: "301_heizkreis_wohnen_2_energy_daily"
+    # friendly_name: "301_Heizkreis-Wohnen-2 - Energy daily"
+    source: sensor.301_heizkreis_wohnen_2_energy
+    cycle: daily
+  301_heizkreis_wohnen_2_energy_weekly:
+    unique_id: "301_heizkreis_wohnen_2_energy_weekly"
+    name: "301_heizkreis_wohnen_2_energy_weekly"
+    # friendly_name: "301_Heizkreis-Wohnen-2 - Energy weekly"
+    source: sensor.301_heizkreis_wohnen_2_energy
+    cycle: weekly
+  301_heizkreis_wohnen_2_energy_monthly:
+    unique_id: "301_heizkreis_wohnen_2_energy_monthly"
+    name: "301_heizkreis_wohnen_2_energy_monthly"
+    # friendly_name: "301_Heizkreis-Wohnen-2 - Energy monthly"
+    source: sensor.301_heizkreis_wohnen_2_energy
+    cycle: monthly
+  301_heizkreis_wohnen_2_energy_yearly:
+    unique_id: "301_heizkreis_wohnen_2_energy_yearly"
+    name: "301_heizkreis_wohnen_2_energy_yearly"
+    # friendly_name: "301_Heizkreis-Wohnen-2 - Energy yearly"
+    source: sensor.301_heizkreis_wohnen_2_energy
+    cycle: yearly
+
+  301_heizkreis_kueche_energy_hourly:
+    unique_id: "301_heizkreis_kueche_energy_hourly"
+    name: "301_heizkreis_kueche_energy_hourly"
+    # friendly_name: "301_Heizkreis-Kueche - Energy hourly"
+    source: sensor.301_heizkreis_kueche_energy
+    cycle: hourly
+  301_heizkreis_kueche_energy_daily:
+    unique_id: "301_heizkreis_kueche_energy_daily"
+    name: "301_heizkreis_kueche_energy_daily"
+    # friendly_name: "301_Heizkreis-Kueche - Energy daily"
+    source: sensor.301_heizkreis_kueche_energy
+    cycle: daily
+  301_heizkreis_kueche_energy_weekly:
+    unique_id: "301_heizkreis_kueche_energy_weekly"
+    name: "301_heizkreis_kueche_energy_weekly"
+    # friendly_name: "301_Heizkreis-Kueche - Energy weekly"
+    source: sensor.301_heizkreis_kueche_energy
+    cycle: weekly
+  301_heizkreis_kueche_energy_monthly:
+    unique_id: "301_heizkreis_kueche_energy_monthly"
+    name: "301_heizkreis_kueche_energy_monthly"
+    # friendly_name: "301_Heizkreis-Kueche - Energy monthly"
+    source: sensor.301_heizkreis_kueche_energy
+    cycle: monthly
+  301_heizkreis_kueche_energy_yearly:
+    unique_id: "301_heizkreis_kueche_energy_yearly"
+    name: "301_heizkreis_kueche_energy_yearly"
+    # friendly_name: "301_Heizkreis-Kueche - Energy yearly"
+    source: sensor.301_heizkreis_kueche_energy
+    cycle: yearly
+
+  301_heizkreis_flur_1_energy_hourly:
+    unique_id: "301_heizkreis_flur_1_energy_hourly"
+    name: "301_heizkreis_flur_1_energy_hourly"
+    # friendly_name: "301_Heizkreis-Flur-1 - Energy hourly"
+    source: sensor.301_heizkreis_flur_1_energy
+    cycle: hourly
+  301_heizkreis_flur_1_energy_daily:
+    unique_id: "301_heizkreis_flur_1_energy_daily"
+    name: "301_heizkreis_flur_1_energy_daily"
+    # friendly_name: "301_Heizkreis-Flur-1 - Energy daily"
+    source: sensor.301_heizkreis_flur_1_energy
+    cycle: daily
+  301_heizkreis_flur_1_energy_weekly:
+    unique_id: "301_heizkreis_flur_1_energy_weekly"
+    name: "301_heizkreis_flur_1_energy_weekly"
+    # friendly_name: "301_Heizkreis-Flur-1 - Energy weekly"
+    source: sensor.301_heizkreis_flur_1_energy
+    cycle: weekly
+  301_heizkreis_flur_1_energy_monthly:
+    unique_id: "301_heizkreis_flur_1_energy_monthly"
+    name: "301_heizkreis_flur_1_energy_monthly"
+    # friendly_name: "301_Heizkreis-Flur-1 - Energy monthly"
+    source: sensor.301_heizkreis_flur_1_energy
+    cycle: monthly
+  301_heizkreis_flur_1_energy_yearly:
+    unique_id: "301_heizkreis_flur_1_energy_yearly"
+    name: "301_heizkreis_flur_1_energy_yearly"
+    # friendly_name: "301_Heizkreis-Flur-1 - Energy yearly"
+    source: sensor.301_heizkreis_flur_1_energy
+    cycle: yearly
+
+  301_heizkreis_flur_2_energy_hourly:
+    unique_id: "301_heizkreis_flur_2_energy_hourly"
+    name: "301_heizkreis_flur_2_energy_hourly"
+    # friendly_name: "301_Heizkreis-Flur-2 - Energy hourly"
+    source: sensor.301_heizkreis_flur_2_energy
+    cycle: hourly
+  301_heizkreis_flur_2_energy_daily:
+    unique_id: "301_heizkreis_flur_2_energy_daily"
+    name: "301_heizkreis_flur_2_energy_daily"
+    # friendly_name: "301_Heizkreis-Flur-2 - Energy daily"
+    source: sensor.301_heizkreis_flur_2_energy
+    cycle: daily
+  301_heizkreis_flur_2_energy_weekly:
+    unique_id: "301_heizkreis_flur_2_energy_weekly"
+    name: "301_heizkreis_flur_2_energy_weekly"
+    # friendly_name: "301_Heizkreis-Flur-2 - Energy weekly"
+    source: sensor.301_heizkreis_flur_2_energy
+    cycle: weekly
+  301_heizkreis_flur_2_energy_monthly:
+    unique_id: "301_heizkreis_flur_2_energy_monthly"
+    name: "301_heizkreis_flur_2_energy_monthly"
+    # friendly_name: "301_Heizkreis-Flur-2 - Energy monthly"
+    source: sensor.301_heizkreis_flur_2_energy
+    cycle: monthly
+  301_heizkreis_flur_2_energy_yearly:
+    unique_id: "301_heizkreis_flur_2_energy_yearly"
+    name: "301_heizkreis_flur_2_energy_yearly"
+    # friendly_name: "301_Heizkreis-Flur-2 - Energy yearly"
+    source: sensor.301_heizkreis_flur_2_energy
+    cycle: yearly

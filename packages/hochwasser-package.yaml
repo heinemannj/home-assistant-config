@@ -1,0 +1,19 @@
+# Hochwasserportal
+#
+
+sensor:
+  - platform: hochwasserportal
+    pegel: NW_2789770000100
+    level: True
+    stage: True
+    flow: True
+  - platform: hochwasserportal
+    pegel: NW_9281330000100
+    level: True
+    stage: True
+    flow: True
+  - platform: hochwasserportal
+    pegel: NW_2770040
+    level: True
+    stage: True
+    flow: True
