@@ -43,7 +43,6 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
   packages:
-    local_calendar: !include packages/local-calendar-package.yaml
     dwd_pollenflug: !include packages/dwd-pollenflug-package.yaml
     dwd_weather_warnings: !include packages/dwd-weather-warnings-package.yaml
     geo_rss_feeds: !include packages/geo-rss-feeds-package.yaml
@@ -56,6 +55,7 @@ homeassistant:
     huawei_solar_power_flow_card: !include packages/huawei-solar-power-flow-card-package.yaml
     huawei_solar_energy_flow_card: !include packages/huawei-solar-energy-flow-card-package.yaml
     illuminance: !include packages/illuminance-package.yaml
+    local_calendar: !include packages/local-calendar-package.yaml
     mold_indicator: !include packages/mold-indicator-package.yaml
     moon_phase_image: !include packages/moon_phase_image-package.yaml
     mqtt_sensor: !include packages/mqtt-sensor-package.yaml
