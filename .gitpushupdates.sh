@@ -13,7 +13,7 @@
 # git config core.sshCommand "ssh -i /config/.ssh/id_rsa -F /dev/null"
 #
 # git add .
-# git commit -m "initial commit"
+# git commit -m "Initial commit"
 #
 # git branch -M master
 # git remote add origin git@github.com:heinemannj/home-assistant-config.git
