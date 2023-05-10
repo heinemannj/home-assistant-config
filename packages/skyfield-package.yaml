@@ -1,6 +1,13 @@
-# skyfield
+# ########## Skyfield Integration ##########
 #
-
+# skyfield-package.yaml
+#
+# -
+#
+# ########## Start: skyfield ##########
+#
 camera:
   - platform: ha_skyfield
     show_constellations: false
+#
+# ########## End: skyfield ##########

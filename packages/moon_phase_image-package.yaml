@@ -37,6 +37,5 @@ sensor:
           {%- endif %}
         availability_template: >-
           {{ (states('sensor.moon_phase') not in [ 'unavailable', 'none', 'unknown' ]) }}
-
 #
 # ########## End: Moon Phase images ##########

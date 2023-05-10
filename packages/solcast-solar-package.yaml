@@ -5,7 +5,7 @@
 # - automation.solcast_pv_forecast_api_update
 # - sensor.solcast-solar-package.yaml
 #
-# API Update
+# ########## Start: API Update Automation ##########
 #
 automation:
   - id: "solcast_pv_forecast_api_update"
@@ -35,6 +35,10 @@ automation:
       - service: solcast_solar.update_forecasts
         data: {}
     mode: single
+#
+# ########## End: API Update Automation ##########
+#
+# ########## Start: Template Sensor ##########
 #
 # Estimation of actual remaining Solcast Forecast (Every Minute)
 #
@@ -116,3 +120,5 @@ template:
             {{ var.total }}
         availability: >-
           {{ (states('sensor.solcast_forecast_today')|is_number) }}
+#
+# ########## End: Template Sensor ##########
