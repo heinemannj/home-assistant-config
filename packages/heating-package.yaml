@@ -1,6 +1,63 @@
-# heating
+# ########## Smart Thermostat Integration ##########
 #
-
+# - with auto Heat/Cool mode, PID control and PWM
+#
+# heating-package.yaml
+#
+# - climate.thermostat_eg
+#
+# - climate.floor_thermostat_wc
+# - climate.floor_thermostat_wohnen_1
+# - climate.floor_thermostat_wohnen_2
+# - climate.floor_thermostat_kueche
+# - climate.floor_thermostat_flur_1
+# - climate.floor_thermostat_flur_2
+#
+# - sensor.301_heizkreis_wc_valve_position
+# - sensor.301_heizkreis_wohnen_1_valve_position
+# - sensor.301_heizkreis_wohnen_2_valve_position
+# - sensor.301_heizkreis_kueche_valve_position
+# - sensor.301_heizkreis_flur_1_valve_position
+# - sensor.301_heizkreis_flur_1_valve_position
+#
+# - sensor.301_heizkreis_wc_energy_hourly
+# - sensor.301_heizkreis_wc_energy_daily
+# - sensor.301_heizkreis_wc_energy_weekly
+# - sensor.301_heizkreis_wc_energy_monthly
+# - sensor.301_heizkreis_wc_energy_yearly
+#
+# - sensor.301_heizkreis_wohnen_1_energy_hourly
+# - sensor.301_heizkreis_wohnen_1_energy_daily
+# - sensor.301_heizkreis_wohnen_1_energy_weekly
+# - sensor.301_heizkreis_wohnen_1_energy_monthly
+# - sensor.301_heizkreis_wohnen_1_energy_yearly
+#
+# - sensor.301_heizkreis_wohnen_2_energy_hourly
+# - sensor.301_heizkreis_wohnen_2_energy_daily
+# - sensor.301_heizkreis_wohnen_2_energy_weekly
+# - sensor.301_heizkreis_wohnen_2_energy_monthly
+# - sensor.301_heizkreis_wohnen_2_energy_yearly
+#
+# - sensor.301_heizkreis_kueche_energy_hourly
+# - sensor.301_heizkreis_kueche_energy_daily
+# - sensor.301_heizkreis_kueche_energy_weekly
+# - sensor.301_heizkreis_kueche_energy_monthly
+# - sensor.301_heizkreis_kueche_energy_yearly
+#
+# - sensor.301_heizkreis_flur_1_energy_hourly
+# - sensor.301_heizkreis_flur_1_energy_daily
+# - sensor.301_heizkreis_flur_1_energy_weekly
+# - sensor.301_heizkreis_flur_1_energy_monthly
+# - sensor.301_heizkreis_flur_1_energy_yearly
+#
+# - sensor.301_heizkreis_flur_2_energy_hourly
+# - sensor.301_heizkreis_flur_2_energy_daily
+# - sensor.301_heizkreis_flur_2_energy_weekly
+# - sensor.301_heizkreis_flur_2_energy_monthly
+# - sensor.301_heizkreis_flur_2_energy_yearly
+#
+# ########## Start: smart_thermostat ##########
+#
 climate:
   - platform: smart_thermostat
     name: thermostat_eg
@@ -159,11 +216,16 @@ climate:
     min_temp: 16
     max_temp: 32.5
     precision: 0.1
-
+#
+# ########## End: smart_thermostat ##########
+#
+# ########## Start: Sensors ##########
+#
 sensor:
   - platform: template
     sensors:
       301_heizkreis_wc_valve_position:
+        unique_id: 301_heizkreis_wc_valve_position
         friendly_name: "301_heizkreis_wc valve position"
         value_template: >-
           {% set hvac_action = state_attr('climate.floor_thermostat_wc', 'hvac_action') %}
@@ -172,6 +234,7 @@ sensor:
           {% endif %}
         unit_of_measurement: "%"
       301_heizkreis_wohnen_1_valve_position:
+        unique_id: 301_heizkreis_wohnen_1_valve_position
         friendly_name: "301_heizkreis_wohnen_1 valve position"
         value_template: >-
           {% set hvac_action = state_attr('climate.floor_thermostat_wohnen_1', 'hvac_action') %}
@@ -180,6 +243,7 @@ sensor:
           {% endif %}
         unit_of_measurement: "%"
       301_heizkreis_wohnen_2_valve_position:
+        unique_id: 301_heizkreis_wohnen_2_valve_position
         friendly_name: "301_heizkreis_wohnen_2 valve position"
         value_template: >-
           {% set hvac_action = state_attr('climate.floor_thermostat_wohnen_2', 'hvac_action') %}
@@ -188,6 +252,7 @@ sensor:
           {% endif %}
         unit_of_measurement: "%"
       301_heizkreis_kueche_valve_position:
+        unique_id: 301_heizkreis_kueche_valve_position
         friendly_name: "301_heizkreis_kueche valve position"
         value_template: >-
           {% set hvac_action = state_attr('climate.floor_thermostat_kueche', 'hvac_action') %}
@@ -196,6 +261,7 @@ sensor:
           {% endif %}
         unit_of_measurement: "%"
       301_heizkreis_flur_1_valve_position:
+        unique_id: heizkreis_flur_1_valve_position
         friendly_name: "301_heizkreis_flur_1 valve position"
         value_template: >-
           {% set hvac_action = state_attr('climate.floor_thermostat_flur_1', 'hvac_action') %}
@@ -204,6 +270,7 @@ sensor:
           {% endif %}
         unit_of_measurement: "%"
       301_heizkreis_flur_2_valve_position:
+        unique_id: 301_heizkreis_flur_2_valve_position
         friendly_name: "301_heizkreis_flur_2 valve position"
         value_template: >-
           {% set hvac_action = state_attr('climate.floor_thermostat_flur_2', 'hvac_action') %}
@@ -211,7 +278,11 @@ sensor:
           {% else %}0
           {% endif %}
         unit_of_measurement: "%"
-
+#
+# ########## End: Sensors ##########
+#
+# ########## Start: Utility Meter Sensors ##########
+#
 utility_meter:
   301_heizkreis_wc_energy_hourly:
     unique_id: "301_heizkreis_wc_energy_hourly"
@@ -398,3 +469,5 @@ utility_meter:
     # friendly_name: "301_Heizkreis-Flur-2 - Energy yearly"
     source: sensor.301_heizkreis_flur_2_energy
     cycle: yearly
+#
+# ########## End: Utility Meter Sensors ##########

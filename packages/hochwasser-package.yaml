@@ -1,19 +1,39 @@
-# Hochwasserportal
+# ########## Hochwasserportal Integration ##########
 #
-
+# hochwasser-package.yaml
+#
+# - sensor.daemmerwald_issel_ijssel_flow
+# - sensor.daemmerwald_issel_ijssel_level
+# - sensor.daemmerwald_issel_ijssel_stage
+#
+# - sensor.schermbeck_1_lippe_flow
+# - sensor.schermbeck_1_lippe_level
+# - sensor.schermbeck_1_lippe_stage
+#
+# - sensor.wesel_rhein_flow
+# - sensor.wesel_rhein_level
+# - sensor.wesel_rhein_stage
+#
+# ########## Start: Hochwasserportal ##########
+#
 sensor:
   - platform: hochwasserportal
     pegel: NW_2789770000100
+    # unique_id: NW_2789770000100
     level: True
     stage: True
     flow: True
   - platform: hochwasserportal
     pegel: NW_9281330000100
+    # unique_id: NW_9281330000100
     level: True
     stage: True
     flow: True
   - platform: hochwasserportal
     pegel: NW_2770040
+    # unique_id: NW_2770040
     level: True
     stage: True
     flow: True
+#
+# ########## End: Hochwasserportal ##########
