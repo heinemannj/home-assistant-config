@@ -1,8 +1,15 @@
-# Illuminance
+# ########## Illuminance Integration ##########
 #
-
+# illuminance-package.yaml
+#
+# - sensor.estimated_illuminance
+#
+# ########## Start: illuminance ##########
+#
 sensor:
   - platform: illuminance
     name: Estimated Illuminance
     entity_id: weather.forecast_home
     mode: normal
+#
+# ########## End: illuminance ##########

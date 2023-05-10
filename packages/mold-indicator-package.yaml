@@ -1,6 +1,11 @@
-# mold_indicator
+# ########## HA Mold Indicator Integration ##########
 #
-
+# mold-indicator-package.yaml
+#
+# - sensor.307_wohnen_mold_indicator
+#
+# ########## Start: mold_indicator ##########
+#
 sensor:
   - platform: mold_indicator
     name: "307_Wohnen - Mold Indicator"
@@ -8,3 +13,5 @@ sensor:
     indoor_humidity_sensor: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_humidity
     outdoor_temp_sensor: sensor.temperature_raesfeld_ka
     calibration_factor: 2.0
+#
+# ########## End: mold_indicator ##########

@@ -1,11 +1,17 @@
-# Moon Phase images
+# ########## HA Moon Integration ##########
 #
-
+# moon_phase_image-package.yaml
+#
+# - sensor.moon_phase_image
+#
+# ########## Start: Moon Phase images ##########
+#
 sensor:
   - platform: template
     sensors:
       moon_phase_image:
         #entity_id: sensor.moon
+        unique_id: moon_phase_image
         friendly_name: "Moon Phase image"
         value_template: >
           {{ states('sensor.moon_phase') }}
@@ -31,3 +37,6 @@ sensor:
           {%- endif %}
         availability_template: >-
           {{ (states('sensor.moon_phase') not in [ 'unavailable', 'none', 'unknown' ]) }}
+
+#
+# ########## End: Moon Phase images ##########

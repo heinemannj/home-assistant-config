@@ -17,7 +17,7 @@
 # - calendar.schadstoffe
 #   sensor.event_day_schadstoffe
 #
-## ########## Start: Normal Template Sensors ##########
+# ########## Start: Normal Template Sensors ##########
 #
 template:
   - sensor:
