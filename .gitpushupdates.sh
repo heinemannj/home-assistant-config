@@ -1,6 +1,10 @@
 #!/bin/sh
 #
+# ########## SolCast PV Forecast Integration ##########
+#
 # .gitpushupdates.sh
+#
+# Dependencies/Preparation
 #
 # cd /config
 # git init
@@ -20,7 +24,11 @@
 #
 # git push -u origin master
 #
+# ########## Start: Shell script ##########
+#
 cd /config
 git add .
 git commit -m "config files on `date +'%d-%m-%Y %H:%M:%S'`"
 git push -u origin master
+#
+# ########## End: Shell script ##########

@@ -1,3 +1,11 @@
+# ########## Mushroom Custom Theme ##########
+#
+# mushroom-custom.yaml
+#
+# https://www.home-assistant.io/integrations/frontend/#defining-themes
+#
+# ########## Start: Mushroom Custom: ##########
+#
 Mushroom Custom:
   # HA variables
   ha-card-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.16)
@@ -107,3 +115,5 @@ Mushroom Custom:
       mush-rgb-disabled: 189, 189, 189
     dark:
       mush-rgb-disabled: 111, 111, 111
+#
+# ########## End: Mushroom Custom: ##########
