@@ -1,13 +1,25 @@
-# dwd_weather_warnings
+# ########## HA Deutscher Wetterdienst (DWD) Weather Warnings Integration ##########
 #
-
+# dwd-weather-warnings-package.yaml
+#
+# - camera.www_dwd_de
+# - sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level
+# - sensor.dwd_wetterwarnungen_schermbeck_current_warning_level
+#
+# ########## Start: dwd_weather_warnings ##########
+#
 sensor:
   - platform: dwd_weather_warnings
     region_name: "Gemeinde Schermbeck"
     name: "DWD Wetterwarnungen Schermbeck"
     # unique_id: dwd_weather_warnings_schermbeck
+#
+# Depricated
+#
 #camera:
 #  - platform: generic
 #    still_image_url: "https://www.dwd.de/DWD/warnungen/warnstatus/SchilderEM.jpg"
 #    name: "DWD Wetterwarnungen NRW"
 #    # unique_id: dwd_weather_warnings_nrw
+#
+# ########## End: dwd_weather_warnings ##########

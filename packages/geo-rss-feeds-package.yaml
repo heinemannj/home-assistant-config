@@ -1,22 +1,37 @@
-# geo-rss-feeds
+# ########## HA Geolocation Integration ##########
 #
-
+# geo-rss-feeds-package.yaml
+#
+# - sensor.emcs_earthquakes
+# - sensor.emsc_earthquakes_any
+# - sensor.ingv_earthquakes_home_prod_status
+# - sensor.european_emergency_any
+# - sensor.gdacs_51_70063602129851_6_883277893066407
+#
+# ########## Start: geo-rss-feeds ##########
+#
 geo_location:
   - platform: usgs_earthquakes_feed
+    # unique_id: usgs_earthquakes_feed
     feed_type: "past_day_all_earthquakes"
     radius: 1500
 
 sensor:
   - platform: geo_rss_events
     name: European Emergency
+    # unique_id: european_emergency
     url: http://emergency.copernicus.eu/mapping/activations-rapid/feed
     radius: 500
     unit_of_measurement: "Incidents"
   - platform: geo_rss_events
     name: EMSC Earthquakes
+    # unique_id: emsc_earthquakes_1
     url: https://www.emsc-csem.org/service/rss/rss.php?typ=emsc
     radius: 1500
   - platform: emscrss
-    name: EMCS Earthquakes
+    name: EMSC Earthquakes
+    # unique_id: emsc_earthquakes_2
     radius: 1500
     magnitude: 4.0
+#
+# ########## End: geo-rss-feeds ##########
