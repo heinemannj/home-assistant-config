@@ -3,9 +3,15 @@
 mode: storage
 # Add yaml dashboards
 dashboards:
-  lovelace-yaml:
+  420-pv-yaml:
     mode: yaml
     title: 420_PV
     icon: mdi:solar-power-variant
     show_in_sidebar: true
     filename: dashboards/420-pv.yaml
+  406-heizung-yaml:
+    mode: yaml
+    title: 406_Heizung_New
+    icon: mdi:hvac
+    show_in_sidebar: true
+    filename: dashboards/406-heizung.yaml

@@ -1,0 +1,46 @@
+title: 034.20.1_HK1-Heizkoerper
+path: 034-20-1-HK1-Heizkoerper
+type: custom:masonry-layout
+icon: mdi:home-thermometer
+badges: []
+cards:
+  - type: custom:simple-thermostat
+    entity: climate.hm_tc_it_wm_w_eu_meq1330232
+    label:
+      temperature: Room temperature
+    step_size: 0.5
+    sensors:
+      - entity: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_humidity
+        name: Humidity
+      - entity: sensor.307_wohnen_mold_indicator
+        name: Mold indicator
+      - entity: sensor.pulsemeter_38_power
+        name: Power
+      - entity: light.101_buro_licht_schreibtisch
+        name: Licht-Schreibtisch
+      - entity: light.101_buro_licht_treppe
+        name: Licht-Treppe
+    header:
+      name: 307_Wohnen
+      toggle: null
+  - type: thermostat
+    entity: climate.hm_tc_it_wm_w_eu_meq1330232
+  - type: entities
+    entities:
+      - entity: sensor.307_wohnen_thermal_comfort_absolutehumidity
+        name: Absolute Humidity
+      - entity: sensor.307_wohnen_thermal_comfort_dewpoint
+        name: Dew Point
+      - entity: sensor.307_wohnen_thermal_comfort_frostpoint
+        name: Frost Point
+      - entity: sensor.307_wohnen_thermal_comfort_frostrisk
+        name: Frost Risk
+      - entity: sensor.307_wohnen_thermal_comfort_heatindex
+        name: Heat Index
+      - entity: sensor.307_wohnen_thermal_comfort_simmerindex
+        name: Simmer Index
+      - entity: sensor.307_wohnen_thermal_comfort_simmerzone
+        name: Simmer Zone
+      - entity: sensor.307_wohnen_thermal_comfort_perception
+        name: Thermal Perception
+    title: 307_Wohnen - Thermal Comfort
