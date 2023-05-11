@@ -11,7 +11,7 @@ dashboards:
     filename: dashboards/420-pv.yaml
   406-heizung-yaml:
     mode: yaml
-    title: 406_Heizung_New
+    title: 406_Heizung
     icon: mdi:hvac
     show_in_sidebar: true
     filename: dashboards/406-heizung.yaml
