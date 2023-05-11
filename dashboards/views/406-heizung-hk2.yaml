@@ -1,0 +1,18 @@
+title: 034.20.2_HK2-Fussbodenheizung-Heizkreise
+path: 034-20-2-HK2-Fussbodenheizung-Heizkreise
+theme: Backend-selected
+type: custom:grid-layout
+icon: mdi:heating-coil
+badges: []
+cards:
+  - title: Heizkreis 2 - Fussbodenheizung EG
+    type: entities
+    entities:
+      - !include /config/dashboards/cards/406-heizung-hk2-row-1.yaml
+      - !include /config/dashboards/cards/406-heizung-hk2-row-2.yaml
+      - !include /config/dashboards/cards/406-heizung-hk2-row-3.yaml
+      - !include /config/dashboards/cards/406-heizung-hk2-row-4.yaml
+      - !include /config/dashboards/cards/406-heizung-hk2-row-5.yaml
+      - !include /config/dashboards/cards/406-heizung-hk2-row-6.yaml
+      - !include /config/dashboards/cards/406-heizung-hk2-row-7.yaml
+      - !include /config/dashboards/cards/406-heizung-hk2-row-8.yaml

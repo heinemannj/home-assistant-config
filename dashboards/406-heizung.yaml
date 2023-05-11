@@ -1,5 +1,5 @@
 title: 406_Heizung
-!include /config/dashboards/config-templates/apexcharts_card_templates.yaml
+apexcharts_card_templates: !include /config/dashboards/config-templates/apexcharts_card_templates.yaml
 views:
-  - !include /config/dashboards/views/406-hk1-heizkoerper.yaml
-  - !include /config/dashboards/views/406-hk2-fussbodenheizung-heizkreise.yaml
+  - !include /config/dashboards/views/406-heizung-hk1.yaml
+  - !include /config/dashboards/views/406-heizung-hk2.yaml

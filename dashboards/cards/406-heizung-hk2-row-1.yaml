@@ -1,0 +1,52 @@
+type: custom:apexcharts-card
+config_templates: thermostat_chart
+graph_span: 6h
+entities:
+  - entity: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_temperature
+    name: Raum
+    yaxis_id: first
+    group_by:
+      func: avg
+      duration: 3min
+  - entity: sensor.301_heizkreis_wc_valve_position
+    name: WC
+    yaxis_id: second
+    type: line
+    group_by:
+      func: avg
+      duration: 3min
+  - entity: sensor.301_heizkreis_wohnen_1_valve_position
+    name: Wohnen_1
+    yaxis_id: second
+    type: line
+    group_by:
+      func: avg
+      duration: 3min
+  - entity: sensor.301_heizkreis_wohnen_2_valve_position
+    name: Wohnen_2
+    yaxis_id: second
+    type: line
+    group_by:
+      func: avg
+      duration: 3min
+  - entity: sensor.301_heizkreis_kueche_valve_position
+    name: Kueche
+    yaxis_id: second
+    type: line
+    group_by:
+      func: avg
+      duration: 3min
+  - entity: sensor.301_heizkreis_flur_1_valve_position
+    name: Flur_1
+    yaxis_id: second
+    type: line
+    group_by:
+      func: avg
+      duration: 3min
+  - entity: sensor.301_heizkreis_flur_2_valve_position
+    name: Flur_2
+    yaxis_id: second
+    type: line
+    group_by:
+      func: avg
+      duration: 3min

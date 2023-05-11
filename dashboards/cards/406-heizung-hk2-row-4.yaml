@@ -1,0 +1,97 @@
+type: custom:fold-entity-row
+head:
+  entity: climate.floor_thermostat_wohnen_1
+  name: 301_Heizkreis-wohnen_1
+  secondary_info: last-changed
+  state_color: true
+entities:
+  - type: custom:apexcharts-card
+    config_templates: thermostat_chart
+    entities:
+      - entity: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_temperature
+        name: Raum
+        yaxis_id: first
+        group_by:
+          func: last
+          duration: 1min
+      - entity: climate.floor_thermostat_wohnen_1
+        attribute: current_temperature
+        name: Fussboden
+        yaxis_id: first
+        group_by:
+          func: last
+          duration: 1min
+      - entity: climate.floor_thermostat_wohnen_1
+        attribute: temperature
+        name: Fussboden (Soll)
+        yaxis_id: first
+        group_by:
+          func: last
+          duration: 1min
+      - entity: sensor.301_heizkreis_wohnen_1_vorlauf
+        name: Vorlauf
+        yaxis_id: first
+        group_by:
+          func: last
+          duration: 1min
+      - entity: sensor.301_heizkreis_wohnen_1_ruecklauf
+        name: Ruecklauf
+        yaxis_id: first
+        group_by:
+          func: last
+          duration: 1min
+      - entity: sensor.301_heizkreis_wohnen_1_valve_position
+        name: Ventil
+        yaxis_id: second
+        type: area
+        color: grey
+        stroke_width: 0
+        opacity: 0.1
+        group_by:
+          func: last
+          duration: 1min
+  - entity: climate.floor_thermostat_wohnen_1
+    header:
+      faults:
+        - entity: switch.301_heizkreis_wohnen_1
+    label:
+      temperature: Fussboden
+    step_size: 0.1
+    sensors:
+      - entity: sensor.301_heizkreis_wohnen_1_vorlauf
+        name: Vorlauf
+        secondary_info: last-changed
+      - entity: sensor.301_heizkreis_wohnen_1_ruecklauf
+        name: Ruecklauf
+      - entity: sensor.301_heizkreis_wohnen_1_spreizung
+        name: Spreizung
+      - entity: sensor.301_heizkreis_wohnen_1_fb
+        name: Fussboden
+      - entity: sensor.301_heizkreis_wohnen_1_valve_position
+        name: Ventil Position
+    type: custom:simple-thermostat
+  - entity: switch.301_heizkreis_wohnen_1
+    name: 301_Heizkreis-wohnen_1
+    entities:
+      - entity: sensor.301_heizkreis_wohnen_1_energy
+        name: Total
+        format: precision3
+      - entity: sensor.301_heizkreis_wohnen_1_energy_yearly
+        name: Yearly
+        format: precision3
+      - entity: sensor.301_heizkreis_wohnen_1_energy_monthly
+        name: Monthly
+        format: precision3
+      - entity: sensor.301_heizkreis_wohnen_1_energy_daily
+        name: Daily
+        format: precision3
+      - entity: sensor.301_heizkreis_wohnen_1_energy_hourly
+        name: Hourly
+        format: precision3
+      - entity: sensor.301_heizkreis_wohnen_1_power
+        name: Power
+        format: precision1
+    type: custom:multiple-entity-row
+    secondary_info: last-changed
+    show_state: false
+    state_color: true
