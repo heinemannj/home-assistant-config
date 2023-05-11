@@ -13,8 +13,6 @@ scene: !include scenes.yaml
 frontend:
   themes: !include_dir_merge_named themes
 
-python_script:
-
 # MariaDB connection
 recorder:
   db_url: !secret mariadb_url
@@ -61,3 +59,5 @@ homeassistant:
 
 shell_command:
   pushupdates_to_github: /bin/bash .gitpushupdates.sh
+
+python_script:
