@@ -1,0 +1,15 @@
+# ########## Xiaomi Mi Smart Pedestal Fan Integration ##########
+#
+# xiaomi-miio-fan-package.yaml
+#
+# - fan.xiaomi_smart_fan
+#
+# ########## Start: xiaomi_miio_fan ##########
+#
+fan:
+  - platform: xiaomi_miio_fan
+    name: Xiaomi Smart Fan
+    host: 192.168.178.131
+    token: !secret xiaomi_miio_fan_token
+#
+# ########## End: xiaomi_miio_fan ##########

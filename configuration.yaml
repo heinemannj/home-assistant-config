@@ -6,21 +6,12 @@ tts:
   - platform: google_translate
 
 automation: !include automations.yaml
+group: !include groups.yaml
+lovelace: !include ui-lovelace.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 frontend:
   themes: !include_dir_merge_named themes
-
-lovelace:
-  mode: storage
-  # Add yaml dashboards
-  dashboards:
-    lovelace-yaml:
-      mode: yaml
-      title: 420_PV
-      icon: mdi:solar-power-variant
-      show_in_sidebar: true
-      filename: dashboards/420-pv.yaml
 
 python_script:
 
@@ -31,8 +22,8 @@ recorder:
   commit_interval: 20
 
 influxdb:
-  host: 192.168.178.17
-  port: 8086
+  host: !secret influxdb_host
+  port: !secret influxdb_port
   database: homeassistant
   username: !secret influxdb_admin_user
   password: !secret influxdb_admin_pass
@@ -59,44 +50,14 @@ homeassistant:
     mold_indicator: !include packages/mold-indicator-package.yaml
     moon_phase_image: !include packages/moon_phase_image-package.yaml
     mqtt_sensor: !include packages/mqtt-sensor-package.yaml
-    pulsemeter: !include packages/pulsemeter-new-package.yaml
+    powercalc: !include packages/powercalc-package.yaml
+    pulsemeter: !include packages/pulsemeter-package.yaml
     shelly_light: !include packages/shelly-light-package.yaml
     shelly_sockets: !include packages/shelly-sockets-package.yaml
     # skyfield: !include packages/skyfield-package.yaml
     solcast_solar: !include packages/solcast-solar-package.yaml
     temperature_feels_like: !include packages/temperature-feels-like-package.yaml
+    xiaomi_miio_fan: !include packages/xiaomi-miio-fan-package.yaml
 
 shell_command:
   pushupdates_to_github: /bin/bash .gitpushupdates.sh
-
-powercalc:
-
-group:
-  energy_counter:
-    name: "Energy Counter Group"
-    entities:
-      - sensor.pulsemeter_54_power
-      - group.room_101
-  switchable_sockets:
-    name: "041.1_Schaltbare-Steckdosen"
-    entities:
-      - switch.310_garten_teich_1_uv_lampe
-      - switch.310_garten_teich_2_monitor_mc
-      - switch.310_garten_teich_3_frei
-      - switch.310_garten_teich_4_frei
-      - switch.310_garten_teich_5_kugel
-      - switch.310_garten_teich_6_stern
-      - switch.310_garten_teich_7_wasserpumpe
-      - switch.310_garten_teich_8_dosierer
-  room_101:
-    name: "Room_101"
-    entities:
-      - sensor.pulsemeter_38_power
-      - light.101_buro_licht_schreibtisch
-      - light.101_buro_licht_treppe
-
-fan:
-  - platform: xiaomi_miio_fan
-    name: Xiaomi Smart Fan
-    host: 192.168.178.131
-    token: 4f729fecd5e7b58849edf4dcb0099d8a

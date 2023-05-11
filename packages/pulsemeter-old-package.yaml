@@ -1,0 +1,3101 @@
+# pulsemeter
+#
+
+automation:
+  - id: set_pulsemeter_counter
+    alias: set_pulsemeter_counter
+    description: set_pulsemeter_counter
+    trigger:
+      - platform: event
+        event_type: set_pulsemeter_counter
+    action:
+      - service: counter.configure
+        data_template:
+          entity_id: "counter.{{ trigger.event.data.counter_name }}"
+          step:
+            "{{ trigger.event.data.counter - trigger.event.data.counter_previous
+            if (trigger.event.data.counter_previous > 0 and trigger.event.data.counter
+            > trigger.event.data.counter_previous) else '1' }}"
+      - service: counter.increment
+        target:
+          entity_id: "counter.{{ trigger.event.data.counter_name }}"
+      - service: input_number.set_value
+        data_template:
+          entity_id: "input_number.{{ trigger.event.data.counter_name }}_counter_raw"
+          value: "{{ trigger.event.data.counter }}"
+
+  - id: set_pulsemeter_power_on
+    alias: set_pulsemeter_power_on
+    description: set_pulsemeter_power_on
+    trigger:
+      - platform: event
+        event_type: set_pulsemeter_power_on
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: "sensor.{{ trigger.event.data.timer_name }}_power"
+          state: "{{ trigger.event.data.state }}"
+          allow_create: true
+      - service: timer.cancel
+        target:
+          entity_id: "timer.{{ trigger.event.data.timer_name }}"
+      - service: timer.start
+        data_template:
+          entity_id: "timer.{{ trigger.event.data.timer_name }}"
+          duration:
+            milliseconds: "{{ trigger.event.data.timer_duration }}"
+
+  - id: pulsemeter_22_automation_energy
+    alias: pulsemeter_22_automation_energy
+    description: 303_Küche-E-Backofen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/22/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_22
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_22_counter_raw')|int }}"
+  - id: pulsemeter_22_automation_power_on
+    alias: pulsemeter_22_automation_power_on
+    description: 303_Küche-E-Backofen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/22/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_22
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_22_automation_power_off
+    alias: pulsemeter_22_automation_power_off
+    description: 303_Küche-E-Backofen-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_22
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_22_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_23_automation_energy
+    alias: pulsemeter_23_automation_energy
+    description: 502_Reserve-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/23/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_23
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_23_counter_raw')|int }}"
+  - id: pulsemeter_23_automation_power_on
+    alias: pulsemeter_23_automation_power_on
+    description: 502_Reserve-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/23/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_23
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_23_automation_power_off
+    alias: pulsemeter_23_automation_power_off
+    description: 502_Reserve-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_23
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_23_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_24_automation_energy
+    alias: pulsemeter_24_automation_energy
+    description: 406_Heizung-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/24/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_24
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_24_counter_raw')|int }}"
+  - id: pulsemeter_24_automation_power_on
+    alias: pulsemeter_24_automation_power_on
+    description: 406_Heizung-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/24/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_24
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_24_automation_power_off
+    alias: pulsemeter_24_automation_power_off
+    description: 406_Heizung-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_24
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_24_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_25_automation_energy
+    alias: pulsemeter_25_automation_energy
+    description: 409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/25/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_25
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_25_counter_raw')|int }}"
+  - id: pulsemeter_25_automation_power_on
+    alias: pulsemeter_25_automation_power_on
+    description: 409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/25/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_25
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_25_automation_power_off
+    alias: pulsemeter_25_automation_power_off
+    description: 409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_25
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_25_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_26_automation_energy
+    alias: pulsemeter_26_automation_energy
+    description: 405_Haustechnik-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/26/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_26
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_26_counter_raw')|int }}"
+  - id: pulsemeter_26_automation_power_on
+    alias: pulsemeter_26_automation_power_on
+    description: 405_Haustechnik-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/26/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_26
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_26_automation_power_off
+    alias: pulsemeter_26_automation_power_off
+    description: 405_Haustechnik-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_26
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_26_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_27_automation_energy
+    alias: pulsemeter_27_automation_energy
+    description: 407_Heizungsraum-Waschmaschine-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/27/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_27
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_27_counter_raw')|int }}"
+  - id: pulsemeter_27_automation_power_on
+    alias: pulsemeter_27_automation_power_on
+    description: 407_Heizungsraum-Waschmaschine-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/27/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_27
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_27_automation_power_off
+    alias: pulsemeter_27_automation_power_off
+    description: 407_Heizungsraum-Waschmaschine-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_27
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_27_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_28_automation_energy
+    alias: pulsemeter_28_automation_energy
+    description: 409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/28/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_28
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_28_counter_raw')|int }}"
+  - id: pulsemeter_28_automation_power_on
+    alias: pulsemeter_28_automation_power_on
+    description: 409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/28/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_28
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_28_automation_power_off
+    alias: pulsemeter_28_automation_power_off
+    description: 409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_28
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_28_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_29_automation_energy
+    alias: pulsemeter_29_automation_energy
+    description: 409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/29/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_29
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_29_counter_raw')|int }}"
+  - id: pulsemeter_29_automation_power_on
+    alias: pulsemeter_29_automation_power_on
+    description: 409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/29/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_29
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_29_automation_power_off
+    alias: pulsemeter_29_automation_power_off
+    description: 409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_29
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_29_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_30_automation_energy
+    alias: pulsemeter_30_automation_energy
+    description: 408_Heizungsraum-Wäschetrockner-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/30/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_30
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_30_counter_raw')|int }}"
+  - id: pulsemeter_30_automation_power_on
+    alias: pulsemeter_30_automation_power_on
+    description: 408_Heizungsraum-Wäschetrockner-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/30/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_30
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_30_automation_power_off
+    alias: pulsemeter_30_automation_power_off
+    description: 408_Heizungsraum-Wäschetrockner-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_30
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_30_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_31_automation_energy
+    alias: pulsemeter_31_automation_energy
+    description: 304_Küche-E-Herd-2-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/31/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_31
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_31_counter_raw')|int }}"
+  - id: pulsemeter_31_automation_power_on
+    alias: pulsemeter_31_automation_power_on
+    description: 304_Küche-E-Herd-2-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/31/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_31
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_31_automation_power_off
+    alias: pulsemeter_31_automation_power_off
+    description: 304_Küche-E-Herd-2-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_31
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_31_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_32_automation_energy
+    alias: pulsemeter_32_automation_energy
+    description: 404_Werkstatt_Gäste-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/32/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_32
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_32_counter_raw')|int }}"
+  - id: pulsemeter_32_automation_power_on
+    alias: pulsemeter_32_automation_power_on
+    description: 404_Werkstatt_Gäste-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/32/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_32
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_32_automation_power_off
+    alias: pulsemeter_32_automation_power_off
+    description: 404_Werkstatt_Gäste-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_32
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_32_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_33_automation_energy
+    alias: pulsemeter_33_automation_energy
+    description: 501_Reserve-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/33/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_33
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_33_counter_raw')|int }}"
+  - id: pulsemeter_33_automation_power_on
+    alias: pulsemeter_33_automation_power_on
+    description: 501_Reserve-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/33/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_33
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_33_automation_power_off
+    alias: pulsemeter_33_automation_power_off
+    description: 501_Reserve-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_33
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_33_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_34_automation_energy
+    alias: pulsemeter_34_automation_energy
+    description: 304_Küche-E-Herd-3-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/34/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_34
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_34_counter_raw')|int }}"
+  - id: pulsemeter_34_automation_power_on
+    alias: pulsemeter_34_automation_power_on
+    description: 304_Küche-E-Herd-3-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/34/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_34
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_34_automation_power_off
+    alias: pulsemeter_34_automation_power_off
+    description: 304_Küche-E-Herd-3-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_34
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_34_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_35_automation_energy
+    alias: pulsemeter_35_automation_energy
+    description: 403_Bad-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/35/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_35
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_35_counter_raw')|int }}"
+  - id: pulsemeter_35_automation_power_on
+    alias: pulsemeter_35_automation_power_on
+    description: 403_Bad-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/35/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_35
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_35_automation_power_off
+    alias: pulsemeter_35_automation_power_off
+    description: 403_Bad-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_35
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_35_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_36_automation_energy
+    alias: pulsemeter_36_automation_energy
+    description: 402_Vorrat-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/36/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_36
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_36_counter_raw')|int }}"
+  - id: pulsemeter_36_automation_power_on
+    alias: pulsemeter_36_automation_power_on
+    description: 402_Vorrat-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/36/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_36
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_36_automation_power_off
+    alias: pulsemeter_36_automation_power_off
+    description: 402_Vorrat-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_36
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_36_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_37_automation_energy
+    alias: pulsemeter_37_automation_energy
+    description: 203_Bad-Whirlwanne-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/37/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_37
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_37_counter_raw')|int }}"
+  - id: pulsemeter_37_automation_power_on
+    alias: pulsemeter_37_automation_power_on
+    description: 203_Bad-Whirlwanne-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/37/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_37
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_37_automation_power_off
+    alias: pulsemeter_37_automation_power_off
+    description: 203_Bad-Whirlwanne-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_37
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_37_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_38_automation_energy
+    alias: pulsemeter_38_automation_energy
+    description: 101_Büro-Steckdosen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/38/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_38
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_38_counter_raw')|int }}"
+  - id: pulsemeter_38_automation_power_on
+    alias: pulsemeter_38_automation_power_on
+    description: 101_Büro-Steckdosen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/38/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_38
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_38_automation_power_off
+    alias: pulsemeter_38_automation_power_off
+    description: 101_Büro-Steckdosen-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_38
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_38_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_39_automation_energy
+    alias: pulsemeter_39_automation_energy
+    description: 301_Flur_WC_Küche-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/39/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_39
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_39_counter_raw')|int }}"
+  - id: pulsemeter_39_automation_power_on
+    alias: pulsemeter_39_automation_power_on
+    description: 301_Flur_WC_Küche-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/39/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_39
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_39_automation_power_off
+    alias: pulsemeter_39_automation_power_off
+    description: 301_Flur_WC_Küche-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_39
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_39_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_40_automation_energy
+    alias: pulsemeter_40_automation_energy
+    description: 308_Terrasse-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/40/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_40
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_40_counter_raw')|int }}"
+  - id: pulsemeter_40_automation_power_on
+    alias: pulsemeter_40_automation_power_on
+    description: 308_Terrasse-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/40/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_40
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_40_automation_power_off
+    alias: pulsemeter_40_automation_power_off
+    description: 308_Terrasse-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_40
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_40_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_41_automation_energy
+    alias: pulsemeter_41_automation_energy
+    description: 204_Schlafen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/41/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_41
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_41_counter_raw')|int }}"
+  - id: pulsemeter_41_automation_power_on
+    alias: pulsemeter_41_automation_power_on
+    description: 204_Schlafen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/41/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_41
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_41_automation_power_off
+    alias: pulsemeter_41_automation_power_off
+    description: 204_Schlafen-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_41
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_41_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_42_automation_energy
+    alias: pulsemeter_42_automation_energy
+    description: 302_Küche-Dunstabzugshaube-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/42/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_42
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_42_counter_raw')|int }}"
+  - id: pulsemeter_42_automation_power_on
+    alias: pulsemeter_42_automation_power_on
+    description: 302_Küche-Dunstabzugshaube-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/42/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_42
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_42_automation_power_off
+    alias: pulsemeter_42_automation_power_off
+    description: 302_Küche-Dunstabzugshaube-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_42
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_42_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_43_automation_energy
+    alias: pulsemeter_43_automation_energy
+    description: 202_Bad-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/43/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_43
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_43_counter_raw')|int }}"
+  - id: pulsemeter_43_automation_power_on
+    alias: pulsemeter_43_automation_power_on
+    description: 202_Bad-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/43/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_43
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_43_automation_power_off
+    alias: pulsemeter_43_automation_power_off
+    description: 202_Bad-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_43
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_43_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_44_automation_energy
+    alias: pulsemeter_44_automation_energy
+    description: 304_Küche-E-Herd-1-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/44/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_44
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_44_counter_raw')|int }}"
+  - id: pulsemeter_44_automation_power_on
+    alias: pulsemeter_44_automation_power_on
+    description: 304_Küche-E-Herd-1-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/44/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_44
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_44_automation_power_off
+    alias: pulsemeter_44_automation_power_off
+    description: 304_Küche-E-Herd-1-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_44
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_44_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_45_automation_energy
+    alias: pulsemeter_45_automation_energy
+    description: 205_Balkon-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/45/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_45
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_45_counter_raw')|int }}"
+  - id: pulsemeter_45_automation_power_on
+    alias: pulsemeter_45_automation_power_on
+    description: 205_Balkon-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/45/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_45
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_45_automation_power_off
+    alias: pulsemeter_45_automation_power_off
+    description: 205_Balkon-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_45
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_45_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_46_automation_energy
+    alias: pulsemeter_46_automation_energy
+    description: 201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/46/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_46
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_46_counter_raw')|int }}"
+  - id: pulsemeter_46_automation_power_on
+    alias: pulsemeter_46_automation_power_on
+    description: 201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/46/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_46
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_46_automation_power_off
+    alias: pulsemeter_46_automation_power_off
+    description: 201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_46
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_46_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_47_automation_energy
+    alias: pulsemeter_47_automation_energy
+    description: 401_Flur_Heizungsraum-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/47/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_47
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_47_counter_raw')|int }}"
+  - id: pulsemeter_47_automation_power_on
+    alias: pulsemeter_47_automation_power_on
+    description: 401_Flur_Heizungsraum-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/47/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_47
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_47_automation_power_off
+    alias: pulsemeter_47_automation_power_off
+    description: 401_Flur_Heizungsraum-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_47
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_47_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_48_automation_energy
+    alias: pulsemeter_48_automation_energy
+    description: 309_Garage-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/48/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_48
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_48_counter_raw')|int }}"
+  - id: pulsemeter_48_automation_power_on
+    alias: pulsemeter_48_automation_power_on
+    description: 309_Garage-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/48/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_48
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_48_automation_power_off
+    alias: pulsemeter_48_automation_power_off
+    description: 309_Garage-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_48
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_48_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_49_automation_energy
+    alias: pulsemeter_49_automation_energy
+    description: 307_Wohnen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/49/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_49
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_49_counter_raw')|int }}"
+  - id: pulsemeter_49_automation_power_on
+    alias: pulsemeter_49_automation_power_on
+    description: 307_Wohnen-Stromkreiszähler
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/49/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_49
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (3600000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_49_automation_power_off
+    alias: pulsemeter_49_automation_power_off
+    description: 307_Wohnen-Stromkreiszähler
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_49
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_49_power
+          state: "0"
+          allow_create: true
+
+  - id: pulsemeter_54_automation_energy
+    alias: pulsemeter_54_automation_energy
+    description: 032.1.1_Strommonitor
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/54/counter
+    action:
+      - event: set_pulsemeter_counter
+        event_data_template:
+          counter_name: pulsemeter_54
+          counter: "{{ trigger.payload|int }}"
+          counter_previous: "{{ states('input_number.pulsemeter_54_counter_raw')|int }}"
+
+  - id: pulsemeter_54_automation_power_on
+    alias: pulsemeter_54_automation_power_on
+    description: 032.1.1_Strommonitor
+    mode: single
+    trigger:
+      - platform: mqtt
+        topic: WIZnet4BACB1/54/power-time-diff
+    action:
+      - event: set_pulsemeter_power_on
+        event_data_template:
+          timer_name: pulsemeter_49
+          timer_duration: "{{ trigger.payload|int * 1.25 }}"
+          state: "{{ (48000000 / trigger.payload|int) | round(1) }}"
+  - id: pulsemeter_54_automation_power_off
+    alias: pulsemeter_54_automation_power_off
+    description: 032.1.1_Strommonitor
+    mode: single
+    trigger:
+      - event_data:
+          entity_id: timer.pulsemeter_54
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: python_script.set_state
+        data_template:
+          entity_id: sensor.pulsemeter_54_power
+          state: "0"
+          allow_create: true
+
+input_number:
+  pulsemeter_22_counter_raw:
+    name: "303_Küche-E-Backofen-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_23_counter_raw:
+    name: "502_Reserve-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_24_counter_raw:
+    name: "406_Heizung-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_25_counter_raw:
+    name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_26_counter_raw:
+    name: "405_Haustechnik-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_27_counter_raw:
+    name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_28_counter_raw:
+    name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_29_counter_raw:
+    name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_30_counter_raw:
+    name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_31_counter_raw:
+    name: "304_Küche-E-Herd-2-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_32_counter_raw:
+    name: "404_Werkstatt_Gäste-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_33_counter_raw:
+    name: "501_Reserve-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_34_counter_raw:
+    name: "304_Küche-E-Herd-3-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_35_counter_raw:
+    name: "403_Bad-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_36_counter_raw:
+    name: "402_Vorrat-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_37_counter_raw:
+    name: "203_Bad-Whirlwanne-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_38_counter_raw:
+    name: "101_Büro-Steckdosen-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_39_counter_raw:
+    name: "301_Flur_WC_Küche-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_40_counter_raw:
+    name: "308_Terrasse-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_41_counter_raw:
+    name: "204_Schlafen-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_42_counter_raw:
+    name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_43_counter_raw:
+    name: "202_Bad-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_44_counter_raw:
+    name: "304_Küche-E-Herd-1-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_45_counter_raw:
+    name: "205_Balkon-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_46_counter_raw:
+    name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_47_counter_raw:
+    name: "401_Flur_Heizungsraum-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_48_counter_raw:
+    name: "309_Garage-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_49_counter_raw:
+    name: "307_Wohnen-Stromkreiszähler - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+  pulsemeter_54_counter_raw:
+    name: "032.1.1_Strommonitor - Counter raw"
+    icon: "mdi:numeric-positive-1"
+    min: 0
+    max: 9999999
+    mode: box
+
+counter:
+  pulsemeter_22:
+    name: "303_Küche-E-Backofen-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_23:
+    name: "502_Reserve-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_24:
+    name: "406_Heizung-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_25:
+    name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_26:
+    name: "405_Haustechnik-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_27:
+    name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_28:
+    name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_29:
+    name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_30:
+    name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_31:
+    name: "304_Küche-E-Herd-2-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_32:
+    name: "404_Werkstatt_Gäste-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_33:
+    name: "501_Reserve-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_34:
+    name: "304_Küche-E-Herd-3-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_35:
+    name: "403_Bad-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_36:
+    name: "402_Vorrat-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_37:
+    name: "203_Bad-Whirlwanne-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_38:
+    name: "101_Büro-Steckdosen-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_39:
+    name: "301_Flur_WC_Küche-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_40:
+    name: "308_Terrasse-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_41:
+    name: "204_Schlafen-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_42:
+    name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_43:
+    name: "202_Bad-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_44:
+    name: "304_Küche-E-Herd-1-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_45:
+    name: "205_Balkon-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_46:
+    name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_47:
+    name: "401_Flur_Heizungsraum-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_48:
+    name: "309_Garage-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_49:
+    name: "307_Wohnen-Stromkreiszähler - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+  pulsemeter_54:
+    name: "032.1.1_Strommonitor - Counter"
+    step: 1
+    icon: "mdi:ray-start-arrow"
+
+timer:
+  pulsemeter_22:
+    name: "303_Küche-E-Backofen-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_23:
+    name: "502_Reserve-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_24:
+    name: "406_Heizung-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_25:
+    name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_26:
+    name: "405_Haustechnik-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_27:
+    name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_28:
+    name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_29:
+    name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_30:
+    name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_31:
+    name: "304_Küche-E-Herd-2-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_32:
+    name: "404_Werkstatt_Gäste-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_33:
+    name: "501_Reserve-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_34:
+    name: "304_Küche-E-Herd-3-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_35:
+    name: "403_Bad-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_36:
+    name: "402_Vorrat-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_37:
+    name: "203_Bad-Whirlwanne-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_38:
+    name: "101_Büro-Steckdosen-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_39:
+    name: "301_Flur_WC_Küche-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_40:
+    name: "308_Terrasse-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_41:
+    name: "204_Schlafen-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_42:
+    name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_43:
+    name: "202_Bad-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_44:
+    name: "304_Küche-E-Herd-1-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_45:
+    name: "205_Balkon-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_46:
+    name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_47:
+    name: "401_Flur_Heizungsraum-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_48:
+    name: "309_Garage-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_49:
+    name: "307_Wohnen-Stromkreiszähler - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+  pulsemeter_54:
+    name: "032.1.1_Strommonitor - Timer"
+    icon: "mdi:flash"
+    duration:
+      milliseconds: 0
+
+template:
+  - sensor:
+      - name: "pulsemeter_22_energy_total"
+        unique_id: "pulsemeter_22_energy_total"
+        # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_22')|int / 1000 }}"
+      - name: "pulsemeter_22_power"
+        unique_id: "pulsemeter_22_power"
+        # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_23_energy_total"
+        unique_id: "pulsemeter_23_energy_total"
+        # friendly_name: "502_Reserve-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_23')|int / 1000 }}"
+      - name: "pulsemeter_23_power"
+        unique_id: "pulsemeter_23_power"
+        # friendly_name: "502_Reserve-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_24_energy_total"
+        unique_id: "pulsemeter_24_energy_total"
+        # friendly_name: "406_Heizung-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_24')|int / 1000 }}"
+      - name: "pulsemeter_24_power"
+        unique_id: "pulsemeter_24_power"
+        # friendly_name: "406_Heizung-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_25_energy_total"
+        unique_id: "pulsemeter_25_energy_total"
+        # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_25')|int / 1000 }}"
+      - name: "pulsemeter_25_power"
+        unique_id: "pulsemeter_25_power"
+        # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_26_energy_total"
+        unique_id: "pulsemeter_26_energy_total"
+        # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_26')|int / 1000 }}"
+      - name: "pulsemeter_26_power"
+        unique_id: "pulsemeter_26_power"
+        # friendly_name: "405_Haustechnik-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_27_energy_total"
+        unique_id: "pulsemeter_27_energy_total"
+        # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_27')|int / 1000 }}"
+      - name: "pulsemeter_27_power"
+        unique_id: "pulsemeter_27_power"
+        # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_28_energy_total"
+        unique_id: "pulsemeter_28_energy_total"
+        # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_28')|int / 1000 }}"
+      - name: "pulsemeter_28_power"
+        unique_id: "pulsemeter_28_power"
+        # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_29_energy_total"
+        unique_id: "pulsemeter_29_energy_total"
+        # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_29')|int / 1000 }}"
+      - name: "pulsemeter_29_power"
+        unique_id: "pulsemeter_29_power"
+        # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_30_energy_total"
+        unique_id: "pulsemeter_30_energy_total"
+        # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_30')|int / 1000 }}"
+      - name: "pulsemeter_30_power"
+        unique_id: "pulsemeter_30_power"
+        # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_31_energy_total"
+        unique_id: "pulsemeter_31_energy_total"
+        # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_31')|int / 1000 }}"
+      - name: "pulsemeter_31_power"
+        unique_id: "pulsemeter_31_power"
+        # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_32_energy_total"
+        unique_id: "pulsemeter_32_energy_total"
+        # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_32')|int / 1000 }}"
+      - name: "pulsemeter_32_power"
+        unique_id: "pulsemeter_32_power"
+        # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_33_energy_total"
+        unique_id: "pulsemeter_33_energy_total"
+        # friendly_name: "501_Reserve-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_33')|int / 1000 }}"
+      - name: "pulsemeter_33_power"
+        unique_id: "pulsemeter_33_power"
+        # friendly_name: "501_Reserve-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_34_energy_total"
+        unique_id: "pulsemeter_34_energy_total"
+        # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_34')|int / 1000 }}"
+      - name: "pulsemeter_34_power"
+        unique_id: "pulsemeter_34_power"
+        # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_35_energy_total"
+        unique_id: "pulsemeter_35_energy_total"
+        # friendly_name: "403_Bad-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_35')|int / 1000 }}"
+      - name: "pulsemeter_35_power"
+        unique_id: "pulsemeter_35_power"
+        # friendly_name: "403_Bad-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_36_energy_total"
+        unique_id: "pulsemeter_36_energy_total"
+        # friendly_name: "402_Vorrat-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_36')|int / 1000 }}"
+      - name: "pulsemeter_36_power"
+        unique_id: "pulsemeter_36_power"
+        # friendly_name: "402_Vorrat-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_37_energy_total"
+        unique_id: "pulsemeter_37_energy_total"
+        # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_37')|int / 1000 }}"
+      - name: "pulsemeter_37_power"
+        unique_id: "pulsemeter_37_power"
+        # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_38_energy_total"
+        unique_id: "pulsemeter_38_energy_total"
+        # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_38')|int / 1000 }}"
+      - name: "pulsemeter_38_power"
+        unique_id: "pulsemeter_38_power"
+        # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_39_energy_total"
+        unique_id: "pulsemeter_39_energy_total"
+        # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_39')|int / 1000 }}"
+      - name: "pulsemeter_39_power"
+        unique_id: "pulsemeter_39_power"
+        # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_40_energy_total"
+        unique_id: "pulsemeter_40_energy_total"
+        # friendly_name: "308_Terrasse-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_40')|int / 1000 }}"
+      - name: "pulsemeter_40_power"
+        unique_id: "pulsemeter_40_power"
+        # friendly_name: "308_Terrasse-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_41_energy_total"
+        unique_id: "pulsemeter_41_energy_total"
+        # friendly_name: "204_Schlafen-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_41')|int / 1000 }}"
+      - name: "pulsemeter_41_power"
+        unique_id: "pulsemeter_41_power"
+        # friendly_name: "204_Schlafen-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_42_energy_total"
+        unique_id: "pulsemeter_42_energy_total"
+        # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_42')|int / 1000 }}"
+      - name: "pulsemeter_42_power"
+        unique_id: "pulsemeter_42_power"
+        # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_43_energy_total"
+        unique_id: "pulsemeter_43_energy_total"
+        # friendly_name: "202_Bad-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_43')|int / 1000 }}"
+      - name: "pulsemeter_43_power"
+        unique_id: "pulsemeter_43_power"
+        # friendly_name: "202_Bad-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_44_energy_total"
+        unique_id: "pulsemeter_44_energy_total"
+        # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_44')|int / 1000 }}"
+      - name: "pulsemeter_44_power"
+        unique_id: "pulsemeter_44_power"
+        # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_45_energy_total"
+        unique_id: "pulsemeter_45_energy_total"
+        # friendly_name: "205_Balkon-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_45')|int / 1000 }}"
+      - name: "pulsemeter_45_power"
+        unique_id: "pulsemeter_45_power"
+        # friendly_name: "205_Balkon-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_46_energy_total"
+        unique_id: "pulsemeter_46_energy_total"
+        # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_46')|int / 1000 }}"
+      - name: "pulsemeter_46_power"
+        unique_id: "pulsemeter_46_power"
+        # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_47_energy_total"
+        unique_id: "pulsemeter_47_energy_total"
+        # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_47')|int / 1000 }}"
+      - name: "pulsemeter_47_power"
+        unique_id: "pulsemeter_47_power"
+        # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_48_energy_total"
+        unique_id: "pulsemeter_48_energy_total"
+        # friendly_name: "309_Garage-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_48')|int / 1000 }}"
+      - name: "pulsemeter_48_power"
+        unique_id: "pulsemeter_48_power"
+        # friendly_name: "309_Garage-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_49_energy_total"
+        unique_id: "pulsemeter_49_energy_total"
+        # friendly_name: "307_Wohnen-Stromkreiszähler - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_49')|int / 1000 }}"
+      - name: "pulsemeter_49_power"
+        unique_id: "pulsemeter_49_power"
+        # friendly_name: "307_Wohnen-Stromkreiszähler - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+      - name: "pulsemeter_54_energy_total"
+        unique_id: "pulsemeter_54_energy_total"
+        # friendly_name: "032.1.1_Strommonitor - Energy total"
+        unit_of_measurement: "kWh"
+        icon: "mdi:lightning-bolt"
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ states('counter.pulsemeter_54')|int / 75 }}"
+      - name: "pulsemeter_54_power"
+        unique_id: "pulsemeter_54_power"
+        # friendly_name: "032.1.1_Strommonitor - Power"
+        unit_of_measurement: "W"
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+        state: "0.0"
+
+utility_meter:
+  pulsemeter_22_energy_hourly:
+    unique_id: "pulsemeter_22_energy_hourly"
+    name: "pulsemeter_22_energy_hourly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_22_energy_total
+    cycle: hourly
+  pulsemeter_22_energy_daily:
+    unique_id: "pulsemeter_22_energy_daily"
+    name: "pulsemeter_22_energy_daily"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_22_energy_total
+    cycle: daily
+  pulsemeter_22_energy_weekly:
+    unique_id: "pulsemeter_22_energy_weekly"
+    name: "pulsemeter_22_energy_weekly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_22_energy_total
+    cycle: weekly
+  pulsemeter_22_energy_monthly:
+    unique_id: "pulsemeter_22_energy_monthly"
+    name: "pulsemeter_22_energy_monthly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_22_energy_total
+    cycle: monthly
+  pulsemeter_22_energy_yearly:
+    unique_id: "pulsemeter_22_energy_yearly"
+    name: "pulsemeter_22_energy_yearly"
+    # friendly_name: "303_Küche-E-Backofen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_22_energy_total
+    cycle: yearly
+
+  pulsemeter_23_energy_hourly:
+    unique_id: "pulsemeter_23_energy_hourly"
+    name: "pulsemeter_23_energy_hourly"
+    # friendly_name: "502_Reserve-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_23_energy_total
+    cycle: hourly
+  pulsemeter_23_energy_daily:
+    unique_id: "pulsemeter_23_energy_daily"
+    name: "pulsemeter_23_energy_daily"
+    # friendly_name: "502_Reserve-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_23_energy_total
+    cycle: daily
+  pulsemeter_23_energy_weekly:
+    unique_id: "pulsemeter_23_energy_weekly"
+    name: "pulsemeter_23_energy_weekly"
+    # friendly_name: "502_Reserve-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_23_energy_total
+    cycle: weekly
+  pulsemeter_23_energy_monthly:
+    unique_id: "pulsemeter_23_energy_monthly"
+    name: "pulsemeter_23_energy_monthly"
+    # friendly_name: "502_Reserve-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_23_energy_total
+    cycle: monthly
+  pulsemeter_23_energy_yearly:
+    unique_id: "pulsemeter_23_energy_yearly"
+    name: "pulsemeter_23_energy_yearly"
+    # friendly_name: "502_Reserve-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_23_energy_total
+    cycle: yearly
+
+  pulsemeter_24_energy_hourly:
+    unique_id: "pulsemeter_24_energy_hourly"
+    name: "pulsemeter_24_energy_hourly"
+    # friendly_name: "406_Heizung-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_24_energy_total
+    cycle: hourly
+  pulsemeter_24_energy_daily:
+    unique_id: "pulsemeter_24_energy_daily"
+    name: "pulsemeter_24_energy_daily"
+    # friendly_name: "406_Heizung-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_24_energy_total
+    cycle: daily
+  pulsemeter_24_energy_weekly:
+    unique_id: "pulsemeter_24_energy_weekly"
+    name: "pulsemeter_24_energy_weekly"
+    # friendly_name: "406_Heizung-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_24_energy_total
+    cycle: weekly
+  pulsemeter_24_energy_monthly:
+    unique_id: "pulsemeter_24_energy_monthly"
+    name: "pulsemeter_24_energy_monthly"
+    # friendly_name: "406_Heizung-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_24_energy_total
+    cycle: monthly
+  pulsemeter_24_energy_yearly:
+    unique_id: "pulsemeter_24_energy_yearly"
+    name: "pulsemeter_24_energy_yearly"
+    # friendly_name: "406_Heizung-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_24_energy_total
+    cycle: yearly
+
+  pulsemeter_25_energy_hourly:
+    unique_id: "pulsemeter_25_energy_hourly"
+    name: "pulsemeter_25_energy_hourly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_25_energy_total
+    cycle: hourly
+  pulsemeter_25_energy_daily:
+    unique_id: "pulsemeter_25_energy_daily"
+    name: "pulsemeter_25_energy_daily"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_25_energy_total
+    cycle: daily
+  pulsemeter_25_energy_weekly:
+    unique_id: "pulsemeter_25_energy_weekly"
+    name: "pulsemeter_25_energy_weekly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_25_energy_total
+    cycle: weekly
+  pulsemeter_25_energy_monthly:
+    unique_id: "pulsemeter_25_energy_monthly"
+    name: "pulsemeter_25_energy_monthly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_25_energy_total
+    cycle: monthly
+  pulsemeter_25_energy_yearly:
+    unique_id: "pulsemeter_25_energy_yearly"
+    name: "pulsemeter_25_energy_yearly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-3-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_25_energy_total
+    cycle: yearly
+
+  pulsemeter_26_energy_hourly:
+    unique_id: "pulsemeter_26_energy_hourly"
+    name: "pulsemeter_26_energy_hourly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_26_energy_total
+    cycle: hourly
+  pulsemeter_26_energy_daily:
+    unique_id: "pulsemeter_26_energy_daily"
+    name: "pulsemeter_26_energy_daily"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_26_energy_total
+    cycle: daily
+  pulsemeter_26_energy_weekly:
+    unique_id: "pulsemeter_26_energy_weekly"
+    name: "pulsemeter_26_energy_weekly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_26_energy_total
+    cycle: weekly
+  pulsemeter_26_energy_monthly:
+    unique_id: "pulsemeter_26_energy_monthly"
+    name: "pulsemeter_26_energy_monthly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_26_energy_total
+    cycle: monthly
+  pulsemeter_26_energy_yearly:
+    unique_id: "pulsemeter_26_energy_yearly"
+    name: "pulsemeter_26_energy_yearly"
+    # friendly_name: "405_Haustechnik-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_26_energy_total
+    cycle: yearly
+
+  pulsemeter_27_energy_hourly:
+    unique_id: "pulsemeter_27_energy_hourly"
+    name: "pulsemeter_27_energy_hourly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_27_energy_total
+    cycle: hourly
+  pulsemeter_27_energy_daily:
+    unique_id: "pulsemeter_27_energy_daily"
+    name: "pulsemeter_27_energy_daily"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_27_energy_total
+    cycle: daily
+  pulsemeter_27_energy_weekly:
+    unique_id: "pulsemeter_27_energy_weekly"
+    name: "pulsemeter_27_energy_weekly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_27_energy_total
+    cycle: weekly
+  pulsemeter_27_energy_monthly:
+    unique_id: "pulsemeter_27_energy_monthly"
+    name: "pulsemeter_27_energy_monthly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_27_energy_total
+    cycle: monthly
+  pulsemeter_27_energy_yearly:
+    unique_id: "pulsemeter_27_energy_yearly"
+    name: "pulsemeter_27_energy_yearly"
+    # friendly_name: "407_Heizungsraum-Waschmaschine-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_27_energy_total
+    cycle: yearly
+
+  pulsemeter_28_energy_hourly:
+    unique_id: "pulsemeter_28_energy_hourly"
+    name: "pulsemeter_28_energy_hourly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_28_energy_total
+    cycle: hourly
+  pulsemeter_28_energy_daily:
+    unique_id: "pulsemeter_28_energy_daily"
+    name: "pulsemeter_28_energy_daily"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_28_energy_total
+    cycle: daily
+  pulsemeter_28_energy_weekly:
+    unique_id: "pulsemeter_28_energy_weekly"
+    name: "pulsemeter_28_energy_weekly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_28_energy_total
+    cycle: weekly
+  pulsemeter_28_energy_monthly:
+    unique_id: "pulsemeter_28_energy_monthly"
+    name: "pulsemeter_28_energy_monthly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_28_energy_total
+    cycle: monthly
+  pulsemeter_28_energy_yearly:
+    unique_id: "pulsemeter_28_energy_yearly"
+    name: "pulsemeter_28_energy_yearly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-1-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_28_energy_total
+    cycle: yearly
+
+  pulsemeter_29_energy_hourly:
+    unique_id: "pulsemeter_29_energy_hourly"
+    name: "pulsemeter_29_energy_hourly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_29_energy_total
+    cycle: hourly
+  pulsemeter_29_energy_daily:
+    unique_id: "pulsemeter_29_energy_daily"
+    name: "pulsemeter_29_energy_daily"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_29_energy_total
+    cycle: daily
+  pulsemeter_29_energy_weekly:
+    unique_id: "pulsemeter_29_energy_weekly"
+    name: "pulsemeter_29_energy_weekly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_29_energy_total
+    cycle: weekly
+  pulsemeter_29_energy_monthly:
+    unique_id: "pulsemeter_29_energy_monthly"
+    name: "pulsemeter_29_energy_monthly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_29_energy_total
+    cycle: monthly
+  pulsemeter_29_energy_yearly:
+    unique_id: "pulsemeter_29_energy_yearly"
+    name: "pulsemeter_29_energy_yearly"
+    # friendly_name: "409_Flur-Schmutzwasserpumpe-2-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_29_energy_total
+    cycle: yearly
+
+  pulsemeter_30_energy_hourly:
+    unique_id: "pulsemeter_30_energy_hourly"
+    name: "pulsemeter_30_energy_hourly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_30_energy_total
+    cycle: hourly
+  pulsemeter_30_energy_daily:
+    unique_id: "pulsemeter_30_energy_daily"
+    name: "pulsemeter_30_energy_daily"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_30_energy_total
+    cycle: daily
+  pulsemeter_30_energy_weekly:
+    unique_id: "pulsemeter_30_energy_weekly"
+    name: "pulsemeter_30_energy_weekly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_30_energy_total
+    cycle: weekly
+  pulsemeter_30_energy_monthly:
+    unique_id: "pulsemeter_30_energy_monthly"
+    name: "pulsemeter_30_energy_monthly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_30_energy_total
+    cycle: monthly
+  pulsemeter_30_energy_yearly:
+    unique_id: "pulsemeter_30_energy_yearly"
+    name: "pulsemeter_30_energy_yearly"
+    # friendly_name: "408_Heizungsraum-Wäschetrockner-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_30_energy_total
+    cycle: yearly
+
+  pulsemeter_31_energy_hourly:
+    unique_id: "pulsemeter_31_energy_hourly"
+    name: "pulsemeter_31_energy_hourly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_31_energy_total
+    cycle: hourly
+  pulsemeter_31_energy_daily:
+    unique_id: "pulsemeter_31_energy_daily"
+    name: "pulsemeter_31_energy_daily"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_31_energy_total
+    cycle: daily
+  pulsemeter_31_energy_weekly:
+    unique_id: "pulsemeter_31_energy_weekly"
+    name: "pulsemeter_31_energy_weekly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_31_energy_total
+    cycle: weekly
+  pulsemeter_31_energy_monthly:
+    unique_id: "pulsemeter_31_energy_monthly"
+    name: "pulsemeter_31_energy_monthly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_31_energy_total
+    cycle: monthly
+  pulsemeter_31_energy_yearly:
+    unique_id: "pulsemeter_31_energy_yearly"
+    name: "pulsemeter_31_energy_yearly"
+    # friendly_name: "304_Küche-E-Herd-2-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_31_energy_total
+    cycle: yearly
+
+  pulsemeter_32_energy_hourly:
+    unique_id: "pulsemeter_32_energy_hourly"
+    name: "pulsemeter_32_energy_hourly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_32_energy_total
+    cycle: hourly
+  pulsemeter_32_energy_daily:
+    unique_id: "pulsemeter_32_energy_daily"
+    name: "pulsemeter_32_energy_daily"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_32_energy_total
+    cycle: daily
+  pulsemeter_32_energy_weekly:
+    unique_id: "pulsemeter_32_energy_weekly"
+    name: "pulsemeter_32_energy_weekly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_32_energy_total
+    cycle: weekly
+  pulsemeter_32_energy_monthly:
+    unique_id: "pulsemeter_32_energy_monthly"
+    name: "pulsemeter_32_energy_monthly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_32_energy_total
+    cycle: monthly
+  pulsemeter_32_energy_yearly:
+    unique_id: "pulsemeter_32_energy_yearly"
+    name: "pulsemeter_32_energy_yearly"
+    # friendly_name: "404_Werkstatt_Gäste-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_32_energy_total
+    cycle: yearly
+
+  pulsemeter_33_energy_hourly:
+    unique_id: "pulsemeter_33_energy_hourly"
+    name: "pulsemeter_33_energy_hourly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_33_energy_total
+    cycle: hourly
+  pulsemeter_33_energy_daily:
+    unique_id: "pulsemeter_33_energy_daily"
+    name: "pulsemeter_33_energy_daily"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_33_energy_total
+    cycle: daily
+  pulsemeter_33_energy_weekly:
+    unique_id: "pulsemeter_33_energy_weekly"
+    name: "pulsemeter_33_energy_weekly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_33_energy_total
+    cycle: weekly
+  pulsemeter_33_energy_monthly:
+    unique_id: "pulsemeter_33_energy_monthly"
+    name: "pulsemeter_33_energy_monthly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_33_energy_total
+    cycle: monthly
+  pulsemeter_33_energy_yearly:
+    unique_id: "pulsemeter_33_energy_yearly"
+    name: "pulsemeter_33_energy_yearly"
+    # friendly_name: "501_Reserve-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_33_energy_total
+    cycle: yearly
+
+  pulsemeter_34_energy_hourly:
+    unique_id: "pulsemeter_34_energy_hourly"
+    name: "pulsemeter_34_energy_hourly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_34_energy_total
+    cycle: hourly
+  pulsemeter_34_energy_daily:
+    unique_id: "pulsemeter_34_energy_daily"
+    name: "pulsemeter_34_energy_daily"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_34_energy_total
+    cycle: daily
+  pulsemeter_34_energy_weekly:
+    unique_id: "pulsemeter_34_energy_weekly"
+    name: "pulsemeter_34_energy_weekly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_34_energy_total
+    cycle: weekly
+  pulsemeter_34_energy_monthly:
+    unique_id: "pulsemeter_34_energy_monthly"
+    name: "pulsemeter_34_energy_monthly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_34_energy_total
+    cycle: monthly
+  pulsemeter_34_energy_yearly:
+    unique_id: "pulsemeter_34_energy_yearly"
+    name: "pulsemeter_34_energy_yearly"
+    # friendly_name: "304_Küche-E-Herd-3-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_34_energy_total
+    cycle: yearly
+
+  pulsemeter_35_energy_hourly:
+    unique_id: "pulsemeter_35_energy_hourly"
+    name: "pulsemeter_35_energy_hourly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_35_energy_total
+    cycle: hourly
+  pulsemeter_35_energy_daily:
+    unique_id: "pulsemeter_35_energy_daily"
+    name: "pulsemeter_35_energy_daily"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_35_energy_total
+    cycle: daily
+  pulsemeter_35_energy_weekly:
+    unique_id: "pulsemeter_35_energy_weekly"
+    name: "pulsemeter_35_energy_weekly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_35_energy_total
+    cycle: weekly
+  pulsemeter_35_energy_monthly:
+    unique_id: "pulsemeter_35_energy_monthly"
+    name: "pulsemeter_35_energy_monthly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_35_energy_total
+    cycle: monthly
+  pulsemeter_35_energy_yearly:
+    unique_id: "pulsemeter_35_energy_yearly"
+    name: "pulsemeter_35_energy_yearly"
+    # friendly_name: "403_Bad-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_35_energy_total
+    cycle: yearly
+
+  pulsemeter_36_energy_hourly:
+    unique_id: "pulsemeter_36_energy_hourly"
+    name: "pulsemeter_36_energy_hourly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_36_energy_total
+    cycle: hourly
+  pulsemeter_36_energy_daily:
+    unique_id: "pulsemeter_36_energy_daily"
+    name: "pulsemeter_36_energy_daily"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_36_energy_total
+    cycle: daily
+  pulsemeter_36_energy_weekly:
+    unique_id: "pulsemeter_36_energy_weekly"
+    name: "pulsemeter_36_energy_weekly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_36_energy_total
+    cycle: weekly
+  pulsemeter_36_energy_monthly:
+    unique_id: "pulsemeter_36_energy_monthly"
+    name: "pulsemeter_36_energy_monthly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_36_energy_total
+    cycle: monthly
+  pulsemeter_36_energy_yearly:
+    unique_id: "pulsemeter_36_energy_yearly"
+    name: "pulsemeter_36_energy_yearly"
+    # friendly_name: "402_Vorrat-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_36_energy_total
+    cycle: yearly
+
+  pulsemeter_37_energy_hourly:
+    unique_id: "pulsemeter_37_energy_hourly"
+    name: "pulsemeter_37_energy_hourly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_37_energy_total
+    cycle: hourly
+  pulsemeter_37_energy_daily:
+    unique_id: "pulsemeter_37_energy_daily"
+    name: "pulsemeter_37_energy_daily"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_37_energy_total
+    cycle: daily
+  pulsemeter_37_energy_weekly:
+    unique_id: "pulsemeter_37_energy_weekly"
+    name: "pulsemeter_37_energy_weekly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_37_energy_total
+    cycle: weekly
+  pulsemeter_37_energy_monthly:
+    unique_id: "pulsemeter_37_energy_monthly"
+    name: "pulsemeter_37_energy_monthly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_37_energy_total
+    cycle: monthly
+  pulsemeter_37_energy_yearly:
+    unique_id: "pulsemeter_37_energy_yearly"
+    name: "pulsemeter_37_energy_yearly"
+    # friendly_name: "203_Bad-Whirlwanne-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_37_energy_total
+    cycle: yearly
+
+  pulsemeter_38_energy_hourly:
+    unique_id: "pulsemeter_38_energy_hourly"
+    name: "pulsemeter_38_energy_hourly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_38_energy_total
+    cycle: hourly
+  pulsemeter_38_energy_daily:
+    unique_id: "pulsemeter_38_energy_daily"
+    name: "pulsemeter_38_energy_daily"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_38_energy_total
+    cycle: daily
+  pulsemeter_38_energy_weekly:
+    unique_id: "pulsemeter_38_energy_weekly"
+    name: "pulsemeter_38_energy_weekly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_38_energy_total
+    cycle: weekly
+  pulsemeter_38_energy_monthly:
+    unique_id: "pulsemeter_38_energy_monthly"
+    name: "pulsemeter_38_energy_monthly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_38_energy_total
+    cycle: monthly
+  pulsemeter_38_energy_yearly:
+    unique_id: "pulsemeter_38_energy_yearly"
+    name: "pulsemeter_38_energy_yearly"
+    # friendly_name: "101_Büro-Steckdosen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_38_energy_total
+    cycle: yearly
+
+  pulsemeter_39_energy_hourly:
+    unique_id: "pulsemeter_39_energy_hourly"
+    name: "pulsemeter_39_energy_hourly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: hourly
+  pulsemeter_39_energy_daily:
+    unique_id: "pulsemeter_39_energy_daily"
+    name: "pulsemeter_39_energy_daily"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: daily
+  pulsemeter_39_energy_weekly:
+    unique_id: "pulsemeter_39_energy_weekly"
+    name: "pulsemeter_39_energy_weekly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: weekly
+  pulsemeter_39_energy_monthly:
+    unique_id: "pulsemeter_39_energy_monthly"
+    name: "pulsemeter_39_energy_monthly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: monthly
+  pulsemeter_39_energy_yearly:
+    unique_id: "pulsemeter_39_energy_yearly"
+    name: "pulsemeter_39_energy_yearly"
+    # friendly_name: "301_Flur_WC_Küche-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_39_energy_total
+    cycle: yearly
+
+  pulsemeter_40_energy_hourly:
+    unique_id: "pulsemeter_40_energy_hourly"
+    name: "pulsemeter_40_energy_hourly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: hourly
+  pulsemeter_40_energy_daily:
+    unique_id: "pulsemeter_40_energy_daily"
+    name: "pulsemeter_40_energy_daily"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: daily
+  pulsemeter_40_energy_weekly:
+    unique_id: "pulsemeter_40_energy_weekly"
+    name: "pulsemeter_40_energy_weekly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: weekly
+  pulsemeter_40_energy_monthly:
+    unique_id: "pulsemeter_40_energy_monthly"
+    name: "pulsemeter_40_energy_monthly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: monthly
+  pulsemeter_40_energy_yearly:
+    unique_id: "pulsemeter_40_energy_yearly"
+    name: "pulsemeter_40_energy_yearly"
+    # friendly_name: "308_Terrasse-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_40_energy_total
+    cycle: yearly
+
+  pulsemeter_41_energy_hourly:
+    unique_id: "pulsemeter_41_energy_hourly"
+    name: "pulsemeter_41_energy_hourly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: hourly
+  pulsemeter_41_energy_daily:
+    unique_id: "pulsemeter_41_energy_daily"
+    name: "pulsemeter_41_energy_daily"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: daily
+  pulsemeter_41_energy_weekly:
+    unique_id: "pulsemeter_41_energy_weekly"
+    name: "pulsemeter_41_energy_weekly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: weekly
+  pulsemeter_41_energy_monthly:
+    unique_id: "pulsemeter_41_energy_monthly"
+    name: "pulsemeter_41_energy_monthly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: monthly
+  pulsemeter_41_energy_yearly:
+    unique_id: "pulsemeter_41_energy_yearly"
+    name: "pulsemeter_41_energy_yearly"
+    # friendly_name: "204_Schlafen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_41_energy_total
+    cycle: yearly
+
+  pulsemeter_42_energy_hourly:
+    unique_id: "pulsemeter_42_energy_hourly"
+    name: "pulsemeter_42_energy_hourly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: hourly
+  pulsemeter_42_energy_daily:
+    unique_id: "pulsemeter_42_energy_daily"
+    name: "pulsemeter_42_energy_daily"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: daily
+  pulsemeter_42_energy_weekly:
+    unique_id: "pulsemeter_42_energy_weekly"
+    name: "pulsemeter_42_energy_weekly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: weekly
+  pulsemeter_42_energy_monthly:
+    unique_id: "pulsemeter_42_energy_monthly"
+    name: "pulsemeter_42_energy_monthly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: monthly
+  pulsemeter_42_energy_yearly:
+    unique_id: "pulsemeter_42_energy_yearly"
+    name: "pulsemeter_42_energy_yearly"
+    # friendly_name: "302_Küche-Dunstabzugshaube-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_42_energy_total
+    cycle: yearly
+
+  pulsemeter_43_energy_hourly:
+    unique_id: "pulsemeter_43_energy_hourly"
+    name: "pulsemeter_43_energy_hourly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: hourly
+  pulsemeter_43_energy_daily:
+    unique_id: "pulsemeter_43_energy_daily"
+    name: "pulsemeter_43_energy_daily"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: daily
+  pulsemeter_43_energy_weekly:
+    unique_id: "pulsemeter_43_energy_weekly"
+    name: "pulsemeter_43_energy_weekly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: weekly
+  pulsemeter_43_energy_monthly:
+    unique_id: "pulsemeter_43_energy_monthly"
+    name: "pulsemeter_43_energy_monthly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: monthly
+  pulsemeter_43_energy_yearly:
+    unique_id: "pulsemeter_43_energy_yearly"
+    name: "pulsemeter_43_energy_yearly"
+    # friendly_name: "202_Bad-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_43_energy_total
+    cycle: yearly
+
+  pulsemeter_44_energy_hourly:
+    unique_id: "pulsemeter_44_energy_hourly"
+    name: "pulsemeter_44_energy_hourly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: hourly
+  pulsemeter_44_energy_daily:
+    unique_id: "pulsemeter_44_energy_daily"
+    name: "pulsemeter_44_energy_daily"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: daily
+  pulsemeter_44_energy_weekly:
+    unique_id: "pulsemeter_44_energy_weekly"
+    name: "pulsemeter_44_energy_weekly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: weekly
+  pulsemeter_44_energy_monthly:
+    unique_id: "pulsemeter_44_energy_monthly"
+    name: "pulsemeter_44_energy_monthly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: monthly
+  pulsemeter_44_energy_yearly:
+    unique_id: "pulsemeter_44_energy_yearly"
+    name: "pulsemeter_44_energy_yearly"
+    # friendly_name: "304_Küche-E-Herd-1-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_44_energy_total
+    cycle: yearly
+
+  pulsemeter_45_energy_hourly:
+    unique_id: "pulsemeter_45_energy_hourly"
+    name: "pulsemeter_45_energy_hourly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: hourly
+  pulsemeter_45_energy_daily:
+    unique_id: "pulsemeter_45_energy_daily"
+    name: "pulsemeter_45_energy_daily"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: daily
+  pulsemeter_45_energy_weekly:
+    unique_id: "pulsemeter_45_energy_weekly"
+    name: "pulsemeter_45_energy_weekly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: weekly
+  pulsemeter_45_energy_monthly:
+    unique_id: "pulsemeter_45_energy_monthly"
+    name: "pulsemeter_45_energy_monthly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: monthly
+  pulsemeter_45_energy_yearly:
+    unique_id: "pulsemeter_45_energy_yearly"
+    name: "pulsemeter_45_energy_yearly"
+    # friendly_name: "205_Balkon-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_45_energy_total
+    cycle: yearly
+
+  pulsemeter_46_energy_hourly:
+    unique_id: "pulsemeter_46_energy_hourly"
+    name: "pulsemeter_46_energy_hourly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: hourly
+  pulsemeter_46_energy_daily:
+    unique_id: "pulsemeter_46_energy_daily"
+    name: "pulsemeter_46_energy_daily"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: daily
+  pulsemeter_46_energy_weekly:
+    unique_id: "pulsemeter_46_energy_weekly"
+    name: "pulsemeter_46_energy_weekly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: weekly
+  pulsemeter_46_energy_monthly:
+    unique_id: "pulsemeter_46_energy_monthly"
+    name: "pulsemeter_46_energy_monthly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: monthly
+  pulsemeter_46_energy_yearly:
+    unique_id: "pulsemeter_46_energy_yearly"
+    name: "pulsemeter_46_energy_yearly"
+    # friendly_name: "201_Flur_Ankleide_Büro-Licht_Hauszugang-Außensteckdose-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_46_energy_total
+    cycle: yearly
+
+  pulsemeter_47_energy_hourly:
+    unique_id: "pulsemeter_47_energy_hourly"
+    name: "pulsemeter_47_energy_hourly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: hourly
+  pulsemeter_47_energy_daily:
+    unique_id: "pulsemeter_47_energy_daily"
+    name: "pulsemeter_47_energy_daily"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: daily
+  pulsemeter_47_energy_weekly:
+    unique_id: "pulsemeter_47_energy_weekly"
+    name: "pulsemeter_47_energy_weekly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: weekly
+  pulsemeter_47_energy_monthly:
+    unique_id: "pulsemeter_47_energy_monthly"
+    name: "pulsemeter_47_energy_monthly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: monthly
+  pulsemeter_47_energy_yearly:
+    unique_id: "pulsemeter_47_energy_yearly"
+    name: "pulsemeter_47_energy_yearly"
+    # friendly_name: "401_Flur_Heizungsraum-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_47_energy_total
+    cycle: yearly
+
+  pulsemeter_48_energy_hourly:
+    unique_id: "pulsemeter_48_energy_hourly"
+    name: "pulsemeter_48_energy_hourly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: hourly
+  pulsemeter_48_energy_daily:
+    unique_id: "pulsemeter_48_energy_daily"
+    name: "pulsemeter_48_energy_daily"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: daily
+  pulsemeter_48_energy_weekly:
+    unique_id: "pulsemeter_48_energy_weekly"
+    name: "pulsemeter_48_energy_weekly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: weekly
+  pulsemeter_48_energy_monthly:
+    unique_id: "pulsemeter_48_energy_monthly"
+    name: "pulsemeter_48_energy_monthly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: monthly
+  pulsemeter_48_energy_yearly:
+    unique_id: "pulsemeter_48_energy_yearly"
+    name: "pulsemeter_48_energy_yearly"
+    # friendly_name: "309_Garage-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_48_energy_total
+    cycle: yearly
+
+  pulsemeter_49_energy_hourly:
+    unique_id: "pulsemeter_49_energy_hourly"
+    name: "pulsemeter_49_energy_hourly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy hourly"
+    source: sensor.pulsemeter_49_energy_total
+    cycle: hourly
+  pulsemeter_49_energy_daily:
+    unique_id: "pulsemeter_49_energy_daily"
+    name: "pulsemeter_49_energy_daily"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy daily"
+    source: sensor.pulsemeter_49_energy_total
+    cycle: daily
+  pulsemeter_49_energy_weekly:
+    unique_id: "pulsemeter_49_energy_weekly"
+    name: "pulsemeter_49_energy_weekly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy weekly"
+    source: sensor.pulsemeter_49_energy_total
+    cycle: weekly
+  pulsemeter_49_energy_monthly:
+    unique_id: "pulsemeter_49_energy_monthly"
+    name: "pulsemeter_49_energy_monthly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy monthly"
+    source: sensor.pulsemeter_49_energy_total
+    cycle: monthly
+  pulsemeter_49_energy_yearly:
+    unique_id: "pulsemeter_49_energy_yearly"
+    name: "pulsemeter_49_energy_yearly"
+    # friendly_name: "307_Wohnen-Stromkreiszähler - Energy yearly"
+    source: sensor.pulsemeter_49_energy_total
+    cycle: yearly
+
+  pulsemeter_54_energy_hourly:
+    unique_id: "pulsemeter_54_energy_hourly"
+    name: "pulsemeter_54_energy_hourly"
+    # friendly_name: "032.1.1_Strommonitor - Energy hourly"
+    source: sensor.pulsemeter_54_energy_total
+    cycle: hourly
+  pulsemeter_54_energy_daily:
+    unique_id: "pulsemeter_54_energy_daily"
+    name: "pulsemeter_54_energy_daily"
+    # friendly_name: "032.1.1_Strommonitor - Energy daily"
+    source: sensor.pulsemeter_54_energy_total
+    cycle: daily
+  pulsemeter_54_energy_weekly:
+    unique_id: "pulsemeter_54_energy_weekly"
+    name: "pulsemeter_54_energy_weekly"
+    # friendly_name: "032.1.1_Strommonitor - Energy weekly"
+    source: sensor.pulsemeter_54_energy_total
+    cycle: weekly
+  pulsemeter_54_energy_monthly:
+    unique_id: "pulsemeter_54_energy_monthly"
+    name: "pulsemeter_54_energy_monthly"
+    # friendly_name: "032.1.1_Strommonitor - Energy monthly"
+    source: sensor.pulsemeter_54_energy_total
+    cycle: monthly
+  pulsemeter_54_energy_yearly:
+    unique_id: "pulsemeter_54_energy_yearly"
+    name: "pulsemeter_54_energy_yearly"
+    # friendly_name: "032.1.1_Strommonitor - Energy yearly"
+    source: sensor.pulsemeter_54_energy_total
+    cycle: yearly

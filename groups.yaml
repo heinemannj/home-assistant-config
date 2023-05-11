@@ -1,0 +1,24 @@
+# groups.yaml
+#
+energy_counter:
+  name: "Energy Counter Group"
+  entities:
+    - sensor.pulsemeter_54_power
+    - group.room_101
+switchable_sockets:
+  name: "041.1_Schaltbare-Steckdosen"
+  entities:
+    - switch.310_garten_teich_1_uv_lampe
+    - switch.310_garten_teich_2_monitor_mc
+    - switch.310_garten_teich_3_frei
+    - switch.310_garten_teich_4_frei
+    - switch.310_garten_teich_5_kugel
+    - switch.310_garten_teich_6_stern
+    - switch.310_garten_teich_7_wasserpumpe
+    - switch.310_garten_teich_8_dosierer
+room_101:
+  name: "Room_101"
+  entities:
+    - sensor.pulsemeter_38_power
+    - light.101_buro_licht_schreibtisch
+    - light.101_buro_licht_treppe
