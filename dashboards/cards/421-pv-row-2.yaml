@@ -535,18 +535,38 @@ cards:
             #state__value > #uom {
                 font-size: 0.6em !important;
             }
-  - type: custom:system-energy-flow-card
+  - type: custom:energy-flow-card-plus
     title: Energy Flows (Today)
+    min_flow_rate: 3
+    max_flow_rate: 10
+    wh_kwh_threshold: 0
+    kwh_decimals: 2
+    wh_decimals: 2
+    energy_date_selection: false
+    clickable_entities: true
     entities:
+      home:
+        entity: sensor.house_consumption_energy_daily
+        override_state: false
+      solar:
+        entity: sensor.solar_yield_daily
       battery:
-        consumption: sensor.battery_day_discharge_with_loss
-        production: sensor.battery_day_charge_with_loss
-      battery_charge: sensor.battery_state_of_capacity
+        entity:
+          consumption: sensor.battery_day_discharge_with_loss
+          production: sensor.battery_day_charge_with_loss
+        state_of_charge: sensor.battery_state_of_capacity
+        color_circle: true
       grid:
-        consumption: sensor.power_meter_consumption_energy_daily
-        production: sensor.power_meter_exported_energy_daily
-      solar: sensor.solar_yield_daily
-      kwh_decimals: 3
+        entity:
+          consumption: sensor.power_meter_consumption_energy_daily
+          production: sensor.power_meter_exported_energy_daily
+      fossil_fuel_percentage:
+        entity: sensor.co2_signal_grid_fossil_fuel_percentage
+        icon: mdi:pine-tree
+        color_icon: true
+        display_zero: true
+        name: Low-carbon
+        state_type: kWh
     card_mod:
       style:
         $: |
