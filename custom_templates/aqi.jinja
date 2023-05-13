@@ -1,7 +1,7 @@
 {% macro aqi_icon_color(entity_id) %}
 {% set state = states('sensor.air_quality_index_borken') | float %}
-{% if state <= 50 %} blue
-{% elif state <= 100 %} yellow
+{% if state <= 50 %} green
+{% elif state <= 100 %} blue
 {% elif state <= 150 %} orange
 {% elif state <= 200 %} red
 {% elif state <= 300 %} purple
