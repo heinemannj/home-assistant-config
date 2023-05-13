@@ -1,0 +1,2543 @@
+title: 100_Tablet-Home
+theme: Backend-selected
+path: 100-tablet-home
+type: custom:grid-layout
+icon: mdi:tablet-dashboard
+badges: []
+cards:
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: menu
+          - type: entity
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            icon_color: orange
+          - type: entity
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            icon_color: indigo
+          - type: conditional
+            conditions:
+              - entity: switch.310_garten_teich_7_wasserpumpe
+                state: "on"
+            chip:
+              type: template
+              content: Teichpumpe ist an
+              icon: mdi:power-socket-eu
+              icon_color: yellow
+        alignment: start
+    layout:
+      margin: 0px;
+      padding: 0px;
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:meteoalarm-card
+            entities:
+              - entity: >-
+                  sensor.dwd_wetterwarnungen_schermbeck_current_warning_level
+              - entity: >-
+                  sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level
+            integration: dwd
+            scaling_mode: headline
+            hide_when_no_warning: false
+            override_headline: false
+            card_mod:
+              style: |
+                ha-card {
+                  height: 80px !important;
+                }
+                .swiper {
+                  height: 80px !important;
+                }
+                .content {
+                  height: 80px !important;
+                  padding: 6px 6px;
+                }
+                .headline {
+                  margin: -20px auto auto 10px !important;
+                }
+                .main-icon {
+                  margin: -20px auto -20px -10px !important;
+                }
+          - type: custom:meteoalarm-card
+            entities:
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_1
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_2
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_3
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_4
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_5
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_6
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_7
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_8
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_9
+              - entity: >-
+                  binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_10
+            integration: nina
+            override_headline: false
+            scaling_mode: scale
+            hide_when_no_warning: false
+            card_mod:
+              style: |
+                ha-card {
+                  height: 80px !important;
+                }
+                .swiper {
+                  height: 80px !important;
+                }
+                .content {
+                  height: 80px !important;
+                  padding: 6px 6px;
+                }
+                .headline {
+                  margin: -20px auto auto 10px !important;
+                }
+                .main-icon {
+                  margin: -20px auto -20px -10px !important;
+                }
+      - type: custom:clock-weather-card
+        entity: weather.dwd_weather_raesfeld_ka
+        title: ""
+        sun_entity: sun.sun
+        weather_icon_type: line
+        animated_icon: true
+        forecast_days: 5
+        locale: de
+        time_format: 24
+        date_pattern: P
+        hide_today_section: false
+        hide_forecast_section: true
+        hide_clock: false
+        hide_date: false
+        card_mod:
+          style: |
+            ha-card {
+              padding-top: 28px;
+              height: 160px;
+            }
+            .card-content {
+              padding: 0px 8px 0px 0px;
+            }
+            clock-weather-card-today-left {
+                width: 50% !important;
+            }
+            clock-weather-card-today-right {
+                width: 50% !important;
+            }
+            clock-weather-card-today-right-wrap-center {
+              height: 2.5rem !important;
+              font-size: 2rem !important;
+            }
+      - type: custom:compass-card
+        indicator_sensors:
+          - sensor: sensor.wind_direction_raesfeld_ka
+            indicator:
+              type: arrow_inward
+        value_sensors:
+          - sensor: sensor.wind_speed_raesfeld_ka
+            decimals: 1
+          - sensor: sensor.wind_gusts_raesfeld_ka
+            decimals: 1
+        compass:
+          circle:
+            background_opacity: null
+            dynamic_style:
+              sensor: sensor.wind_gusts_raesfeld_ka
+              bands:
+                - from_value: 50
+                  color: yellow
+                - from_value: 65
+                  color: orange
+                - from_value: 105
+                  color: red
+                - from_value: 140
+                  color: purple
+          north:
+            show: true
+            offset: 221
+            dynamic_style:
+              sensor: sensor.wind_gusts_raesfeld_ka
+              bands:
+                - from_value: 50
+                  color: yellow
+                - from_value: 65
+                  color: orange
+                - from_value: 105
+                  color: red
+                - from_value: 140
+                  color: purple
+          east:
+            show: true
+            dynamic_style:
+              sensor: sensor.wind_gusts_raesfeld_ka
+              bands:
+                - from_value: 50
+                  color: yellow
+                - from_value: 65
+                  color: orange
+                - from_value: 105
+                  color: red
+                - from_value: 140
+                  color: purple
+          west:
+            show: true
+            dynamic_style:
+              sensor: sensor.wind_gusts_raesfeld_ka
+              bands:
+                - from_value: 50
+                  color: yellow
+                - from_value: 65
+                  color: orange
+                - from_value: 105
+                  color: red
+                - from_value: 140
+                  color: purple
+          south:
+            show: true
+            dynamic_style:
+              sensor: sensor.wind_gusts_raesfeld_ka
+              bands:
+                - from_value: 50
+                  color: yellow
+                - from_value: 65
+                  color: orange
+                - from_value: 105
+                  color: red
+                - from_value: 140
+                  color: purple
+        tap_action:
+          entity: sensor.wind_speed_raesfeld_ka
+        language: de
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+            }
+            .compass {
+                margin: 4px auto;
+            }
+            .indicator-sensors {
+              font-size: 12px !important;
+              line-height: 1em !important;
+            }
+            .sensor-0 {
+              height: 1em !important;
+            }
+            .sensor-0 .value {
+              font-size: 12px !important;
+              height: 1em !important;
+            }
+            .sensor-0 .measurement {
+              font-size: 10px !important; 
+            } 
+            .sensor-1 {
+              height: 1em !important;
+            }
+            .sensor-1 .value {
+              font-size: 12px !important;
+              height: 1em !important;
+            }
+            .sensor-1 .measurement {
+              font-size: 10px !important; 
+            }
+      - type: custom:clock-weather-card
+        entity: weather.dwd_weather_raesfeld_ka
+        title: ""
+        sun_entity: sun.sun
+        weather_icon_type: line
+        animated_icon: true
+        forecast_days: 5
+        locale: de
+        time_format: 24
+        date_pattern: P
+        hide_today_section: true
+        hide_forecast_section: false
+        hide_clock: false
+        hide_date: false
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+              --bar-height: 1.0rem !important;
+            }
+            .card-content {
+              padding: 12px 12px 12px 12px !important;
+            }
+      - type: custom:compass-card
+        indicator_sensors:
+          - sensor: sun.sun
+            attribute: azimuth
+            indicator:
+              type: circle
+              color: orange
+              show: false
+              dynamic_style:
+                sensor: sun.sun
+                attribute: elevation
+                bands:
+                  - from_value: 0
+                    show: true
+            state_abbreviation:
+              color: orange
+              show: false
+              dynamic_style:
+                sensor: sun.sun
+                attribute: elevation
+                bands:
+                  - from_value: 0
+                    show: true
+          - sensor: sensor.astroweather_moon_azimuth
+            indicator:
+              type: circle
+              color: gray
+              show: false
+              dynamic_style:
+                sensor: sensor.astroweather_moon_altitude
+                bands:
+                  - from_value: 0
+                    show: true
+            state_abbreviation:
+              color: gray
+              show: false
+              dynamic_style:
+                sensor: sensor.astroweather_moon_altitude
+                bands:
+                  - from_value: 0
+                    show: true
+        value_sensors:
+          - sensor: sun.sun
+            attribute: elevation
+            decimals: 1
+            units: °
+            state_value:
+              show: false
+              dynamic_style:
+                sensor: sun.sun
+                attribute: elevation
+                bands:
+                  - from_value: 0
+                    show: true
+                    color: orange
+          - sensor: sensor.astroweather_moon_altitude
+            units: °
+            decimals: 1
+            state_value:
+              show: false
+              dynamic_style:
+                sensor: sensor.astroweather_moon_altitude
+                bands:
+                  - from_value: 0
+                    show: true
+                    color: gray
+        compass:
+          circle:
+            background_opacity: null
+            dynamic_style:
+              sensor: sensor.current_uv_index
+              bands:
+                - from_value: 3
+                  color: yellow
+                - from_value: 6
+                  color: orange
+                - from_value: 8
+                  color: red
+                - from_value: 11
+                  color: purple
+          north:
+            show: true
+            offset: 221
+            dynamic_style:
+              sensor: sensor.current_uv_index
+              bands:
+                - from_value: 3
+                  color: yellow
+                - from_value: 6
+                  color: orange
+                - from_value: 8
+                  color: red
+                - from_value: 11
+                  color: purple
+          east:
+            show: true
+            dynamic_style:
+              sensor: sensor.current_uv_index
+              bands:
+                - from_value: 3
+                  color: yellow
+                - from_value: 6
+                  color: orange
+                - from_value: 8
+                  color: red
+                - from_value: 11
+                  color: purple
+          west:
+            show: true
+            dynamic_style:
+              sensor: sensor.current_uv_index
+              bands:
+                - from_value: 3
+                  color: yellow
+                - from_value: 6
+                  color: orange
+                - from_value: 8
+                  color: red
+                - from_value: 11
+                  color: purple
+          south:
+            show: true
+            dynamic_style:
+              sensor: sensor.current_uv_index
+              bands:
+                - from_value: 3
+                  color: yellow
+                - from_value: 6
+                  color: orange
+                - from_value: 8
+                  color: red
+                - from_value: 11
+                  color: purple
+        tap_action:
+          entity: sun.sun
+        language: de
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+            }
+            .compass {
+                margin: 4px auto;
+            }
+            .indicator-sensors {
+              font-size: 12px !important;
+              line-height: 1em !important;
+            }
+            .sensor-0 {
+              height: 1em !important;
+            }
+            .sensor-0 .value {
+              font-size: 12px !important;
+              height: 1em !important;
+            }
+            .sensor-1 {
+              height: 1em !important;
+            }
+            .sensor-1 .value {
+              font-size: 12px !important;
+              height: 1em !important;
+            }
+      - type: custom:sun-card
+        language: de
+        showAzimuth: false
+        showElevation: false
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+            }
+            div.sun-card {
+              padding: 1em 0;
+            }
+            div.sun-card-header {
+              padding: 0 1em;
+            }
+            div.sun-card-body {
+                margin-top: -1.6rem;
+                padding: 0rem;
+            }
+            div.sun-card-footer {
+              display: true;
+              margin-top: -1.6rem;
+            }
+            .sun-card-text-subtitle {
+              font-size: 0.7rem !important;
+              font-weight: 100 !important;
+              padding: 0rem !important;
+            }
+            .sun-card-text-time {
+              font-size: 12px !important;
+              font-weight: normal !important;
+              padding: 0rem !important;
+              margin-top: -0.4rem !important;
+            }
+            div.sun-card-text-container {
+              align-items: inherit;
+            }
+            div.sun-card-text-container:nth-child(1) {
+              text-align: left;
+            }
+            div.sun-card-text-container:nth-child(2) {
+              text-align: right;
+            }
+            div.sun-card-text-container:nth-child(3) {
+              text-align: right;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            primary: ""
+            secondary: ""
+            icon: ""
+            entity: sensor.moon_phase_image
+            tap_action:
+              action: more-info
+            picture: "{{ state_attr(entity, 'entity_picture') }}"
+            layout: vertical
+            icon_color: ""
+            card_mod:
+              style: |
+                ha-card {
+                  margin: 12px;
+                  border-style: none !important;
+                }
+                :host {
+                  --mush-icon-size: 55px;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.astroweather_moon_phase') }} %"
+            secondary: ""
+            icon: "{{ state_attr('sensor.moon_phase', 'icon') }}"
+            entity: sensor.moon_phase
+            tap_action:
+              action: more-info
+            icon_color: blue
+            picture: ""
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.6em !important;
+                  margin: 2px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              {{
+              (as_timestamp(states('sensor.astroweather_moon_next_rising')))
+              | timestamp_custom(('%H:%M') ) }}
+            icon: mdi:arrow-up-circle-outline
+            entity: sensor.astroweather_moon_next_rising
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.6em !important;
+                  margin: 2px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              {{
+              (as_timestamp(states('sensor.astroweather_moon_next_setting')))
+              | timestamp_custom(('%H:%M') ) }}
+            icon: mdi:arrow-down-circle-outline
+            entity: sensor.astroweather_moon_next_setting
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.6em !important;
+                  margin: 2px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+              --mush-spacing: 0px 0px 0px 0px !important;
+            }
+    layout:
+      grid-template-columns: 160px 220px 130px 250px 130px 220px 100px
+      margin: 0px 0px 0px 0px;
+      padding: 0px;
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mushroom-template-card
+                primary: ""
+                icon: mdi:trash-can-outline
+                icon_color: grey
+                entity: sensor.event_day_restmuell
+                tap_action:
+                  action: more-info
+                secondary: "{{ states('sensor.event_day_restmuell') }} d"
+                badge_icon: >-
+                  {% set calevent = states('sensor.event_day_restmuell') %}
+                  {% if calevent == 0 %}
+                    mdi:calendar-alert
+                  {% elif calevent == 1 %}
+                    mdi:calendar
+                  {% elif calevent == 2 %}
+                    mdi:calendar-week
+                  {% elif calevent == 3 %}
+                    mdi:calendar-week
+                  {% elif calevent == 4 %}
+                    mdi:calendar-week
+                  {% else %}
+                    none
+                  {% endif %}
+                badge_color: >-
+                  {% set calevent = states('sensor.event_day_restmuell') %}
+                  {% if calevent == 0 %}
+                    red
+                  {% elif calevent == 1 %}
+                    orange
+                  {% elif calevent == 2 %}
+                    grey
+                  {% elif calevent == 3 %}
+                    grey
+                  {% elif calevent == 4 %}
+                    grey
+                  {% else %}
+                    none
+                  {% endif %}
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-style: none !important;
+                    }
+              - type: custom:mushroom-template-card
+                primary: ""
+                icon: mdi:trash-can-outline
+                icon_color: blue
+                entity: sensor.event_day_papier
+                tap_action:
+                  action: more-info
+                secondary: "{{ states('sensor.event_day_papier') }} d"
+                badge_icon: >-
+                  {% set calevent = states('sensor.event_day_papier')|int %}
+                  {% if calevent == 0 %}
+                    mdi:calendar-alert
+                  {% elif calevent == 1 %}
+                    mdi:calendar
+                  {% elif calevent == 2 %}
+                    mdi:calendar-week
+                  {% elif calevent == 3 %}
+                    mdi:calendar-week
+                  {% elif calevent == 4 %}
+                    mdi:calendar-week
+                  {% else %}
+                    none
+                  {% endif %}
+                badge_color: >-
+                  {% set calevent = states('sensor.event_day_papier')|int %}
+                  {% if calevent == 0 %}
+                    red
+                  {% elif calevent == 1 %}
+                    orange
+                  {% elif calevent == 2 %}
+                    grey
+                  {% elif calevent == 3 %}
+                    grey
+                  {% elif calevent == 4 %}
+                    grey
+                  {% else %}
+                    none
+                  {% endif %}
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-style: none !important;
+                    }
+            card_mod:
+              style: |
+                ha-card {    
+                  height: 160px;
+                  border-style: none !important;
+                  --mush-spacing: 6px;
+                }
+          - type: horizontal-stack
+            cards:
+              - type: custom:mushroom-template-card
+                primary: ""
+                icon: mdi:trash-can-outline
+                icon_color: yellow
+                entity: sensor.event_day_gelber_sack
+                tap_action:
+                  action: more-info
+                secondary: "{{ states('sensor.event_day_gelber_sack') }} d"
+                badge_icon: >-
+                  {% set calevent = states('sensor.event_day_gelber_sack')
+                  %} {% if calevent == 0 %}
+                    mdi:calendar-alert
+                  {% elif calevent == 1 %}
+                    mdi:calendar
+                  {% elif calevent == 2 %}
+                    mdi:calendar-week
+                  {% elif calevent == 3 %}
+                    mdi:calendar-week
+                  {% elif calevent == 4 %}
+                    mdi:calendar-week
+                  {% else %}
+                    none
+                  {% endif %}
+                badge_color: >-
+                  {% set calevent = states('sensor.event_day_gelber_sack')
+                  %} {% if calevent == 0 %}
+                    red
+                  {% elif calevent == 1 %}
+                    orange
+                  {% elif calevent == 2 %}
+                    grey
+                  {% elif calevent == 3 %}
+                    grey
+                  {% elif calevent == 4 %}
+                    grey
+                  {% else %}
+                    none
+                  {% endif %}
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-style: none !important;
+                    }
+              - type: custom:mushroom-template-card
+                primary: ""
+                icon: mdi:trash-can-outline
+                icon_color: red
+                entity: sensor.event_day_schadstoffe
+                tap_action:
+                  action: more-info
+                secondary: "{{ states('sensor.event_day_schadstoffe') }} d"
+                badge_icon: >-
+                  {% set calevent = states('sensor.event_day_schadstoffe')
+                  %} {% if calevent == 0 %}
+                    mdi:calendar-alert
+                  {% elif calevent == 1 %}
+                    mdi:calendar
+                  {% elif calevent == 2 %}
+                    mdi:calendar-week
+                  {% elif calevent == 3 %}
+                    mdi:calendar-week
+                  {% elif calevent == 4 %}
+                    mdi:calendar-week
+                  {% else %}
+                    none
+                  {% endif %}
+                badge_color: >-
+                  {% set calevent = states('sensor.event_day_schadstoffe')
+                  %} {% if calevent == 0 %}
+                    red
+                  {% elif calevent == 1 %}
+                    orange
+                  {% elif calevent == 2 %}
+                    grey
+                  {% elif calevent == 3 %}
+                    grey
+                  {% elif calevent == 4 %}
+                    grey
+                  {% else %}
+                    none
+                  {% endif %}
+                card_mod:
+                  style: |
+                    ha-card {
+                      border-style: none !important;
+                    }
+          - type: custom:mushroom-template-card
+            primary: ""
+            icon: mdi:trash-can-outline
+            icon_color: green
+            entity: sensor.event_day_biomuell
+            tap_action:
+              action: more-info
+            secondary: "{{ states('sensor.event_day_biomuell') }} d"
+            badge_icon: >-
+              {% set calevent = states('sensor.event_day_biomuell') %} {% if
+              calevent == 0 %}
+                mdi:calendar-alert
+              {% elif calevent == 1 %}
+                mdi:calendar
+              {% elif calevent == 2 %}
+                mdi:calendar-week
+              {% elif calevent == 3 %}
+                mdi:calendar-week
+              {% elif calevent == 4 %}
+                mdi:calendar-week
+              {% else %}
+                none
+              {% endif %}
+            badge_color: >-
+              {% set calevent = states('sensor.event_day_biomuell') %} {% if
+              calevent == 0 %}
+                red
+              {% elif calevent == 1 %}
+                orange
+              {% elif calevent == 2 %}
+                grey
+              {% elif calevent == 3 %}
+                grey
+              {% elif calevent == 4 %}
+                grey
+              {% else %}
+                none
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  border-style: none !important;
+                }
+        card_mod:
+          style: |
+            ha-card {    
+              height: 160px;
+              border-style: none !important;
+              --mush-spacing: 6px;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Lufttemp. (Teich)
+            icon: mdi:thermometer
+            entity: sensor.310_garten_wetter_luft_temperatur_ds18b20
+            secondary: >-
+              {{ states('sensor.310_garten_wetter_luft_temperatur_ds18b20')
+              }} °C
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% set state =
+              states('sensor.310_garten_wetter_luft_temperatur_ds18b20') |
+              float %}
+
+
+              {% if state < 0 %} yellow
+
+              {% elif state >= 0 %} green
+
+              {% else %} grey
+
+              {% endif %}
+          - type: custom:mushroom-template-card
+            primary: Luftfeuchte (Teich)
+            icon: mdi:water-percent
+            entity: sensor.teich_1_humidity_bme280
+            secondary: "{{ states('sensor.310_garten_wetter_humidity_bme280') }} %"
+            tap_action:
+              action: more-info
+            icon_color: blue
+          - type: custom:mushroom-template-card
+            primary: Luftdruck (Teich)
+            icon: mdi:gauge
+            entity: sensor.teich_1_pressure_bme280
+            secondary: "{{ states('sensor.310_garten_wetter_pressure_bme280') }} hPa"
+            tap_action:
+              action: more-info
+            icon_color: blue
+        card_mod:
+          style: |
+            ha-card {    
+              height: 160px;
+              --mush-spacing: 6px;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Wassertemp. (Teich)
+            icon: mdi:thermometer
+            entity: sensor.teich_1_wasser_temperatur
+            secondary: "{{ states('sensor.310_garten_wetter_wasser_temperatur') }} °C"
+            tap_action:
+              action: more-info
+            icon_color: blue
+          - type: custom:mushroom-template-card
+            primary: pH (Teich)
+            icon: mdi:ph
+            entity: sensor.teich_1_ph
+            secondary: "{{ states('sensor.310_garten_wetter_ph') }} pH"
+            tap_action:
+              action: more-info
+            icon_color: blue
+          - type: custom:mushroom-template-card
+            primary: pH-Voltage (Teich)
+            icon: mdi:flash
+            entity: sensor.teich_1_ph_voltage
+            secondary: "{{ states('sensor.310_garten_wetter_ph_voltage') }} V"
+            tap_action:
+              action: more-info
+            icon_color: blue
+        card_mod:
+          style: |
+            ha-card {    
+              height: 160px;
+              --mush-spacing: 6px;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.pressure_raesfeld_ka') | round(0) }} hPa"
+            icon: mdi:gauge
+            entity: sensor.pressure_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  margin-top: 10px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.humidity_raesfeld_ka') }} %"
+            icon: mdi:water-percent
+            entity: sensor.humidity_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              Min/Max: {{ state_attr('weather.dwd_weather_raesfeld_ka',
+              'forecast')[0]['templow'] }}/{{
+              state_attr('weather.dwd_weather_raesfeld_ka',
+              'forecast')[0]['temperature'] }} °C
+            icon: mdi:thermometer
+            entity: sensor.temperature_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "Taupunkt: {{ states('sensor.dewpoint_raesfeld_ka') }} °C"
+            icon: mdi:thermometer-water
+            entity: sensor.dewpoint_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.fog_probability_raesfeld_ka') }} %"
+            icon: mdi:weather-fog
+            entity: sensor.fog_probability_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.visibility_raesfeld_ka') }} km"
+            icon: mdi:eye
+            entity: sensor.visibility_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+              --mush-spacing: 2px 10px 0px 2px !important;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.precipitation_duration_raesfeld_ka') }} s/h"
+            icon: mdi:weather-rainy
+            entity: sensor.precipitation_duration_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  margin-top: 10px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.precipitation_probability_raesfeld_ka') }} %"
+            icon: mdi:weather-rainy
+            entity: sensor.precipitation_probability_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.precipitation_raesfeld_ka') }} kg/m^2"
+            icon: mdi:weather-rainy
+            entity: sensor.precipitation_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% set state = states('sensor.precipitation_raesfeld_ka') |
+              float %}
+
+
+              {% if state < 15 %} green
+
+              {% elif state < 25 %} yellow
+
+              {% elif state < 30 %} orange
+
+              {% elif state < 40 %} red
+
+              {% elif state >= 40 %} purple
+
+              {% else %} grey
+
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              {% set direction =
+              ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N']
+              %} {% set degree =
+              states('sensor.wind_direction_raesfeld_ka')|float %}
+
+              {{ direction[((degree+11.25)/22.5)|int] }} {{
+              states('sensor.wind_speed_raesfeld_ka') }} km/h (Böen: {{
+              states('sensor.wind_gusts_raesfeld_ka') }} km/h)
+            icon: mdi:weather-windy
+            entity: sensor.wind_speed_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% set state = states('sensor.wind_gusts_raesfeld_ka') | float
+              %}
+
+
+              {% if state <= 50 %} green
+
+              {% elif state <= 65 %} yellow
+
+              {% elif state <= 105 %} orange
+
+              {% elif state <= 140 %} red
+
+              {% elif state > 140 %} purple
+
+              {% else %} grey
+
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: ""
+            icon: ""
+            entity: ""
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              DWD Raesfeld: {{ states('sensor.weather_report_raesfeld_ka')
+              }}
+            icon: mdi:weather-partly-cloudy
+            entity: sensor.weather_report_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+              --mush-spacing: 2px 10px 0px 2px !important;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.sun_duration_raesfeld_ka') }} s/h"
+            icon: mdi:weather-sunset
+            entity: sensor.sun_duration_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  margin-top: 10px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.cloud_coverage_raesfeld_ka') }} %"
+            icon: mdi:cloud-percent-outline
+            entity: sensor.cloud_coverage_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: ""
+            icon: ""
+            entity: ""
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: ""
+            icon: ""
+            entity: ""
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "UVI: {{ states('sensor.current_uv_level') }}"
+            icon: mdi:weather-sunny
+            entity: sensor.current_uv_level
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: |-
+              {% set state = states('sensor.current_uv_index') | float %}
+
+              {% if state <= 3 %} green
+              {% elif state <= 6 %} yellow
+              {% elif state <= 8 %} orange
+              {% elif state <= 11 %} red
+              {% elif state > 11 %} purple
+              {% else %} grey
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "O3: {{ states('sensor.current_ozone_level') }} du"
+            icon: mdi:weather-sunny
+            entity: sensor.current_ozone_level
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: |-
+              {% set state = states('sensor.current_ozone_level') | float %}
+
+              {% if state < 120 %} '#7e0023'
+              {% elif state <= 140 %} purple
+              {% elif state <= 160 %} red
+              {% elif state <= 180 %} orange
+              {% elif state <= 200 %} yellow
+              {% elif state > 220 %} green
+              {% else %} grey
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+              --mush-spacing: 2px 10px 0px 2px !important;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:circle-sensor-card
+            entity: sensor.estimated_illuminance
+            max: 5000
+            min: 0
+            stroke_width: 20
+            stroke_color: "#ffcc00"
+            gradient: false
+            fill: rgba(0,0,0,0.3)
+            units: ""
+            show_max: false
+            font_style:
+              color: "#ffcc00"
+              font-size: 1em
+              text-shadow: none
+            style:
+              height: 72px
+              width: 72px
+              top: 8px
+              left: 25%
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.estimated_illuminance') }} lx"
+            icon: mdi:weather-sunny-alert
+            entity: sensor.estimated_illuminance
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  margin-top: 10px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.sun_irradiance_raesfeld_ka') }} W/m^2"
+            icon: mdi:weather-sunny-alert
+            entity: sensor.sun_irradiance_raesfeld_ka
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "{{ states('sensor.energy_current_hour') }} kWh"
+            icon: mdi:lightning-bolt
+            entity: sensor.energy_current_hour
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+              --mush-spacing: 2px 10px 0px 2px !important;
+            }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            primary: "AQI: {{ states('sensor.air_quality_index_borken') }}"
+            icon: mdi:leaf
+            entity: sensor.air_quality_index_borken
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% set state = states('sensor.air_quality_index_borken') |
+              float %}
+
+
+              {% if state <= 50 %} green
+
+              {% elif state <= 100 %} yellow
+
+              {% elif state <= 150 %} orange
+
+              {% elif state <= 200 %} red
+
+              {% elif state <= 300 %} purple
+
+              {% elif state > 300 %} '#7e0023'
+
+              {% else %} grey
+
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  margin-top: 10px;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              PM2.5: {{ states('sensor.particulate_matter_pm25_borken') }}
+              AQI
+            icon: mdi:skull-outline
+            entity: sensor.particulate_matter_pm25_borken
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% set state = states('sensor.particulate_matter_pm25_borken')
+              | float %}
+
+
+              {% if state <= 50 %} green
+
+              {% elif state <= 100 %} yellow
+
+              {% elif state <= 150 %} orange
+
+              {% elif state <= 200 %} red
+
+              {% elif state <= 300 %} purple
+
+              {% elif state > 300 %} '#7e0023'
+
+              {% else %} grey
+
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              PM10: {{ states('sensor.particulate_matter_pm10_borken') }}
+              AQI
+            icon: mdi:skull-outline
+            entity: sensor.particulate_matter_pm10_borken
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% set state = states('sensor.particulate_matter_pm10_borken')
+              | float %}
+
+
+              {% if state <= 50 %} green
+
+              {% elif state <= 100 %} yellow
+
+              {% elif state <= 150 %} orange
+
+              {% elif state <= 200 %} red
+
+              {% elif state <= 300 %} purple
+
+              {% elif state > 300 %} '#7e0023'
+
+              {% else %} grey
+
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: ""
+            icon: ""
+            entity: ""
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: blue
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "O3: {{ states('sensor.ozone_o3_borken') }} AQI"
+            icon: mdi:skull-outline
+            entity: sensor.ozone_o3_borken
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: |-
+              {% set state = states('sensor.ozone_o3_borken') | float %}
+
+              {% if state <= 50 %} green
+              {% elif state <= 100 %} yellow
+              {% elif state <= 150 %} orange
+              {% elif state <= 200 %} red
+              {% elif state <= 300 %} purple
+              {% elif state > 300 %} '#7e0023'
+              {% else %} grey
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: "NO2: {{ states('sensor.nitrogen_dioxide_no2_borken') }} AQI"
+            icon: mdi:smog
+            entity: sensor.nitrogen_dioxide_no2_borken
+            secondary: ""
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% set state = states('sensor.nitrogen_dioxide_no2_borken') |
+              float %}
+
+
+              {% if state <= 50 %} green
+
+              {% elif state <= 100 %} yellow
+
+              {% elif state <= 150 %} orange
+
+              {% elif state <= 200 %} red
+
+              {% elif state <= 300 %} purple
+
+              {% elif state > 300 %} '#7e0023'
+
+              {% else %} grey
+
+              {% endif %}
+            card_mod:
+              style: |
+                ha-card {
+                  height: 1.7em !important;
+                  --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+                  --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+                }
+                mushroom-shape-icon {
+                  --shape-color: none !important;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              height: 160px;
+              --mush-spacing: 2px 10px 0px 2px !important;
+            }
+    layout:
+      grid-template-columns: 190px 160px 160px 140px 140px 140px 140px 140px
+      margin: 0px;
+      padding: 0px;
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - type: custom:power-flow-card-plus
+        min_flow_rate: 3
+        max_flow_rate: 10
+        watt_threshold: 7800
+        kw_decimals: 3
+        w_decimals: 0
+        clickable_entities: true
+        entities:
+          home:
+            entity: sensor.house_consumption_power
+          solar:
+            entity: sensor.inverter_input_power
+          battery:
+            entity: sensor.battery_charge_discharge_power_with_loss
+            state_of_charge: sensor.battery_state_of_capacity
+            color_circle: true
+          grid:
+            entity: sensor.power_meter_active_power
+          fossil_fuel_percentage:
+            entity: sensor.co2_signal_grid_fossil_fuel_percentage
+            icon: mdi:pine-tree
+            color_icon: true
+            display_zero: true
+            name: Low-carbon
+            state_type: power
+        inverted_entities: grid,battery
+        card_mod:
+          style: |
+            ha-card {
+              width: 360px;
+              height: 360px !important;
+              }
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.inverter_input_power
+                name: Solar Power
+                min: 0
+                max: 9000
+                needle: true
+                segments:
+                  - from: 0
+                    color: red
+                  - from: 350
+                    color: orange
+                  - from: 700
+                    color: yellow
+                  - from: 2800
+                    color: green
+                card_mod:
+                  style:
+                    .: |
+                      ha-card {
+                        width: 152px;
+                        height: 100px !important;
+                        }
+                      .name {
+                        font-size: 12px !important;
+                        margin-top: 2px !important;
+                        }
+                      ha-gauge {
+                        width: 120% !important;
+                        }
+                    ha-gauge$: |
+                      svg text {
+                        transform: scale(0.8) translateY(0px);
+                      }
+              - type: gauge
+                entity: sensor.battery_state_of_capacity
+                name: Battery Capacity
+                min: 0
+                max: 100
+                needle: true
+                segments:
+                  - from: 0
+                    color: red
+                  - from: 3
+                    color: orange
+                  - from: 24
+                    color: yellow
+                  - from: 72
+                    color: green
+                card_mod:
+                  style:
+                    .: |
+                      ha-card {
+                        width: 152px;
+                        height: 100px !important;
+                        }
+                      .name {
+                        font-size: 12px !important;
+                        margin-top: 2px !important;
+                      }
+                      ha-gauge {
+                        width: 120% !important;
+                      }
+                    ha-gauge$: |
+                      svg text {
+                        transform: scale(0.7) translateY(0px);
+                      }
+              - type: gauge
+                entity: sensor.house_self_sufficiency_daily
+                name: Self Sufficienty
+                min: 0
+                max: 100
+                needle: true
+                segments:
+                  - from: 0
+                    color: red
+                  - from: 65
+                    color: orange
+                  - from: 75
+                    color: yellow
+                  - from: 85
+                    color: green
+                card_mod:
+                  style:
+                    .: |
+                      ha-card {
+                        width: 152px;
+                        height: 100px !important;
+                        }
+                      .name {
+                        font-size: 12px !important;
+                        margin-top: 2px !important;
+                      }
+                      ha-gauge {
+                        width: 120% !important;
+                      }
+                    ha-gauge$: |
+                      svg text {
+                        transform: scale(0.7) translateY(0px);
+                      }
+            card_mod:
+              style: |
+                ha-card {
+                  width: 470px;
+                  height: 100px !important;
+                  }
+          - type: custom:apexcharts-card
+            header:
+              show: false
+            apex_config:
+              chart:
+                height: 250px
+            graph_span: 3d
+            now:
+              show: true
+              color: grey
+              label: Now
+            span:
+              start: day
+              offset: "-1day"
+            all_series_config:
+              type: area
+              opacity: 0.3
+              stroke_width: 1
+            series:
+              - entity: sensor.battery_state_of_capacity
+                name: Batterie
+                float_precision: 0
+                type: line
+                color: "#f06292"
+                opacity: 0.6
+                yaxis_id: capacity
+                extend_to: now
+                group_by:
+                  func: last
+                  duration: 5m
+              - entity: sensor.house_consumption_power
+                name: Haus
+                float_precision: 3
+                type: line
+                color: MediumAquaMarine
+                opacity: 0.8
+                yaxis_id: kWh
+                unit: kW
+                transform: return x/1000;
+                extend_to: now
+                group_by:
+                  func: avg
+                  duration: 5m
+              - entity: sensor.inverter_input_power
+                name: Solar
+                float_precision: 3
+                color: Orange
+                yaxis_id: kWh
+                unit: kW
+                transform: return x/1000;
+                extend_to: now
+                group_by:
+                  func: avg
+                  duration: 5m
+              - entity: sensor.solcast_forecast_today
+                name: Forecast D1
+                color: grey
+                opacity: 0.3
+                stroke_width: 0
+                yaxis_id: kWh
+                show:
+                  legend_value: false
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                        return [new Date(entry.period_start), entry.pv_estimate];
+                      });
+              - entity: sensor.solcast_forecast_tomorrow
+                name: Forecast D2
+                float_precision: 0
+                color: grey
+                opacity: 0.3
+                stroke_width: 0
+                yaxis_id: kWh
+                show:
+                  legend_value: false
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                        return [new Date(entry.period_start), entry.pv_estimate];
+                      });
+            yaxis:
+              - id: capacity
+                show: true
+                opposite: true
+                decimals: 0
+                max: 100
+                min: 0
+                apex_config:
+                  tickAmount: 5
+              - id: kWh
+                show: true
+                min: 0
+                apex_config:
+                  tickAmount: 5
+            card_mod:
+              style: |
+                ha-card {
+                  width: 470px;
+                  height: 250px !important;
+                  }
+      - type: custom:energy-flow-card-plus
+        title: ""
+        min_flow_rate: 3
+        max_flow_rate: 10
+        wh_kwh_threshold: 0
+        kwh_decimals: 2
+        wh_decimals: 2
+        energy_date_selection: false
+        clickable_entities: true
+        entities:
+          home:
+            entity: sensor.house_consumption_energy_daily
+            override_state: false
+          solar:
+            entity: sensor.solar_yield_daily
+          battery:
+            entity:
+              consumption: sensor.battery_day_discharge_with_loss
+              production: sensor.battery_day_charge_with_loss
+            state_of_charge: sensor.battery_state_of_capacity
+            color_circle: true
+          grid:
+            entity:
+              consumption: sensor.power_meter_consumption_energy_daily
+              production: sensor.power_meter_exported_energy_daily
+          fossil_fuel_percentage:
+            entity: sensor.co2_signal_grid_fossil_fuel_percentage
+            icon: mdi:pine-tree
+            color_icon: true
+            display_zero: true
+            name: Low-carbon
+            state_type: kWh
+        card_mod:
+          style: |
+            ha-card {
+              width: 360px;
+              height: 360px !important;
+              }
+    layout:
+      grid-template-columns: 365px 475px 365px
+      margin: 0px;
+      padding: 0px;
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 20% 15% 25% 20% 20%
+      margin: 0px;
+      padding: 0px;
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 20% 15% 25% 20% 20%
+      margin: 0px;
+      padding: 0px;
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 20% 15% 25% 20% 20%
+      margin: 0px;
+      padding: 0px;
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-climate-card
+            name: Wohnen
+            layout: horizontal
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            hvac_modes:
+              - auto
+            show_temperature_control: true
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                content_info: none
+                tap_action:
+                  action: toggle
+              - type: entity
+                entity: light.101_buro_licht_schreibtisch
+                icon_color: indigo
+                icon: mdi:shield
+                content_info: none
+                tap_action:
+                  action: toggle
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  margin: -2px 12px 12px;
+                  --chip-background: rgba(var(--rgb-disabled), 0.15);
+                  --chip-border-width: 0;
+                  --chip-border-radius: 12px;
+                  --chip-height: 40px;
+                  --chip-padding: 12px;
+                  --chip-spacing: 10px;
+                }

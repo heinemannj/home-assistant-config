@@ -1,0 +1,354 @@
+title: 010_Warnungen
+theme: Backend-selected
+path: 010-warnungen
+icon: mdi:weather-cloudy-alert
+layout: {}
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:meteoalarm-card
+        entities:
+          - entity: sensor.dwd_wetterwarnungen_schermbeck_current_warning_level
+          - entity: sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level
+        integration: dwd
+        scaling_mode: headline
+      - type: custom:meteoalarm-card
+        entities:
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_1
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_2
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_3
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_4
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_5
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_6
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_7
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_8
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_9
+          - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_10
+        integration: nina
+        override_headline: false
+        scaling_mode: disabled
+        hide_when_no_warning: true
+      - type: markdown
+        content: >-
+          {# ----- DWD entities ----- #} {% set dwd_current_id =
+          "sensor.dwd_wetterwarnungen_schermbeck_current_warning_level" %}
+          {% set dwd_current_count = state_attr(dwd_current_id,
+          "warning_count") %}
+
+          {% if (dwd_current_count == None) %}
+            {% set dwd_current_count = 0 %}
+          {% endif %}
+
+          {% set dwd_advance_id =
+          "sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level" %}
+          {% set dwd_advance_count = state_attr(dwd_advance_id,
+          "warning_count") %}
+
+          {% if (dwd_advance_count == None) %}
+            {% set dwd_advance_count = 0 %}
+          {% endif %}
+
+          {# ----- NINA entities ----- #} {% set ns =
+          namespace(nina_count=0) %}
+
+          {% set nina_id =
+          "binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen" %} {%
+          set nina_entities = 10 %}
+
+          {% for i in range(nina_entities) %}
+            {% if (states(nina_id ~ "_" ~ loop.index) == "on") %}
+              {% set ns.nina_count = ns.nina_count + 1 %}
+            {% endif %}
+          {% endfor %}
+
+          {# ----- EMS entities ----- #} {% set ems_id =
+          states.sensor.european_emergency_any.attributes %}
+
+          {# ----- EMCS entities ----- #} {% set emcs_id =
+          states.sensor.emcs_earthquakes %}
+
+          {# ----- Translation of weekday ----- #} {% set weekday_name =
+          ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag']
+          %}
+
+          {# MACRO ha-alert: BOLD TEXT FORMAT and COLOR according to the
+          warning LEVEL #} {%- macro alert_form() -%} {% if(ns.color ==
+          'green') %}
+            {% set ns.type = 'info' %}
+          {% elif(ns.color == 'yellow' or ns.color == '#ffeb3b') %}
+            {% set ns.type = 'warning' %}
+          {% elif(ns.color == 'orange' or ns.color == '#fb8c00') %}
+            {% set ns.type = 'warning' %}
+          {% elif(ns.color == 'red' or ns.color == '#e53935') %}
+            {% set ns.type = 'error' %}
+          {% elif(ns.color == 'purple' or ns.color == '#880e4f') %}
+            {% set ns.type = 'error' %}
+          {% elif(ns.color == 'maroon' or ns.color == '#7e0023') %}
+            {% set ns.type = 'error' %}
+          {% else %}
+            {% set ns.type = 'info' %}
+          {% endif %}
+
+          <ha-alert alert-type="{{ ns.type }}"> <font size=2>[<a href="{{
+          ns.url }}">{{ ns.id }}</a>]</font> **<font size=2 color="{{
+          ns.color }}"> {% if (ns.icon != '') %} <ha-icon icon="{{ ns.icon
+          }}"></ha-icon> {% endif %} {{ ns.headline }} </font>**
+
+          {% if (ns.date != '' and ns.attribution == '') %} <font size=2
+          color=grey>*{{ ns.date }}*</font>
+
+          {% elif (ns.date != '' and ns.attribution != '') %} <font size=2
+          color=grey>*{{ ns.date }}, {{ ns.attribution }}*</font>
+
+          {% elif (ns.attribution != '') %} <font size=2 color=grey>*{{
+          ns.attribution }}*</font>
+
+          {% endif %} {% if (ns.distance != '') %} <font size=2
+          color=grey>*Distance: {{ ns.distance }}*</font> {% endif %} {% if
+          (ns.description != '') %} <font size=2>{{ ns.description }}</font>
+          {% endif %} </ha-alert> {%- endmacro -%}
+
+          {# MACRO to set warning color #} {%- macro warning_color(severity)
+          -%}
+            {% if( severity == 'Weak' ) %}
+              {# Severity: Weak, Info #}
+              {# No known threat to life or property #}
+              {% set ns.color = 'green' %}
+            {% elif( severity == 'Minor' ) %}
+              {# Severity: Minor, Light #}
+              {# Minimal to no known threat to life or property #}
+              {% set ns.color = 'yellow' %}
+            {% elif( severity == 'Moderate' ) %}
+              {# Severity: Moderate #}
+              {# Possible threat to life or property #}
+              {% set ns.color = 'orange' %}
+            {% elif( severity == 'Severe' ) %}
+              {# Severity: Severe, Strong #}
+              {# Significant threat to life or property #}
+              {% set ns.color = 'red' %}
+            {% elif( severity == 'Extreme' ) %}
+              {# Severity: Extreme, Major #}
+              {# Extraordinary threat to life or property #}
+              {% set ns.color = 'purple' %}
+            {% else %}
+              {# Severity: Unknown #}
+              {% set ns.color = 'grey' %}
+            {% endif %}
+          {%- endmacro -%}
+
+          {# MACRO to set earthquake level and warning color #} {%- macro
+          magnitude_level(magnitude) -%}
+            {% if( magnitude < 4 ) %}
+              {% set ns.color = 'green' %}
+              {% set ns.description = 'Earthquake category: Weak' %}
+            {% elif( magnitude < 5 ) %}
+              {% set ns.color = 'yellow' %}
+              {% set ns.description = 'Earthquake category: Light' %}
+            {% elif( magnitude < 6 ) %}
+              {% set ns.color = 'orange' %}
+              {% set ns.description = 'Earthquake category: Moderate' %}
+            {% elif( magnitude < 7 ) %}
+              {% set ns.color = 'red' %}
+              {% set ns.description = 'Earthquake category: Strong' %}
+            {% elif( magnitude < 8 ) %}
+              {% set ns.color = 'purple' %}
+              {% set ns.description = 'Earthquake category: Major' %}
+            {% else %}
+              {% set ns.color = '#7e0023' %}
+              {% set ns.description = 'Earthquake category: Great' %}
+            {% endif %}
+          {%- endmacro -%}
+
+          {# Start: DWD and NINA alerts #} {% if (dwd_current_count == 0 and
+          dwd_advance_count == 0 and ns.nina_count == 0) %}
+
+          **<font color=#44739e>Keine DWD/NINA Warnungen</font>**
+
+          {% else %}
+            {% for i in range(dwd_current_count) %}
+              {% set ns.id = 'DWD' %}
+              {% set ns.attribution = state_attr(dwd_current_id, 'friendly_name') %}
+              {% set ns.icon = state_attr(dwd_current_id, 'icon') %}
+              {% set ns.url = "https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" %}
+              {% set ns.distance = '' %}
+              {% set ns.headline = state_attr(dwd_current_id, "warning_" ~ loop.index ~ "_headline") %}
+              {% set ns.description = state_attr(dwd_current_id, "warning_" ~ loop.index ~ "_description")|trim %}
+              {% set ns.severity = state_attr(dwd_current_id, "warning_" ~ loop.index ~ "_level") %}
+              {% set start_time = state_attr(dwd_current_id, "warning_" ~ loop.index ~ "_start") %}
+              {% set start_hour = as_timestamp(start_time) | timestamp_custom("%H:%M", True) %}
+              {% set start_weekday = as_timestamp(start_time) | timestamp_custom("%w", True) | int %}
+              {% set start_weekday = weekday_name[start_weekday-1] %}
+              {% set end_time = state_attr(dwd_current_id, "warning_" ~ loop.index ~ "_end") %}
+              {% set end_hour = as_timestamp(end_time) | timestamp_custom("%H:%M", True) %}
+              {% set end_weekday = as_timestamp(end_time) | timestamp_custom("%w", True) | int %}
+              {% set end_weekday = weekday_name[end_weekday-1] %}
+              {% set ns.date = start_weekday ~ ", " ~ start_hour ~ " - " ~ end_weekday ~ ", " ~ end_hour %}
+              {% set ns.color = state_attr(dwd_current_id, "warning_" ~ loop.index ~ "_color") %}
+          {{ alert_form() }}
+            {% endfor %}
+            {% for i in range(dwd_advance_count) %}
+              {% set ns.id = 'DWD' %}
+              {% set ns.attribution = state_attr(dwd_advance_id, 'friendly_name') %}
+              {% set ns.icon = state_attr(dwd_advance_id, 'icon') %}
+              {% set ns.url = "https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" %}
+              {% set ns.distance = '' %}
+              {% set ns.headline = state_attr(dwd_advance_id, "warning_" ~ loop.index ~ "_headline") %}
+              {% set ns.description = state_attr(dwd_advance_id, "warning_" ~ loop.index ~ "_description")|trim %}
+              {% set ns.severity = state_attr(dwd_advance_id, "warning_" ~ loop.index ~ "_level") %}
+              {% set start_time = state_attr(dwd_advance_id, "warning_" ~ loop.index ~ "_start") %}
+              {% set start_hour = as_timestamp(start_time) | timestamp_custom("%H:%M", True) %}
+              {% set start_weekday = as_timestamp(start_time) | timestamp_custom("%w", True) | int %}
+              {% set start_weekday = weekday_name[start_weekday-1] %}
+              {% set end_time = state_attr(dwd_advance_id, "warning_" ~ loop.index ~ "_end") %}
+              {% set end_hour = as_timestamp(end_time) | timestamp_custom("%H:%M", True) %}
+              {% set end_weekday = as_timestamp(end_time) | timestamp_custom("%w", True) | int %}
+              {% set end_weekday = weekday_name[end_weekday-1] %}
+              {% set ns.date = start_weekday ~ ", " ~ start_hour ~ " - " ~ end_weekday ~ ", " ~ end_hour %}
+              {% set ns.color = state_attr(dwd_advance_id, "warning_" ~ loop.index ~ "_color") %}
+          {{ alert_form() }}
+            {% endfor %}
+            {% for i in range(nina_entities) %}
+              {% if (states(nina_id ~ "_" ~ loop.index) == "on") %}
+                {% set id = nina_id ~ "_" ~ loop.index %}
+                {% set ns.id = 'NINA' %}
+                {% set ns.attribution = state_attr(id, "sender")|trim %}
+                {% set ns.icon = 'mdi:alert-circle' %}
+                {% set ns.url = 'https://warnung.bund.de/meldungen' %}
+                {% set ns.distance = '' %}
+                {% set ns.headline = state_attr(id, "headline") %}
+                {% set ns.description = state_attr(id, "description")|trim %}
+                {% set ns.severity = state_attr(id, "severity") %}
+                {% set start_time = state_attr(id, "start") %}
+                {% set start_hour = as_timestamp(start_time) | timestamp_custom("%H:%M", True) %}
+                {% set start_weekday = as_timestamp(start_time) | timestamp_custom("%w", True) | int %}
+                {% set start_weekday = weekday_name[start_weekday-1] %}
+                {% set end_time = state_attr(id, "expires") %}
+                {% set end_hour = as_timestamp(end_time) | timestamp_custom("%H:%M", True) %}
+                {% set end_weekday = as_timestamp(end_time) | timestamp_custom("%w", True) | int %}
+                {% set end_weekday = weekday_name[end_weekday-1] %}
+                {% set ns.date = start_weekday ~ ", " ~ start_hour ~ " - " ~ end_weekday ~ ", " ~ end_hour %}
+                {{ warning_color(ns.severity) }}
+          {{ alert_form() }}
+              {% endif %}
+            {% endfor %}
+          {% endif %} {# End: DWD and NINA alerts #}
+
+          {# Start: EMS alerts #} {% set ns.icon = 'mdi:alert-circle' %} {%
+          set ns.color = 'orange' %} {% set ns.date = '' %} {% set
+          ns.attribution = 'Copernicus Emergency Management Service' %} {%
+          set ns.description = '' %} {% for i in ems_id %}
+            {% if( i != 'unit_of_measurement' and i != 'icon' and i != 'friendly_name') %}
+              {% set ns.headline = i.split('[')[1] %}
+              {% set ns.id = ns.headline.split(']')[0] %}
+              {% set ns.headline = ns.headline.split(']')[1] %}
+              {% set ns.url = 'https://emergency.copernicus.eu/mapping/list-of-components/' ~ ns.id %}
+              {% set ns.distance = state_attr('sensor.european_emergency_any', i) %}
+          {{ alert_form() }}
+            {% endif %} 
+          {% endfor %} {# End: EMS alerts #}
+
+          {# Start: geolocation alerts #} {% for i in states.geo_location %}
+            {# Start: GDACS alerts #}
+            {% if i.attributes.source=="gdacs" %}
+              {% set ns.id = i.attributes.external_id %}
+              {% set ns.attribution = i.attributes.attribution %}
+              {% set ns.icon = i.attributes.icon %}
+              {% set ns.color = i.attributes.alert_level | lower %}
+              {% set ns.headline = i.attributes.friendly_name %}
+              {% set ns.description = i.attributes.description %}
+              {% set ns.date = i.attributes.from_date.strftime("%d.%m.%Y %H:%M %Z") %}
+              {% set ns.url = "https://www.gdacs.org/report.aspx?eventtype=" ~ ns.id[:2] ~ "&eventid=" ~ ns.id[2:255] ~ "" %}
+              {% set ns.distance = i.state ~ ' ' ~ i.attributes.unit_of_measurement %}
+          {{ alert_form() }}
+            {% endif %}
+            {# End: GDACS alerts #}
+            {# Start: INGV alerts #}
+            {% if i.attributes.source=="ingv_centro_nazionale_terremoti" %}
+              {% set ns.id = i.attributes.event_id %}
+              {% set ns.attribution = i.attributes.attribution %}
+              {% set ns.icon = i.attributes.icon %}
+              {% set ns.headline = 'EQ ' ~ i.attributes.friendly_name %}
+              {% set ns.date = i.attributes.publication_date.strftime("%d.%m.%Y %H:%M %Z") %}
+              {% set ns.url = "http://terremoti.ingv.it/en/event/" ~ ns.id ~ "?timezone=UTC" %}
+              {% set ns.distance = i.state ~ ' ' ~ i.attributes.unit_of_measurement %}
+              {% set magnitude = i.attributes.magnitude|float %}
+              {% if( magnitude >= 4 ) %}
+                {{ magnitude_level(magnitude) }}
+          {{ alert_form() }}
+              {% endif %}
+            {% endif %}
+            {# End: INGV alerts #}
+            {# Start: USGS alerts #}
+            {% if i.attributes.source=="usgs_earthquakes_feed" %}
+              {% set ns.id = i.attributes.external_id %}
+              {% set ns.attribution = i.attributes.attribution %}
+              {% set ns.icon = i.attributes.icon %}
+              {% set ns.headline = 'EQ ' ~ i.attributes.friendly_name %}
+              {% set ns.date = i.attributes.time.strftime("%d.%m.%Y %H:%M %Z") %}
+              {% set ns.url = "https://earthquake.usgs.gov/earthquakes/eventpage/" ~ ns.id %}
+              {% set ns.distance = i.state ~ ' ' ~ i.attributes.unit_of_measurement %}
+              {% set magnitude = i.attributes.magnitude|float %}
+              {% if( magnitude >= 4 ) %}
+                {{ magnitude_level(magnitude) }}
+          {{ alert_form() }}
+              {% endif %}
+            {% endif %}
+            {# End: USGS alerts #}
+          {% endfor %} {# End: geolocation alerts #}
+
+          {# Start: EMCS alerts #} {% set emcs_count = emcs_id.state|int %}
+          {% set ns.attribution = emcs_id.attributes.friendly_name %} {% set
+          ns.icon = 'mdi:pulse' %} {% for i in range(emcs_count) %}
+            {% set ns.headline = 'EQ ' ~ emcs_id.attributes.earthquakes[i].title %}
+            {% set ns.date = emcs_id.attributes.earthquakes[i].time.strftime("%d.%m.%Y %H:%M %Z") %}
+            {% set ns.url = emcs_id.attributes.earthquakes[i].link %}
+            {% set ns.id = emcs_id.attributes.earthquakes[i].link.split('=')[1] %}
+            {% set ns.distance = emcs_id.attributes.earthquakes[i].distance ~ ' km' %}
+            {% set magnitude = emcs_id.attributes.earthquakes[i].magnitude|float %}
+            {% if( magnitude >= 4 ) %}
+              {{ magnitude_level(magnitude) }}
+          {{ alert_form() }}
+            {% endif %}
+          {% endfor %} {# End: EMS alerts #}
+
+          ***
+
+          For more information see:
+
+          [DWD Wetter
+          Warnungen](https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html)
+
+          [DWD
+          Warnkriterien](https://www.dwd.de/DE/wetter/warnungen_aktuell/kriterien/warnkriterien.html)
+
+          [DWD Warnstufen und
+          Farbskala](https://www.dwd.de/DE/wetter/warnungen_aktuell/kriterien/warnstufen.html)
+
+
+          [GDACS](https://www.gdacs.org/)
+
+          [COPERNICUS Emergency Management Service
+          (EMS)](https://emergency.copernicus.eu/mapping/list-of-activations-rapid)
+
+          [Istituto Nazionale di Geofisica e Vulcanologia
+          (INGV)](http://terremoti.ingv.it/en)
+
+          ***
+      - show_state: false
+        show_name: false
+        camera_view: auto
+        type: picture-entity
+        camera_image: camera.www_dwd_de
+        entity: camera.www_dwd_de
+      - type: custom:weather-radar-card
+        show_marker: true
+        show_scale: true
+        show_playback: true
+        show_zoom: true
+        show_range: true
+        static_map: false
+        square_map: false
+        show_recenter: true
+        extra_labels: false
+        map_style: Light

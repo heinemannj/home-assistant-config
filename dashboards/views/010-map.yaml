@@ -1,0 +1,19 @@
+title: 010_Map
+theme: Backend-selected
+path: 010-map
+type: panel
+icon: mdi:map-marker-radius-outline
+badges: []
+cards:
+  - type: map
+    entities:
+      - entity: zone.home
+    geo_location_sources:
+      - gdacs
+      - usgs_earthquakes_feed
+      - ingv_centro_nazionale_terremoti
+    dark_mode: true
+    default_zoom: 18
+    hours_to_show: 72
+    aspect_ratio: 50%
+    auto_fit: true

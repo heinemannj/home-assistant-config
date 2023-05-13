@@ -1,0 +1,12 @@
+title: 010_Sky
+theme: Backend-selected
+path: 010-sky
+icon: mdi:star-crescent
+badges: []
+cards:
+  - show_state: false
+    show_name: false
+    camera_view: auto
+    type: picture-entity
+    camera_image: camera.skyfield
+    entity: camera.skyfield

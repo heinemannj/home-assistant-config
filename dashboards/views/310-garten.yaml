@@ -1,0 +1,61 @@
+title: 310_Garten
+theme: Backend-selected
+path: 310-garten
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:mushroom-title-card
+        title: Lulu's Aquarium
+        subtitle: >-
+          Weekly Clean:  {% if states.input_datetime.aquarium_weekly_clean
+          %}
+          {{(((as_timestamp(now())-states.input_datetime.aquarium_weekly_clean.attributes.timestamp))
+          | int(0) /60/1440-1) | round(0) }} day(s) ago  Monthly Clean: {{
+          (((as_timestamp(now())-states.input_datetime.aquarium_monthly_clean.attributes.timestamp))
+          | int(0) /60/1440) | round(0) }} day(s) ago  {% endif %}
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: menu
+          - type: template
+            content: Lulu
+            icon: mdi:tortoise
+          - type: entity
+            entity: input_datetime.aquarium_weekly_clean
+            icon: mdi:fishbowl-outline
+          - type: entity
+            entity: input_datetime.aquarium_monthly_clean
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: switch.sonoff_aquarium_heater
+            icon_color: red
+            primary_info: state
+            secondary_info: name
+          - type: custom:mushroom-entity-card
+            entity: switch.sonoff_aquarium_pump
+            primary_info: state
+            secondary_info: name
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: light.sonoff_aquarium_light
+            primary_info: state
+            secondary_info: name
+            icon_color: amber
+            tap_action:
+              action: toggle
+          - type: custom:mushroom-entity-card
+            entity: light.aquarium_uvb
+            primary_info: state
+            secondary_info: name
+            icon_color: amber
+  - type: custom:mushroom-entity-card
+    entity: switch.310_garten_teich_7_wasserpumpe
+    icon_color: amber
+    tap_action:
+      action: toggle
+    hold_action:
+      action: none
+    double_tap_action:
+      action: none

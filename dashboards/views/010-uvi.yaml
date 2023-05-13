@@ -1,0 +1,319 @@
+title: 010_UVI
+theme: Backend-selected
+path: 010-uvi
+icon: mdi:weather-sunny
+badges: []
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-title-card
+        title: UV Index
+        subtitle: Borken Gemen, Germany
+      - type: gauge
+        entity: sensor.current_uv_index
+        name: UV Index
+        unit: " "
+        min: 0
+        max: 14
+        needle: true
+        segments:
+          - from: 0
+            color: green
+          - from: 3
+            color: yellow
+          - from: 6
+            color: orange
+          - from: 8
+            color: red
+          - from: 11
+            color: purple
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: 45% 55%
+          margin: "-4px -4px -20px -4px;"
+        cards:
+          - type: custom:mushroom-template-card
+            entity: sensor.current_uv_index
+            primary: >-
+              {% set uvi = states('sensor.current_uv_index') | float %}
+
+              {% if uvi <= 3 %} UV Index - Low {% elif uvi <= 6 %} UV Index
+              - Moderate {% elif uvi <= 8 %} UV Index - High {% elif uvi <=
+              11 %} UV Index - Very High {% elif uvi > 11 %} UV Index -
+              Extreme {% endif %}
+            secondary: "{{states('sensor.current_uv_index')}} UV index"
+            icon: mdi:weather-sunny
+            icon_color: |-
+              {% set state = states('sensor.current_uv_index') | float %}
+
+              {% if state <= 3 %} green
+              {% elif state <= 6 %} yellow
+              {% elif state <= 8 %} orange
+              {% elif state <= 11 %} red
+              {% elif state > 11 %} purple
+              {% else %} grey
+              {% endif %}
+            tap_action:
+              action: more-info
+            card_mod:
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  border: solid 0px ;
+                }
+          - type: custom:bar-card
+            name: " "
+            height: 42px
+            min: "0"
+            max: "14"
+            decimal: "4"
+            severity:
+              - from: "0"
+                to: "2"
+                color: green
+              - from: "3"
+                to: "5"
+                color: yellow
+              - from: "6"
+                to: "7"
+                color: orange
+              - from: "8"
+                to: "10"
+                color: red
+              - from: "11"
+                to: "14"
+                color: purple
+            entity_row: true
+            positions:
+              icon: "off"
+              indicator: "off"
+              value: "off"
+            entities:
+              - entity: sensor.current_uv_index
+            card_mod:
+              style: |
+                ha-card {
+                  padding: 12px;
+                  margin-left: 12px;
+                  --bar-card-border-radius: 12px;
+                }
+                bar-card-backgroundbar {
+                  opacity: 0.2;
+                  filter: brightness(1);
+                }
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: 45% 55%
+          margin: "-4px -4px -20px -4px;"
+        cards:
+          - type: custom:mushroom-template-card
+            entity: sensor.max_uv_index
+            primary: |-
+              {% set uvi = states('sensor.max_uv_index') | float %}
+              {% if uvi <= 3 %} Max UV Index - Low
+              {% elif uvi <= 6 %} Max UV Index - Moderate
+              {% elif uvi <= 8 %} Max UV Index - High
+              {% elif uvi <= 11 %} Max UV Index - Very High
+              {% elif uvi > 11 %} Max UV Index - Extreme
+              {% endif %}
+            secondary: "{{states('sensor.max_uv_index')}} UV index"
+            icon: mdi:weather-sunny
+            icon_color: |-
+              {% set state = states('sensor.max_uv_index') | float %}
+
+              {% if state <= 3 %} green
+              {% elif state <= 6 %} yellow
+              {% elif state <= 8 %} orange
+              {% elif state <= 11 %} red
+              {% elif state > 11 %} purple
+              {% else %} grey
+              {% endif %}
+            tap_action:
+              action: more-info
+            card_mod:
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  border: solid 0px ;
+                }
+          - type: custom:bar-card
+            name: " "
+            height: 42px
+            min: "0"
+            max: "14"
+            decimal: "4"
+            severity:
+              - from: "0"
+                to: "2"
+                color: green
+              - from: "3"
+                to: "5"
+                color: yellow
+              - from: "6"
+                to: "7"
+                color: orange
+              - from: "8"
+                to: "10"
+                color: red
+              - from: "11"
+                to: "14"
+                color: purple
+            entity_row: true
+            positions:
+              icon: "off"
+              indicator: "off"
+              value: "off"
+            entities:
+              - entity: sensor.max_uv_index
+            card_mod:
+              style: |
+                ha-card {
+                  padding: 12px;
+                  margin-left: 12px;
+                  --bar-card-border-radius: 12px;
+                }
+                bar-card-backgroundbar {
+                  opacity: 0.2;
+                  filter: brightness(1);
+                }
+      - type: custom:mushroom-entity-card
+        entity: sensor.skin_type_1_safe_exposure_time
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-entity-card
+        entity: sensor.skin_type_2_safe_exposure_time
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-entity-card
+        entity: sensor.skin_type_3_safe_exposure_time
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-entity-card
+        entity: sensor.skin_type_4_safe_exposure_time
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-entity-card
+        entity: sensor.skin_type_5_safe_exposure_time
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-entity-card
+        entity: sensor.skin_type_6_safe_exposure_time
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+    card_mod:
+      style: |
+        ha-card {
+          padding-bottom: 12px !important;
+        }
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-title-card
+        title: Gefährdung
+        subtitle: Gesundheitliche Risiken beim Aufenthalt in der Sonne
+      - type: custom:mushroom-template-card
+        entity: ""
+        primary: keine bis gering
+        secondary: Schutzmaßnahmen nicht erforderlich.
+        icon: mdi:tree-outline
+        icon_color: green
+        tap_action:
+          action: url
+          url_path: >-
+            https://www.dwd.de/DE/leistungen/gefahrenindizesuvi/gefahrenindexuvi.html
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-template-card
+        entity: ""
+        primary: mittel
+        secondary: Schutzmaßnahmen erforderlich.
+        icon: mdi:tree-outline
+        icon_color: yellow
+        tap_action:
+          action: url
+          url_path: >-
+            https://www.dwd.de/DE/leistungen/gefahrenindizesuvi/gefahrenindexuvi.html
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-template-card
+        entity: ""
+        primary: hoch
+        secondary: Schutzmaßnahmen erforderlich.
+        icon: mdi:tree-outline
+        icon_color: orange
+        tap_action:
+          action: url
+          url_path: >-
+            https://www.dwd.de/DE/leistungen/gefahrenindizesuvi/gefahrenindexuvi.html
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-template-card
+        entity: ""
+        primary: sehr hoch
+        secondary: Schutzmaßnahmen unbedingt erforderlich!
+        icon: mdi:tree-outline
+        icon_color: red
+        tap_action:
+          action: url
+          url_path: >-
+            https://www.dwd.de/DE/leistungen/gefahrenindizesuvi/gefahrenindexuvi.html
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: custom:mushroom-template-card
+        entity: ""
+        primary: extrem
+        secondary: Schutzmaßnahmen sind ein Muss!
+        icon: mdi:tree-outline
+        icon_color: purple
+        tap_action:
+          action: url
+          url_path: >-
+            https://www.dwd.de/DE/leistungen/gefahrenindizesuvi/gefahrenindexuvi.html
+        card_mod:
+          style: |
+            ha-card {
+              margin-bottom: -10px;
+            }
+      - type: markdown
+        content: >-
+          ***
+
+          For more information see:
+
+          [DWD Wetter
+          Warnkriterien](https://www.dwd.de/DE/wetter/warnungen_aktuell/kriterien/warnkriterien.html)
+
+
+
+          ***

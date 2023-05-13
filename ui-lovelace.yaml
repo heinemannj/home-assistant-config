@@ -3,6 +3,12 @@
 mode: storage
 # Add yaml dashboards
 dashboards:
+  100-raeume-yaml:
+    mode: yaml
+    title: 100_Raeume
+    icon: mdi:home
+    show_in_sidebar: true
+    filename: dashboards/100-raeume.yaml
   420-pv-yaml:
     mode: yaml
     title: 420_PV

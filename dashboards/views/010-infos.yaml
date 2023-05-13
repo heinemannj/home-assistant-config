@@ -1,0 +1,60 @@
+title: 010_Infos
+theme: Backend-selected
+path: 010-infos
+icon: mdi:information-outline
+type: sidebar
+badges: []
+cards:
+  - type: markdown
+    content: >-
+      | Sensor | Alert | Threshold | Level | Color | Icon | Ref |
+
+      | :--- | :---- | :--- | :---: | :--- | :---: | :--- |
+
+      | Wind | Windböen | <span> > 50 km/h<br> > 14 m/s<br> > 28 kn<br> > 7 Bft | 1 | yellow | ??? | DWD |
+
+      || Sturmböen         | 65 bis 89 km/h, 18 bis 24 m/s, 34 bis 47 kn, 8 Bft bis 9 Bft | 2 | orange | ??? | DWD |
+
+      || Schwere Sturmböen |      | ???   |  || DWD |
+
+      || Orkanartige Böen  |      | ???   |  || DWD |
+
+      || Orkanböen         |      | ???   |  || DWD |
+
+      || Extreme Orkanböen |      | ???   |  || DWD |
+    card_mod:
+      style:
+        ha-markdown:
+          $:
+            ha-markdown-element: |
+              table {
+                border-spacing: 0;
+                width: 100%;
+                padding: 8px;
+                border-radius: var(--ha-card-border-radius);
+              }
+              th {
+                border: 1px solid black !important;
+                background-color: var(--state-icon-color);
+                color: white;
+                padding: 4px;
+              }
+              th:first-child {
+                border: 1px solid black !important;
+                border-top-left-radius: var(--ha-card-border-radius);
+              }
+              th:last-child {
+                border: 1px solid black !important;
+                border-top-right-radius: var(--ha-card-border-radius);
+              }
+              td {
+                border: 1px solid !important;
+                padding: 4px;
+              }
+              tr {
+                border: 1px solid !important;
+              }
+              tr:nth-child(even) {
+                border: 1px solid !important;
+                background-color: var(--table-row-background-color);
+              }

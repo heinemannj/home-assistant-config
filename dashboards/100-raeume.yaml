@@ -1,0 +1,21 @@
+kiosk_mode:
+  hide_header: false
+title: 100_Raeume
+views:
+  - !include /config/dashboards/views/100-phone-home.yaml
+  - !include /config/dashboards/views/100-tablet-home.yaml
+  - !include /config/dashboards/views/010-wetter.yaml
+  - !include /config/dashboards/views/010-sky.yaml
+  - !include /config/dashboards/views/010-warnungen.yaml
+  - !include /config/dashboards/views/010-map.yaml
+  - !include /config/dashboards/views/010-pollenflug.yaml
+  - !include /config/dashboards/views/010-uvi.yaml
+  - !include /config/dashboards/views/010-pegel.yaml
+  - !include /config/dashboards/views/010-aqi.yaml
+  - !include /config/dashboards/views/010-infos.yaml
+  - !include /config/dashboards/views/085-1-1-presence.yaml
+  - !include /config/dashboards/views/101-buero.yaml
+  - !include /config/dashboards/views/204-schlafen.yaml
+  - !include /config/dashboards/views/301-kueche.yaml
+  - !include /config/dashboards/views/307-wohnen.yaml
+  - !include /config/dashboards/views/310-garten.yaml

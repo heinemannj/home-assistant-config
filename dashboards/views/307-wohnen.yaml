@@ -1,0 +1,126 @@
+title: 307_Wohnen
+theme: Backend-selected
+path: 307-wohnen
+subview: false
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: menu
+          - type: back
+          - type: weather
+            entity: weather.dwd_weather_raesfeld_ka
+            show_conditions: true
+            show_temperature: false
+          - type: entity
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            icon_color: orange
+          - type: entity
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            icon_color: indigo
+          - type: template
+            content: |-
+              {% set total = 0 %}
+              {% if is_state('light.sonoff_element_lights', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.living_room', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.wall_light_1', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.wall_light_1', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.wall_light_1', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              ({{total}}) Lights ON
+            icon: mdi:lightbulb-group
+            icon_color: |-
+              {% if is_state('light.sonoff_element_lights', 'on') %}
+                orange
+              {% elif is_state("light.living_room", "on") %}
+                orange
+              {% else %}
+                grey
+              {% endif %}
+            tap_action:
+              action: more-info
+            entity: light.sonoff_element_lights
+          - type: template
+            icon: |-
+              {% if is_state('binary_sensor.terrace_door', 'off') %}
+                mdi:door-closed
+              {% else %}
+                mdi:door-open
+              {% endif %}
+            content: |-
+              {% if is_state('binary_sensor.terrace_door', 'off') %}
+                Closed
+              {% else %}
+                Open
+              {% endif %}
+            icon_color: |-
+              {% if is_state('binary_sensor.terrace_door', 'off') %}
+                green
+              {% else %}
+                red
+              {% endif %}
+            tap_action:
+              action: more-info
+            entity: binary_sensor.terrace_door
+        alignment: start
+      - type: custom:mushroom-title-card
+        title: Wohnen
+        alignment: justify
+      - type: horizontal-stack
+        cards:
+          - hours_to_show: 24
+            graph: line
+            type: sensor
+            entity: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_temperature
+            detail: 1
+          - type: sensor
+            entity: sensor.307_wohnen_mold_indicator
+            graph: line
+      - type: custom:mushroom-title-card
+        title: Devices
+      - type: custom:mushroom-climate-card
+        entity: climate.hm_tc_it_wm_w_eu_meq1330232
+        fill_container: false
+        hvac_modes:
+          - heat_cool
+        show_temperature_control: true
+      - type: custom:mushroom-media-player-card
+        entity: media_player.bravia_tv
+        name: Living Room TV
+        use_media_info: true
+        show_volume_level: true
+        volume_controls:
+          - volume_set
+          - volume_buttons
+          - volume_mute
+        media_controls: []
+        fill_container: false
+        icon: mdi:television
+        icon_type: entity-picture
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.101_buro_licht_schreibtisch
+            layout: vertical
+          - type: custom:mushroom-light-card
+            entity: light.101_buro_licht_treppe
+            layout: vertical
+      - type: custom:mushroom-title-card
+        title: Sensors
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.101_buero_hk1_ruecklauf
+          - type: custom:mushroom-entity-card
+            entity: sensor.301_heizkreis_flur_2_ruecklauf
