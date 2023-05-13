@@ -1,11 +1,44 @@
+{% macro aqi_primary(entity_id) %}
+{% set state = states(entity_id) | float %}
+{% if state <= 50 %} AQI - Good
+{% elif state <= 100 %} AQI - Moderate
+{% elif state <= 150 %} AQI - Unhealthy for Sensitive Groups
+{% elif state <= 200 %} AQI - Unhealthy
+{% elif state <= 300 %} AQI - Very Unhealthy
+{% elif state > 300 %} AQI - Hazardous
+{% endif %}
+{% endmacro %}
+
 {% macro aqi_icon_color(entity_id) %}
-{% set state = states('sensor.air_quality_index_borken') | float %}
+{% set state = states(entity_id) | float %}
 {% if state <= 50 %} green
-{% elif state <= 100 %} blue
+{% elif state <= 100 %} yellow
 {% elif state <= 150 %} orange
 {% elif state <= 200 %} red
 {% elif state <= 300 %} purple
 {% elif state > 300 %} '#7e0023'
 {% else %} grey
 {% endif %}
+{% endmacro %}
+
+{% macro aqi_bar_card_severity(entity_id) %}
+{% set state = states(entity_id) | float %}
+- from: "0"
+  to: "50"
+  color: green
+- from: "50.0001"
+  to: "100"
+  color: yellow
+- from: "100.0001"
+  to: "150"
+  color: orange
+- from: "150.0001"
+  to: "200"
+  color: red
+- from: "200.0001"
+  to: "300"
+  color: purple
+- from: "300.0001"
+  to: "500"
+  color: "#7e0023"
 {% endmacro %}

@@ -31,30 +31,26 @@ cards:
         hide_when_no_warning: true
       - type: markdown
         content: >-
-          {# ----- DWD entities ----- #} {% set dwd_current_id =
-          "sensor.dwd_wetterwarnungen_schermbeck_current_warning_level" %}
-          {% set dwd_current_count = state_attr(dwd_current_id,
-          "warning_count") %}
+          {# ----- DWD entities ----- #}
+          {% set dwd_current_id = "sensor.dwd_wetterwarnungen_schermbeck_current_warning_level" %}
+          {% set dwd_current_count = state_attr(dwd_current_id, "warning_count") %}
 
           {% if (dwd_current_count == None) %}
             {% set dwd_current_count = 0 %}
           {% endif %}
 
-          {% set dwd_advance_id =
-          "sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level" %}
-          {% set dwd_advance_count = state_attr(dwd_advance_id,
-          "warning_count") %}
+          {% set dwd_advance_id = "sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level" %}
+          {% set dwd_advance_count = state_attr(dwd_advance_id, "warning_count") %}
 
           {% if (dwd_advance_count == None) %}
             {% set dwd_advance_count = 0 %}
           {% endif %}
 
-          {# ----- NINA entities ----- #} {% set ns =
-          namespace(nina_count=0) %}
+          {# ----- NINA entities ----- #}
+          {% set ns = namespace(nina_count=0) %}
 
-          {% set nina_id =
-          "binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen" %} {%
-          set nina_entities = 10 %}
+          {% set nina_id = "binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen" %}
+          {% set nina_entities = 10 %}
 
           {% for i in range(nina_entities) %}
             {% if (states(nina_id ~ "_" ~ loop.index) == "on") %}
@@ -62,19 +58,18 @@ cards:
             {% endif %}
           {% endfor %}
 
-          {# ----- EMS entities ----- #} {% set ems_id =
-          states.sensor.european_emergency_any.attributes %}
+          {# ----- EMS entities ----- #}
+          {% set ems_id = states.sensor.european_emergency_any.attributes %}
 
-          {# ----- EMCS entities ----- #} {% set emcs_id =
-          states.sensor.emcs_earthquakes %}
+          {# ----- EMCS entities ----- #}
+          {% set emcs_id = states.sensor.emcs_earthquakes %}
 
-          {# ----- Translation of weekday ----- #} {% set weekday_name =
-          ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag']
-          %}
+          {# ----- Translation of weekday ----- #}
+          {% set weekday_name = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'] %}
 
-          {# MACRO ha-alert: BOLD TEXT FORMAT and COLOR according to the
-          warning LEVEL #} {%- macro alert_form() -%} {% if(ns.color ==
-          'green') %}
+          {# MACRO ha-alert: BOLD TEXT FORMAT and COLOR according to the warning LEVEL #}
+          {%- macro alert_form() -%}
+          {% if(ns.color == 'green') %}
             {% set ns.type = 'info' %}
           {% elif(ns.color == 'yellow' or ns.color == '#ffeb3b') %}
             {% set ns.type = 'warning' %}
@@ -95,22 +90,27 @@ cards:
           ns.color }}"> {% if (ns.icon != '') %} <ha-icon icon="{{ ns.icon
           }}"></ha-icon> {% endif %} {{ ns.headline }} </font>**
 
-          {% if (ns.date != '' and ns.attribution == '') %} <font size=2
-          color=grey>*{{ ns.date }}*</font>
+          {% if (ns.date != '' and ns.attribution == '') %}
+            <font size=2 color=grey>*{{ ns.date }}*</font>
 
-          {% elif (ns.date != '' and ns.attribution != '') %} <font size=2
-          color=grey>*{{ ns.date }}, {{ ns.attribution }}*</font>
+          {% elif (ns.date != '' and ns.attribution != '') %}
+            <font size=2 color=grey>*{{ ns.date }}, {{ ns.attribution }}*</font>
 
-          {% elif (ns.attribution != '') %} <font size=2 color=grey>*{{
-          ns.attribution }}*</font>
+          {% elif (ns.attribution != '') %}
+            <font size=2 color=grey>*{{ ns.attribution }}*</font>
 
-          {% endif %} {% if (ns.distance != '') %} <font size=2
-          color=grey>*Distance: {{ ns.distance }}*</font> {% endif %} {% if
-          (ns.description != '') %} <font size=2>{{ ns.description }}</font>
-          {% endif %} </ha-alert> {%- endmacro -%}
+          {% endif %}
+          {% if (ns.distance != '') %}
+            <font size=2 color=grey>*Distance: {{ ns.distance }}*</font>
+          {% endif %}
+          {% if (ns.description != '') %}
+            <font size=2>{{ ns.description }}</font>
+          {% endif %}
+          </ha-alert>
+          {%- endmacro -%}
 
-          {# MACRO to set warning color #} {%- macro warning_color(severity)
-          -%}
+          {# MACRO to set warning color #}
+          {%- macro warning_color(severity) -%}
             {% if( severity == 'Weak' ) %}
               {# Severity: Weak, Info #}
               {# No known threat to life or property #}
@@ -137,8 +137,8 @@ cards:
             {% endif %}
           {%- endmacro -%}
 
-          {# MACRO to set earthquake level and warning color #} {%- macro
-          magnitude_level(magnitude) -%}
+          {# MACRO to set earthquake level and warning color #}
+          {%- macro magnitude_level(magnitude) -%}
             {% if( magnitude < 4 ) %}
               {% set ns.color = 'green' %}
               {% set ns.description = 'Earthquake category: Weak' %}
@@ -160,8 +160,8 @@ cards:
             {% endif %}
           {%- endmacro -%}
 
-          {# Start: DWD and NINA alerts #} {% if (dwd_current_count == 0 and
-          dwd_advance_count == 0 and ns.nina_count == 0) %}
+          {# Start: DWD and NINA alerts #}
+          {% if (dwd_current_count == 0 and dwd_advance_count == 0 and ns.nina_count == 0) %}
 
           **<font color=#44739e>Keine DWD/NINA Warnungen</font>**
 
@@ -232,12 +232,16 @@ cards:
           {{ alert_form() }}
               {% endif %}
             {% endfor %}
-          {% endif %} {# End: DWD and NINA alerts #}
+          {% endif %}
+          {# End: DWD and NINA alerts #}
 
-          {# Start: EMS alerts #} {% set ns.icon = 'mdi:alert-circle' %} {%
-          set ns.color = 'orange' %} {% set ns.date = '' %} {% set
-          ns.attribution = 'Copernicus Emergency Management Service' %} {%
-          set ns.description = '' %} {% for i in ems_id %}
+          {# Start: EMS alerts #}
+          {% set ns.icon = 'mdi:alert-circle' %}
+          {% set ns.color = 'orange' %}
+          {% set ns.date = '' %}
+          {% set ns.attribution = 'Copernicus Emergency Management Service' %}
+          {% set ns.description = '' %}
+          {% for i in ems_id %}
             {% if( i != 'unit_of_measurement' and i != 'icon' and i != 'friendly_name') %}
               {% set ns.headline = i.split('[')[1] %}
               {% set ns.id = ns.headline.split(']')[0] %}
@@ -246,9 +250,11 @@ cards:
               {% set ns.distance = state_attr('sensor.european_emergency_any', i) %}
           {{ alert_form() }}
             {% endif %} 
-          {% endfor %} {# End: EMS alerts #}
+          {% endfor %}
+          {# End: EMS alerts #}
 
-          {# Start: geolocation alerts #} {% for i in states.geo_location %}
+          {# Start: geolocation alerts #}
+          {% for i in states.geo_location %}
             {# Start: GDACS alerts #}
             {% if i.attributes.source=="gdacs" %}
               {% set ns.id = i.attributes.external_id %}
@@ -295,11 +301,14 @@ cards:
               {% endif %}
             {% endif %}
             {# End: USGS alerts #}
-          {% endfor %} {# End: geolocation alerts #}
+          {% endfor %}
+          {# End: geolocation alerts #}
 
-          {# Start: EMCS alerts #} {% set emcs_count = emcs_id.state|int %}
-          {% set ns.attribution = emcs_id.attributes.friendly_name %} {% set
-          ns.icon = 'mdi:pulse' %} {% for i in range(emcs_count) %}
+          {# Start: EMCS alerts #}
+          {% set emcs_count = emcs_id.state|int %}
+          {% set ns.attribution = emcs_id.attributes.friendly_name %}
+          {% set ns.icon = 'mdi:pulse' %}
+          {% for i in range(emcs_count) %}
             {% set ns.headline = 'EQ ' ~ emcs_id.attributes.earthquakes[i].title %}
             {% set ns.date = emcs_id.attributes.earthquakes[i].time.strftime("%d.%m.%Y %H:%M %Z") %}
             {% set ns.url = emcs_id.attributes.earthquakes[i].link %}

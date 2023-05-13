@@ -31,14 +31,8 @@ cards:
     cards:
       - type: custom:mushroom-template-card
         primary: >-
-          {% set state = states('sensor.air_quality_index_borken') | float %}
-          {% if state <= 50 %} AQI - Good
-          {% elif state <= 100 %} AQI - Moderate
-          {% elif state <= 150 %} AQI - Unhealthy for Sensitive Groups
-          {% elif state <= 200 %} AQI - Unhealthy
-          {% elif state <= 300 %} AQI - Very Unhealthy
-          {% elif state > 300 %} AQI - Hazardous
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_primary %}
+          {{ aqi_primary('sensor.air_quality_index_borken') }}
         secondary: "{{states('sensor.air_quality_index_borken')}}"
         icon: mdi:leaf
         entity: sensor.air_quality_index_borken
@@ -59,7 +53,9 @@ cards:
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
+        severity: >-
+          {% from 'aqi.jinja' import aqi_bar_card_severity %}
+          {{ aqi_bar_card_severity() }}
           - from: "0"
             to: "50"
             color: green
@@ -113,16 +109,9 @@ cards:
           secondary: "{{states('sensor.ozone_o3_borken')}} AQI"
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_borken
-          icon_color: |
-            {% set state = states('sensor.ozone_o3_borken') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.ozone_o3_borken') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -188,15 +177,8 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm25_borken
         icon_color: >-
-          {% set state = states('sensor.particulate_matter_pm25_borken') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.particulate_matter_pm25_borken') }}
         tap_action:
           action: more-info
         fill_container: true
@@ -262,15 +244,8 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm10_borken
         icon_color: >-
-          {% set state = states('sensor.particulate_matter_pm10_borken') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.particulate_matter_pm10_borken') }}
         tap_action:
           action: more-info
         fill_container: true
@@ -341,15 +316,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_borken
           icon_color: >-
-            {% set state = states('sensor.carbon_monoxide_co_borken') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.carbon_monoxide_co_borken') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -419,16 +387,9 @@ cards:
           secondary: "{{states('sensor.sulphur_dioxide_so2_borken')}} AQI"
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_borken
-          icon_color: >
-            {% set state = states('sensor.sulphur_dioxide_so2_borken') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.sulphur_dioxide_so2_borken') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -498,16 +459,9 @@ cards:
           secondary: "{{states('sensor.nitrogen_dioxide_no2_borken')}} AQI"
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_borken
-          icon_color: >
-            {% set state = states('sensor.nitrogen_dioxide_no2_borken') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_borken') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -572,27 +526,14 @@ cards:
     cards:
       - type: custom:mushroom-template-card
         primary: >-
-          {% set state = states('sensor.air_quality_index_schermbeck') | float %}
-          {% if state <= 50 %} AQI - Good
-          {% elif state <= 100 %} AQI - Moderate
-          {% elif state <= 150 %} AQI - Unhealthy for Sensitive Groups
-          {% elif state <= 200 %} AQI - Unhealthy
-          {% elif state <= 300 %} AQI - Very Unhealthy
-          {% elif state > 300 %} AQI - Hazardous
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_primary %}
+          {{ aqi_primary('sensor.air_quality_index_schermbeck') }}
         secondary: "{{states('sensor.air_quality_index_schermbeck')}}"
         icon: mdi:leaf
         entity: sensor.air_quality_index_schermbeck
         icon_color: >-
-          {% set state = states('sensor.air_quality_index_schermbeck') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.air_quality_index_schermbeck') }}
         tap_action:
           action: more-info
         card_mod:
@@ -661,16 +602,9 @@ cards:
           secondary: "{{states('sensor.ozone_o3_schermbeck')}} AQI"
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_schermbeck
-          icon_color: >
-            {% set state = states('sensor.ozone_o3_schermbeck') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.ozone_o3_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -736,15 +670,8 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm25_schermbeck
         icon_color: >-
-          {% set state = states('sensor.particulate_matter_pm25_schermbeck') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.particulate_matter_pm25_schermbeck') }}
         tap_action:
           action: more-info
         fill_container: true
@@ -810,15 +737,8 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm10_schermbeck
         icon_color: >-
-          {% set state = states('sensor.particulate_matter_pm10_schermbeck') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.particulate_matter_pm10_schermbeck') }}
         tap_action:
           action: more-info
         fill_container: true
@@ -889,15 +809,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_schermbeck
           icon_color: >-
-            {% set state = states('sensor.carbon_monoxide_co_schermbeck') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.carbon_monoxide_co_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -967,16 +880,9 @@ cards:
           secondary: "{{states('sensor.sulphur_dioxide_so2_schermbeck')}} AQI"
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_schermbeck
-          icon_color: >
-            {% set state = states('sensor.sulphur_dioxide_so2_schermbeck') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.sulphur_dioxide_so2_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -1046,16 +952,9 @@ cards:
           secondary: "{{states('sensor.nitrogen_dioxide_no2_schermbeck')}} AQI"
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_schermbeck
-          icon_color: >
-            {% set state = states('sensor.nitrogen_dioxide_no2_schermbeck') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -1120,27 +1019,14 @@ cards:
     cards:
       - type: custom:mushroom-template-card
         primary: >-
-          {% set state = states('sensor.air_quality_index_wesel') | float %}
-          {% if state <= 50 %} AQI - Good
-          {% elif state <= 100 %} AQI - Moderate
-          {% elif state <= 150 %} AQI - Unhealthy for Sensitive Groups
-          {% elif state <= 200 %} AQI - Unhealthy
-          {% elif state <= 300 %} AQI - Very Unhealthy
-          {% elif state > 300 %} AQI - Hazardous
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_primary %}
+          {{ aqi_primary('sensor.air_quality_index_wesel') }}
         secondary: "{{states('sensor.air_quality_index_wesel')}}"
         icon: mdi:leaf
         entity: sensor.air_quality_index_wesel
         icon_color: >-
-          {% set state = states('sensor.air_quality_index_wesel') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.air_quality_index_wesel') }}
         tap_action:
           action: more-info
         card_mod:
@@ -1209,16 +1095,9 @@ cards:
           secondary: "{{states('sensor.ozone_o3_wesel')}} AQI"
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_wesel
-          icon_color: |
-            {% set state = states('sensor.ozone_o3_wesel') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.ozone_o3_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -1284,15 +1163,8 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm25_wesel
         icon_color: >-
-          {% set state = states('sensor.particulate_matter_pm25_wesel') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.particulate_matter_pm25_wesel') }}
         tap_action:
           action: more-info
         fill_container: true
@@ -1358,15 +1230,8 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm10_wesel
         icon_color: >-
-          {% set state = states('sensor.particulate_matter_pm10_wesel') | float %}
-          {% if state <= 50 %} green
-          {% elif state <= 100 %} yellow
-          {% elif state <= 150 %} orange
-          {% elif state <= 200 %} red
-          {% elif state <= 300 %} purple
-          {% elif state > 300 %} '#7e0023'
-          {% else %} grey
-          {% endif %}
+          {% from 'aqi.jinja' import aqi_icon_color %}
+          {{ aqi_icon_color('sensor.particulate_matter_pm10_wesel') }}
         tap_action:
           action: more-info
         fill_container: true
@@ -1437,15 +1302,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_wesel
           icon_color: >-
-            {% set state = states('sensor.carbon_monoxide_co_wesel') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.carbon_monoxide_co_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -1515,16 +1373,9 @@ cards:
           secondary: "{{states('sensor.sulphur_dioxide_so2_wesel')}} AQI"
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_wesel
-          icon_color: >
-            {% set state = states('sensor.sulphur_dioxide_so2_wesel') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.sulphur_dioxide_so2_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
@@ -1594,16 +1445,9 @@ cards:
           secondary: "{{states('sensor.nitrogen_dioxide_no2_wesel')}} AQI"
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_wesel
-          icon_color: >
-            {% set state = states('sensor.nitrogen_dioxide_no2_wesel') | float %}
-            {% if state <= 50 %} green
-            {% elif state <= 100 %} yellow
-            {% elif state <= 150 %} orange
-            {% elif state <= 200 %} red
-            {% elif state <= 300 %} purple
-            {% elif state > 300 %} '#7e0023'
-            {% else %} grey
-            {% endif %}
+          icon_color: >-
+            {% from 'aqi.jinja' import aqi_icon_color %}
+            {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
