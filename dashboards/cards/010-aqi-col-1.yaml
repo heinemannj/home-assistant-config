@@ -10,19 +10,7 @@ cards:
     needle: true
     min: 0
     max: 500
-    segments:
-      - from: 0
-        color: green
-      - from: 51
-        color: yellow
-      - from: 101
-        color: orange
-      - from: 151
-        color: red
-      - from: 201
-        color: purple
-      - from: 301
-        color: maroon
+    segments: !include /config/custom_templates/aqi-gauge-segments.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -44,43 +32,24 @@ cards:
         card_mod:
           style: |
             ha-card {
-              box-shadow: none;
-              border: solid 0px ;
+              box-shadow: none !important;
+              border: none 0px !important;
+              border-style: none !important;
             }
       - type: custom:bar-card
+        entities:
+          - entity: sensor.air_quality_index_borken
         name: " "
-        height: 42px
+        severity: !include /config/custom_templates/aqi-bar-severity.yaml
         min: "0"
         max: "500"
         decimal: "4"
-        severity: >-
-          {% from 'aqi.jinja' import aqi_bar_card_severity %}
-          {{ aqi_bar_card_severity() }}
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
         entity_row: true
+        height: 42px
         positions:
           icon: "off"
           indicator: "off"
           value: "off"
-        entities:
-          - entity: sensor.air_quality_index_borken
         color: grey
         card_mod:
           style: |
@@ -88,6 +57,7 @@ cards:
               padding: 12px;
               margin-left: 12px;
               --bar-card-border-radius: 12px;
+              border-style: none !important;
             }
             bar-card-backgroundbar {
               opacity: 0.2;

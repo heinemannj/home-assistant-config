@@ -1,0 +1,7 @@
+service: hassio.addon_stdin
+data:
+  addon: 15d21743_samba_backup
+  input:
+    command: trigger
+    exclude_addons: [core_mariadb]
+    exclude_folders: [ssl]

@@ -20,25 +20,3 @@
 {% else %} grey
 {% endif %}
 {% endmacro %}
-
-{% macro aqi_bar_card_severity(entity_id) %}
-{% set state = states(entity_id) | float %}
-- from: "0"
-  to: "50"
-  color: green
-- from: "50.0001"
-  to: "100"
-  color: yellow
-- from: "100.0001"
-  to: "150"
-  color: orange
-- from: "150.0001"
-  to: "200"
-  color: red
-- from: "200.0001"
-  to: "300"
-  color: purple
-- from: "300.0001"
-  to: "500"
-  color: "#7e0023"
-{% endmacro %}

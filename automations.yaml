@@ -191,3 +191,50 @@
   - service: shell_command.pushupdates_to_github
     data: {}
   mode: single
+- id: '1684047465782'
+  alias: Samba Backup - Full Backup
+  description: Samba Backup - Full Backup
+  trigger:
+  - platform: time
+    at: 01:26:00
+  condition:
+  - condition: time
+    weekday:
+    - sun
+  action:
+  - service: hassio.addon_stdin
+    data:
+      addon: 15d21743_samba_backup
+      input:
+        command: trigger
+        backup_name: Database Snapshot (Samba Backup) {date} v{version}
+        exclude_addons:
+        - 15ef4d2f_esphome
+        - 15ef4d2f_esphome-dev
+        - a0d7b954_vscode
+  mode: single
+- id: '1684047708117'
+  alias: Samba Backup Notifications
+  description: Samba Backup Notifications
+  trigger:
+  - platform: state
+    entity_id: sensor.samba_backup
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.samba_backup
+      state: IDLE
+  action:
+  - service: logbook.log
+    data_template:
+      name: Samba Backup
+      message: '{{ states(''sensor.samba_backup'')|lower }}'
+  mode: single
+- id: '1684048087418'
+  alias: Samba Backup - Restore  Samba Backup sensor on startup
+  description: Restore Samba Backup sensor on startup
+  use_blueprint:
+    path: thomasmauerer/restore_samba_backup_sensor.yaml
+    input:
+      addon: 15d21743_samba_backup
