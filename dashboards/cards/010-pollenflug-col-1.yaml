@@ -1,0 +1,491 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: custom:mushroom-title-card
+    title: Pollenflug Gefahrenindex
+    subtitle: Deutscher Wetterdienst,  Germany
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_ambrosia
+        primary: Ambrosia
+        secondary: "{{states('sensor.dwd_pollen_ambrosia') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_ambrosia') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        entities:
+          - entity: sensor.dwd_pollen_ambrosia
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_beifuss
+        primary: Beifuss
+        secondary: "{{states('sensor.dwd_pollen_beifuss') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_beifuss') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        entity: sensor.dwd_pollen_beifuss
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_birke
+        primary: Birke
+        secondary: "{{states('sensor.dwd_pollen_birke') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_birke') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        entity: sensor.dwd_pollen_birke
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_erle
+        primary: Erle
+        secondary: "{{states('sensor.dwd_pollen_erle') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_erle') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        entity: sensor.dwd_pollen_erle
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_esche
+        primary: Esche
+        secondary: "{{states('sensor.dwd_pollen_esche') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_esche') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        entity: sensor.dwd_pollen_esche
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_graeser
+        primary: Graeser
+        secondary: "{{states('sensor.dwd_pollen_graeser') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_graeser') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        entity: sensor.dwd_pollen_graeser
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_hasel
+        primary: Hasel
+        secondary: "{{states('sensor.dwd_pollen_hasel') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_hasel') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        entity: sensor.dwd_pollen_hasel
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.dwd_pollen_roggen
+        primary: Roggen
+        secondary: "{{states('sensor.dwd_pollen_roggen') }}"
+        icon: mdi:tree-outline
+        icon_color: |-
+          {% set state = states('sensor.dwd_pollen_roggen') | float %}
+
+          {% if state < 2 %} green
+          {% elif state < 5 %} yellow
+          {% elif state >= 5 %} red
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: solid 0px ;
+            }
+      - type: custom:bar-card
+        entity: sensor.dwd_pollen_roggen
+        name: " "
+        height: 42px
+        min: "0"
+        max: "6"
+        decimal: "0"
+        severity:
+          - from: "0"
+            to: "1"
+            color: green
+          - from: "2"
+            to: "4"
+            color: yellow
+          - from: "5"
+            to: "6"
+            color: red
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        card_mod:
+          style: |
+            ha-card {
+              padding: 12px;
+              margin-left: 12px;
+              --bar-card-border-radius: 12px;
+            }
+            bar-card-backgroundbar {
+              opacity: 0.2;
+              filter: brightness(1);
+            }
+card_mod:
+  style: |
+    ha-card {
+      padding-bottom: 12px !important;
+    }

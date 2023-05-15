@@ -15,11 +15,7 @@ cards:
       action: url
       url_path: https://aqicn.org/city/germany/nrw/borken-gemen/
     multiline_secondary: true
-    card_mod:
-      style: |
-        ha-card {
-          margin-bottom: -10px;
-        }
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-template-card
     entity: ""
     primary: Moderat
@@ -36,11 +32,7 @@ cards:
       url_path: https://aqicn.org/city/germany/nrw/borken-gemen/
     fill_container: false
     multiline_secondary: true
-    card_mod:
-      style: |
-        ha-card {
-          margin-bottom: -10px;
-        }
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-template-card
     entity: ""
     primary: Ungesund für empfindliche Personengruppen
@@ -55,11 +47,7 @@ cards:
       action: url
       url_path: https://aqicn.org/city/germany/nrw/borken-gemen/
     multiline_secondary: true
-    card_mod:
-      style: |
-        ha-card {
-          margin-bottom: -10px;
-        }
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-template-card
     entity: ""
     primary: Ungesund
@@ -76,11 +64,7 @@ cards:
       url_path: https://aqicn.org/city/germany/nrw/borken-gemen/
     multiline_secondary: true
     fill_container: true
-    card_mod:
-      style: |
-        ha-card {
-          margin-bottom: -10px;
-        }
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-template-card
     entity: ""
     primary: Sehr ungesund
@@ -93,11 +77,7 @@ cards:
       action: url
       url_path: https://aqicn.org/city/germany/nrw/borken-gemen/
     multiline_secondary: true
-    card_mod:
-      style: |
-        ha-card {
-          margin-bottom: -10px;
-        }
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-template-card
     entity: ""
     primary: Gefährlich
@@ -111,11 +91,7 @@ cards:
       url_path: https://aqicn.org/city/germany/nrw/borken-gemen/
     fill_container: true
     multiline_secondary: true
-    card_mod:
-      style: |
-        ha-card {
-          margin-bottom: -10px;
-        }
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: markdown
     content: >-
       ***

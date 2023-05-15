@@ -10,7 +10,7 @@ cards:
     needle: true
     min: 0
     max: 500
-    segments: !include /config/custom_templates/aqi-gauge-segments.yaml
+    segments: !include /config/custom_templates/010-aqi-gauge-segments.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -19,28 +19,22 @@ cards:
     cards:
       - type: custom:mushroom-template-card
         primary: >-
-          {% from 'aqi.jinja' import aqi_primary %}
+          {% from '010-aqi.jinja' import aqi_primary %}
           {{ aqi_primary('sensor.air_quality_index_borken') }}
         secondary: "{{states('sensor.air_quality_index_borken')}}"
         icon: mdi:leaf
         entity: sensor.air_quality_index_borken
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.air_quality_index_borken') }}
         tap_action:
           action: more-info
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none !important;
-              border: none 0px !important;
-              border-style: none !important;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         entities:
           - entity: sensor.air_quality_index_borken
         name: " "
-        severity: !include /config/custom_templates/aqi-bar-severity.yaml
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         min: "0"
         max: "500"
         decimal: "4"
@@ -51,18 +45,7 @@ cards:
           indicator: "off"
           value: "off"
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-              border-style: none !important;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.ozone_o3_borken
@@ -80,42 +63,19 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_borken
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.ozone_o3_borken') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -124,17 +84,7 @@ cards:
           entities:
             - entity: sensor.ozone_o3_borken
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -147,42 +97,19 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm25_borken
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm25_borken') }}
         tap_action:
           action: more-info
         fill_container: true
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -191,17 +118,7 @@ cards:
         entities:
           - entity: sensor.particulate_matter_pm25_borken
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -214,42 +131,19 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm10_borken
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm10_borken') }}
         tap_action:
           action: more-info
         fill_container: true
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -258,17 +152,7 @@ cards:
         entities:
           - entity: sensor.particulate_matter_pm10_borken
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.carbon_monoxide_co_borken
@@ -286,42 +170,19 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_borken
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.carbon_monoxide_co_borken') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -330,17 +191,7 @@ cards:
           entities:
             - entity: sensor.carbon_monoxide_co_borken
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.sulphur_dioxide_so2_borken
@@ -358,42 +209,19 @@ cards:
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_borken
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.sulphur_dioxide_so2_borken') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -402,17 +230,7 @@ cards:
           entities:
             - entity: sensor.sulphur_dioxide_so2_borken
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.nitrogen_dioxide_no2_borken
@@ -430,42 +248,19 @@ cards:
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_borken
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_borken') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -474,17 +269,7 @@ cards:
           entities:
             - entity: sensor.nitrogen_dioxide_no2_borken
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:mushroom-title-card
     title: ""
     subtitle: Schermbeck, Germany
@@ -496,47 +281,24 @@ cards:
     cards:
       - type: custom:mushroom-template-card
         primary: >-
-          {% from 'aqi.jinja' import aqi_primary %}
+          {% from '010-aqi.jinja' import aqi_primary %}
           {{ aqi_primary('sensor.air_quality_index_schermbeck') }}
         secondary: "{{states('sensor.air_quality_index_schermbeck')}}"
         icon: mdi:leaf
         entity: sensor.air_quality_index_schermbeck
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.air_quality_index_schermbeck') }}
         tap_action:
           action: more-info
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -545,17 +307,7 @@ cards:
         entities:
           - entity: sensor.air_quality_index_schermbeck
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.ozone_o3_schermbeck
@@ -573,42 +325,19 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_schermbeck
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.ozone_o3_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -617,17 +346,7 @@ cards:
           entities:
             - entity: sensor.ozone_o3_schermbeck
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -640,42 +359,19 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm25_schermbeck
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm25_schermbeck') }}
         tap_action:
           action: more-info
         fill_container: true
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -684,17 +380,7 @@ cards:
         entities:
           - entity: sensor.particulate_matter_pm25_schermbeck
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -707,42 +393,19 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm10_schermbeck
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm10_schermbeck') }}
         tap_action:
           action: more-info
         fill_container: true
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -751,17 +414,7 @@ cards:
         entities:
           - entity: sensor.particulate_matter_pm10_schermbeck
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.carbon_monoxide_co_schermbeck
@@ -779,42 +432,19 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_schermbeck
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.carbon_monoxide_co_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -823,17 +453,7 @@ cards:
           entities:
             - entity: sensor.carbon_monoxide_co_schermbeck
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.sulphur_dioxide_so2_schermbeck
@@ -851,42 +471,19 @@ cards:
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_schermbeck
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.sulphur_dioxide_so2_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -895,17 +492,7 @@ cards:
           entities:
             - entity: sensor.sulphur_dioxide_so2_schermbeck
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.nitrogen_dioxide_no2_schermbeck
@@ -923,42 +510,19 @@ cards:
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_schermbeck
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_schermbeck') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -967,17 +531,7 @@ cards:
           entities:
             - entity: sensor.nitrogen_dioxide_no2_schermbeck
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:mushroom-title-card
     title: ""
     subtitle: Wesel Obrighoven, Germany
@@ -989,47 +543,24 @@ cards:
     cards:
       - type: custom:mushroom-template-card
         primary: >-
-          {% from 'aqi.jinja' import aqi_primary %}
+          {% from '010-aqi.jinja' import aqi_primary %}
           {{ aqi_primary('sensor.air_quality_index_wesel') }}
         secondary: "{{states('sensor.air_quality_index_wesel')}}"
         icon: mdi:leaf
         entity: sensor.air_quality_index_wesel
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.air_quality_index_wesel') }}
         tap_action:
           action: more-info
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -1038,17 +569,7 @@ cards:
         entities:
           - entity: sensor.air_quality_index_wesel
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.ozone_o3_wesel
@@ -1066,42 +587,19 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_wesel
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.ozone_o3_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -1110,17 +608,7 @@ cards:
           entities:
             - entity: sensor.ozone_o3_wesel
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -1133,42 +621,19 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm25_wesel
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm25_wesel') }}
         tap_action:
           action: more-info
         fill_container: true
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -1177,17 +642,7 @@ cards:
         entities:
           - entity: sensor.particulate_matter_pm25_wesel
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
     layout:
@@ -1200,42 +655,19 @@ cards:
         icon: mdi:skull-outline
         entity: sensor.particulate_matter_pm10_wesel
         icon_color: >-
-          {% from 'aqi.jinja' import aqi_icon_color %}
+          {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm10_wesel') }}
         tap_action:
           action: more-info
         fill_container: true
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "500"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "50"
-            color: green
-          - from: "50.0001"
-            to: "100"
-            color: yellow
-          - from: "100.0001"
-            to: "150"
-            color: orange
-          - from: "150.0001"
-            to: "200"
-            color: red
-          - from: "200.0001"
-            to: "300"
-            color: purple
-          - from: "300.0001"
-            to: "500"
-            color: "#7e0023"
+        severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
         positions:
           icon: "off"
@@ -1244,17 +676,7 @@ cards:
         entities:
           - entity: sensor.particulate_matter_pm10_wesel
         color: grey
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.carbon_monoxide_co_wesel
@@ -1272,42 +694,19 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_wesel
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.carbon_monoxide_co_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -1316,17 +715,7 @@ cards:
           entities:
             - entity: sensor.carbon_monoxide_co_wesel
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.sulphur_dioxide_so2_wesel
@@ -1344,42 +733,19 @@ cards:
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_wesel
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.sulphur_dioxide_so2_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -1388,17 +754,7 @@ cards:
           entities:
             - entity: sensor.sulphur_dioxide_so2_wesel
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
     conditions:
       - entity: sensor.nitrogen_dioxide_no2_wesel
@@ -1416,42 +772,19 @@ cards:
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_wesel
           icon_color: >-
-            {% from 'aqi.jinja' import aqi_icon_color %}
+            {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_wesel') }}
           tap_action:
             action: more-info
           fill_container: true
-          card_mod:
-            style: |
-              ha-card {
-                box-shadow: none;
-                border: solid 0px ;
-              }
+          card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
         - type: custom:bar-card
           name: " "
           height: 42px
           min: "0"
           max: "500"
           decimal: "4"
-          severity:
-            - from: "0"
-              to: "50"
-              color: green
-            - from: "50.0001"
-              to: "100"
-              color: yellow
-            - from: "100.0001"
-              to: "150"
-              color: orange
-            - from: "150.0001"
-              to: "200"
-              color: red
-            - from: "200.0001"
-              to: "300"
-              color: purple
-            - from: "300.0001"
-              to: "500"
-              color: "#7e0023"
+          severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
           positions:
             icon: "off"
@@ -1460,17 +793,7 @@ cards:
           entities:
             - entity: sensor.nitrogen_dioxide_no2_wesel
           color: grey
-          card_mod:
-            style: |
-              ha-card {
-                padding: 12px;
-                margin-left: 12px;
-                --bar-card-border-radius: 12px;
-              }
-              bar-card-backgroundbar {
-                opacity: 0.2;
-                filter: brightness(1);
-              }
+          card_mod: !include /config/custom_templates/bar-card-mod.yaml
 card_mod:
   style: |
     ha-card {

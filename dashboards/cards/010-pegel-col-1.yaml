@@ -1,0 +1,299 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: custom:mushroom-title-card
+    title: Wasserstände
+    subtitle: Lippe - Schermbeck, Germany
+  - type: gauge
+    entity: sensor.schermbeck_1_lippe_level
+    unit: ""
+    name: ""
+    needle: true
+    min: 0
+    max: 928
+    segments:
+      - from: 0
+        color: grey
+      - from: 160
+        color: lightgreen
+      - from: 210
+        color: green
+      - from: 513
+        color: yellow
+      - from: 626
+        color: orange
+      - from: 728
+        color: red
+      - from: 828
+        color: purple
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Wasserstand
+        secondary: "{{states('sensor.schermbeck_1_lippe_level')}} cm"
+        icon: mdi:waves
+        entity: sensor.schermbeck_1_lippe_level
+        icon_color: >-
+          {% set state = states('sensor.schermbeck_1_lippe_level') | float %}
+          {% if state < 160.0 %} grey
+          {% elif state < 513.0 %} green
+          {% elif state < 626.0 %} yellow
+          {% elif state < 728.0 %} orange
+          {% elif state < 828.0 %} red
+          {% elif state >= 828.0 %} purple
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        fill_container: true
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
+      - type: custom:bar-card
+        name: " "
+        height: 42px
+        min: "0"
+        max: "928"
+        decimal: "4"
+        severity:
+          - from: "0"
+            to: "160.0"
+            color: grey
+          - from: "160.0001"
+            to: "210.0"
+            color: lightgreen
+          - from: "210.0001"
+            to: "513.0"
+            color: green
+          - from: "513.0001"
+            to: "626.0"
+            color: yellow
+          - from: "626.0001"
+            to: "728.0"
+            color: orange
+          - from: "728.0001"
+            to: "828.0"
+            color: red
+          - from: "828.0001"
+            to: "928.0"
+            color: purple
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        entities:
+          - entity: sensor.schermbeck_1_lippe_level
+        target: "210.0"
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
+  - type: custom:mushroom-template-card
+    primary: "{{state_attr('sensor.schermbeck_1_lippe_stage', 'info')}}"
+    secondary: |-
+      Stage: {{states('sensor.schermbeck_1_lippe_stage')}}
+      {{state_attr('sensor.schermbeck_1_lippe_stage', 'hint')}}
+    icon: mdi:waves-arrow-up
+    entity: sensor.schermbeck_1_lippe_stage
+    icon_color: >-
+      {% from '010-pegel.jinja' import pegel_icon_color %}
+      {{ pegel_icon_color('sensor.schermbeck_1_lippe_stage') }}
+    tap_action:
+      action: more-info
+    fill_container: true
+    multiline_secondary: true
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
+  - type: conditional
+    conditions:
+      - entity: sensor.schermbeck_1_lippe_flow
+        state_not: unavailable
+    card:
+      type: custom:mushroom-entity-card
+      entity: sensor.schermbeck_1_lippe_flow
+      tap_action:
+        action: more-info
+      fill_container: true
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-title-card
+    title: ""
+    subtitle: Issel - Dämmerwald, Schermbeck, Germany
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Wasserstand
+        secondary: "{{states('sensor.daemmerwald_issel_ijssel_level')}} cm"
+        icon: mdi:waves
+        entity: sensor.daemmerwald_issel_ijssel_level
+        icon_color: >-
+          {% set state = states('sensor.daemmerwald_issel_ijssel_level') | float %}
+          {% if state < 10.0 %} grey
+          {% elif state < 165.0 %} green
+          {% elif state < 195.0 %} yellow
+          {% elif state < 205.0 %} orange
+          {% elif state < 220.0 %} red
+          {% elif state >= 240.0 %} purple
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        fill_container: true
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
+      - type: custom:bar-card
+        name: " "
+        height: 42px
+        min: "0"
+        max: "240"
+        decimal: "4"
+        severity:
+          - from: "0"
+            to: "10.0"
+            color: grey
+          - from: "10.0001"
+            to: "25.0"
+            color: lightgreen
+          - from: "25.0001"
+            to: "165.0"
+            color: green
+          - from: "165.0001"
+            to: "195.0"
+            color: yellow
+          - from: "195.0001"
+            to: "205.0"
+            color: orange
+          - from: "205.0001"
+            to: "220.0"
+            color: red
+          - from: "220.0001"
+            to: "240.0"
+            color: purple
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        entities:
+          - entity: sensor.daemmerwald_issel_ijssel_level
+        target: "25.0"
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
+  - type: custom:mushroom-template-card
+    primary: "{{state_attr('sensor.daemmerwald_issel_ijssel_stage', 'info')}}"
+    secondary: |-
+      Stage: {{states('sensor.daemmerwald_issel_ijssel_stage')}}
+      {{state_attr('sensor.daemmerwald_issel_ijssel_stage', 'hint')}}
+    icon: mdi:waves-arrow-up
+    entity: sensor.daemmerwald_issel_ijssel_stage
+    icon_color: >-
+      {% from '010-pegel.jinja' import pegel_icon_color %}
+      {{ pegel_icon_color('sensor.daemmerwald_issel_ijssel_stage') }}
+    tap_action:
+      action: more-info
+    fill_container: true
+    multiline_secondary: true
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
+  - type: conditional
+    conditions:
+      - entity: sensor.daemmerwald_issel_ijssel_flow
+        state_not: unavailable
+    card:
+      type: custom:mushroom-entity-card
+      entity: sensor.daemmerwald_issel_ijssel_flow
+      tap_action:
+        action: more-info
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-title-card
+    title: ""
+    subtitle: Rhein - Wesel, Germany
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 45% 55%
+      margin: "-4px -4px -20px -4px;"
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Wasserstand
+        secondary: "{{states('sensor.wesel_rhein_level')}} cm"
+        icon: mdi:waves
+        entity: sensor.wesel_rhein_level
+        icon_color: |-
+          {% set state = states('sensor.wesel_rhein_level') | float %}
+          {% if state < 280.0 %} grey
+          {% elif state < 870.0 %} green
+          {% elif state < 1060.0 %} yellow
+          {% elif state < 1115.0 %} orange
+          {% elif state < 1170.0 %} red
+          {% elif state >= 1170.0 %} purple
+          {% else %} grey
+          {% endif %}
+        tap_action:
+          action: more-info
+        fill_container: true
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
+      - type: custom:bar-card
+        name: " "
+        height: 42px
+        min: "0"
+        max: "1231.0"
+        decimal: "4"
+        severity:
+          - from: "0"
+            to: "280.0"
+            color: grey
+          - from: "280.0001"
+            to: "348.0"
+            color: lightgreen
+          - from: "348.0001"
+            to: "870.0"
+            color: green
+          - from: "870.0001"
+            to: "1060.0"
+            color: yellow
+          - from: "1060.0001"
+            to: "1115.0"
+            color: orange
+          - from: "1115.0001"
+            to: "1170.0"
+            color: red
+          - from: "1170.0001"
+            to: "1231.0"
+            color: purple
+        entity_row: true
+        positions:
+          icon: "off"
+          indicator: "off"
+          value: "off"
+        entities:
+          - entity: sensor.wesel_rhein_level
+        target: "348"
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
+  - type: custom:mushroom-template-card
+    primary: "{{state_attr('sensor.wesel_rhein_stage', 'info')}}"
+    secondary: |-
+      Stage: {{states('sensor.wesel_rhein_stage')}}
+      {{state_attr('sensor.wesel_rhein_stage', 'hint')}}
+    icon: mdi:waves-arrow-up
+    entity: sensor.wesel_rhein_stage
+    icon_color: |-
+      {% from '010-pegel.jinja' import pegel_icon_color %}
+      {{ pegel_icon_color('sensor.wesel_rhein_stage') }}
+    tap_action:
+      action: more-info
+    fill_container: true
+    multiline_secondary: true
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
+  - type: conditional
+    conditions:
+      - entity: sensor.wesel_rhein_flow
+        state_not: unavailable
+    card:
+      type: custom:mushroom-entity-card
+      entity: sensor.wesel_rhein_flow
+      tap_action:
+        action: more-info
+card_mod:
+  style: |
+    ha-card {
+      padding-bottom: 12px !important;
+    }

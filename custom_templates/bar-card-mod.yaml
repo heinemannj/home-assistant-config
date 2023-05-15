@@ -1,0 +1,11 @@
+style: |
+  ha-card {
+    padding: 12px;
+    margin-left: 12px;
+    --bar-card-border-radius: 12px;
+    border-style: none !important;
+  }
+  bar-card-backgroundbar {
+    opacity: 0.2;
+    filter: brightness(1);
+  }
