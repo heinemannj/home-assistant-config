@@ -7,6 +7,13 @@ badges: []
 cards:
   - type: vertical-stack
     cards:
+      - !include /config/dashboards/cards/100-phone-home-row-1.yaml
+      - !include /config/dashboards/cards/100-phone-home-row-2.yaml
+      - !include /config/dashboards/cards/100-phone-home-row-3.yaml
+      - !include /config/dashboards/cards/100-phone-home-row-4.yaml
+      - !include /config/dashboards/cards/100-phone-home-row-5.yaml
+      - !include /config/dashboards/cards/100-phone-home-row-6.yaml
+
       - type: custom:mushroom-chips-card
         chips:
           - type: menu

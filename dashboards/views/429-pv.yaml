@@ -1,7 +1,8 @@
 title: 429-PV
+theme: Backend-selected
 path: 429-pv
-type: custom:grid-layout
 icon: mdi:solar-power-variant
+type: custom:grid-layout
 badges: []
 cards:
   - type: custom:layout-card

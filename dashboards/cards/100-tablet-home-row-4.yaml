@@ -1,0 +1,217 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+layout:
+  grid-template-columns: 20% 15% 25% 20% 20%
+  margin: 0px;
+  padding: 0px;
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-climate-card
+        name: Wohnen
+        layout: horizontal
+        entity: climate.hm_tc_it_wm_w_eu_meq1330232
+        hvac_modes:
+          - auto
+        show_temperature_control: true
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            icon: mdi:shield
+            content_info: none
+            tap_action:
+              action: toggle
+        alignment: center
+        card_mod:
+          style: |
+            ha-card {
+              margin: -2px 12px 12px;
+              --chip-background: rgba(var(--rgb-disabled), 0.15);
+              --chip-border-width: 0;
+              --chip-border-radius: 12px;
+              --chip-height: 40px;
+              --chip-padding: 12px;
+              --chip-spacing: 10px;
+            }
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-climate-card
+        name: Wohnen
+        layout: horizontal
+        entity: climate.hm_tc_it_wm_w_eu_meq1330232
+        hvac_modes:
+          - auto
+        show_temperature_control: true
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            icon: mdi:shield
+            content_info: none
+            tap_action:
+              action: toggle
+        alignment: center
+        card_mod:
+          style: |
+            ha-card {
+              margin: -2px 12px 12px;
+              --chip-background: rgba(var(--rgb-disabled), 0.15);
+              --chip-border-width: 0;
+              --chip-border-radius: 12px;
+              --chip-height: 40px;
+              --chip-padding: 12px;
+              --chip-spacing: 10px;
+            }
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-climate-card
+        name: Wohnen
+        layout: horizontal
+        entity: climate.hm_tc_it_wm_w_eu_meq1330232
+        hvac_modes:
+          - auto
+        show_temperature_control: true
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            icon: mdi:shield
+            content_info: none
+            tap_action:
+              action: toggle
+        alignment: center
+        card_mod:
+          style: |
+            ha-card {
+              margin: -2px 12px 12px;
+              --chip-background: rgba(var(--rgb-disabled), 0.15);
+              --chip-border-width: 0;
+              --chip-border-radius: 12px;
+              --chip-height: 40px;
+              --chip-padding: 12px;
+              --chip-spacing: 10px;
+            }
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-climate-card
+        name: Wohnen
+        layout: horizontal
+        entity: climate.hm_tc_it_wm_w_eu_meq1330232
+        hvac_modes:
+          - auto
+        show_temperature_control: true
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            icon: mdi:shield
+            content_info: none
+            tap_action:
+              action: toggle
+        alignment: center
+        card_mod:
+          style: |
+            ha-card {
+              margin: -2px 12px 12px;
+              --chip-background: rgba(var(--rgb-disabled), 0.15);
+              --chip-border-width: 0;
+              --chip-border-radius: 12px;
+              --chip-height: 40px;
+              --chip-padding: 12px;
+              --chip-spacing: 10px;
+            }
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-climate-card
+        name: Wohnen
+        layout: horizontal
+        entity: climate.hm_tc_it_wm_w_eu_meq1330232
+        hvac_modes:
+          - auto
+        show_temperature_control: true
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            content_info: none
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: light.101_buro_licht_schreibtisch
+            icon_color: indigo
+            icon: mdi:shield
+            content_info: none
+            tap_action:
+              action: toggle
+        alignment: center
+        card_mod:
+          style: |
+            ha-card {
+              margin: -2px 12px 12px;
+              --chip-background: rgba(var(--rgb-disabled), 0.15);
+              --chip-border-width: 0;
+              --chip-border-radius: 12px;
+              --chip-height: 40px;
+              --chip-padding: 12px;
+              --chip-spacing: 10px;
+            }

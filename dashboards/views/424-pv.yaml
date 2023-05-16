@@ -2,7 +2,7 @@ title: 424-PV
 theme: Backend-selected
 path: 424-pv
 icon: mdi:solar-power-variant
-type: sidebar
+type: custom:grid-layout
 badges: []
 cards:
   - !include /config/dashboards/cards/424-pv-row-1.yaml

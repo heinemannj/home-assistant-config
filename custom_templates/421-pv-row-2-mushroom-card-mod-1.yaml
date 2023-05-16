@@ -1,0 +1,12 @@
+style: |
+  ha-card {
+    height: 1.5em !important;
+    margin-top: 8px;
+    padding: 0px 0px 0px 0px !important;
+    --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+    --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+    border-style: none !important;
+  }
+  mushroom-shape-icon {
+    --shape-color: none !important;
+  }

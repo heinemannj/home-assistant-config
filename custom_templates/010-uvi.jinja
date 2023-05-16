@@ -1,0 +1,20 @@
+{% macro uvi_primary(entity_id) %}
+{% set uvi = states(entity_id) | float %}
+{% if uvi <= 3 %} UV Index - Low
+{% elif uvi <= 6 %} UV Index - Moderate
+{% elif uvi <= 8 %} UV Index - High
+{% elif uvi <= 11 %} UV Index - Very High
+{% elif uvi > 11 %} UV Index - Extreme
+{% endif %}
+{% endmacro %}
+
+{% macro uvi_icon_color(entity_id) %}
+{% set state = states(entity_id) | float %}
+{% if state <= 3 %} green
+{% elif state <= 6 %} yellow
+{% elif state <= 8 %} orange
+{% elif state <= 11 %} red
+{% elif state > 11 %} purple
+{% else %} grey
+{% endif %}
+{% endmacro %}

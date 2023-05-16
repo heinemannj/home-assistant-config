@@ -31,25 +31,7 @@ cards:
         name: Low-carbon
         state_type: power
     inverted_entities: grid,battery
-    card_mod:
-      style:
-        $: |
-          .card-header {
-            line-height: 0px !important;
-            padding-top: 18px !important;
-            padding-bottom: 20px !important;
-            color: var(--secondary-text-color) !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-            overflow: hidden !important;
-            white-space: nowrap !important;
-            text-overflow: ellipsis !important;
-          }
-        .: |
-          ha-card {
-            width: 360px !important;
-            height: 380px;
-          }
+    card_mod: !include /config/custom_templates/power-flow-card-mod.yaml
   - type: vertical-stack
     cards:
       - type: horizontal-stack
@@ -69,24 +51,7 @@ cards:
                 color: yellow
               - from: 2100
                 color: green
-            card_mod:
-              style:
-                .: |
-                  ha-card {
-                    width: 148px !important;
-                    height: 100px !important;
-                    }
-                  .name {
-                    font-size: 12px !important;
-                    margin-top: 2px !important;
-                    }
-                  ha-gauge {
-                    width: 120% !important;
-                    }
-                ha-gauge$: |
-                  svg text {
-                    transform: scale(0.8) translateY(0px);
-                  }
+            card_mod: !include /config/custom_templates/gauge-card-mod.yaml
           - type: gauge
             entity: sensor.battery_state_of_capacity
             name: Battery Capacity
@@ -102,100 +67,42 @@ cards:
                 color: yellow
               - from: 72
                 color: green
-            card_mod:
-              style:
-                .: |
-                  ha-card {
-                    width: 148px !important;
-                    height: 100px !important;
-                    }
-                  .name {
-                    font-size: 12px !important;
-                    margin-top: 2px !important;
-                  }
-                  ha-gauge {
-                    width: 120% !important;
-                  }
-                ha-gauge$: |
-                  svg text {
-                    transform: scale(0.7) translateY(0px);
-                  }
+            card_mod: !include /config/custom_templates/gauge-card-mod.yaml
           - type: custom:vertical-stack-in-card
             cards:
               - type: custom:mushroom-template-card
                 primary: >-
-                  {{
-                  states('sensor.battery_state_of_capacity_remaining_charge_time')
-                  }}
+                  {{ states('sensor.battery_state_of_capacity_remaining_charge_time') }}
                 icon: mdi:battery-arrow-up
                 entity: sensor.battery_state_of_capacity_remaining_charge_time
                 secondary: ""
                 tap_action:
                   action: more-info
                 icon_color: "#f06292"
-                card_mod:
-                  style: |
-                    ha-card {
-                      height: 1.5em !important;
-                      margin-top: 8px;
-                      padding: 0px 0px 0px 0px !important;
-                      --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-                      --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-                      border-style: none !important;
-                    }
-                    mushroom-shape-icon {
-                      --shape-color: none !important;
-                    }
+                card_mod: !include /config/custom_templates/421-pv-row-2-mushroom-card-mod-1.yaml
               - type: custom:mushroom-template-card
                 primary: >-
-                  {{ states('number.battery_maximum_charging_power') }}
-                  W
+                  {{ states('number.battery_maximum_charging_power') }} W
                 icon: mdi:battery-arrow-up
                 entity: number.battery_maximum_charging_power
                 secondary: ""
                 tap_action:
                   action: more-info
                 icon_color: "#f06292"
-                card_mod:
-                  style: |
-                    ha-card {
-                      height: 1.5em !important;
-                      padding: 0px 0px 0px 0px !important;
-                      --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-                      --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-                      border-style: none !important;
-                    }
-                    mushroom-shape-icon {
-                      --shape-color: none !important;
-                    }
+                card_mod: !include /config/custom_templates/421-pv-row-2-mushroom-card-mod.yaml
               - type: custom:mushroom-template-card
                 primary: >-
-                  {{
-                  states('sensor.battery_state_of_capacity_energy')|round(2)
-                  }} kWh
+                  {{ states('sensor.battery_state_of_capacity_energy')|round(2) }} kWh
                 icon: mdi:battery-high
                 entity: sensor.battery_state_of_capacity_energy
                 secondary: ""
                 tap_action:
                   action: more-info
                 icon_color: "#f06292"
-                card_mod:
-                  style: |
-                    ha-card {
-                      height: 1.5em !important;
-                      padding: 0px 0px 0px 0px !important;
-                      --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-                      --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-                      border-style: none !important;
-                    }
-                    mushroom-shape-icon {
-                      --shape-color: none !important;
-                    }
+                card_mod: !include /config/custom_templates/421-pv-row-2-mushroom-card-mod.yaml
               - type: custom:mushroom-template-card
                 primary: >-
-                  {{
-                  states('sensor.battery_state_of_capacity_remaining_discharge_time')
-                  }}
+                  {{ states('sensor.battery_state_of_capacity_remaining_discharge_time') }}
                 icon: mdi:battery-arrow-down
                 entity: >-
                   sensor.battery_state_of_capacity_remaining_discharge_time
@@ -203,24 +110,8 @@ cards:
                 tap_action:
                   action: more-info
                 icon_color: "#4db6ac"
-                card_mod:
-                  style: |
-                    ha-card {
-                      height: 1.5em !important;
-                      padding: 0px 0px 0px 0px !important;
-                      --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-                      --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-                      border-style: none !important;
-                    }
-                    mushroom-shape-icon {
-                      --shape-color: none !important;
-                    }
-            card_mod:
-              style: |
-                ha-card {
-                  width: 148px !important;
-                  height: 100px !important;
-                }
+                card_mod: !include /config/custom_templates/421-pv-row-2-mushroom-card-mod.yaml
+            card_mod: !include /config/custom_templates/421-pv-row-2-vertical-stack-in-card-mod.yaml
           - type: gauge
             entity: sensor.house_self_sufficiency_daily
             name: Self Sufficiency
@@ -236,24 +127,7 @@ cards:
                 color: yellow
               - from: 85
                 color: green
-            card_mod:
-              style:
-                .: |
-                  ha-card {
-                    width: 148px !important;
-                    height: 100px !important;
-                    }
-                  .name {
-                    font-size: 12px !important;
-                    margin-top: 2px !important;
-                  }
-                  ha-gauge {
-                    width: 120% !important;
-                  }
-                ha-gauge$: |
-                  svg text {
-                    transform: scale(0.7) translateY(0px);
-                  }
+            card_mod: !include /config/custom_templates/gauge-card-mod.yaml
           - type: gauge
             entity: sensor.inverter_internal_temperature
             name: Inverter Temp.
@@ -269,50 +143,19 @@ cards:
                 color: orange
               - from: 65
                 color: red
-            card_mod:
-              style:
-                .: |
-                  ha-card {
-                    width: 148px !important;
-                    height: 100px !important;
-                    }
-                  .name {
-                    font-size: 12px !important;
-                    margin-top: 2px !important;
-                    }
-                  ha-gauge {
-                    width: 120% !important;
-                    }
-                ha-gauge$: |
-                  svg text {
-                    transform: scale(0.8) translateY(0px);
-                  }
+            card_mod: !include /config/custom_templates/gauge-card-mod.yaml
           - type: custom:vertical-stack-in-card
             cards:
               - type: custom:mushroom-template-card
                 primary: >-
-                  {{
-                  states('sensor.house_consumption_energy_daily_control')|round(2)
-                  }} kWh
+                  {{ states('sensor.house_consumption_energy_daily_control')|round(2) }} kWh
                 icon: mdi:home-lightning-bolt
                 entity: sensor.house_consumption_energy_daily_control
                 secondary: ""
                 tap_action:
                   action: more-info
                 icon_color: "#66CDAA"
-                card_mod:
-                  style: |
-                    ha-card {
-                      height: 1.5em !important;
-                      margin-top: 8px;
-                      padding: 0px 0px 0px 0px !important;
-                      --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-                      --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-                      border-style: none !important;
-                    }
-                    mushroom-shape-icon {
-                      --shape-color: none !important;
-                    }
+                card_mod: !include /config/custom_templates/421-pv-row-2-mushroom-card-mod-1.yaml
               - type: custom:mushroom-template-card
                 primary: "{{ states('fan.xiaomi_smart_fan') }}"
                 icon: mdi:fan
@@ -321,24 +164,8 @@ cards:
                 tap_action:
                   action: more-info
                 icon_color: "#ff9800"
-                card_mod:
-                  style: |
-                    ha-card {
-                      height: 1.5em !important;
-                      padding: 0px 0px 0px 0px !important;
-                      --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-                      --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-                      border-style: none !important;
-                    }
-                    mushroom-shape-icon {
-                      --shape-color: none !important;
-                    }
-            card_mod:
-              style: |
-                ha-card {
-                  width: 148px !important;
-                  height: 100px !important;
-                  }
+                card_mod: !include /config/custom_templates/421-pv-row-2-mushroom-card-mod.yaml
+            card_mod: !include /config/custom_templates/421-pv-row-2-vertical-stack-in-card-mod.yaml
         card_mod:
           style: |
             ha-card {
@@ -497,8 +324,7 @@ cards:
             color: grey
             unit: " min."
             transform: >-
-              return ((Date.now()) - (new Date(x).getTime())) / 60 / 60
-              / 24
+              return ((Date.now()) - (new Date(x).getTime())) / 60 / 60 / 24
             show:
               legend_value: true
               in_header: true
@@ -567,25 +393,7 @@ cards:
         display_zero: true
         name: Low-carbon
         state_type: kWh
-    card_mod:
-      style:
-        $: |
-          .card-header {
-            line-height: 0px !important;
-            padding-top: 18px !important;
-            padding-bottom: 20px !important;
-            color: var(--secondary-text-color) !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-            overflow: hidden !important;
-            white-space: nowrap !important;
-            text-overflow: ellipsis !important;
-          }
-        .: |
-          ha-card {
-            width: 360px;
-            height: 380px;
-          }
+    card_mod: !include /config/custom_templates/power-flow-card-mod.yaml
 layout:
   grid-template-columns: 365px 920px 365px
   margin: 0px;

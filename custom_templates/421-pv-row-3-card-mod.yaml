@@ -1,0 +1,11 @@
+style: |
+  ha-card {
+    width: 265px !important;
+    height: 300px !important;
+    }
+  #state__value > #state {
+      font-size: 0.8em !important;
+  }
+  #state__value > #uom {
+      font-size: 0.6em !important;
+  }

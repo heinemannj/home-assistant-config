@@ -2,15 +2,18 @@ type: vertical-stack
 cards:
   - type: custom:power-flow-card-plus
     title: Power Flows (Now)
-    min_flow_rate: 3
-    max_flow_rate: 10
-    watt_threshold: 7800
+    min_flow_rate: 0.75
+    max_flow_rate: 6
+    watt_threshold: 9999
     kw_decimals: 3
     w_decimals: 0
     clickable_entities: true
+    display_zero_lines: true
+    use_new_flow_rate_model: true
     entities:
       home:
         entity: sensor.house_consumption_power
+        override_state: true
       solar:
         entity: sensor.inverter_input_power
       battery:
@@ -27,25 +30,7 @@ cards:
         name: Low-carbon
         state_type: power
     inverted_entities: grid,battery
-    card_mod:
-      style:
-        $: |
-          .card-header {
-            line-height: 0px !important;
-            padding-top: 18px !important;
-            padding-bottom: 20px !important;
-            color: var(--secondary-text-color) !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-            overflow: hidden !important;
-            white-space: nowrap !important;
-            text-overflow: ellipsis !important;
-          }
-        .: |
-          ha-card {
-            width: 360px;
-            height: 380px;
-          }
+    card_mod: !include /config/custom_templates/power-flow-card-mod.yaml
   - type: custom:energy-flow-card-plus
     title: Energy Flows (Today)
     min_flow_rate: 3
@@ -78,22 +63,4 @@ cards:
         display_zero: true
         name: Low-carbon
         state_type: kWh
-    card_mod:
-      style:
-        $: |
-          .card-header {
-            line-height: 0px !important;
-            padding-top: 18px !important;
-            padding-bottom: 20px !important;
-            color: var(--secondary-text-color) !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-            overflow: hidden !important;
-            white-space: nowrap !important;
-            text-overflow: ellipsis !important;
-          }
-        .: |
-          ha-card {
-            width: 360px;
-            height: 380px;
-          }
+    card_mod: !include /config/custom_templates/power-flow-card-mod.yaml

@@ -2,28 +2,12 @@ type: custom:layout-card
 layout_type: custom:grid-layout
 cards:
   - type: custom:apexcharts-card
-    chart_type: radialBar
+    config_templates: pv_radial_chart
     header:
-      show: true
-      show_states: true
-      colorize_states: true
       title: Solar Yield - Self Use
-    apex_config:
-      chart:
-        height: 245px
-      legend:
-        show: false
-      dataLabels:
-        enabled: true
-        formatter: |
-          EVAL:function(value) {
-            return value.toFixed(1) + "%";
-          }
     series:
       - entity: sensor.inverter_yield_self_use_total
         name: Total
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield =
           hass.states['sensor.inverter_total_yield'].state; let
@@ -33,8 +17,6 @@ cards:
           return(inv_yield_self_use / inv_yield * 100);
       - entity: sensor.inverter_yield_self_use_yearly
         name: Year
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield =
           hass.states['sensor.inverter_yield_yearly'].state; let
@@ -43,8 +25,6 @@ cards:
           return(inv_yield_self_use / inv_yield * 100);
       - entity: sensor.inverter_yield_self_use_monthly
         name: Month
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield =
           hass.states['sensor.inverter_yield_monthly'].state; let
@@ -53,8 +33,6 @@ cards:
           return(inv_yield_self_use / inv_yield * 100);
       - entity: sensor.inverter_yield_self_use_weekly
         name: Week
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield =
           hass.states['sensor.inverter_yield_weekly'].state; let
@@ -63,49 +41,20 @@ cards:
           return(inv_yield_self_use / inv_yield * 100);
       - entity: sensor.inverter_yield_self_use_daily
         name: Today
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield =
           hass.states['sensor.inverter_daily_yield'].state; let
           inv_yield_self_use =
           hass.states['sensor.inverter_yield_self_use_daily'].state;
           return(inv_yield_self_use / inv_yield * 100);
-    card_mod:
-      style: |
-        ha-card {
-          width: 265px !important;
-          height: 300px !important;
-          }
-        #state__value > #state {
-            font-size: 0.8em !important;
-        }
-        #state__value > #uom {
-            font-size: 0.6em !important;
-        }
+    card_mod: !include /config/custom_templates/421-pv-row-3-card-mod.yaml
   - type: custom:apexcharts-card
-    chart_type: radialBar
+    config_templates: pv_radial_chart
     header:
-      show: true
-      show_states: true
-      colorize_states: true
       title: Solar Yield - Self Sufficiency
-    apex_config:
-      chart:
-        height: 245px
-      legend:
-        show: false
-      dataLabels:
-        enabled: true
-        formatter: |
-          EVAL:function(value) {
-            return value.toFixed(1) + "%";
-          }
     series:
       - entity: sensor.inverter_yield_self_use_total
         name: Total
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield_self_use =
           hass.states['sensor.inverter_yield_self_use_total'].state; let
@@ -114,8 +63,6 @@ cards:
           return(inv_yield_self_use / house_consumption * 100);
       - entity: sensor.inverter_yield_self_use_yearly
         name: Year
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield_self_use =
           hass.states['sensor.inverter_yield_self_use_yearly'].state;
@@ -124,8 +71,6 @@ cards:
           return(inv_yield_self_use / house_consumption * 100);
       - entity: sensor.inverter_yield_self_use_monthly
         name: Month
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield_self_use =
           hass.states['sensor.inverter_yield_self_use_monthly'].state;
@@ -134,8 +79,6 @@ cards:
           return(inv_yield_self_use / house_consumption * 100);
       - entity: sensor.inverter_yield_self_use_weekly
         name: Week
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield_self_use =
           hass.states['sensor.inverter_yield_self_use_weekly'].state;
@@ -144,167 +87,77 @@ cards:
           return(inv_yield_self_use / house_consumption * 100);
       - entity: sensor.inverter_yield_self_use_daily
         name: Today
-        unit: "%"
-        float_precision: 1
         transform: >
           let inv_yield_self_use =
           hass.states['sensor.inverter_yield_self_use_daily'].state; let
           house_consumption =
           hass.states['sensor.house_consumption_energy_daily'].state;
           return(inv_yield_self_use / house_consumption * 100);
-    card_mod:
-      style: |
-        ha-card {
-          width: 265px !important;
-          height: 300px !important;
-          }
-        #state__value > #state {
-            font-size: 0.8em !important;
-        }
-        #state__value > #uom {
-            font-size: 0.6em !important;
-        }
+    card_mod: !include /config/custom_templates/421-pv-row-3-card-mod.yaml
   - type: custom:apexcharts-card
-    chart_type: donut
+    config_templates: pv_donut_chart
     header:
-      show: true
-      show_states: true
-      colorize_states: true
       title: Solar Yield - Usage (Today)
-    apex_config:
-      chart:
-        height: 230px
-      legend:
-        show: false
-      dataLabels:
-        enabled: true
-        formatter: |
-          EVAL:function(value) {
-            return value.toFixed(1) + "%";
-          }
     series:
       - entity: sensor.solar_yield_daily
         name: Production
         color: "#ff9800"
-        float_precision: 2
         show:
           in_chart: false
       - entity: sensor.power_meter_exported_energy_daily
         name: Export
         color: "#488fc2"
-        float_precision: 2
       - entity: sensor.house_consumption_solar_energy_daily
         name: House
         color: MediumAquaMarine
-        float_precision: 2
       - entity: sensor.battery_day_charge_with_loss
         name: Bat-In
         color: "#f06292"
-        float_precision: 2
-    card_mod:
-      style: |
-        ha-card {
-          width: 265px !important;
-          height: 300px !important;
-          }
-        #state__value > #state {
-            font-size: 0.8em !important;
-        }
-        #state__value > #uom {
-            font-size: 0.6em !important;
-        }
+    card_mod: !include /config/custom_templates/421-pv-row-3-card-mod.yaml
   - type: custom:apexcharts-card
-    chart_type: donut
+    config_templates: pv_donut_chart
     header:
-      show: true
-      show_states: true
-      colorize_states: true
       title: House - Consumption (Today)
-    apex_config:
-      chart:
-        height: 230px
-      legend:
-        show: false
-      dataLabels:
-        enabled: true
-        formatter: |
-          EVAL:function(value) {
-            return value.toFixed(1) + "%";
-          }
     series:
       - entity: sensor.house_consumption_energy_daily
         name: Load
         color: MediumAquaMarine
-        float_precision: 2
         show:
           in_chart: false
       - entity: sensor.power_meter_consumption_energy_daily
         name: Import
         color: "#488fc2"
-        float_precision: 2
       - entity: sensor.house_consumption_solar_energy_daily
         name: Solar
         color: "#ff9800"
-        float_precision: 2
       - entity: sensor.battery_day_discharge_with_loss
         name: Bat-Out
         color: "#f06292"
-        float_precision: 2
-    card_mod:
-      style: |
-        ha-card {
-          width: 265px !important;
-          height: 300px !important;
-          }
-        #state__value > #state {
-            font-size: 0.8em !important;
-        }
-        #state__value > #uom {
-            font-size: 0.6em !important;
-        }
+    card_mod: !include /config/custom_templates/421-pv-row-3-card-mod.yaml
   - type: custom:apexcharts-card
-    chart_type: donut
+    config_templates: pv_donut_chart
     header:
-      show: true
-      show_states: true
-      colorize_states: true
       title: Inverter - Input/Output (Today)
-    apex_config:
-      chart:
-        height: 230px
-      legend:
-        show: false
-      dataLabels:
-        enabled: true
-        formatter: |
-          EVAL:function(value) {
-            return value.toFixed(1) + "%";
-          }
     series:
       - entity: sensor.solar_yield_daily
         name: Inv-In
         color: "#ff9800"
-        float_precision: 2
         show:
           in_chart: false
       - entity: sensor.battery_day_discharge
         name: Bat-Out
         color: "#ff9800"
-        float_precision: 2
         show:
           in_chart: false
       - entity: sensor.battery_day_charge
         name: Bat-In
         color: "#f06292"
-        float_precision: 2
       - entity: sensor.inverter_daily_yield
         name: Inv-Out
         color: MediumAquaMarine
-        float_precision: 2
       - entity: sensor.inverter_loss_daily
         name: Inv-Loss
         color: red
-        float_precision: 2
     card_mod:
       style: |
         ha-card {
@@ -318,50 +171,22 @@ cards:
             font-size: 0.6em !important;
         }
   - type: custom:apexcharts-card
-    chart_type: donut
+    config_templates: pv_donut_chart
     header:
-      show: true
-      show_states: true
-      colorize_states: true
       title: Inverter - Loss (Today)
-    apex_config:
-      chart:
-        height: 230px
-      legend:
-        show: false
-      dataLabels:
-        enabled: true
-        formatter: |
-          EVAL:function(value) {
-            return value.toFixed(1) + "%";
-          }
     series:
       - entity: sensor.inverter_loss_daily
         name: Total
         color: "#ff9800"
-        float_precision: 2
         show:
           in_chart: false
       - entity: input_number.battery_charge_loss_daily
         name: Bat-In
         color: "#f06292"
-        float_precision: 2
       - entity: input_number.battery_discharge_loss_daily
         name: Bat-Out
         color: MediumAquaMarine
-        float_precision: 2
-    card_mod:
-      style: |
-        ha-card {
-          width: 265px !important;
-          height: 300px !important;
-          }
-        #state__value > #state {
-            font-size: 0.8em !important;
-        }
-        #state__value > #uom {
-            font-size: 0.6em !important;
-        }
+    card_mod: !include /config/custom_templates/421-pv-row-3-card-mod.yaml
 layout:
   grid-template-columns: 270px 270px 270px 270px 300px 270px
   margin: 0px;

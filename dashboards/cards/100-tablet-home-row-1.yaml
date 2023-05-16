@@ -1,0 +1,548 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:meteoalarm-card
+        entities:
+          - entity: >-
+              sensor.dwd_wetterwarnungen_schermbeck_current_warning_level
+          - entity: >-
+              sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level
+        integration: dwd
+        scaling_mode: headline
+        hide_when_no_warning: false
+        override_headline: false
+        card_mod:
+          style: |
+            ha-card {
+              height: 80px !important;
+            }
+            .swiper {
+              height: 80px !important;
+            }
+            .content {
+              height: 80px !important;
+              padding: 6px 6px;
+            }
+            .headline {
+              margin: -20px auto auto 10px !important;
+            }
+            .main-icon {
+              margin: -20px auto -20px -10px !important;
+            }
+      - type: custom:meteoalarm-card
+        entities:
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_1
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_2
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_3
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_4
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_5
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_6
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_7
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_8
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_9
+          - entity: >-
+              binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_10
+        integration: nina
+        override_headline: false
+        scaling_mode: scale
+        hide_when_no_warning: false
+        card_mod:
+          style: |
+            ha-card {
+              height: 80px !important;
+            }
+            .swiper {
+              height: 80px !important;
+            }
+            .content {
+              height: 80px !important;
+              padding: 6px 6px;
+            }
+            .headline {
+              margin: -20px auto auto 10px !important;
+            }
+            .main-icon {
+              margin: -20px auto -20px -10px !important;
+            }
+  - type: custom:clock-weather-card
+    entity: weather.dwd_weather_raesfeld_ka
+    title: ""
+    sun_entity: sun.sun
+    weather_icon_type: line
+    animated_icon: true
+    forecast_days: 5
+    locale: de
+    time_format: 24
+    date_pattern: P
+    hide_today_section: false
+    hide_forecast_section: true
+    hide_clock: false
+    hide_date: false
+    card_mod:
+      style: |
+        ha-card {
+          padding-top: 28px;
+          height: 160px;
+        }
+        .card-content {
+          padding: 0px 8px 0px 0px;
+        }
+        clock-weather-card-today-left {
+            width: 50% !important;
+        }
+        clock-weather-card-today-right {
+            width: 50% !important;
+        }
+        clock-weather-card-today-right-wrap-center {
+          height: 2.5rem !important;
+          font-size: 2rem !important;
+        }
+  - type: custom:compass-card
+    indicator_sensors:
+      - sensor: sensor.wind_direction_raesfeld_ka
+        indicator:
+          type: arrow_inward
+    value_sensors:
+      - sensor: sensor.wind_speed_raesfeld_ka
+        decimals: 1
+      - sensor: sensor.wind_gusts_raesfeld_ka
+        decimals: 1
+    compass:
+      circle:
+        background_opacity: null
+        dynamic_style:
+          sensor: sensor.wind_gusts_raesfeld_ka
+          bands:
+            - from_value: 50
+              color: yellow
+            - from_value: 65
+              color: orange
+            - from_value: 105
+              color: red
+            - from_value: 140
+              color: purple
+      north:
+        show: true
+        offset: 221
+        dynamic_style:
+          sensor: sensor.wind_gusts_raesfeld_ka
+          bands:
+            - from_value: 50
+              color: yellow
+            - from_value: 65
+              color: orange
+            - from_value: 105
+              color: red
+            - from_value: 140
+              color: purple
+      east:
+        show: true
+        dynamic_style:
+          sensor: sensor.wind_gusts_raesfeld_ka
+          bands:
+            - from_value: 50
+              color: yellow
+            - from_value: 65
+              color: orange
+            - from_value: 105
+              color: red
+            - from_value: 140
+              color: purple
+      west:
+        show: true
+        dynamic_style:
+          sensor: sensor.wind_gusts_raesfeld_ka
+          bands:
+            - from_value: 50
+              color: yellow
+            - from_value: 65
+              color: orange
+            - from_value: 105
+              color: red
+            - from_value: 140
+              color: purple
+      south:
+        show: true
+        dynamic_style:
+          sensor: sensor.wind_gusts_raesfeld_ka
+          bands:
+            - from_value: 50
+              color: yellow
+            - from_value: 65
+              color: orange
+            - from_value: 105
+              color: red
+            - from_value: 140
+              color: purple
+    tap_action:
+      entity: sensor.wind_speed_raesfeld_ka
+    language: de
+    card_mod:
+      style: |
+        ha-card {
+          height: 160px;
+        }
+        .compass {
+            margin: 4px auto;
+        }
+        .indicator-sensors {
+          font-size: 12px !important;
+          line-height: 1em !important;
+        }
+        .sensor-0 {
+          height: 1em !important;
+        }
+        .sensor-0 .value {
+          font-size: 12px !important;
+          height: 1em !important;
+        }
+        .sensor-0 .measurement {
+          font-size: 10px !important; 
+        } 
+        .sensor-1 {
+          height: 1em !important;
+        }
+        .sensor-1 .value {
+          font-size: 12px !important;
+          height: 1em !important;
+        }
+        .sensor-1 .measurement {
+          font-size: 10px !important; 
+        }
+  - type: custom:clock-weather-card
+    entity: weather.dwd_weather_raesfeld_ka
+    title: ""
+    sun_entity: sun.sun
+    weather_icon_type: line
+    animated_icon: true
+    forecast_days: 5
+    locale: de
+    time_format: 24
+    date_pattern: P
+    hide_today_section: true
+    hide_forecast_section: false
+    hide_clock: false
+    hide_date: false
+    card_mod:
+      style: |
+        ha-card {
+          height: 160px;
+          --bar-height: 1.0rem !important;
+        }
+        .card-content {
+          padding: 12px 12px 12px 12px !important;
+        }
+  - type: custom:compass-card
+    indicator_sensors:
+      - sensor: sun.sun
+        attribute: azimuth
+        indicator:
+          type: circle
+          color: orange
+          show: false
+          dynamic_style:
+            sensor: sun.sun
+            attribute: elevation
+            bands:
+              - from_value: 0
+                show: true
+        state_abbreviation:
+          color: orange
+          show: false
+          dynamic_style:
+            sensor: sun.sun
+            attribute: elevation
+            bands:
+              - from_value: 0
+                show: true
+      - sensor: sensor.astroweather_moon_azimuth
+        indicator:
+          type: circle
+          color: gray
+          show: false
+          dynamic_style:
+            sensor: sensor.astroweather_moon_altitude
+            bands:
+              - from_value: 0
+                show: true
+        state_abbreviation:
+          color: gray
+          show: false
+          dynamic_style:
+            sensor: sensor.astroweather_moon_altitude
+            bands:
+              - from_value: 0
+                show: true
+    value_sensors:
+      - sensor: sun.sun
+        attribute: elevation
+        decimals: 1
+        units: °
+        state_value:
+          show: false
+          dynamic_style:
+            sensor: sun.sun
+            attribute: elevation
+            bands:
+              - from_value: 0
+                show: true
+                color: orange
+      - sensor: sensor.astroweather_moon_altitude
+        units: °
+        decimals: 1
+        state_value:
+          show: false
+          dynamic_style:
+            sensor: sensor.astroweather_moon_altitude
+            bands:
+              - from_value: 0
+                show: true
+                color: gray
+    compass:
+      circle:
+        background_opacity: null
+        dynamic_style:
+          sensor: sensor.current_uv_index
+          bands:
+            - from_value: 3
+              color: yellow
+            - from_value: 6
+              color: orange
+            - from_value: 8
+              color: red
+            - from_value: 11
+              color: purple
+      north:
+        show: true
+        offset: 221
+        dynamic_style:
+          sensor: sensor.current_uv_index
+          bands:
+            - from_value: 3
+              color: yellow
+            - from_value: 6
+              color: orange
+            - from_value: 8
+              color: red
+            - from_value: 11
+              color: purple
+      east:
+        show: true
+        dynamic_style:
+          sensor: sensor.current_uv_index
+          bands:
+            - from_value: 3
+              color: yellow
+            - from_value: 6
+              color: orange
+            - from_value: 8
+              color: red
+            - from_value: 11
+              color: purple
+      west:
+        show: true
+        dynamic_style:
+          sensor: sensor.current_uv_index
+          bands:
+            - from_value: 3
+              color: yellow
+            - from_value: 6
+              color: orange
+            - from_value: 8
+              color: red
+            - from_value: 11
+              color: purple
+      south:
+        show: true
+        dynamic_style:
+          sensor: sensor.current_uv_index
+          bands:
+            - from_value: 3
+              color: yellow
+            - from_value: 6
+              color: orange
+            - from_value: 8
+              color: red
+            - from_value: 11
+              color: purple
+    tap_action:
+      entity: sun.sun
+    language: de
+    card_mod:
+      style: |
+        ha-card {
+          height: 160px;
+        }
+        .compass {
+            margin: 4px auto;
+        }
+        .indicator-sensors {
+          font-size: 12px !important;
+          line-height: 1em !important;
+        }
+        .sensor-0 {
+          height: 1em !important;
+        }
+        .sensor-0 .value {
+          font-size: 12px !important;
+          height: 1em !important;
+        }
+        .sensor-1 {
+          height: 1em !important;
+        }
+        .sensor-1 .value {
+          font-size: 12px !important;
+          height: 1em !important;
+        }
+  - type: custom:sun-card
+    language: de
+    showAzimuth: false
+    showElevation: false
+    card_mod:
+      style: |
+        ha-card {
+          height: 160px;
+        }
+        div.sun-card {
+          padding: 1em 0;
+        }
+        div.sun-card-header {
+          padding: 0 1em;
+        }
+        div.sun-card-body {
+            margin-top: -1.6rem;
+            padding: 0rem;
+        }
+        div.sun-card-footer {
+          display: true;
+          margin-top: -1.6rem;
+        }
+        .sun-card-text-subtitle {
+          font-size: 0.7rem !important;
+          font-weight: 100 !important;
+          padding: 0rem !important;
+        }
+        .sun-card-text-time {
+          font-size: 12px !important;
+          font-weight: normal !important;
+          padding: 0rem !important;
+          margin-top: -0.4rem !important;
+        }
+        div.sun-card-text-container {
+          align-items: inherit;
+        }
+        div.sun-card-text-container:nth-child(1) {
+          text-align: left;
+        }
+        div.sun-card-text-container:nth-child(2) {
+          text-align: right;
+        }
+        div.sun-card-text-container:nth-child(3) {
+          text-align: right;
+        }
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mushroom-template-card
+        primary: ""
+        secondary: ""
+        icon: ""
+        entity: sensor.moon_phase_image
+        tap_action:
+          action: more-info
+        picture: "{{ state_attr(entity, 'entity_picture') }}"
+        layout: vertical
+        icon_color: ""
+        card_mod:
+          style: |
+            ha-card {
+              margin: 12px;
+              border-style: none !important;
+            }
+            :host {
+              --mush-icon-size: 55px;
+            }
+      - type: custom:mushroom-template-card
+        primary: "{{ states('sensor.astroweather_moon_phase') }} %"
+        secondary: ""
+        icon: "{{ state_attr('sensor.moon_phase', 'icon') }}"
+        entity: sensor.moon_phase
+        tap_action:
+          action: more-info
+        icon_color: blue
+        picture: ""
+        card_mod:
+          style: |
+            ha-card {
+              height: 1.6em !important;
+              margin: 2px;
+              --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+              --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+            }
+            mushroom-shape-icon {
+              --shape-color: none !important;
+            }
+      - type: custom:mushroom-template-card
+        primary: >-
+          {{
+          (as_timestamp(states('sensor.astroweather_moon_next_rising')))
+          | timestamp_custom(('%H:%M') ) }}
+        icon: mdi:arrow-up-circle-outline
+        entity: sensor.astroweather_moon_next_rising
+        secondary: ""
+        tap_action:
+          action: more-info
+        icon_color: blue
+        card_mod:
+          style: |
+            ha-card {
+              height: 1.6em !important;
+              margin: 2px;
+              --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+              --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+            }
+            mushroom-shape-icon {
+              --shape-color: none !important;
+            }
+      - type: custom:mushroom-template-card
+        primary: >-
+          {{
+          (as_timestamp(states('sensor.astroweather_moon_next_setting')))
+          | timestamp_custom(('%H:%M') ) }}
+        icon: mdi:arrow-down-circle-outline
+        entity: sensor.astroweather_moon_next_setting
+        secondary: ""
+        tap_action:
+          action: more-info
+        icon_color: blue
+        card_mod:
+          style: |
+            ha-card {
+              height: 1.6em !important;
+              margin: 2px;
+              --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+              --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+            }
+            mushroom-shape-icon {
+              --shape-color: none !important;
+            }
+    card_mod:
+      style: |
+        ha-card {
+          height: 160px;
+          --mush-spacing: 0px 0px 0px 0px !important;
+        }
+layout:
+  grid-template-columns: 160px 220px 130px 250px 130px 220px 100px
+  margin: 0px 0px 0px 0px;
+  padding: 0px;

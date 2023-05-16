@@ -1,7 +1,8 @@
 title: 427-PV
+theme: Backend-selected
 path: 427-pv
-type: custom:grid-layout
 icon: mdi:solar-power-variant
+type: custom:grid-layout
 badges: []
 cards:
   - !include /config/dashboards/cards/427-pv-row-1.yaml

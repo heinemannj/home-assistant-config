@@ -27,9 +27,7 @@ cards:
         color: purple
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: Wasserstand
@@ -79,10 +77,7 @@ cards:
             to: "928.0"
             color: purple
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.schermbeck_1_lippe_level
         target: "210.0"
@@ -118,9 +113,7 @@ cards:
     subtitle: Issel - Dämmerwald, Schermbeck, Germany
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: Wasserstand
@@ -170,10 +163,7 @@ cards:
             to: "240.0"
             color: purple
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.daemmerwald_issel_ijssel_level
         target: "25.0"
@@ -208,9 +198,7 @@ cards:
     subtitle: Rhein - Wesel, Germany
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: Wasserstand
@@ -260,10 +248,7 @@ cards:
             to: "1231.0"
             color: purple
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.wesel_rhein_level
         target: "348"
@@ -292,8 +277,4 @@ cards:
       entity: sensor.wesel_rhein_flow
       tap_action:
         action: more-info
-card_mod:
-  style: |
-    ha-card {
-      padding-bottom: 12px !important;
-    }
+card_mod: !include /config/custom_templates/vertical-stack-in-card-mod-padding-bottom.yaml

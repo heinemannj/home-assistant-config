@@ -1,0 +1,17 @@
+style:
+  .: |
+    ha-card {
+      width: 148px !important;
+      height: 100px !important;
+      }
+    .name {
+      font-size: 12px !important;
+      margin-top: 2px !important;
+      }
+    ha-gauge {
+      width: 120% !important;
+      }
+  ha-gauge$: |
+    svg text {
+      transform: scale(0.8) translateY(0px);
+    }

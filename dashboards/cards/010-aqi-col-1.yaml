@@ -13,9 +13,7 @@ cards:
     segments: !include /config/custom_templates/010-aqi-gauge-segments.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: >-
@@ -40,10 +38,7 @@ cards:
         decimal: "4"
         entity_row: true
         height: 42px
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         color: grey
         card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: conditional
@@ -77,19 +72,14 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.ozone_o3_borken
           color: grey
           card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: PM2.5
@@ -111,19 +101,14 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.particulate_matter_pm25_borken
         color: grey
         card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: PM10
@@ -145,10 +130,7 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.particulate_matter_pm10_borken
         color: grey
@@ -160,9 +142,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Carbon monoxide (CO)
@@ -184,10 +164,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.carbon_monoxide_co_borken
           color: grey
@@ -199,9 +176,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Sulphur dioxide (SO2)
@@ -223,10 +198,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.sulphur_dioxide_so2_borken
           color: grey
@@ -238,9 +210,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Nitrogen dioxide (NO2)
@@ -262,10 +232,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.nitrogen_dioxide_no2_borken
           color: grey
@@ -275,9 +242,7 @@ cards:
     subtitle: Schermbeck, Germany
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: >-
@@ -300,10 +265,7 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.air_quality_index_schermbeck
         color: grey
@@ -315,9 +277,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Ozone (O3)
@@ -339,19 +299,14 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.ozone_o3_schermbeck
           color: grey
           card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: PM2.5
@@ -373,19 +328,14 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.particulate_matter_pm25_schermbeck
         color: grey
         card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: PM10
@@ -407,10 +357,7 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.particulate_matter_pm10_schermbeck
         color: grey
@@ -422,9 +369,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Carbon monoxide (CO)
@@ -446,10 +391,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.carbon_monoxide_co_schermbeck
           color: grey
@@ -461,9 +403,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Sulphur dioxide (SO2)
@@ -485,10 +425,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.sulphur_dioxide_so2_schermbeck
           color: grey
@@ -500,9 +437,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Nitrogen dioxide (NO2)
@@ -524,10 +459,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.nitrogen_dioxide_no2_schermbeck
           color: grey
@@ -537,9 +469,7 @@ cards:
     subtitle: Wesel Obrighoven, Germany
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: >-
@@ -562,10 +492,7 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.air_quality_index_wesel
         color: grey
@@ -577,9 +504,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Ozone (O3)
@@ -601,19 +526,14 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.ozone_o3_wesel
           color: grey
           card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: PM2.5
@@ -635,19 +555,14 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.particulate_matter_pm25_wesel
         color: grey
         card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         primary: PM10
@@ -669,10 +584,7 @@ cards:
         decimal: "4"
         severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.particulate_matter_pm10_wesel
         color: grey
@@ -684,9 +596,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Carbon monoxide (CO)
@@ -708,10 +618,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.carbon_monoxide_co_wesel
           color: grey
@@ -723,9 +630,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Sulphur dioxide (SO2)
@@ -747,10 +652,7 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.sulphur_dioxide_so2_wesel
           color: grey
@@ -762,9 +664,7 @@ cards:
     card:
       type: custom:layout-card
       layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      layout: !include /config/custom_templates/layout-card-grid-layout.yaml
       cards:
         - type: custom:mushroom-template-card
           primary: Nitrogen dioxide (NO2)
@@ -786,16 +686,9 @@ cards:
           decimal: "4"
           severity: !include /config/custom_templates/010-aqi-bar-severity.yaml
           entity_row: true
-          positions:
-            icon: "off"
-            indicator: "off"
-            value: "off"
+          positions: !include /config/custom_templates/bar-card-positions.yaml
           entities:
             - entity: sensor.nitrogen_dioxide_no2_wesel
           color: grey
           card_mod: !include /config/custom_templates/bar-card-mod.yaml
-card_mod:
-  style: |
-    ha-card {
-      padding-bottom: 12px !important;
-    }
+card_mod: !include /config/custom_templates/vertical-stack-in-card-mod-padding-bottom.yaml

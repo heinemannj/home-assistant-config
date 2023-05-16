@@ -1,8 +1,8 @@
 title: 423-PV
 theme: Backend-selected
 path: 423-pv
-type: custom:grid-layout
 icon: mdi:solar-power-variant
+type: custom:grid-layout
 badges: []
 cards:
   - type: custom:layout-card

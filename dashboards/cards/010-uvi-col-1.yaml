@@ -23,164 +23,68 @@ cards:
         color: purple
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         entity: sensor.current_uv_index
         primary: >-
-          {% set uvi = states('sensor.current_uv_index') | float %}
-          {% if uvi <= 3 %} UV Index - Low
-          {% elif uvi <= 6 %} UV Index - Moderate
-          {% elif uvi <= 8 %} UV Index - High
-          {% elif uvi <= 11 %} UV Index - Very High
-          {% elif uvi > 11 %} UV Index - Extreme
-          {% endif %}
+          {% from '010-uvi.jinja' import uvi_primary %}
+          {{ uvi_primary('sensor.current_uv_index') }}
         secondary: "{{states('sensor.current_uv_index')}} UV index"
         icon: mdi:weather-sunny
-        icon_color: |-
-          {% set state = states('sensor.current_uv_index') | float %}
-          {% if state <= 3 %} green
-          {% elif state <= 6 %} yellow
-          {% elif state <= 8 %} orange
-          {% elif state <= 11 %} red
-          {% elif state > 11 %} purple
-          {% else %} grey
-          {% endif %}
+        icon_color: >-
+          {% from '010-uvi.jinja' import uvi_icon_color %}
+          {{ uvi_icon_color('sensor.current_uv_index') }}
         tap_action:
           action: more-info
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "14"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "2"
-            color: green
-          - from: "3"
-            to: "5"
-            color: yellow
-          - from: "6"
-            to: "7"
-            color: orange
-          - from: "8"
-            to: "10"
-            color: red
-          - from: "11"
-            to: "14"
-            color: purple
+        severity: !include /config/custom_templates/010-uvi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.current_uv_index
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:layout-card
     layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+    layout: !include /config/custom_templates/layout-card-grid-layout.yaml
     cards:
       - type: custom:mushroom-template-card
         entity: sensor.max_uv_index
         primary: |-
-          {% set uvi = states('sensor.max_uv_index') | float %}
-          {% if uvi <= 3 %} Max UV Index - Low
-          {% elif uvi <= 6 %} Max UV Index - Moderate
-          {% elif uvi <= 8 %} Max UV Index - High
-          {% elif uvi <= 11 %} Max UV Index - Very High
-          {% elif uvi > 11 %} Max UV Index - Extreme
-          {% endif %}
+          {% from '010-uvi.jinja' import uvi_primary %}
+          {{ uvi_primary('sensor.max_uv_index') }}
         secondary: "{{states('sensor.max_uv_index')}} UV index"
         icon: mdi:weather-sunny
-        icon_color: |-
-          {% set state = states('sensor.max_uv_index') | float %}
-          {% if state <= 3 %} green
-          {% elif state <= 6 %} yellow
-          {% elif state <= 8 %} orange
-          {% elif state <= 11 %} red
-          {% elif state > 11 %} purple
-          {% else %} grey
-          {% endif %}
+        icon_color: >-
+          {% from '010-uvi.jinja' import uvi_icon_color %}
+          {{ uvi_icon_color('sensor.max_uv_index') }}
         tap_action:
           action: more-info
-        card_mod:
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: solid 0px ;
-            }
+        card_mod: !include /config/custom_templates/mushroom-card-mod-border-style.yaml
       - type: custom:bar-card
         name: " "
         height: 42px
         min: "0"
         max: "14"
         decimal: "4"
-        severity:
-          - from: "0"
-            to: "2"
-            color: green
-          - from: "3"
-            to: "5"
-            color: yellow
-          - from: "6"
-            to: "7"
-            color: orange
-          - from: "8"
-            to: "10"
-            color: red
-          - from: "11"
-            to: "14"
-            color: purple
+        severity: !include /config/custom_templates/010-uvi-bar-severity.yaml
         entity_row: true
-        positions:
-          icon: "off"
-          indicator: "off"
-          value: "off"
+        positions: !include /config/custom_templates/bar-card-positions.yaml
         entities:
           - entity: sensor.max_uv_index
-        card_mod:
-          style: |
-            ha-card {
-              padding: 12px;
-              margin-left: 12px;
-              --bar-card-border-radius: 12px;
-            }
-            bar-card-backgroundbar {
-              opacity: 0.2;
-              filter: brightness(1);
-            }
+        card_mod: !include /config/custom_templates/bar-card-mod.yaml
   - type: custom:mushroom-entity-card
     entity: sensor.skin_type_1_safe_exposure_time
     card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-entity-card
     entity: sensor.skin_type_2_safe_exposure_time
-    card_mod:
-      style: |
-        ha-card {
-          margin-bottom: -10px;
-        }
+    card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-entity-card
     entity: sensor.skin_type_3_safe_exposure_time
     card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
@@ -193,8 +97,4 @@ cards:
   - type: custom:mushroom-entity-card
     entity: sensor.skin_type_6_safe_exposure_time
     card_mod: !include /config/custom_templates/mushroom-card-mod-margin-bottom.yaml
-card_mod:
-  style: |
-    ha-card {
-      padding-bottom: 12px !important;
-    }
+card_mod: !include /config/custom_templates/vertical-stack-in-card-mod-padding-bottom.yaml
