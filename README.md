@@ -32,6 +32,7 @@ dashboards:
     show_in_sidebar: true
     filename: dashboards/100-raeume/index.yaml
 ```
+
 ![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/ada412ce-bb80-4e03-9b6a-cf7c74f3349a)
 
 ![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/50baf54d-ae9f-400c-82ef-9ee04917d75a)
