@@ -1,0 +1,44 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: custom:mushroom-template-card
+    primary: >-
+      {{ states('sensor.battery_state_of_capacity_remaining_charge_time') }}
+    icon: mdi:battery-arrow-up
+    entity: sensor.battery_state_of_capacity_remaining_charge_time
+    secondary: ""
+    tap_action:
+      action: more-info
+    icon_color: "#f06292"
+    card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod-1.yaml
+  - type: custom:mushroom-template-card
+    primary: >-
+      {{ states('number.battery_maximum_charging_power') }} W
+    icon: mdi:battery-arrow-up
+    entity: number.battery_maximum_charging_power
+    secondary: ""
+    tap_action:
+      action: more-info
+    icon_color: "#f06292"
+    card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod.yaml
+  - type: custom:mushroom-template-card
+    primary: >-
+      {{ states('sensor.battery_state_of_capacity_energy')|round(2) }} kWh
+    icon: mdi:battery-high
+    entity: sensor.battery_state_of_capacity_energy
+    secondary: ""
+    tap_action:
+      action: more-info
+    icon_color: "#f06292"
+    card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod.yaml
+  - type: custom:mushroom-template-card
+    primary: >-
+      {{ states('sensor.battery_state_of_capacity_remaining_discharge_time') }}
+    icon: mdi:battery-arrow-down
+    entity: >-
+      sensor.battery_state_of_capacity_remaining_discharge_time
+    secondary: ""
+    tap_action:
+      action: more-info
+    icon_color: "#4db6ac"
+    card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod.yaml
+card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-vertical-stack-in-card-mod.yaml

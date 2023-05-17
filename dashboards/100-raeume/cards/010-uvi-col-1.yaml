@@ -1,0 +1,100 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: custom:mushroom-title-card
+    title: UV Index
+    subtitle: Borken Gemen, Germany
+  - type: gauge
+    entity: sensor.current_uv_index
+    name: UV Index
+    unit: " "
+    min: 0
+    max: 14
+    needle: true
+    segments:
+      - from: 0
+        color: green
+      - from: 3
+        color: yellow
+      - from: 6
+        color: orange
+      - from: 8
+        color: red
+      - from: 11
+        color: purple
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.current_uv_index
+        primary: >-
+          {% from '010-uvi.jinja' import uvi_primary %}
+          {{ uvi_primary('sensor.current_uv_index') }}
+        secondary: "{{states('sensor.current_uv_index')}} UV index"
+        icon: mdi:weather-sunny
+        icon_color: >-
+          {% from '010-uvi.jinja' import uvi_icon_color %}
+          {{ uvi_icon_color('sensor.current_uv_index') }}
+        tap_action:
+          action: more-info
+        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+      - type: custom:bar-card
+        name: " "
+        height: 42px
+        min: "0"
+        max: "14"
+        decimal: "4"
+        severity: !include /config/dashboards/100-raeume/templates/010-uvi-bar-severity.yaml
+        entity_row: true
+        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
+        entities:
+          - entity: sensor.current_uv_index
+        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+    cards:
+      - type: custom:mushroom-template-card
+        entity: sensor.max_uv_index
+        primary: |-
+          {% from '010-uvi.jinja' import uvi_primary %}
+          {{ uvi_primary('sensor.max_uv_index') }}
+        secondary: "{{states('sensor.max_uv_index')}} UV index"
+        icon: mdi:weather-sunny
+        icon_color: >-
+          {% from '010-uvi.jinja' import uvi_icon_color %}
+          {{ uvi_icon_color('sensor.max_uv_index') }}
+        tap_action:
+          action: more-info
+        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+      - type: custom:bar-card
+        name: " "
+        height: 42px
+        min: "0"
+        max: "14"
+        decimal: "4"
+        severity: !include /config/dashboards/100-raeume/templates/010-uvi-bar-severity.yaml
+        entity_row: true
+        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
+        entities:
+          - entity: sensor.max_uv_index
+        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+  - type: custom:mushroom-entity-card
+    entity: sensor.skin_type_1_safe_exposure_time
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-entity-card
+    entity: sensor.skin_type_2_safe_exposure_time
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-entity-card
+    entity: sensor.skin_type_3_safe_exposure_time
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-entity-card
+    entity: sensor.skin_type_4_safe_exposure_time
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-entity-card
+    entity: sensor.skin_type_5_safe_exposure_time
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-entity-card
+    entity: sensor.skin_type_6_safe_exposure_time
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-padding-bottom.yaml

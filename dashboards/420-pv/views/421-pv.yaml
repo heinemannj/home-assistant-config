@@ -1,0 +1,10 @@
+title: 421-PV
+theme: Backend-selected
+path: 421-pv
+icon: mdi:solar-power-variant
+type: custom:grid-layout
+badges: []
+cards:
+  - !include /config/dashboards/420-pv/cards/421-pv-row-1.yaml
+  - !include /config/dashboards/420-pv/cards/421-pv-row-2.yaml
+  - !include /config/dashboards/420-pv/cards/421-pv-row-3.yaml

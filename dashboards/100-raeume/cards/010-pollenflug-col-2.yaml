@@ -1,0 +1,52 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: custom:mushroom-title-card
+    title: Belastungsintensitäten
+    subtitle: Anzahl Pollen als Tagesmittelwerte pro m^3 Luft
+  - type: custom:mushroom-template-card
+    entity: ""
+    primary: keine bis geringe Belastung
+    secondary: "0-1, DWD: 0-1"
+    icon: mdi:tree-outline
+    icon_color: green
+    tap_action:
+      action: url
+      url_path: >-
+        https://www.dwd.de/DE/leistungen/gefahrenindizespollen/erklaerungen.html?nn=16102&lsbId=463856
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-template-card
+    entity: ""
+    primary: mittlere Belastung
+    secondary: "2-4, DWD: 1-2"
+    icon: mdi:tree-outline
+    icon_color: yellow
+    tap_action:
+      action: url
+      url_path: >-
+        https://www.dwd.de/DE/leistungen/gefahrenindizespollen/erklaerungen.html?nn=16102&lsbId=463856
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: custom:mushroom-template-card
+    entity: ""
+    primary: hohe Belastung
+    secondary: "5-6, DWD: 2-3"
+    icon: mdi:tree-outline
+    icon_color: red
+    tap_action:
+      action: url
+      url_path: >-
+        https://www.dwd.de/DE/leistungen/gefahrenindizespollen/erklaerungen.html?nn=16102&lsbId=463856
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+  - type: markdown
+    content: >-
+      ***
+
+      region_id: Nordrhein-Westfalen (40)
+
+      partregion_id: Rhein.-Westfäl. Tiefland (41)
+
+
+
+      For more information see the [DWD
+      Pollenflug-Gefahrenindex](https://www.dwd.de/DE/leistungen/gefahrenindizespollen/gefahrenindexpollen.html).
+
+      ***

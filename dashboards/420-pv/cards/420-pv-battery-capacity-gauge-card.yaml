@@ -1,0 +1,16 @@
+type: gauge
+entity: sensor.battery_state_of_capacity
+name: Battery Capacity
+min: 0
+max: 100
+needle: true
+segments:
+  - from: 0
+    color: red
+  - from: 3
+    color: orange
+  - from: 24
+    color: yellow
+  - from: 72
+    color: green
+card_mod: !include /config/dashboards/420-pv/templates/420-pv-gauge-card-mod.yaml

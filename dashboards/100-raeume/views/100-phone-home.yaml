@@ -1,0 +1,246 @@
+title: 100_Phone-Home
+theme: Backend-selected
+subview: false
+path: 100-phone-home
+icon: mdi:cellphone
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-1.yaml
+      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-2.yaml
+      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-3.yaml
+      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-4.yaml
+      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-5.yaml
+      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-6.yaml
+
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: menu
+          - type: weather
+            entity: weather.dwd_weather_raesfeld_ka
+            show_conditions: true
+            show_temperature: false
+          - type: entity
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            icon_color: orange
+          - type: entity
+            entity: climate.hm_tc_it_wm_w_eu_meq1330232
+            icon_color: indigo
+          - type: conditional
+            conditions:
+              - entity: switch.310_garten_teich_7_wasserpumpe
+                state: 'on'
+            chip:
+              type: template
+              content: Teichpumpe ist an
+              icon: mdi:power-socket-eu
+              icon_color: yellow
+          - type: template
+            content: |-
+              {% set total = 0 %}
+              {% if is_state('light.sonoff_element_lights', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.living_room', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.wall_light_1', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.wall_light_1', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              {% if is_state('light.wall_light_1', 'on') %}
+                {% set total = total + 1 %}
+              {% endif %}
+              ({{total}}) Lights ON
+            icon: mdi:lightbulb-group
+            icon_color: |-
+              {% if is_state('light.sonoff_element_lights', 'on') %}
+                orange
+              {% elif is_state("light.living_room", "on") %}
+                orange
+              {% else %}
+                grey
+              {% endif %}
+            tap_action:
+              action: more-info
+            entity: light.sonoff_element_lights
+          - type: template
+            icon: |-
+              {% if is_state('binary_sensor.terrace_door', 'off') %}
+                mdi:door-closed
+              {% else %}
+                mdi:door-open
+              {% endif %}
+            content: |-
+              {% if is_state('binary_sensor.terrace_door', 'off') %}
+                Closed
+              {% else %}
+                Open
+              {% endif %}
+            icon_color: |-
+              {% if is_state('binary_sensor.terrace_door', 'off') %}
+                green
+              {% else %}
+                red
+              {% endif %}
+            tap_action:
+              action: more-info
+            entity: binary_sensor.terrace_door
+        alignment: start
+      - type: custom:mushroom-template-card
+        primary: Hello, {{user}}
+        secondary: >-
+          Currently {{ states.light | selectattr('state','eq','on') | list |
+          count }} lights are on!
+        icon: mdi:home
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Home
+            secondary: ''
+            icon: mdi:home
+            icon_color: blue
+            tap_action:
+              action: navigate
+              navigation_path: home
+            layout: vertical
+          - type: custom:mushroom-template-card
+            primary: Lights
+            secondary: ''
+            icon: mdi:lightbulb
+            icon_color: amber
+            tap_action:
+              action: navigate
+              navigation_path: lights
+            layout: vertical
+          - type: custom:mushroom-template-card
+            primary: Net
+            secondary: ''
+            icon: mdi:network
+            icon_color: red
+            tap_action:
+              action: navigate
+              navigation_path: network
+            layout: vertical
+      - type: custom:mushroom-title-card
+        title: Wetter
+        subtitle: ''
+        alignment: justify
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sun.sun
+              - type: template
+                content: >-
+                  Sunrise  {% if states.sun.sun %} {{
+                  (as_timestamp(states.sun.sun.attributes.next_rising)) |
+                  timestamp_custom(('%H:%M') )}} {% endif %}
+                icon: mdi:weather-sunset-up
+              - type: template
+                content: >-
+                  Sunset  {% if states.sun.sun %} {{
+                  (as_timestamp(states.sun.sun.attributes.next_setting)) |
+                  timestamp_custom(('%H:%M') )}} {% endif %}
+                icon: mdi:weather-sunset-down
+              - type: entity
+                entity: sensor.moon
+      - type: weather-forecast
+        entity: weather.dwd_weather_raesfeld_ka
+        secondary_info_attribute: humidity
+        show_current: true
+        show_forecast: true
+      - type: custom:mushroom-title-card
+        title: Rooms
+        subtitle: ''
+        alignment: justify
+      - type: custom:mushroom-media-player-card
+        entity: media_player.bravia_tv
+        name: Living Room TV
+        use_media_info: true
+        show_volume_level: true
+        volume_controls:
+          - volume_set
+          - volume_buttons
+          - volume_mute
+        media_controls: []
+        fill_container: false
+        icon: mdi:television
+        icon_type: entity-picture
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.sonoff_element_lights
+          - type: custom:mushroom-light-card
+            entity: light.living_room
+            name: Living Room
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.101_buro_licht_schreibtisch
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /100-raeume/101-buero
+            fill_container: true
+          - type: custom:mushroom-light-card
+            entity: light.204_schlafen_licht_bett
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /100-raeume/204-schlafen
+          - type: custom:mushroom-light-card
+            entity: light.301_wc_luftung_licht_decke
+            tap_action:
+              action: navigate
+              navigation_path: /100-raeume/307-wohnen
+            layout: vertical
+      - type: custom:mushroom-title-card
+        title: Stromverbrauch
+        subtitle: ''
+        alignment: justify
+      - type: gauge
+        entity: sensor.pulsemeter_54_power
+        name: 032.1.1_Strommonitor - Power
+        min: 0
+        max: 6000
+        needle: true
+        severity:
+          green: 0
+          yellow: 4500
+          red: 5500
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.pulsemeter_54_power
+        icon: mdi:flash
+        points_per_hour: 30
+        hours_to_show: 48
+        aggregate_func: none
+        height: 200
+        line_width: 2
+        show:
+          labels: false
+          graph: line
+          hour24: true
+          extrema: false
+          average: false
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.pulsemeter_54_energy_hourly
+        icon: mdi:lightning-bolt
+        decimals: 3
+        points_per_hour: 1
+        hours_to_show: 48
+        aggregate_func: max
+        height: 200
+        line_width: 1
+        show:
+          labels: false
+          graph: bar
+          hour24: true
+          extrema: false
+          average: false

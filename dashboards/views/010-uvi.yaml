@@ -1,8 +1,0 @@
-title: 010_UVI
-theme: Backend-selected
-path: 010-uvi
-icon: mdi:weather-sunny
-badges: []
-cards:
-  - !include /config/dashboards/cards/010-uvi-col-1.yaml
-  - !include /config/dashboards/cards/010-uvi-col-2.yaml

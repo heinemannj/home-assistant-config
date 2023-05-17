@@ -1,0 +1,26 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+cards:
+  - !include /config/dashboards/420-pv/cards/420-pv-power-flow-card.yaml
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - !include /config/dashboards/420-pv/cards/420-pv-solar-power-gauge-card.yaml
+          - !include /config/dashboards/420-pv/cards/420-pv-battery-capacity-gauge-card.yaml
+          - !include /config/dashboards/420-pv/cards/420-pv-battery-status-card.yaml
+          - !include /config/dashboards/420-pv/cards/420-pv-self-sufficiency-gauge-card.yaml
+          - !include /config/dashboards/420-pv/cards/420-pv-inverter-temp-gauge-card.yaml
+          - !include /config/dashboards/420-pv/cards/420-pv-misc-status-card.yaml
+        card_mod:
+          style: |
+            ha-card {
+              width: 915px !important;
+              height: 100px !important;
+              }
+      - !include /config/dashboards/420-pv/cards/420-pv-solar-forecast-chart.yaml
+  - !include /config/dashboards/420-pv/cards/420-pv-energy-flow-card.yaml
+layout:
+  grid-template-columns: 365px 920px 365px
+  margin: 0px;
+  padding: 0px;

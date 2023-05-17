@@ -1,0 +1,40 @@
+pv_radial_chart:
+  chart_type: radialBar
+  header:
+    show: true
+    show_states: true
+    colorize_states: true
+  apex_config:
+    chart:
+      height: 245px
+    legend:
+      show: false
+    dataLabels:
+      enabled: true
+      formatter: |
+        EVAL:function(value) {
+          return value.toFixed(1) + "%";
+        }
+  all_series_config:
+    unit: "%"
+    float_precision: 1
+
+pv_donut_chart:
+  chart_type: donut
+  header:
+    show: true
+    show_states: true
+    colorize_states: true
+  apex_config:
+    chart:
+      height: 230px
+    legend:
+      show: false
+    dataLabels:
+      enabled: true
+      formatter: |
+        EVAL:function(value) {
+          return value.toFixed(1) + "%";
+        }
+  all_series_config:
+    float_precision: 2

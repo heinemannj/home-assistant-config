@@ -1,0 +1,8 @@
+title: 010_Pollenflug
+theme: Backend-selected
+path: 010-pollenflug
+icon: mdi:tree-outline
+badges: []
+cards:
+  - !include /config/dashboards/100-raeume/cards/010-pollenflug-col-1.yaml
+  - !include /config/dashboards/100-raeume/cards/010-pollenflug-col-2.yaml
