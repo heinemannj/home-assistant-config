@@ -17,6 +17,32 @@ This configuration controls a couple of significant features in my smart home.
 - Huawei SUN2000 solar inverter and connected Huawei LUNA2000 battery
 - ...
 
+## YAMLDashboards
+
+`<config>/ui-lovelace.yaml`
+
+mode: storage
+# Add yaml dashboards
+dashboards:
+  100-raeume-yaml:
+    mode: yaml
+    title: 100_Raeume
+    icon: mdi:home
+    show_in_sidebar: true
+    filename: dashboards/100-raeume/index.yaml
+  420-pv-yaml:
+    mode: yaml
+    title: 420_PV
+    icon: mdi:solar-power-variant
+    show_in_sidebar: true
+    filename: dashboards/420-pv/index.yaml
+  406-heizung-yaml:
+    mode: yaml
+    title: 406_Heizung
+    icon: mdi:hvac
+    show_in_sidebar: true
+    filename: dashboards/406-heizung/index.yaml
+
 **Note: Private information is stored in secrets.yaml (not uploaded).**
 
 [commits-shield]: https://img.shields.io/github/commit-activity/y/heinemannj/home-assistant-config.svg
