@@ -65,6 +65,7 @@ dashboards:
     show_in_sidebar: true
     filename: dashboards/406-heizung/index.yaml
  ```
+
 ![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/d46d9e1c-89e3-47c7-b925-8fb9a69353ab)
 
 ## Notes
