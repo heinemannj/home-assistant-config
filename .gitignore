@@ -19,6 +19,7 @@
 .storage
 *__pycache__*
 *hacs*
+addons_config
 esphome
 homematicip_local
 node-red
