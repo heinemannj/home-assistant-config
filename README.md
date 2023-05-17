@@ -17,7 +17,7 @@ This configuration controls a couple of significant features in my smart home.
 - Huawei SUN2000 solar inverter and connected Huawei LUNA2000 battery
 - ...
 
-## YAMLDashboards
+## YAML Dashboards
 
 `<config>/ui-lovelace.yaml`
 
