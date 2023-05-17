@@ -33,15 +33,15 @@ dashboards:
     filename: dashboards/100-raeume/index.yaml
 ```
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/ada412ce-bb80-4e03-9b6a-cf7c74f3349a)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/100-tablet-home.png)
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/50baf54d-ae9f-400c-82ef-9ee04917d75a)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/010-pollenflug.png)
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/2f43982e-ee10-496d-bc7e-aa0162d66bf2)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/010-uvi.png)
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/aeed7ec1-b295-4872-9b81-72358979fe08)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/010-pegel.png)
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/cef2c53a-f39a-4eab-ae40-4318cbcd0d27)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/010-aqi.png)
 
 ```
   420-pv-yaml:
@@ -52,11 +52,11 @@ dashboards:
     filename: dashboards/420-pv/index.yaml
 ```
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/1f74c8b3-4caa-4148-bb3c-6f74de71a2fe)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/421-pv.png)
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/8972daf9-6c6c-45e3-91de-e1f0b95071d0)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/422-pv.png)
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/77ce04ce-9e0f-4c60-b371-eb90a84724d2)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/423-pv.png)
 
 ```
   406-heizung-yaml:
@@ -67,7 +67,7 @@ dashboards:
     filename: dashboards/406-heizung/index.yaml
  ```
 
-![image](https://github.com/heinemannj/home-assistant-config/assets/3251642/d46d9e1c-89e3-47c7-b925-8fb9a69353ab)
+![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/034-20-2-HK2-Fussbodenheizung-Heizkreise.png)
 
 ## Notes
 
