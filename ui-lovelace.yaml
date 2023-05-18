@@ -1,7 +1,11 @@
 # ui-lovelace.yaml
 #
+# UI managed dashboards
+#
 mode: storage
-# Add yaml dashboards
+#
+# Additional YAML dashboards
+#
 dashboards:
   100-raeume-yaml:
     mode: yaml

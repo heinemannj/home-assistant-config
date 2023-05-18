@@ -2,7 +2,7 @@
 #
 # geo-rss-feeds-package.yaml
 #
-# - sensor.emcs_earthquakes
+# - sensor.emsc_earthquakes
 # - sensor.emsc_earthquakes_any
 # - sensor.ingv_earthquakes_home_prod_status
 # - sensor.european_emergency_any

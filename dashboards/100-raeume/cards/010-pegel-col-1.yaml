@@ -1,3 +1,38 @@
+layout-card-defaults: &layout-card-template
+  type: custom:layout-card
+  layout_type: custom:grid-layout
+  layout:
+    grid-template-columns: 45% 55%
+    margin: "-4px -4px -20px -4px;"
+
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  tap_action:
+    action: more-info
+  fill_container: true
+  multiline_secondary: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+
+mushroom-entity-card-defaults: &mushroom-entity-card-template
+  type: custom:mushroom-entity-card
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+
+bar-card-defaults: &bar-card-template
+  type: custom:bar-card
+  name: " "
+  decimal: "4"
+  entity_row: true
+  height: 42px
+  color: grey
+  positions:
+    icon: "off"
+    indicator: "off"
+    value: "off"
+  card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+
 type: custom:vertical-stack-in-card
 cards:
   - type: custom:mushroom-title-card
@@ -25,11 +60,9 @@ cards:
         color: red
       - from: 828
         color: purple
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: Wasserstand
         secondary: "{{states('sensor.schermbeck_1_lippe_level')}} cm"
         icon: mdi:waves
@@ -44,16 +77,9 @@ cards:
           {% elif state >= 828.0 %} purple
           {% else %} grey
           {% endif %}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
+      - <<: *bar-card-template
         min: "0"
         max: "928"
-        decimal: "4"
         severity:
           - from: "0"
             to: "160.0"
@@ -76,13 +102,9 @@ cards:
           - from: "828.0001"
             to: "928.0"
             color: purple
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.schermbeck_1_lippe_level
+        entity: sensor.schermbeck_1_lippe_level
         target: "210.0"
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:mushroom-template-card
+  - <<: *mushroom-template-card-template
     primary: "{{state_attr('sensor.schermbeck_1_lippe_stage', 'info')}}"
     secondary: |-
       Stage: {{states('sensor.schermbeck_1_lippe_stage')}}
@@ -92,30 +114,19 @@ cards:
     icon_color: >-
       {% from '010-pegel.jinja' import pegel_icon_color %}
       {{ pegel_icon_color('sensor.schermbeck_1_lippe_stage') }}
-    tap_action:
-      action: more-info
-    fill_container: true
-    multiline_secondary: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
   - type: conditional
     conditions:
       - entity: sensor.schermbeck_1_lippe_flow
         state_not: unavailable
     card:
-      type: custom:mushroom-entity-card
+      <<: *mushroom-template-card-template
       entity: sensor.schermbeck_1_lippe_flow
-      tap_action:
-        action: more-info
-      fill_container: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
   - type: custom:mushroom-title-card
     title: ""
     subtitle: Issel - Dämmerwald, Schermbeck, Germany
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: Wasserstand
         secondary: "{{states('sensor.daemmerwald_issel_ijssel_level')}} cm"
         icon: mdi:waves
@@ -130,16 +141,9 @@ cards:
           {% elif state >= 240.0 %} purple
           {% else %} grey
           {% endif %}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
+      - <<: *bar-card-template
         min: "0"
         max: "240"
-        decimal: "4"
         severity:
           - from: "0"
             to: "10.0"
@@ -162,13 +166,9 @@ cards:
           - from: "220.0001"
             to: "240.0"
             color: purple
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.daemmerwald_issel_ijssel_level
+        entity: sensor.daemmerwald_issel_ijssel_level
         target: "25.0"
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:mushroom-template-card
+  - <<: *mushroom-template-card-template
     primary: "{{state_attr('sensor.daemmerwald_issel_ijssel_stage', 'info')}}"
     secondary: |-
       Stage: {{states('sensor.daemmerwald_issel_ijssel_stage')}}
@@ -178,29 +178,18 @@ cards:
     icon_color: >-
       {% from '010-pegel.jinja' import pegel_icon_color %}
       {{ pegel_icon_color('sensor.daemmerwald_issel_ijssel_stage') }}
-    tap_action:
-      action: more-info
-    fill_container: true
-    multiline_secondary: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
   - type: conditional
     conditions:
       - entity: sensor.daemmerwald_issel_ijssel_flow
         state_not: unavailable
     card:
-      type: custom:mushroom-entity-card
-      entity: sensor.daemmerwald_issel_ijssel_flow
-      tap_action:
-        action: more-info
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+      <<: *mushroom-template-card-template
   - type: custom:mushroom-title-card
     title: ""
     subtitle: Rhein - Wesel, Germany
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: Wasserstand
         secondary: "{{states('sensor.wesel_rhein_level')}} cm"
         icon: mdi:waves
@@ -215,13 +204,7 @@ cards:
           {% elif state >= 1170.0 %} purple
           {% else %} grey
           {% endif %}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
+      - <<: *bar-card-template
         min: "0"
         max: "1231.0"
         decimal: "4"
@@ -247,13 +230,9 @@ cards:
           - from: "1170.0001"
             to: "1231.0"
             color: purple
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.wesel_rhein_level
+        entity: sensor.wesel_rhein_level
         target: "348"
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:mushroom-template-card
+  - <<: *mushroom-template-card-template
     primary: "{{state_attr('sensor.wesel_rhein_stage', 'info')}}"
     secondary: |-
       Stage: {{states('sensor.wesel_rhein_stage')}}
@@ -263,18 +242,11 @@ cards:
     icon_color: |-
       {% from '010-pegel.jinja' import pegel_icon_color %}
       {{ pegel_icon_color('sensor.wesel_rhein_stage') }}
-    tap_action:
-      action: more-info
-    fill_container: true
-    multiline_secondary: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
   - type: conditional
     conditions:
       - entity: sensor.wesel_rhein_flow
         state_not: unavailable
     card:
-      type: custom:mushroom-entity-card
+      <<: *mushroom-template-card-template
       entity: sensor.wesel_rhein_flow
-      tap_action:
-        action: more-info
 card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-padding-bottom.yaml

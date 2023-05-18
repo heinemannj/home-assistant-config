@@ -1,0 +1,16 @@
+type: custom:meteoalarm-card
+entities:
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_1
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_2
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_3
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_4
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_5
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_6
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_7
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_8
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_9
+  - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_10
+integration: nina
+override_headline: false
+scaling_mode: disabled
+hide_when_no_warning: true

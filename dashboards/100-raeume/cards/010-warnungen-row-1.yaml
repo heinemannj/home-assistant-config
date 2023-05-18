@@ -1,0 +1,6 @@
+type: custom:meteoalarm-card
+entities:
+  - entity: sensor.dwd_wetterwarnungen_schermbeck_current_warning_level
+  - entity: sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level
+integration: dwd
+scaling_mode: headline

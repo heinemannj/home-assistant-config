@@ -1,13 +1,51 @@
+layout-card-defaults: &layout-card-template
+  type: custom:layout-card
+  layout_type: custom:grid-layout
+  layout:
+    grid-template-columns: 45% 55%
+    margin: "-4px -4px -20px -4px;"
+
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  tap_action:
+    action: more-info
+  fill_container: true
+  multiline_secondary: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+
+bar-card-defaults: &bar-card-template
+  type: custom:bar-card
+  name: " "
+  min: "0"
+  max: "6"
+  decimal: "0"
+  entity_row: true
+  height: 42px
+  color: grey
+  positions:
+    icon: "off"
+    indicator: "off"
+    value: "off"
+  severity:
+    - from: "0"
+      to: "1"
+      color: green
+    - from: "2"
+      to: "4"
+      color: yellow
+    - from: "5"
+      to: "6"
+      color: red
+  card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+
 type: custom:vertical-stack-in-card
 cards:
   - type: custom:mushroom-title-card
     title: Pollenflug Gefahrenindex
     subtitle: Deutscher Wetterdienst,  Germany
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_ambrosia
         primary: Ambrosia
         secondary: "{{states('sensor.dwd_pollen_ambrosia') }}"
@@ -15,26 +53,11 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_ambrosia') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.dwd_pollen_ambrosia
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      - <<: *bar-card-template
+        entity: sensor.dwd_pollen_ambrosia
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_beifuss
         primary: Beifuss
         secondary: "{{states('sensor.dwd_pollen_beifuss') }}"
@@ -42,25 +65,11 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_beifuss') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
+      - <<: *bar-card-template
         entity: sensor.dwd_pollen_beifuss
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_birke
         primary: Birke
         secondary: "{{states('sensor.dwd_pollen_birke') }}"
@@ -68,25 +77,11 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_birke') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
+      - <<: *bar-card-template
         entity: sensor.dwd_pollen_birke
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_erle
         primary: Erle
         secondary: "{{states('sensor.dwd_pollen_erle') }}"
@@ -94,27 +89,11 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_erle') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
+      - <<: *bar-card-template
         entity: sensor.dwd_pollen_erle
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout:
-      grid-template-columns: 45% 55%
-      margin: "-4px -4px -20px -4px;"
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_esche
         primary: Esche
         secondary: "{{states('sensor.dwd_pollen_esche') }}"
@@ -122,25 +101,11 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_esche') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
+      - <<: *bar-card-template
         entity: sensor.dwd_pollen_esche
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_graeser
         primary: Graeser
         secondary: "{{states('sensor.dwd_pollen_graeser') }}"
@@ -148,25 +113,11 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_graeser') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
+      - <<: *bar-card-template
         entity: sensor.dwd_pollen_graeser
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_hasel
         primary: Hasel
         secondary: "{{states('sensor.dwd_pollen_hasel') }}"
@@ -174,25 +125,11 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_hasel') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
+      - <<: *bar-card-template
         entity: sensor.dwd_pollen_hasel
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.dwd_pollen_roggen
         primary: Roggen
         secondary: "{{states('sensor.dwd_pollen_roggen') }}"
@@ -200,18 +137,6 @@ cards:
         icon_color: >-
           {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
           {{ pollenflug_icon_color('sensor.dwd_pollen_roggen') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
+      - <<: *bar-card-template
         entity: sensor.dwd_pollen_roggen
-        name: " "
-        height: 42px
-        min: "0"
-        max: "6"
-        decimal: "0"
-        severity: !include /config/dashboards/100-raeume/templates/010-pollenflug-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
 card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-padding-bottom.yaml

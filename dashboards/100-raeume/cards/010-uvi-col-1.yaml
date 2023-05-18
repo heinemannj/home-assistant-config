@@ -1,3 +1,56 @@
+layout-card-defaults: &layout-card-template
+  type: custom:layout-card
+  layout_type: custom:grid-layout
+  layout:
+    grid-template-columns: 45% 55%
+    margin: "-4px -4px -20px -4px;"
+
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  tap_action:
+    action: more-info
+  fill_container: true
+  multiline_secondary: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+
+mushroom-entity-card-defaults: &mushroom-entity-card-template
+  type: custom:mushroom-entity-card
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+
+bar-card-defaults: &bar-card-template
+  type: custom:bar-card
+  name: " "
+  min: "0"
+  max: "14"
+  decimal: "4"
+  entity_row: true
+  height: 42px
+  color: grey
+  positions:
+    icon: "off"
+    indicator: "off"
+    value: "off"
+  severity:
+    - from: "0"
+      to: "2"
+      color: green
+    - from: "3"
+      to: "5"
+      color: yellow
+    - from: "6"
+      to: "7"
+      color: orange
+    - from: "8"
+      to: "10"
+      color: red
+    - from: "11"
+      to: "14"
+      color: purple
+  card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+
 type: custom:vertical-stack-in-card
 cards:
   - type: custom:mushroom-title-card
@@ -21,11 +74,9 @@ cards:
         color: red
       - from: 11
         color: purple
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.current_uv_index
         primary: >-
           {% from '010-uvi.jinja' import uvi_primary %}
@@ -35,26 +86,11 @@ cards:
         icon_color: >-
           {% from '010-uvi.jinja' import uvi_icon_color %}
           {{ uvi_icon_color('sensor.current_uv_index') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "14"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-uvi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.current_uv_index
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      - <<: *bar-card-template
+        entity: sensor.current_uv_index
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         entity: sensor.max_uv_index
         primary: |-
           {% from '010-uvi.jinja' import uvi_primary %}
@@ -64,37 +100,18 @@ cards:
         icon_color: >-
           {% from '010-uvi.jinja' import uvi_icon_color %}
           {{ uvi_icon_color('sensor.max_uv_index') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "14"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-uvi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.max_uv_index
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:mushroom-entity-card
+      - <<: *bar-card-template
+        entity: sensor.max_uv_index
+  - <<: *mushroom-entity-card-template
     entity: sensor.skin_type_1_safe_exposure_time
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
-  - type: custom:mushroom-entity-card
+  - <<: *mushroom-entity-card-template
     entity: sensor.skin_type_2_safe_exposure_time
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
-  - type: custom:mushroom-entity-card
+  - <<: *mushroom-entity-card-template
     entity: sensor.skin_type_3_safe_exposure_time
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
-  - type: custom:mushroom-entity-card
+  - <<: *mushroom-entity-card-template
     entity: sensor.skin_type_4_safe_exposure_time
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
-  - type: custom:mushroom-entity-card
+  - <<: *mushroom-entity-card-template
     entity: sensor.skin_type_5_safe_exposure_time
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
-  - type: custom:mushroom-entity-card
+  - <<: *mushroom-entity-card-template
     entity: sensor.skin_type_6_safe_exposure_time
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
 card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-padding-bottom.yaml

@@ -1,0 +1,6 @@
+type: picture-entity
+show_state: false
+show_name: false
+camera_view: auto
+camera_image: camera.www_dwd_de
+entity: camera.www_dwd_de

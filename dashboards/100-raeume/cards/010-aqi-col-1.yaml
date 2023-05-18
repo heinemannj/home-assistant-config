@@ -1,3 +1,51 @@
+layout-card-defaults: &layout-card-template
+  type: custom:layout-card
+  layout_type: custom:grid-layout
+  layout:
+    grid-template-columns: 45% 55%
+    margin: "-4px -4px -20px -4px;"
+
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+
+bar-card-defaults: &bar-card-template
+  type: custom:bar-card
+  name: " "
+  min: "0"
+  max: "500"
+  decimal: "4"
+  entity_row: true
+  height: 42px
+  color: grey
+  positions:
+    icon: "off"
+    indicator: "off"
+    value: "off"
+  severity:
+    - from: "0"
+      to: "50"
+      color: green
+    - from: "50.0001"
+      to: "100"
+      color: yellow
+    - from: "100.0001"
+      to: "150"
+      color: orange
+    - from: "150.0001"
+      to: "200"
+      color: red
+    - from: "200.0001"
+      to: "300"
+      color: purple
+    - from: "300.0001"
+      to: "500"
+      color: "#7e0023"
+  card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+
 type: custom:vertical-stack-in-card
 cards:
   - type: custom:mushroom-title-card
@@ -10,12 +58,22 @@ cards:
     needle: true
     min: 0
     max: 500
-    segments: !include /config/dashboards/100-raeume/templates/010-aqi-gauge-segments.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+    segments:
+      - from: 0
+        color: green
+      - from: 51
+        color: yellow
+      - from: 101
+        color: orange
+      - from: 151
+        color: red
+      - from: 201
+        color: purple
+      - from: 301
+        color: maroon
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: >-
           {% from '010-aqi.jinja' import aqi_primary %}
           {{ aqi_primary('sensor.air_quality_index_borken') }}
@@ -25,34 +83,16 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.air_quality_index_borken') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        entities:
-          - entity: sensor.air_quality_index_borken
-        name: " "
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        min: "0"
-        max: "500"
-        decimal: "4"
-        entity_row: true
-        height: 42px
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+      - <<: *bar-card-template
+        entity: sensor.air_quality_index_borken
   - type: conditional
     conditions:
       - entity: sensor.ozone_o3_borken
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout:
-        grid-template-columns: 45% 55%
-        margin: "-4px -4px -20px -4px;"
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Ozone (O3)
           secondary: "{{states('sensor.ozone_o3_borken')}} AQI"
           icon: mdi:skull-outline
@@ -60,28 +100,11 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.ozone_o3_borken') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.ozone_o3_borken
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+        - <<: *bar-card-template
+          entity: sensor.ozone_o3_borken
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: PM2.5
         secondary: "{{states('sensor.particulate_matter_pm25_borken')}} AQI"
         icon: mdi:skull-outline
@@ -89,28 +112,11 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm25_borken') }}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.particulate_matter_pm25_borken
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      - <<: *bar-card-template
+        entity: sensor.particulate_matter_pm25_borken
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: PM10
         secondary: "{{states('sensor.particulate_matter_pm10_borken')}} AQI"
         icon: mdi:skull-outline
@@ -118,33 +124,16 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm10_borken') }}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.particulate_matter_pm10_borken
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+      - <<: *bar-card-template
+        entity: sensor.particulate_matter_pm10_borken
   - type: conditional
     conditions:
       - entity: sensor.carbon_monoxide_co_borken
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Carbon monoxide (CO)
           secondary: "{{states('sensor.carbon_monoxide_co_borken')}} AQI"
           icon: mdi:skull-outline
@@ -152,33 +141,16 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.carbon_monoxide_co_borken') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.carbon_monoxide_co_borken
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.carbon_monoxide_co_borken
   - type: conditional
     conditions:
       - entity: sensor.sulphur_dioxide_so2_borken
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Sulphur dioxide (SO2)
           secondary: "{{states('sensor.sulphur_dioxide_so2_borken')}} AQI"
           icon: mdi:smog
@@ -186,33 +158,16 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.sulphur_dioxide_so2_borken') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.sulphur_dioxide_so2_borken
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.sulphur_dioxide_so2_borken
   - type: conditional
     conditions:
       - entity: sensor.nitrogen_dioxide_no2_borken
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Nitrogen dioxide (NO2)
           secondary: "{{states('sensor.nitrogen_dioxide_no2_borken')}} AQI"
           icon: mdi:smog
@@ -220,31 +175,14 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_borken') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.nitrogen_dioxide_no2_borken
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.nitrogen_dioxide_no2_borken
   - type: custom:mushroom-title-card
     title: ""
     subtitle: Schermbeck, Germany
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: >-
           {% from '010-aqi.jinja' import aqi_primary %}
           {{ aqi_primary('sensor.air_quality_index_schermbeck') }}
@@ -254,32 +192,16 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.air_quality_index_schermbeck') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.air_quality_index_schermbeck
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+      - <<: *bar-card-template
+        entity: sensor.air_quality_index_schermbeck
   - type: conditional
     conditions:
       - entity: sensor.ozone_o3_schermbeck
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Ozone (O3)
           secondary: "{{states('sensor.ozone_o3_schermbeck')}} AQI"
           icon: mdi:skull-outline
@@ -287,28 +209,11 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.ozone_o3_schermbeck') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.ozone_o3_schermbeck
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+        - <<: *bar-card-template
+          entity: sensor.ozone_o3_schermbeck
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: PM2.5
         secondary: "{{states('sensor.particulate_matter_pm25_schermbeck')}} AQI"
         icon: mdi:skull-outline
@@ -316,28 +221,11 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm25_schermbeck') }}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.particulate_matter_pm25_schermbeck
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      - <<: *bar-card-template
+        entity: sensor.particulate_matter_pm25_schermbeck
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: PM10
         secondary: "{{states('sensor.particulate_matter_pm10_schermbeck')}} AQI"
         icon: mdi:skull-outline
@@ -345,33 +233,16 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm10_schermbeck') }}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.particulate_matter_pm10_schermbeck
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+      - <<: *bar-card-template
+        entity: sensor.particulate_matter_pm10_schermbeck
   - type: conditional
     conditions:
       - entity: sensor.carbon_monoxide_co_schermbeck
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Carbon monoxide (CO)
           secondary: "{{states('sensor.carbon_monoxide_co_schermbeck')}} AQI"
           icon: mdi:skull-outline
@@ -379,33 +250,16 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.carbon_monoxide_co_schermbeck') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.carbon_monoxide_co_schermbeck
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.carbon_monoxide_co_schermbeck
   - type: conditional
     conditions:
       - entity: sensor.sulphur_dioxide_so2_schermbeck
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Sulphur dioxide (SO2)
           secondary: "{{states('sensor.sulphur_dioxide_so2_schermbeck')}} AQI"
           icon: mdi:smog
@@ -413,33 +267,16 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.sulphur_dioxide_so2_schermbeck') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.sulphur_dioxide_so2_schermbeck
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.sulphur_dioxide_so2_schermbeck
   - type: conditional
     conditions:
       - entity: sensor.nitrogen_dioxide_no2_schermbeck
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Nitrogen dioxide (NO2)
           secondary: "{{states('sensor.nitrogen_dioxide_no2_schermbeck')}} AQI"
           icon: mdi:smog
@@ -447,31 +284,14 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_schermbeck') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.nitrogen_dioxide_no2_schermbeck
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.nitrogen_dioxide_no2_schermbeck
   - type: custom:mushroom-title-card
     title: ""
     subtitle: Wesel Obrighoven, Germany
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: >-
           {% from '010-aqi.jinja' import aqi_primary %}
           {{ aqi_primary('sensor.air_quality_index_wesel') }}
@@ -481,32 +301,16 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.air_quality_index_wesel') }}
-        tap_action:
-          action: more-info
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.air_quality_index_wesel
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+      - <<: *bar-card-template
+        entity: sensor.air_quality_index_wesel
   - type: conditional
     conditions:
       - entity: sensor.ozone_o3_wesel
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Ozone (O3)
           secondary: "{{states('sensor.ozone_o3_wesel')}} AQI"
           icon: mdi:skull-outline
@@ -514,28 +318,11 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.ozone_o3_wesel') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.ozone_o3_wesel
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+        - <<: *bar-card-template
+          entity: sensor.ozone_o3_wesel
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: PM2.5
         secondary: "{{states('sensor.particulate_matter_pm25_wesel')}} AQI"
         icon: mdi:skull-outline
@@ -543,28 +330,11 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm25_wesel') }}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.particulate_matter_pm25_wesel
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
-  - type: custom:layout-card
-    layout_type: custom:grid-layout
-    layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      - <<: *bar-card-template
+        entity: sensor.particulate_matter_pm25_wesel
+  - <<: *layout-card-template
     cards:
-      - type: custom:mushroom-template-card
+      - <<: *mushroom-template-card-template
         primary: PM10
         secondary: "{{states('sensor.particulate_matter_pm10_wesel')}} AQI"
         icon: mdi:skull-outline
@@ -572,33 +342,16 @@ cards:
         icon_color: >-
           {% from '010-aqi.jinja' import aqi_icon_color %}
           {{ aqi_icon_color('sensor.particulate_matter_pm10_wesel') }}
-        tap_action:
-          action: more-info
-        fill_container: true
-        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-      - type: custom:bar-card
-        name: " "
-        height: 42px
-        min: "0"
-        max: "500"
-        decimal: "4"
-        severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-        entity_row: true
-        positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-        entities:
-          - entity: sensor.particulate_matter_pm10_wesel
-        color: grey
-        card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+      - <<: *bar-card-template
+        entity: sensor.particulate_matter_pm10_wesel
   - type: conditional
     conditions:
       - entity: sensor.carbon_monoxide_co_wesel
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Carbon monoxide (CO)
           secondary: "{{states('sensor.carbon_monoxide_co_wesel')}} AQI"
           icon: mdi:skull-outline
@@ -606,33 +359,16 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.carbon_monoxide_co_wesel') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.carbon_monoxide_co_wesel
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.carbon_monoxide_co_wesel
   - type: conditional
     conditions:
       - entity: sensor.sulphur_dioxide_so2_wesel
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Sulphur dioxide (SO2)
           secondary: "{{states('sensor.sulphur_dioxide_so2_wesel')}} AQI"
           icon: mdi:smog
@@ -640,33 +376,16 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.sulphur_dioxide_so2_wesel') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.sulphur_dioxide_so2_wesel
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.sulphur_dioxide_so2_wesel
   - type: conditional
     conditions:
       - entity: sensor.nitrogen_dioxide_no2_wesel
         state_not: unavailable
     card:
-      type: custom:layout-card
-      layout_type: custom:grid-layout
-      layout: !include /config/dashboards/100-raeume/templates/layout-card-grid-layout.yaml
+      <<: *layout-card-template
       cards:
-        - type: custom:mushroom-template-card
+        - <<: *mushroom-template-card-template
           primary: Nitrogen dioxide (NO2)
           secondary: "{{states('sensor.nitrogen_dioxide_no2_wesel')}} AQI"
           icon: mdi:smog
@@ -674,21 +393,6 @@ cards:
           icon_color: >-
             {% from '010-aqi.jinja' import aqi_icon_color %}
             {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_wesel') }}
-          tap_action:
-            action: more-info
-          fill_container: true
-          card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
-        - type: custom:bar-card
-          name: " "
-          height: 42px
-          min: "0"
-          max: "500"
-          decimal: "4"
-          severity: !include /config/dashboards/100-raeume/templates/010-aqi-bar-severity.yaml
-          entity_row: true
-          positions: !include /config/dashboards/100-raeume/templates/bar-card-positions.yaml
-          entities:
-            - entity: sensor.nitrogen_dioxide_no2_wesel
-          color: grey
-          card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+        - <<: *bar-card-template
+          entity: sensor.nitrogen_dioxide_no2_wesel
 card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-padding-bottom.yaml

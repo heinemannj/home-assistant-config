@@ -1,0 +1,11 @@
+type: custom:weather-radar-card
+show_marker: true
+show_scale: true
+show_playback: true
+show_zoom: true
+show_range: true
+static_map: false
+square_map: false
+show_recenter: true
+extra_labels: false
+map_style: Light
