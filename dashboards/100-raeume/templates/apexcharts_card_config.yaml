@@ -1,0 +1,5 @@
+# For 420-pv-solar-forecast-chart
+#
+# Do not remove
+#
+!include /config/dashboards/420-pv/templates/apexcharts_card_config.yaml

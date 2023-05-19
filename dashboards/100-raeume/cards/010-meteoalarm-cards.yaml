@@ -1,0 +1,46 @@
+meteoalarm-card-defaults: &meteoalarm-card-template
+  type: custom:meteoalarm-card
+  scaling_mode: headline
+  hide_when_no_warning: false
+  override_headline: false
+  card_mod:
+    style: |
+      ha-card {
+        height: 80px !important;
+      }
+      .swiper {
+        height: 80px !important;
+      }
+      .content {
+        height: 80px !important;
+        padding: 6px 6px;
+      }
+      .headline {
+        margin: -20px auto auto 10px !important;
+      }
+      .main-icon {
+        margin: -20px auto -20px -10px !important;
+      }
+
+type: custom:vertical-stack-in-card
+cards:
+  - <<: *meteoalarm-card-template
+    entities:
+      - entity: sensor.dwd_wetterwarnungen_schermbeck_current_warning_level
+      - entity: sensor.dwd_wetterwarnungen_schermbeck_advance_warning_level
+    integration: dwd
+
+  - <<: *meteoalarm-card-template
+    entities:
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_1
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_2
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_3
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_4
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_5
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_6
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_7
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_8
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_9
+      - entity: binary_sensor.warning_schermbeck_wesel_nordrhein_westfalen_10
+    integration: nina
+    scaling_mode: scale

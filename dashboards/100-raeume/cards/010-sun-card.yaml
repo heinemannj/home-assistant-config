@@ -1,0 +1,46 @@
+type: custom:sun-card
+language: de
+showAzimuth: false
+showElevation: false
+card_mod:
+  style: |
+    ha-card {
+      height: 160px;
+    }
+    div.sun-card {
+      padding: 1em 0;
+    }
+    div.sun-card-header {
+      padding: 0 1em;
+    }
+    div.sun-card-body {
+        margin-top: -1.6rem;
+        padding: 0rem;
+    }
+    div.sun-card-footer {
+      display: true;
+      margin-top: -1.6rem;
+    }
+    .sun-card-text-subtitle {
+      font-size: 0.7rem !important;
+      font-weight: 100 !important;
+      padding: 0rem !important;
+    }
+    .sun-card-text-time {
+      font-size: 12px !important;
+      font-weight: normal !important;
+      padding: 0rem !important;
+      margin-top: -0.4rem !important;
+    }
+    div.sun-card-text-container {
+      align-items: inherit;
+    }
+    div.sun-card-text-container:nth-child(1) {
+      text-align: left;
+    }
+    div.sun-card-text-container:nth-child(2) {
+      text-align: right;
+    }
+    div.sun-card-text-container:nth-child(3) {
+      text-align: right;
+    }

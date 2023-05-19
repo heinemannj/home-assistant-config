@@ -1,0 +1,31 @@
+style: |
+  ha-card {
+    height: 160px;
+  }
+  .compass {
+      margin: 4px auto;
+  }
+  .indicator-sensors {
+    font-size: 12px !important;
+    line-height: 1em !important;
+  }
+  .sensor-0 {
+    height: 1em !important;
+  }
+  .sensor-0 .value {
+    font-size: 12px !important;
+    height: 1em !important;
+  }
+  .sensor-0 .measurement {
+    font-size: 10px !important; 
+  } 
+  .sensor-1 {
+    height: 1em !important;
+  }
+  .sensor-1 .value {
+    font-size: 12px !important;
+    height: 1em !important;
+  }
+  .sensor-1 .measurement {
+    font-size: 10px !important; 
+  }

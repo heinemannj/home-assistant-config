@@ -1,0 +1,108 @@
+compass-card-dynamic-style-defaults: &compass-card-dynamic-style-template
+  bands:
+    - from_value: 3
+      color: yellow
+    - from_value: 6
+      color: orange
+    - from_value: 8
+      color: red
+    - from_value: 11
+      color: purple
+
+type: custom:compass-card
+indicator_sensors:
+  - sensor: sun.sun
+    attribute: azimuth
+    indicator:
+      type: circle
+      color: orange
+      show: false
+      dynamic_style:
+        sensor: sun.sun
+        attribute: elevation
+        bands:
+          - from_value: 0
+            show: true
+    state_abbreviation:
+      color: orange
+      show: false
+      dynamic_style:
+        sensor: sun.sun
+        attribute: elevation
+        bands:
+          - from_value: 0
+            show: true
+  - sensor: sensor.astroweather_moon_azimuth
+    indicator:
+      type: circle
+      color: gray
+      show: false
+      dynamic_style:
+        sensor: sensor.astroweather_moon_altitude
+        bands:
+          - from_value: 0
+            show: true
+    state_abbreviation:
+      color: gray
+      show: false
+      dynamic_style:
+        sensor: sensor.astroweather_moon_altitude
+        bands:
+          - from_value: 0
+            show: true
+value_sensors:
+  - sensor: sun.sun
+    attribute: elevation
+    decimals: 1
+    units: °
+    state_value:
+      show: false
+      dynamic_style:
+        sensor: sun.sun
+        attribute: elevation
+        bands:
+          - from_value: 0
+            show: true
+            color: orange
+  - sensor: sensor.astroweather_moon_altitude
+    units: °
+    decimals: 1
+    state_value:
+      show: false
+      dynamic_style:
+        sensor: sensor.astroweather_moon_altitude
+        bands:
+          - from_value: 0
+            show: true
+            color: gray
+compass:
+  circle:
+    background_opacity: null
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.current_uv_index
+  north:
+    show: true
+    offset: 221
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.current_uv_index
+  east:
+    show: true
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.current_uv_index
+  west:
+    show: true
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.current_uv_index
+  south:
+    show: true
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.current_uv_index
+tap_action:
+  entity: sun.sun
+language: de
+card_mod: !include /config/dashboards/100-raeume/templates/compass-card-mod.yaml

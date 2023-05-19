@@ -1,9 +1,67 @@
+pv_solar_forecast_chart:
+  header:
+    show: true
+    standard_format: true
+    show_states: true
+    colorize_states: true
+  cache: false
+  apex_config:
+    chart:
+      height: 220px
+    tooltip:
+      enabled: true
+      shared: true
+      followCursor: true
+  graph_span: 4d
+  now:
+    show: true
+    color: grey
+    label: Now
+  span:
+    start: day
+    offset: "-1day"
+  all_series_config:
+    type: area
+    float_precision: 3
+    color: grey
+    opacity: 0.3
+    stroke_width: 0.0
+    yaxis_id: kW
+    unit: kW
+    extend_to: now
+    show:
+      legend_value: true
+      in_header: true
+      in_chart: true
+  yaxis:
+    - id: capacity
+      show: true
+      opposite: true
+      decimals: 0
+      max: 100
+      min: 0
+      apex_config:
+        tickAmount: 5
+    #        title:
+    #          text: Capacity [%]
+    #          rotate: 90
+    - id: kW
+      show: true
+      min: 0
+      apex_config:
+        tickAmount: 5
+    #        title:
+    #          text: Power [kW]
+    - id: header_only
+      show: false
+
 pv_radial_chart:
   chart_type: radialBar
   header:
     show: true
     show_states: true
     colorize_states: true
+  cache: false
   apex_config:
     chart:
       height: 245px
@@ -25,6 +83,7 @@ pv_donut_chart:
     show: true
     show_states: true
     colorize_states: true
+  cache: false
   apex_config:
     chart:
       height: 230px

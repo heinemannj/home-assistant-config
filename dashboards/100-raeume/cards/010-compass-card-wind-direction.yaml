@@ -1,0 +1,52 @@
+compass-card-dynamic-style-defaults: &compass-card-dynamic-style-template
+  bands:
+    - from_value: 50
+      color: yellow
+    - from_value: 65
+      color: orange
+    - from_value: 105
+      color: red
+    - from_value: 140
+      color: purple
+
+type: custom:compass-card
+indicator_sensors:
+  - sensor: sensor.wind_direction_raesfeld_ka
+    indicator:
+      type: arrow_inward
+value_sensors:
+  - sensor: sensor.wind_speed_raesfeld_ka
+    decimals: 1
+  - sensor: sensor.wind_gusts_raesfeld_ka
+    decimals: 1
+compass:
+  circle:
+    background_opacity: null
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.wind_gusts_raesfeld_ka
+  north:
+    show: true
+    offset: 221
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.wind_gusts_raesfeld_ka
+  east:
+    show: true
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.wind_gusts_raesfeld_ka
+  west:
+    show: true
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.wind_gusts_raesfeld_ka
+  south:
+    show: true
+    dynamic_style:
+      <<: *compass-card-dynamic-style-template
+      sensor: sensor.wind_gusts_raesfeld_ka
+tap_action:
+  entity: sensor.wind_speed_raesfeld_ka
+language: de
+card_mod: !include /config/dashboards/100-raeume/templates/compass-card-mod.yaml

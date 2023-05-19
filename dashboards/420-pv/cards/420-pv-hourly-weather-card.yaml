@@ -1,0 +1,11 @@
+type: custom:hourly-weather
+entity: weather.dwd_weather_raesfeld_ka_1h
+num_segments: 60
+offset: 0
+label_spacing: 2
+icons: true
+show_date: boundary
+show_wind: false
+show_precipitation_amounts: false
+show_precipitation_probability: false
+name: ""

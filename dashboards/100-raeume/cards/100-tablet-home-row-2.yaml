@@ -15,39 +15,23 @@ cards:
             secondary: "{{ states('sensor.event_day_restmuell') }} d"
             badge_icon: >-
               {% set calevent = states('sensor.event_day_restmuell') %}
-              {% if calevent == 0 %}
-                mdi:calendar-alert
-              {% elif calevent == 1 %}
-                mdi:calendar
-              {% elif calevent == 2 %}
-                mdi:calendar-week
-              {% elif calevent == 3 %}
-                mdi:calendar-week
-              {% elif calevent == 4 %}
-                mdi:calendar-week
-              {% else %}
-                none
+              {% if calevent == 0 %} mdi:calendar-alert
+              {% elif calevent == 1 %} mdi:calendar
+              {% elif calevent == 2 %} mdi:calendar-week
+              {% elif calevent == 3 %} mdi:calendar-week
+              {% elif calevent == 4 %} mdi:calendar-week
+              {% else %} none
               {% endif %}
             badge_color: >-
               {% set calevent = states('sensor.event_day_restmuell') %}
-              {% if calevent == 0 %}
-                red
-              {% elif calevent == 1 %}
-                orange
-              {% elif calevent == 2 %}
-                grey
-              {% elif calevent == 3 %}
-                grey
-              {% elif calevent == 4 %}
-                grey
-              {% else %}
-                none
+              {% if calevent == 0 %} red
+              {% elif calevent == 1 %} orange
+              {% elif calevent == 2 %} grey
+              {% elif calevent == 3 %} grey
+              {% elif calevent == 4 %} grey
+              {% else %} none
               {% endif %}
-            card_mod:
-              style: |
-                ha-card {
-                  border-style: none !important;
-                }
+            card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
           - type: custom:mushroom-template-card
             primary: ""
             icon: mdi:trash-can-outline
@@ -58,39 +42,23 @@ cards:
             secondary: "{{ states('sensor.event_day_papier') }} d"
             badge_icon: >-
               {% set calevent = states('sensor.event_day_papier')|int %}
-              {% if calevent == 0 %}
-                mdi:calendar-alert
-              {% elif calevent == 1 %}
-                mdi:calendar
-              {% elif calevent == 2 %}
-                mdi:calendar-week
-              {% elif calevent == 3 %}
-                mdi:calendar-week
-              {% elif calevent == 4 %}
-                mdi:calendar-week
-              {% else %}
-                none
+              {% if calevent == 0 %} mdi:calendar-alert
+              {% elif calevent == 1 %} mdi:calendar
+              {% elif calevent == 2 %} mdi:calendar-week
+              {% elif calevent == 3 %} mdi:calendar-week
+              {% elif calevent == 4 %} mdi:calendar-week
+              {% else %} none
               {% endif %}
             badge_color: >-
-              {% set calevent = states('sensor.event_day_papier')|int %}
-              {% if calevent == 0 %}
-                red
-              {% elif calevent == 1 %}
-                orange
-              {% elif calevent == 2 %}
-                grey
-              {% elif calevent == 3 %}
-                grey
-              {% elif calevent == 4 %}
-                grey
-              {% else %}
-                none
+              {% set calevent = states('sensor.event_day_papier') %}
+              {% if calevent == 0 %} red
+              {% elif calevent == 1 %} orange
+              {% elif calevent == 2 %} grey
+              {% elif calevent == 3 %} grey
+              {% elif calevent == 4 %} grey
+              {% else %} none
               {% endif %}
-            card_mod:
-              style: |
-                ha-card {
-                  border-style: none !important;
-                }
+            card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
         card_mod:
           style: |
             ha-card {    
@@ -109,40 +77,23 @@ cards:
               action: more-info
             secondary: "{{ states('sensor.event_day_gelber_sack') }} d"
             badge_icon: >-
-              {% set calevent = states('sensor.event_day_gelber_sack')
-              %} {% if calevent == 0 %}
-                mdi:calendar-alert
-              {% elif calevent == 1 %}
-                mdi:calendar
-              {% elif calevent == 2 %}
-                mdi:calendar-week
-              {% elif calevent == 3 %}
-                mdi:calendar-week
-              {% elif calevent == 4 %}
-                mdi:calendar-week
-              {% else %}
-                none
+              {% set calevent = states('sensor.event_day_gelber_sack')%}
+              {% if calevent == 0 %} mdi:calendar-alert
+              {% elif calevent == 1 %} mdi:calendar
+              {% elif calevent == 2 %} mdi:calendar-week
+              {% elif calevent == 3 %} mdi:calendar-week
+              {% elif calevent == 4 %} mdi:calendar-week
+              {% else %} none
               {% endif %}
             badge_color: >-
-              {% set calevent = states('sensor.event_day_gelber_sack')
-              %} {% if calevent == 0 %}
-                red
-              {% elif calevent == 1 %}
-                orange
-              {% elif calevent == 2 %}
-                grey
-              {% elif calevent == 3 %}
-                grey
-              {% elif calevent == 4 %}
-                grey
-              {% else %}
-                none
+              {% if calevent == 0 %} red
+              {% elif calevent == 1 %} orange
+              {% elif calevent == 2 %} grey
+              {% elif calevent == 3 %} grey
+              {% elif calevent == 4 %} grey
+              {% else %} none
               {% endif %}
-            card_mod:
-              style: |
-                ha-card {
-                  border-style: none !important;
-                }
+            card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
           - type: custom:mushroom-template-card
             primary: ""
             icon: mdi:trash-can-outline
@@ -152,40 +103,24 @@ cards:
               action: more-info
             secondary: "{{ states('sensor.event_day_schadstoffe') }} d"
             badge_icon: >-
-              {% set calevent = states('sensor.event_day_schadstoffe')
-              %} {% if calevent == 0 %}
-                mdi:calendar-alert
-              {% elif calevent == 1 %}
-                mdi:calendar
-              {% elif calevent == 2 %}
-                mdi:calendar-week
-              {% elif calevent == 3 %}
-                mdi:calendar-week
-              {% elif calevent == 4 %}
-                mdi:calendar-week
-              {% else %}
-                none
+              {% set calevent = states('sensor.event_day_schadstoffe') %}
+              {% if calevent == 0 %} mdi:calendar-alert
+              {% elif calevent == 1 %} mdi:calendar
+              {% elif calevent == 2 %} mdi:calendar-week
+              {% elif calevent == 3 %} mdi:calendar-week
+              {% elif calevent == 4 %} mdi:calendar-week
+              {% else %} none
               {% endif %}
             badge_color: >-
-              {% set calevent = states('sensor.event_day_schadstoffe')
-              %} {% if calevent == 0 %}
-                red
-              {% elif calevent == 1 %}
-                orange
-              {% elif calevent == 2 %}
-                grey
-              {% elif calevent == 3 %}
-                grey
-              {% elif calevent == 4 %}
-                grey
-              {% else %}
-                none
+              {% set calevent = states('sensor.event_day_schadstoffe') %}
+              {% if calevent == 0 %} red
+              {% elif calevent == 1 %} orange
+              {% elif calevent == 2 %} grey
+              {% elif calevent == 3 %} grey
+              {% elif calevent == 4 %} grey
+              {% else %} none
               {% endif %}
-            card_mod:
-              style: |
-                ha-card {
-                  border-style: none !important;
-                }
+            card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
       - type: custom:mushroom-template-card
         primary: ""
         icon: mdi:trash-can-outline
@@ -195,40 +130,24 @@ cards:
           action: more-info
         secondary: "{{ states('sensor.event_day_biomuell') }} d"
         badge_icon: >-
-          {% set calevent = states('sensor.event_day_biomuell') %} {% if
-          calevent == 0 %}
-            mdi:calendar-alert
-          {% elif calevent == 1 %}
-            mdi:calendar
-          {% elif calevent == 2 %}
-            mdi:calendar-week
-          {% elif calevent == 3 %}
-            mdi:calendar-week
-          {% elif calevent == 4 %}
-            mdi:calendar-week
-          {% else %}
-            none
+          {% set calevent = states('sensor.event_day_biomuell') %}
+          {% if calevent == 0 %} mdi:calendar-alert
+          {% elif calevent == 1 %} mdi:calendar
+          {% elif calevent == 2 %} mdi:calendar-week
+          {% elif calevent == 3 %} mdi:calendar-week
+          {% elif calevent == 4 %} mdi:calendar-week
+          {% else %} none
           {% endif %}
         badge_color: >-
-          {% set calevent = states('sensor.event_day_biomuell') %} {% if
-          calevent == 0 %}
-            red
-          {% elif calevent == 1 %}
-            orange
-          {% elif calevent == 2 %}
-            grey
-          {% elif calevent == 3 %}
-            grey
-          {% elif calevent == 4 %}
-            grey
-          {% else %}
-            none
+          {% set calevent = states('sensor.event_day_biomuell') %}
+          {% if calevent == 0 %} red
+          {% elif calevent == 1 %} orange
+          {% elif calevent == 2 %} grey
+          {% elif calevent == 3 %} grey
+          {% elif calevent == 4 %} grey
+          {% else %} none
           {% endif %}
-        card_mod:
-          style: |
-            ha-card {
-              border-style: none !important;
-            }
+        card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
     card_mod:
       style: |
         ha-card {    

@@ -5,6 +5,50 @@ icon: mdi:solar-power-variant
 type: custom:grid-layout
 badges: []
 cards:
-  - !include /config/dashboards/420-pv/cards/421-pv-row-1.yaml
-  - !include /config/dashboards/420-pv/cards/421-pv-row-2.yaml
-  - !include /config/dashboards/420-pv/cards/421-pv-row-3.yaml
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - !include /config/dashboards/420-pv/cards/420-pv-hourly-weather-card.yaml
+    layout:
+      grid-template-columns: auto
+      margin: 0px;
+      padding: 0px;
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - !include /config/dashboards/420-pv/cards/420-pv-power-flow-card.yaml
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - !include /config/dashboards/420-pv/cards/420-pv-solar-power-gauge-card.yaml
+              - !include /config/dashboards/420-pv/cards/420-pv-battery-capacity-gauge-card.yaml
+              - !include /config/dashboards/420-pv/cards/420-pv-battery-status-card.yaml
+              - !include /config/dashboards/420-pv/cards/420-pv-self-sufficiency-gauge-card.yaml
+              - !include /config/dashboards/420-pv/cards/420-pv-inverter-temp-gauge-card.yaml
+              - !include /config/dashboards/420-pv/cards/420-pv-misc-status-card.yaml
+            card_mod:
+              style: |
+                ha-card {
+                  width: 915px !important;
+                  height: 100px !important;
+                  }
+          - !include /config/dashboards/420-pv/cards/420-pv-solar-forecast-chart.yaml
+      - !include /config/dashboards/420-pv/cards/420-pv-energy-flow-card.yaml
+    layout:
+      grid-template-columns: 365px 920px 365px
+      margin: 0px;
+      padding: 0px;
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    cards:
+      - !include /config/dashboards/420-pv/cards/420-pv-solar-yield-self-use_radial_chart.yaml
+      - !include /config/dashboards/420-pv/cards/420-pv-solar-yield-self-sufficiency_radial_chart.yaml
+      - !include /config/dashboards/420-pv/cards/420-pv-solar-yield-usage-today_donut_chart.yaml
+      - !include /config/dashboards/420-pv/cards/420-pv-house-consumption-today_donut_chart.yaml
+      - !include /config/dashboards/420-pv/cards/420-pv-inverter-input-output-today_donut_chart.yaml
+      - !include /config/dashboards/420-pv/cards/420-pv-inverter-loss-today_donut_chart.yaml
+    layout:
+      grid-template-columns: 270px 270px 270px 270px 300px 270px
+      margin: 0px;
+      padding: 0px;
