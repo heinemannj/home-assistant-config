@@ -1,22 +1,23 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  secondary: ""
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod.yaml
+
 type: custom:vertical-stack-in-card
 cards:
-  - type: custom:mushroom-template-card
+  - <<: *mushroom-template-card-template
     primary: >-
       {{ states('sensor.house_consumption_energy_daily_control')|round(2) }} kWh
     icon: mdi:home-lightning-bolt
     entity: sensor.house_consumption_energy_daily_control
-    secondary: ""
-    tap_action:
-      action: more-info
     icon_color: "#66CDAA"
     card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod-1.yaml
-  - type: custom:mushroom-template-card
+  - <<: *mushroom-template-card-template
     primary: "{{ states('fan.xiaomi_smart_fan') }}"
     icon: mdi:fan
     entity: fan.xiaomi_smart_fan
-    secondary: ""
-    tap_action:
-      action: more-info
     icon_color: "#ff9800"
-    card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod.yaml
 card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-vertical-stack-in-card-mod.yaml

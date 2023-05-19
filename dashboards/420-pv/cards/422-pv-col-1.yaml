@@ -1,3 +1,28 @@
+bar-card-defaults: &bar-card-template
+  type: custom:bar-card
+  height: 28px
+  decimal: "0"
+  entity_row: true
+  positions:
+    icon: "off"
+    indicator: "off"
+    value: inside
+  card_mod:
+    style: |
+      ha-card {
+        border-style: none !important;
+      }
+
+bar-card-style-defaults: &bar-card-style
+  width: 12%
+  opacity: 0.7
+  filter: brightness(1)
+  "--bar-card-border-radius": 12px
+
+state-label-style-flush-left-defaults: &state-label-style-flush-left
+  position: absolute
+  transform: translate(0,0)
+
 type: picture-elements
 title: Huawei Sun2000-6KTL-M1
 image: /local/images/huawei-solar/sun2000-luna2000.png
@@ -5,113 +30,91 @@ elements:
   - entity: switch.inverter_inverter_on_off
     prefix: "Mode: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: "-4%"
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_inverter_state
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 0%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.power_meter_status
     prefix: "Status: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 2%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_alarms
     prefix: "Alarms: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 4%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.power_meter_frequency
     prefix: "Frequency: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 8%
-      position: absolute
-      transform: translate(0,0
     type: state-label
   - entity: sensor.power_meter_power_factor
     prefix: "Power Factor: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 10%
-      position: absolute
-      transform: translate(0,0
     type: state-label
   - entity: sensor.power_meter_reactive_power
     prefix: "Reactive Power: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 12%
-      position: absolute
-      transform: translate(0,0
     type: state-label
   - entity: switch.battery_charge_from_grid
     prefix: "Battery Charge from grid: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 16%
-      position: absolute
-      transform: translate(0,0
     type: state-label
   - entity: number.battery_end_of_charge_soc
     prefix: "Battery End-of-charge SOC: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 18%
-      position: absolute
-      transform: translate(0,0
     type: state-label
   - entity: number.battery_end_of_discharge_soc
     prefix: "Battery End-of-discharge SOC: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 20%
-      position: absolute
-      transform: translate(0,0
     type: state-label
   - entity: number.battery_maximum_charging_power
     prefix: "Battery Maximum charging power: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 22%
-      position: absolute
-      transform: translate(0,0
     type: state-label
   - entity: number.battery_maximum_discharging_power
     prefix: "Battery Maximum discharging power: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 24%
-      position: absolute
-      transform: translate(0,0
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 52%
       top: 3.8%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.power_meter_active_power
         name: Out
@@ -139,11 +142,6 @@ elements:
             from: -7800
             to: -1
             hide: false
-    card_mod:
-      style: |
-        ha-card {
-          border-style: none !important;
-        }
   - entity: sensor.power_meter_phase_a_active_power
     style:
       left: 54%
@@ -213,21 +211,11 @@ elements:
       left: 93%
       top: 15.5%
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 52%
       top: 37.6%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.house_consumption_power
         name: Load
@@ -266,21 +254,11 @@ elements:
       left: 18%
       top: 41%
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 39.6%
       top: 48.3%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.inverter_active_power
         name: Out
@@ -349,21 +327,11 @@ elements:
       left: 92%
       top: 53%
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 92%
       top: 56.5%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.battery_state_of_capacity
         name: Capacity
@@ -402,21 +370,11 @@ elements:
       left: 93%
       top: 67%
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 52%
       top: 54.3%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.battery_charge_discharge_power_with_loss
         name: In
@@ -457,98 +415,78 @@ elements:
   - entity: sensor.inverter_device_status
     prefix: "Status: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 44%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_off_grid_status
     prefix: "Off-grid Status: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 46%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_off_grid_switch
     prefix: "Off-grid Switch: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 48%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_locking_status
     prefix: "Locking: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 51%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_internal_temperature
     prefix: "Internal Temperature: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 53%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_dsp_data_collection
     prefix: "Data Collection: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 55%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_power_factor
     prefix: "Power Factor: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 57%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_reactive_power
     prefix: "Reactive Power: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 59%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_efficiency
     prefix: "Efficiency: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 61%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_loss_daily
     prefix: "Loss D: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 65%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 39.6%
       top: 67.8%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.inverter_input_power
         name: In
@@ -571,21 +509,11 @@ elements:
       left: 17%
       top: 76%
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 52%
       top: 75%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.inverter_pv_power
         name: PV-Ʃ
@@ -596,21 +524,11 @@ elements:
             from: 0
             to: 9000
             hide: false
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 52%
       top: 83%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.inverter_pv_1_power
         name: PV-1
@@ -634,42 +552,29 @@ elements:
   - entity: sensor.inverter_day_active_power_peak
     prefix: "Power Peak: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 82%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_pv_connection_status
     prefix: "Status: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 85%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
   - entity: sensor.inverter_startup_time
     prefix: "Startup Time: "
     style:
+      <<: *state-label-style-flush-left
       left: 1%
       top: 87%
-      position: absolute
-      transform: translate(0,0)
     type: state-label
-  - type: custom:bar-card
+  - <<: *bar-card-template
     style:
+      <<: *bar-card-style
       left: 52%
       top: 94.5%
-      width: 12%
-      opacity: 0.7
-      filter: brightness(1)
-      "--bar-card-border-radius": 12px
-    height: 28px
-    decimal: "0"
-    entity_row: true
-    positions:
-      icon: "off"
-      indicator: "off"
-      value: inside
     entities:
       - entity: sensor.inverter_pv_2_power
         name: PV-2
