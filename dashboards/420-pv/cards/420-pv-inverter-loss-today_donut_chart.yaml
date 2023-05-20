@@ -14,4 +14,4 @@ series:
   - entity: input_number.battery_discharge_loss_daily
     name: Bat-Out
     color: MediumAquaMarine
-card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-3-card-mod.yaml
+card_mod: !include /config/dashboards/420-pv/templates/420-pv-donut-chart-mod.yaml

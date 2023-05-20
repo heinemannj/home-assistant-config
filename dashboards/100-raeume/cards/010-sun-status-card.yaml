@@ -1,0 +1,44 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  secondary: ""
+  icon_color: blue
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+
+type: custom:vertical-stack-in-card
+cards:
+  - type: custom:circle-sensor-card
+    entity: sensor.estimated_illuminance
+    max: 5000
+    min: 0
+    stroke_width: 20
+    stroke_color: "#ffcc00"
+    gradient: false
+    fill: rgba(0,0,0,0.3)
+    units: ""
+    show_max: false
+    font_style:
+      color: "#ffcc00"
+      font-size: 1em
+      text-shadow: none
+    style:
+      height: 72px
+      width: 72px
+      top: 8px
+      left: 25%
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.estimated_illuminance') }} lx"
+    icon: mdi:weather-sunny-alert
+    entity: sensor.estimated_illuminance
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.sun_irradiance_raesfeld_ka') }} W/m^2"
+    icon: mdi:weather-sunny-alert
+    entity: sensor.sun_irradiance_raesfeld_ka
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.energy_current_hour') }} kWh"
+    icon: mdi:lightning-bolt
+    entity: sensor.energy_current_hour
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml

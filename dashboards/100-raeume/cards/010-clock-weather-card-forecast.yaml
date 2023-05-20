@@ -15,9 +15,9 @@ hide_date: false
 card_mod:
   style: |
     ha-card {
-      height: 160px;
+      height: 160px !important;
       --bar-height: 1.0rem !important;
     }
     .card-content {
-      padding: 12px 12px 12px 12px !important;
+      padding: 10px 12px 0px 12px !important;
     }

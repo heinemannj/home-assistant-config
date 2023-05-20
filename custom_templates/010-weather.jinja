@@ -1,0 +1,29 @@
+{% macro air_temperature_icon_color(entity_id) %}
+{% set state = states(entity_id) | float %}
+{% if state < 0 %} yellow
+{% elif state >= 0 %} green
+{% else %} grey
+{% endif %}
+{% endmacro %}
+
+{% macro precipitation_icon_color(entity_id) %}
+{% set state = states(entity_id) | float %}
+{% if state < 15 %} green
+{% elif state < 25 %} yellow
+{% elif state < 30 %} orange
+{% elif state < 40 %} red
+{% elif state >= 40 %} purple
+{% else %} grey
+{% endif %}
+{% endmacro %}
+
+{% macro wind_speed_icon_color(entity_id) %}
+{% set state = states(entity_id) | float %}
+{% if state <= 50 %} green
+{% elif state <= 65 %} yellow
+{% elif state <= 105 %} orange
+{% elif state <= 140 %} red
+{% elif state > 140 %} purple
+{% else %} grey
+{% endif %}
+{% endmacro %}

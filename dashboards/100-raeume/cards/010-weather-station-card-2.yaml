@@ -1,0 +1,25 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  tap_action:
+    action: more-info
+  fill_container: true
+  icon_color: blue
+
+type: custom:vertical-stack-in-card
+cards:
+  - <<: *mushroom-template-card-template
+    primary: Wassertemp. (Teich)
+    icon: mdi:thermometer
+    entity: sensor.teich_1_wasser_temperatur
+    secondary: "{{ states('sensor.310_garten_wetter_wasser_temperatur') }} °C"
+  - <<: *mushroom-template-card-template
+    primary: pH (Teich)
+    icon: mdi:ph
+    entity: sensor.teich_1_ph
+    secondary: "{{ states('sensor.310_garten_wetter_ph') }} pH"
+  - <<: *mushroom-template-card-template
+    primary: pH-Voltage (Teich)
+    icon: mdi:flash
+    entity: sensor.teich_1_ph_voltage
+    secondary: "{{ states('sensor.310_garten_wetter_ph_voltage') }} V"
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-normal.yaml

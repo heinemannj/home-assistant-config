@@ -1,0 +1,37 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  secondary: ""
+  icon_color: blue
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+
+type: custom:vertical-stack-in-card
+cards:
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.sun_duration_raesfeld_ka') }} s/h"
+    icon: mdi:weather-sunset
+    entity: sensor.sun_duration_raesfeld_ka
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.cloud_coverage_raesfeld_ka') }} %"
+    icon: mdi:cloud-percent-outline
+    entity: sensor.cloud_coverage_raesfeld_ka
+  - <<: *mushroom-template-card-template
+  - <<: *mushroom-template-card-template
+  - <<: *mushroom-template-card-template
+    primary: "UVI: {{ states('sensor.current_uv_level') }}"
+    icon: mdi:weather-sunny
+    entity: sensor.current_uv_level
+    icon_color: >-
+      {% from '010-uvi.jinja' import uvi_icon_color %}
+      {{ uvi_icon_color('sensor.current_uv_index') }}
+  - <<: *mushroom-template-card-template
+    primary: "O3: {{ states('sensor.current_ozone_level') }} du"
+    icon: mdi:weather-sunny
+    entity: sensor.current_ozone_level
+    icon_color: >-
+      {% from '010-uvi.jinja' import ozone_icon_color %}
+      {{ ozone_icon_color('sensor.current_ozone_level') }}
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml

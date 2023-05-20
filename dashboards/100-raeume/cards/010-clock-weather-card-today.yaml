@@ -15,11 +15,11 @@ hide_date: false
 card_mod:
   style: |
     ha-card {
-      padding-top: 28px;
-      height: 160px;
+      padding-top: 28px !important;
+      height: 160px !important;
     }
     .card-content {
-      padding: 0px 8px 0px 0px;
+      padding: 0px 0px 0px 0px !important;
     }
     clock-weather-card-today-left {
         width: 50% !important;

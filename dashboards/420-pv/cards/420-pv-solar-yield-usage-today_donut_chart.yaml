@@ -17,4 +17,4 @@ series:
   - entity: sensor.battery_day_charge_with_loss
     name: Bat-In
     color: "#f06292"
-card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-3-card-mod.yaml
+card_mod: !include /config/dashboards/420-pv/templates/420-pv-donut-chart-mod.yaml

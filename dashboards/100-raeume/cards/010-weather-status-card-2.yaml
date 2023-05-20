@@ -1,0 +1,45 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  secondary: ""
+  icon_color: blue
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+
+type: custom:vertical-stack-in-card
+cards:
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.precipitation_duration_raesfeld_ka') }} s/h"
+    icon: mdi:weather-rainy
+    entity: sensor.precipitation_duration_raesfeld_ka
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.precipitation_probability_raesfeld_ka') }} %"
+    icon: mdi:weather-rainy
+    entity: sensor.precipitation_probability_raesfeld_ka
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.precipitation_raesfeld_ka') }} kg/m^2"
+    icon: mdi:weather-rainy
+    entity: sensor.precipitation_raesfeld_ka
+    icon_color: >-
+      {% from '010-weather.jinja' import precipitation_icon_color %}
+      {{ precipitation_icon_color('sensor.precipitation_raesfeld_ka') }}
+  - <<: *mushroom-template-card-template
+    primary: >-
+      {% set direction = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N'] %}
+      {% set degree = states('sensor.wind_direction_raesfeld_ka')|float %}
+      {{ direction[((degree+11.25)/22.5)|int] }}
+      {{ states('sensor.wind_speed_raesfeld_ka') }} km/h (Böen: {{ states('sensor.wind_gusts_raesfeld_ka') }} km/h)
+    icon: mdi:weather-windy
+    entity: sensor.wind_speed_raesfeld_ka
+    icon_color: >-
+      {% from '010-weather.jinja' import wind_speed_icon_color %}
+      {{ wind_speed_icon_color('sensor.wind_speed_raesfeld_ka') }}
+  - <<: *mushroom-template-card-template
+  - <<: *mushroom-template-card-template
+    primary: >-
+      DWD Raesfeld: {{ states('sensor.weather_report_raesfeld_ka') }}
+    icon: mdi:weather-partly-cloudy
+    entity: sensor.weather_report_raesfeld_ka
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml

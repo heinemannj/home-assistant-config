@@ -1,0 +1,6 @@
+style: |
+  ha-card {    
+    height: 160px;
+    border-style: none !important;
+    --mush-spacing: 6px;
+  }

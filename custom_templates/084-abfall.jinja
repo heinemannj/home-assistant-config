@@ -1,0 +1,21 @@
+{% macro badge_icon(entity_id) %}
+{% set calevent = states(entity_id) %}
+{% if calevent == 0 %} mdi:calendar-alert
+{% elif calevent == 1 %} mdi:calendar
+{% elif calevent == 2 %} mdi:calendar-week
+{% elif calevent == 3 %} mdi:calendar-week
+{% elif calevent == 4 %} mdi:calendar-week
+{% else %} none
+{% endif %}
+{% endmacro %}
+
+{% macro badge_color(entity_id) %}
+{% set calevent = states(entity_id) %}
+{% if calevent == 0 %} red
+{% elif calevent == 1 %} orange
+{% elif calevent == 2 %} grey
+{% elif calevent == 3 %} grey
+{% elif calevent == 4 %} grey
+{% else %} none
+{% endif %}
+{% endmacro %}

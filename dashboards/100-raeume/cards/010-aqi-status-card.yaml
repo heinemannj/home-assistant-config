@@ -1,0 +1,48 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  secondary: ""
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+
+type: custom:vertical-stack-in-card
+cards:
+  - <<: *mushroom-template-card-template
+    primary: "AQI: {{ states('sensor.air_quality_index_borken') }}"
+    icon: mdi:leaf
+    entity: sensor.air_quality_index_borken
+    icon_color: >-
+      {% from '010-aqi.jinja' import aqi_icon_color %}
+      {{ aqi_icon_color('sensor.air_quality_index_borken') }}
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+  - <<: *mushroom-template-card-template
+    primary: "PM2.5: {{ states('sensor.particulate_matter_pm25_borken') }} AQI"
+    icon: mdi:skull-outline
+    entity: sensor.particulate_matter_pm25_borken
+    icon_color: >-
+      {% from '010-aqi.jinja' import aqi_icon_color %}
+      {{ aqi_icon_color('sensor.particulate_matter_pm25_borken') }}
+  - <<: *mushroom-template-card-template
+    primary: "PM10: {{ states('sensor.particulate_matter_pm10_borken') }} AQI"
+    icon: mdi:skull-outline
+    entity: sensor.particulate_matter_pm10_borken
+    icon_color: >-
+      {% from '010-aqi.jinja' import aqi_icon_color %}
+      {{ aqi_icon_color('sensor.particulate_matter_pm10_borken') }}
+  - <<: *mushroom-template-card-template
+  - <<: *mushroom-template-card-template
+    primary: "O3: {{ states('sensor.ozone_o3_borken') }} AQI"
+    icon: mdi:skull-outline
+    entity: sensor.ozone_o3_borken
+    icon_color: >-
+      {% from '010-aqi.jinja' import aqi_icon_color %}
+      {{ aqi_icon_color('sensor.ozone_o3_borken') }}
+  - <<: *mushroom-template-card-template
+    primary: "NO2: {{ states('sensor.nitrogen_dioxide_no2_borken') }} AQI"
+    icon: mdi:smog
+    entity: sensor.nitrogen_dioxide_no2_borken
+    icon_color: >-
+      {% from '010-aqi.jinja' import aqi_icon_color %}
+      {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_borken') }}
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml

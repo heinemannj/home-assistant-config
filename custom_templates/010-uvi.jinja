@@ -18,3 +18,15 @@
 {% else %} grey
 {% endif %}
 {% endmacro %}
+
+{% macro ozone_icon_color(entity_id) %}
+{% set state = states(entity_id) | float %}
+{% if state < 120 %} '#7e0023'
+{% elif state <= 140 %} purple
+{% elif state <= 160 %} red
+{% elif state <= 180 %} orange
+{% elif state <= 200 %} yellow
+{% elif state > 220 %} green
+{% else %} grey
+{% endif %}
+{% endmacro %}

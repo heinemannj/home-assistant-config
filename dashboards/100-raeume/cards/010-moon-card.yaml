@@ -1,15 +1,18 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  secondary: ""
+  icon_color: blue
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+
 type: custom:vertical-stack-in-card
 cards:
-  - type: custom:mushroom-template-card
-    primary: ""
-    secondary: ""
-    icon: ""
+  - <<: *mushroom-template-card-template
     entity: sensor.moon_phase_image
-    tap_action:
-      action: more-info
     picture: "{{ state_attr(entity, 'entity_picture') }}"
     layout: vertical
-    icon_color: ""
     card_mod:
       style: |
         ha-card {
@@ -19,70 +22,18 @@ cards:
         :host {
           --mush-icon-size: 55px;
         }
-  - type: custom:mushroom-template-card
+  - <<: *mushroom-template-card-template
     primary: "{{ states('sensor.astroweather_moon_phase') }} %"
-    secondary: ""
     icon: "{{ state_attr('sensor.moon_phase', 'icon') }}"
     entity: sensor.moon_phase
-    tap_action:
-      action: more-info
-    icon_color: blue
-    picture: ""
-    card_mod:
-      style: |
-        ha-card {
-          height: 1.6em !important;
-          margin: 2px;
-          --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-          --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-        }
-        mushroom-shape-icon {
-          --shape-color: none !important;
-        }
-  - type: custom:mushroom-template-card
-    primary: >-
-      {{
-      (as_timestamp(states('sensor.astroweather_moon_next_rising')))
-      | timestamp_custom(('%H:%M') ) }}
+  - <<: *mushroom-template-card-template
+    primary: "{{ (as_timestamp(states('sensor.astroweather_moon_next_rising'))) | timestamp_custom(('%H:%M') ) }}"
     icon: mdi:arrow-up-circle-outline
     entity: sensor.astroweather_moon_next_rising
-    secondary: ""
-    tap_action:
-      action: more-info
-    icon_color: blue
-    card_mod:
-      style: |
-        ha-card {
-          height: 1.6em !important;
-          margin: 2px;
-          --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-          --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-        }
-        mushroom-shape-icon {
-          --shape-color: none !important;
-        }
-  - type: custom:mushroom-template-card
-    primary: >-
-      {{
-      (as_timestamp(states('sensor.astroweather_moon_next_setting')))
-      | timestamp_custom(('%H:%M') ) }}
+  - <<: *mushroom-template-card-template
+    primary: "{{ (as_timestamp(states('sensor.astroweather_moon_next_setting'))) | timestamp_custom(('%H:%M') ) }}"
     icon: mdi:arrow-down-circle-outline
     entity: sensor.astroweather_moon_next_setting
-    secondary: ""
-    tap_action:
-      action: more-info
-    icon_color: blue
-    card_mod:
-      style: |
-        ha-card {
-          height: 1.6em !important;
-          margin: 2px;
-          --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
-          --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
-        }
-        mushroom-shape-icon {
-          --shape-color: none !important;
-        }
 card_mod:
   style: |
     ha-card {

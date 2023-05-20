@@ -1,0 +1,71 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  primary: ""
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+
+type: custom:vertical-stack-in-card
+cards:
+  - type: horizontal-stack
+    cards:
+      - <<: *mushroom-template-card-template
+        icon: mdi:trash-can-outline
+        icon_color: grey
+        entity: sensor.event_day_restmuell
+        secondary: "{{ states('sensor.event_day_restmuell') }} d"
+        badge_icon: >-
+          {% from '084-abfall.jinja' import badge_icon %}
+          {{ badge_icon('sensor.event_day_restmuell') }}
+        badge_color: >-
+          {% from '084-abfall.jinja' import badge_color %}
+          {{ badge_color('sensor.event_day_restmuell') }}
+      - <<: *mushroom-template-card-template
+        icon: mdi:trash-can-outline
+        icon_color: blue
+        entity: sensor.event_day_papier
+        secondary: "{{ states('sensor.event_day_papier') }} d"
+        badge_icon: >-
+          {% from '084-abfall.jinja' import badge_icon %}
+          {{ badge_icon('sensor.event_day_papier') }}
+        badge_color: >-
+          {% from '084-abfall.jinja' import badge_color %}
+          {{ badge_color('sensor.event_day_papier') }}
+    card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-normal.yaml
+  - type: horizontal-stack
+    cards:
+      - <<: *mushroom-template-card-template
+        icon: mdi:trash-can-outline
+        icon_color: yellow
+        entity: sensor.event_day_gelber_sack
+        secondary: "{{ states('sensor.event_day_gelber_sack') }} d"
+        badge_icon: >-
+          {% from '084-abfall.jinja' import badge_icon %}
+          {{ badge_icon('sensor.event_day_gelber_sack') }}
+        badge_color: >-
+          {% from '084-abfall.jinja' import badge_color %}
+          {{ badge_color('sensor.event_day_gelber_sack') }}
+      - <<: *mushroom-template-card-template
+        icon: mdi:trash-can-outline
+        icon_color: red
+        entity: sensor.event_day_schadstoffe
+        secondary: "{{ states('sensor.event_day_schadstoffe') }} d"
+        badge_icon: >-
+          {% from '084-abfall.jinja' import badge_icon %}
+          {{ badge_icon('sensor.event_day_schadstoffe') }}
+        badge_color: >-
+          {% from '084-abfall.jinja' import badge_color %}
+          {{ badge_color('sensor.event_day_schadstoffe') }}
+  - <<: *mushroom-template-card-template
+    icon: mdi:trash-can-outline
+    icon_color: green
+    entity: sensor.event_day_biomuell
+    secondary: "{{ states('sensor.event_day_biomuell') }} d"
+    badge_icon: >-
+      {% from '084-abfall.jinja' import badge_icon %}
+      {{ badge_icon('sensor.event_day_biomuell') }}
+    badge_color: >-
+      {% from '084-abfall.jinja' import badge_color %}
+      {{ badge_color('sensor.event_day_biomuell') }}
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-normal.yaml

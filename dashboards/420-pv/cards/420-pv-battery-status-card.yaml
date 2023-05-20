@@ -4,7 +4,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod.yaml
+  card_mod: !include /config/dashboards/420-pv/templates/420-pv-status-card-mod.yaml
 
 type: custom:vertical-stack-in-card
 cards:
@@ -14,7 +14,7 @@ cards:
     icon: mdi:battery-arrow-up
     entity: sensor.battery_state_of_capacity_remaining_charge_time
     icon_color: "#f06292"
-    card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-mushroom-card-mod-1.yaml
+    card_mod: !include /config/dashboards/420-pv/templates/420-pv-status-card-mod-1.yaml
   - <<: *mushroom-template-card-template
     primary: >-
       {{ states('number.battery_maximum_charging_power') }} W
@@ -34,4 +34,9 @@ cards:
     entity: >-
       sensor.battery_state_of_capacity_remaining_discharge_time
     icon_color: "#4db6ac"
-card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-2-vertical-stack-in-card-mod.yaml
+card_mod:
+  style: |
+    ha-card {
+      width: 148px !important;
+      height: 100px !important;
+      }

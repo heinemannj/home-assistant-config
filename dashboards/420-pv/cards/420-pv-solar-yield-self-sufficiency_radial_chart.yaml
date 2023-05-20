@@ -33,4 +33,4 @@ series:
       let inv_yield_self_use = hass.states['sensor.inverter_yield_self_use_daily'].state; let
       house_consumption = hass.states['sensor.house_consumption_energy_daily'].state;
       return(inv_yield_self_use / house_consumption * 100);
-card_mod: !include /config/dashboards/420-pv/templates/421-pv-row-3-card-mod.yaml
+card_mod: !include /config/dashboards/420-pv/templates/420-pv-donut-chart-mod.yaml

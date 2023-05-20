@@ -1,0 +1,41 @@
+mushroom-template-card-defaults: &mushroom-template-card-template
+  type: custom:mushroom-template-card
+  secondary: ""
+  icon_color: blue
+  tap_action:
+    action: more-info
+  fill_container: true
+  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+
+type: custom:vertical-stack-in-card
+cards:
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.pressure_raesfeld_ka') | round(0) }} hPa"
+    icon: mdi:gauge
+    entity: sensor.pressure_raesfeld_ka
+    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.humidity_raesfeld_ka') }} %"
+    icon: mdi:water-percent
+    entity: sensor.humidity_raesfeld_ka
+  - <<: *mushroom-template-card-template
+    primary: >-
+      Min/Max: {{ state_attr('weather.dwd_weather_raesfeld_ka',
+      'forecast')[0]['templow'] }}/{{
+      state_attr('weather.dwd_weather_raesfeld_ka',
+      'forecast')[0]['temperature'] }} °C
+    icon: mdi:thermometer
+    entity: sensor.temperature_raesfeld_ka
+  - <<: *mushroom-template-card-template
+    primary: "Taupunkt: {{ states('sensor.dewpoint_raesfeld_ka') }} °C"
+    icon: mdi:thermometer-water
+    entity: sensor.dewpoint_raesfeld_ka
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.fog_probability_raesfeld_ka') }} %"
+    icon: mdi:weather-fog
+    entity: sensor.fog_probability_raesfeld_ka
+  - <<: *mushroom-template-card-template
+    primary: "{{ states('sensor.visibility_raesfeld_ka') }} km"
+    icon: mdi:eye
+    entity: sensor.visibility_raesfeld_ka
+card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml
