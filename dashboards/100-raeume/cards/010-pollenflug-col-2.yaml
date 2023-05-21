@@ -13,7 +13,8 @@ cards:
       action: url
       url_path: >-
         https://www.dwd.de/DE/leistungen/gefahrenindizespollen/erklaerungen.html?nn=16102&lsbId=463856
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: custom:mushroom-template-card
     entity: ""
     primary: mittlere Belastung
@@ -24,7 +25,8 @@ cards:
       action: url
       url_path: >-
         https://www.dwd.de/DE/leistungen/gefahrenindizespollen/erklaerungen.html?nn=16102&lsbId=463856
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: custom:mushroom-template-card
     entity: ""
     primary: hohe Belastung
@@ -35,7 +37,8 @@ cards:
       action: url
       url_path: >-
         https://www.dwd.de/DE/leistungen/gefahrenindizespollen/erklaerungen.html?nn=16102&lsbId=463856
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: markdown
     content: >-
       ***

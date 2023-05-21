@@ -1,6 +1,7 @@
 # https://www.home-assistant.io/integrations/frontend/#defining-themes
 #
 406_heizung:
+    card-mod-theme: 406_heizung
     # Nothing here as it's the default HA theme since 2022.11
     modes:
         light: {}

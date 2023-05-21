@@ -5,7 +5,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+  card_mod:
+    class: small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -35,8 +36,4 @@ cards:
     icon: mdi:arrow-down-circle-outline
     entity: sensor.astroweather_moon_next_setting
 card_mod:
-  style: |
-    ha-card {
-      height: 160px;
-      --mush-spacing: 0px 0px 0px 0px !important;
-    }
+  class: vertical-stack-in-card-moon-card-spacing

@@ -49,4 +49,5 @@ compass:
 tap_action:
   entity: sensor.wind_speed_raesfeld_ka
 language: de
-card_mod: !include /config/dashboards/100-raeume/templates/compass-card-mod.yaml
+card-mod:
+  class: compass-card

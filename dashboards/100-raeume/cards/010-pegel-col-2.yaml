@@ -13,7 +13,8 @@ cards:
       action: url
       url_path: https://www.hochwasserzentralen.de/info
     multiline_secondary: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: custom:mushroom-template-card
     entity: ""
     primary: Kleines Hochwasser
@@ -30,7 +31,8 @@ cards:
       url_path: https://www.hochwasserzentralen.de/info
     fill_container: false
     multiline_secondary: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: custom:mushroom-template-card
     entity: ""
     primary: Mittleres Hochwasser
@@ -47,7 +49,8 @@ cards:
       action: url
       url_path: https://www.hochwasserzentralen.de/info
     multiline_secondary: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: custom:mushroom-template-card
     entity: ""
     primary: Großes Hochwasser
@@ -64,7 +67,8 @@ cards:
       url_path: https://www.hochwasserzentralen.de/info
     multiline_secondary: true
     fill_container: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: custom:mushroom-template-card
     entity: ""
     primary: Sehr großes Hochwasser
@@ -75,7 +79,8 @@ cards:
       action: url
       url_path: https://www.hochwasserzentralen.de/info
     multiline_secondary: true
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-margin-bottom.yaml
+    card_mod:
+      class: no-border-margin-bottom
   - type: markdown
     content: >-
       ***

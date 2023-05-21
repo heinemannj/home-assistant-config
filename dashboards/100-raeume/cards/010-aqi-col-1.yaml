@@ -10,7 +10,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+  card_mod:
+    class: no-border
 
 bar-card-defaults: &bar-card-template
   type: custom:bar-card
@@ -44,7 +45,8 @@ bar-card-defaults: &bar-card-template
     - from: "300.0001"
       to: "500"
       color: "#7e0023"
-  card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+  card_mod:
+    class: bar-card
 
 type: custom:vertical-stack-in-card
 cards:
@@ -440,4 +442,5 @@ cards:
             {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_wesel') }}
         - <<: *bar-card-template
           entity: sensor.nitrogen_dioxide_no2_wesel
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-padding-bottom.yaml
+card_mod:
+  class: vertical-stack-in-card-padding-bottom

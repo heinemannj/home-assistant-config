@@ -9,20 +9,11 @@ mushroom-chips-card-defaults: &mushroom-chips-card-template
   type: custom:mushroom-chips-card
   alignment: center
   card_mod:
-    style: |
-      ha-card {
-        margin: -2px 12px 12px;
-        --chip-background: rgba(var(--rgb-disabled), 0.15);
-        --chip-border-width: 0;
-        --chip-border-radius: 12px;
-        --chip-height: 40px;
-        --chip-padding: 12px;
-        --chip-spacing: 10px;
-      }
+    class: mushroom-chips-card
 
 mushroom-chips-entity-defaults: &mushroom-chips-entity-template
   type: entity
-  icon_color: indigo
+  icon_color: '#fdd835'
   content_info: none
   tap_action:
     action: toggle

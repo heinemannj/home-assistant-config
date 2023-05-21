@@ -22,4 +22,5 @@ cards:
     icon: mdi:flash
     entity: sensor.teich_1_ph_voltage
     secondary: "{{ states('sensor.310_garten_wetter_ph_voltage') }} V"
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-normal.yaml
+card_mod:
+  class: vertical-stack-in-card-normal-spacing

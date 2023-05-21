@@ -1,5 +1,5 @@
 title: 426-PV
-theme: Backend-selected
+theme: 420_pv
 path: 426-pv
 icon: mdi:solar-power-variant
 type: custom:grid-layout

@@ -4,7 +4,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+  card_mod:
+    class: small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -15,7 +16,8 @@ cards:
     icon_color: >-
       {% from '010-aqi.jinja' import aqi_icon_color %}
       {{ aqi_icon_color('sensor.air_quality_index_borken') }}
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+    card_mod:
+      class: small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "PM2.5: {{ states('sensor.particulate_matter_pm25_borken') }} AQI"
     icon: mdi:skull-outline
@@ -45,4 +47,5 @@ cards:
     icon_color: >-
       {% from '010-aqi.jinja' import aqi_icon_color %}
       {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_borken') }}
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml
+card_mod:
+  class: vertical-stack-in-card-small-spacing

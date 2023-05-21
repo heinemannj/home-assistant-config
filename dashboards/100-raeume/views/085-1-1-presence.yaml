@@ -1,5 +1,5 @@
 title: 085.1.1_Presence
-theme: Backend-selected
+theme: 100_raeume
 path: 085-1-1-presence
 badges: []
 cards:
@@ -14,25 +14,16 @@ cards:
   - type: custom:mushroom-template-card
     primary: Hello, {{user}}
     secondary: |
-      Location: {% if is_state('device_tracker.phone1', 'home') %}
-        Home
-      {% elif is_state('device_tracker.phone1', 'Work') %}
-        Work
-      {% elif is_state('device_tracker.phone1', 'Bar') %}
-        Bar
-      {% else %}
-        Away {{ states('device_tracker.phone1') }}.
+      Location: {% if is_state('device_tracker.phone1', 'home') %} Home
+      {% elif is_state('device_tracker.phone1', 'Work') %} Work
+      {% elif is_state('device_tracker.phone1', 'Bar') %} Bar
+      {% else %} Away {{ states('device_tracker.phone1') }}.
       {% endif %}
     icon: >
       {% if is_state('device_tracker.phone1', 'home') %} mdi:home-account
-
-      {% elif is_state('device_tracker.phone1', 'work') %}
-      mdi:desktop-classic
-
+      {% elif is_state('device_tracker.phone1', 'work') %} mdi:desktop-classic
       {% elif is_state('device_tracker.phone1', 'Bar') %} mdi:beer
-
       {% else %} mdi:home-search
-
       {% endif %}
     entity: person.person1
     icon_color: |

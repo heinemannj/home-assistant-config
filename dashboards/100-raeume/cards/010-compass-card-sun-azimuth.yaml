@@ -105,4 +105,5 @@ compass:
 tap_action:
   entity: sun.sun
 language: de
-card_mod: !include /config/dashboards/100-raeume/templates/compass-card-mod.yaml
+card-mod:
+  class: compass-card

@@ -13,21 +13,4 @@ hide_forecast_section: true
 hide_clock: false
 hide_date: false
 card_mod:
-  style: |
-    ha-card {
-      padding-top: 28px !important;
-      height: 160px !important;
-    }
-    .card-content {
-      padding: 0px 0px 0px 0px !important;
-    }
-    clock-weather-card-today-left {
-        width: 50% !important;
-    }
-    clock-weather-card-today-right {
-        width: 50% !important;
-    }
-    clock-weather-card-today-right-wrap-center {
-      height: 2.5rem !important;
-      font-size: 2rem !important;
-    }
+  class: clock-weather-card-today

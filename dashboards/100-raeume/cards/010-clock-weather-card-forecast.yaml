@@ -13,11 +13,4 @@ hide_forecast_section: false
 hide_clock: false
 hide_date: false
 card_mod:
-  style: |
-    ha-card {
-      height: 160px !important;
-      --bar-height: 1.0rem !important;
-    }
-    .card-content {
-      padding: 10px 12px 0px 12px !important;
-    }
+  class: clock-weather-card-forecast

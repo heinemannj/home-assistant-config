@@ -1,7 +1,203 @@
 # https://www.home-assistant.io/integrations/frontend/#defining-themes
 #
+# Based on Mushroom theme, the default HA theme since 2022.11
+#
 100_raeume:
-    # Nothing here as it's the default HA theme since 2022.11
-    modes:
-        light: {}
-        dark: {}
+  card-mod-theme: 100_raeume
+  card-mod-card: |
+    ha-card.no-border {
+        box-shadow: none !important;
+        border: none 0px !important;
+        border-style: none !important;
+    }
+
+    ha-card.no-border-margin-bottom {
+      box-shadow: none !important;
+      border: none 0px !important;
+      border-style: none !important;
+      margin-bottom: -10px;
+    }
+
+    ha-card.vertical-stack-in-card-padding-bottom {
+      padding-bottom: 12px !important;
+    }
+
+    ha-card.vertical-stack-in-card-normal-spacing {
+      height: 160px;
+      --mush-spacing: 5px 5px 6px 6px !important;
+    }
+
+    ha-card.vertical-stack-in-card-small-spacing {
+      height: 160px;
+      --mush-spacing: 2px 10px 0px 2px !important;
+    }
+
+    ha-card.moon-image {
+      margin: 12px;
+      border-style: none !important;
+    }
+    ha-card.moon-image :host {
+      --mush-icon-size: 55px;
+    }
+    ha-card.vertical-stack-in-card-moon-card-spacing {
+      height: 160px;
+      --mush-spacing: 0px 0px 0px 0px !important;
+    }
+
+    ha-card.mushroom-chips-card {
+      margin: -2px 12px 12px;
+      --chip-background: rgba(var(--rgb-disabled), 0.15);
+      --chip-border-width: 0;
+      --chip-border-radius: 12px;
+      --chip-height: 40px;
+      --chip-padding: 12px;
+      --chip-spacing: 10px;
+    }
+
+    ha-card.small-icon {
+        height: 1.7em !important;
+        --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+        --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+    }
+    ha-card.small-icon mushroom-shape-icon {
+        --shape-color: none !important;
+    }
+
+    ha-card.small-icon-margin-top {
+      height: 1.7em !important;
+      margin-top: 10px;
+      --card-primary-font-size: var(--mush-card-primary-font-size, 12px);
+      --card-primary-font-weight: var(--mush-card-primary-font-weight, none);
+    }
+    ha-card.small-icon-margin-top mushroom-shape-icon {
+      --shape-color: none !important;
+    }
+
+    ha-card.bar-card {
+      padding: 12px;
+      margin-left: 12px;
+      --bar-card-border-radius: 12px;
+      border-style: none !important;
+    }
+    ha-card.bar-card bar-card-backgroundbar {
+      opacity: 0.2;
+      filter: brightness(1);
+    }
+
+    ha-card.compass-card {
+      height: 160px;
+    }
+    ha-card.compass-card .compass {
+        margin: 4px auto;
+    }
+    ha-card.compass-card .indicator-sensors {
+      font-size: 12px !important;
+      line-height: 1em !important;
+    }
+    ha-card.compass-card .sensor-0 {
+      height: 1em !important;
+    }
+    ha-card.compass-card .sensor-0 .value {
+      font-size: 12px !important;
+      height: 1em !important;
+    }
+    ha-card.compass-card .sensor-0 .measurement {
+      font-size: 10px !important; 
+    } 
+    ha-card.compass-card .sensor-1 {
+      height: 1em !important;
+    }
+    ha-card.compass-card .sensor-1 .value {
+      font-size: 12px !important;
+      height: 1em !important;
+    }
+    ha-card.compass-card .sensor-1 .measurement {
+      font-size: 10px !important; 
+    }
+
+    ha-card.clock-weather-card-today {
+      padding-top: 28px !important;
+      height: 160px !important;
+    }
+    ha-card.clock-weather-card-today .card-content {
+      padding: 0px 0px 0px 0px !important;
+    }
+    ha-card.clock-weather-card-today clock-weather-card-today-left {
+        width: 50% !important;
+    }
+    ha-card.clock-weather-card-today clock-weather-card-today-right {
+        width: 50% !important;
+    }
+    ha-card.clock-weather-card-today clock-weather-card-today-right-wrap-center {
+      height: 2.5rem !important;
+      font-size: 2rem !important;
+    }
+
+    ha-card.clock-weather-card-forecast {
+      height: 160px !important;
+      --bar-height: 1.0rem !important;
+    }
+    ha-card.clock-weather-card-forecast .card-content {
+      padding: 10px 12px 0px 12px !important;
+    }
+
+    ha-card.meteoalarm-card {
+      height: 80px !important;
+    }
+    ha-card.meteoalarm-card .swiper {
+      height: 80px !important;
+    }
+    ha-card.meteoalarm-card .content {
+      height: 80px !important;
+      padding: 6px 6px;
+    }
+    ha-card.meteoalarm-card .headline {
+      margin: -20px auto auto 10px !important;
+    }
+    ha-card.meteoalarm-card .main-icon {
+      margin: -20px auto -20px -10px !important;
+    }
+
+    ha-card.sun-card {
+      height: 160px;
+    }
+    div.sun-card {
+      padding: 1em 0;
+    }
+    div.sun-card-header {
+      padding: 0 1em;
+    }
+    div.sun-card-body {
+        margin-top: -1.6rem;
+        padding: 0rem;
+    }
+    div.sun-card-footer {
+      display: true;
+      margin-top: -1.6rem;
+    }
+    .sun-card-text-subtitle {
+      font-size: 0.7rem !important;
+      font-weight: 100 !important;
+      padding: 0rem !important;
+    }
+    .sun-card-text-time {
+      font-size: 12px !important;
+      font-weight: normal !important;
+      padding: 0rem !important;
+      margin-top: -0.4rem !important;
+    }
+    div.sun-card-text-container {
+      align-items: inherit;
+    }
+    div.sun-card-text-container:nth-child(1) {
+      text-align: left;
+    }
+    div.sun-card-text-container:nth-child(2) {
+      text-align: right;
+    }
+    div.sun-card-text-container:nth-child(3) {
+      text-align: right;
+    }
+  modes:
+    light: {}
+    dark: {}

@@ -4,7 +4,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+  card_mod:
+    class: no-border
 
 type: custom:vertical-stack-in-card
 cards:
@@ -32,7 +33,9 @@ cards:
         badge_color: >-
           {% from '084-abfall.jinja' import badge_color %}
           {{ badge_color('sensor.event_day_papier') }}
-    card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-normal.yaml
+    card_mod:
+      class: vertical-stack-in-card-normal-spacing
+
   - type: horizontal-stack
     cards:
       - <<: *mushroom-template-card-template
@@ -68,4 +71,5 @@ cards:
     badge_color: >-
       {% from '084-abfall.jinja' import badge_color %}
       {{ badge_color('sensor.event_day_biomuell') }}
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-normal.yaml
+card_mod:
+  class: vertical-stack-in-card-normal-spacing

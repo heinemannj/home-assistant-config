@@ -5,7 +5,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+  card_mod:
+    class: small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -32,7 +33,8 @@ cards:
     primary: "{{ states('sensor.estimated_illuminance') }} lx"
     icon: mdi:weather-sunny-alert
     entity: sensor.estimated_illuminance
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+    card_mod:
+      class: small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('sensor.sun_irradiance_raesfeld_ka') }} W/m^2"
     icon: mdi:weather-sunny-alert
@@ -41,4 +43,5 @@ cards:
     primary: "{{ states('sensor.energy_current_hour') }} kWh"
     icon: mdi:lightning-bolt
     entity: sensor.energy_current_hour
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml
+card_mod:
+  class: vertical-stack-in-card-small-spacing

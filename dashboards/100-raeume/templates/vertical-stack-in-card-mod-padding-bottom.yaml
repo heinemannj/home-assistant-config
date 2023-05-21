@@ -1,4 +1,0 @@
-style: |
-  ha-card {
-    padding-bottom: 12px !important;
-  }

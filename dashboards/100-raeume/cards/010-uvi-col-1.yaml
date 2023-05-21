@@ -11,14 +11,16 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   multiline_secondary: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+  card_mod:
+    class: no-border
 
 mushroom-entity-card-defaults: &mushroom-entity-card-template
   type: custom:mushroom-entity-card
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-border-style.yaml
+  card_mod:
+    class: no-border
 
 bar-card-defaults: &bar-card-template
   type: custom:bar-card
@@ -49,7 +51,8 @@ bar-card-defaults: &bar-card-template
     - from: "11"
       to: "14"
       color: purple
-  card_mod: !include /config/dashboards/100-raeume/templates/bar-card-mod.yaml
+  card_mod:
+    class: bar-card
 
 type: custom:vertical-stack-in-card
 cards:
@@ -114,4 +117,5 @@ cards:
     entity: sensor.skin_type_5_safe_exposure_time
   - <<: *mushroom-entity-card-template
     entity: sensor.skin_type_6_safe_exposure_time
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-padding-bottom.yaml
+card_mod:
+  class: vertical-stack-in-card-padding-bottom

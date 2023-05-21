@@ -5,7 +5,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon.yaml
+  card_mod:
+    class: small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -13,7 +14,8 @@ cards:
     primary: "{{ states('sensor.pressure_raesfeld_ka') | round(0) }} hPa"
     icon: mdi:gauge
     entity: sensor.pressure_raesfeld_ka
-    card_mod: !include /config/dashboards/100-raeume/templates/mushroom-card-mod-small-icon-margin-top.yaml
+    card_mod:
+      class: small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('sensor.humidity_raesfeld_ka') }} %"
     icon: mdi:water-percent
@@ -38,4 +40,5 @@ cards:
     primary: "{{ states('sensor.visibility_raesfeld_ka') }} km"
     icon: mdi:eye
     entity: sensor.visibility_raesfeld_ka
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-small.yaml
+card_mod:
+  class: vertical-stack-in-card-small-spacing

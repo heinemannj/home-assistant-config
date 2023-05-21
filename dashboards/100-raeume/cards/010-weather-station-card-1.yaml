@@ -25,4 +25,5 @@ cards:
     icon: mdi:gauge
     entity: sensor.teich_1_pressure_bme280
     secondary: "{{ states('sensor.310_garten_wetter_pressure_bme280') }} hPa"
-card_mod: !include /config/dashboards/100-raeume/templates/vertical-stack-in-card-mod-height-normal.yaml
+card_mod:
+  class: vertical-stack-in-card-normal-spacing

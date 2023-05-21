@@ -1,7 +1,15 @@
 # https://www.home-assistant.io/integrations/frontend/#defining-themes
 #
+# Based on Mushroom theme, the default HA theme since 2022.11
+#
 420_pv:
-    # Nothing here as it's the default HA theme since 2022.11
+    card-mod-theme: 420_pv
+    card-mod-card: |
+        ha-card.no-border {
+            box-shadow: none !important;
+            border: none 0px !important;
+            border-style: none !important;
+        }
     modes:
         light: {}
         dark: {}

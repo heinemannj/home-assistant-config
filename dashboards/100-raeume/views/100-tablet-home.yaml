@@ -1,5 +1,5 @@
 title: 100_Tablet-Home
-theme: Backend-selected
+theme: 100_raeume
 path: 100-tablet-home
 type: custom:grid-layout
 icon: mdi:tablet-dashboard
