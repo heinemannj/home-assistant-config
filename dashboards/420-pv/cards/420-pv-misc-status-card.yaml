@@ -4,7 +4,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   tap_action:
     action: more-info
   fill_container: true
-  card_mod: !include /config/dashboards/420-pv/templates/420-pv-status-card-mod.yaml
+  card_mod:
+    class: small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -14,7 +15,9 @@ cards:
     icon: mdi:home-lightning-bolt
     entity: sensor.house_consumption_energy_daily_control
     icon_color: "#66CDAA"
-    card_mod: !include /config/dashboards/420-pv/templates/420-pv-status-card-mod-1.yaml
+    #card_mod: !include /config/dashboards/420-pv/templates/420-pv-status-card-mod-1.yaml
+    card_mod:
+      class: small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('fan.xiaomi_smart_fan') }}"
     icon: mdi:fan
