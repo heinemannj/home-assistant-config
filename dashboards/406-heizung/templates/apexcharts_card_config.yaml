@@ -13,8 +13,9 @@ thermostat_chart:
     stroke_width: 1
     opacity: 0.9
     type: line
+    yaxis_id: temperature
   yaxis:
-    - id: first
+    - id: temperature
       decimals: 0
       min: ~15
       max: ~40
@@ -22,7 +23,7 @@ thermostat_chart:
         tickAmount: 5
         title:
           text: Temperatur [°C]
-    - id: second
+    - id: percent
       opposite: true
       decimals: 0
       min: 0

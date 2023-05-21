@@ -9,6 +9,9 @@ cards:
     entity: climate.hm_tc_it_wm_w_eu_meq1330232
     label:
       temperature: Room temperature
+    header:
+      name: 307_Wohnen
+      toggle: null
     step_size: 0.5
     sensors:
       - entity: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_humidity
@@ -21,12 +24,10 @@ cards:
         name: Licht-Schreibtisch
       - entity: light.101_buro_licht_treppe
         name: Licht-Treppe
-    header:
-      name: 307_Wohnen
-      toggle: null
   - type: thermostat
     entity: climate.hm_tc_it_wm_w_eu_meq1330232
   - type: entities
+    title: 307_Wohnen - Thermal Comfort
     entities:
       - entity: sensor.307_wohnen_thermal_comfort_absolutehumidity
         name: Absolute Humidity
@@ -44,4 +45,3 @@ cards:
         name: Simmer Zone
       - entity: sensor.307_wohnen_thermal_comfort_perception
         name: Thermal Perception
-    title: 307_Wohnen - Thermal Comfort

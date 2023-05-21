@@ -10,39 +10,34 @@ entities:
     series:
       - entity: sensor.hm_tc_it_wm_w_eu_meq1330232_actual_temperature
         name: Raum
-        yaxis_id: first
         group_by:
           func: last
           duration: 1min
       - entity: climate.floor_thermostat_wohnen_2
         attribute: current_temperature
         name: Fussboden
-        yaxis_id: first
         group_by:
           func: last
           duration: 1min
       - entity: climate.floor_thermostat_wohnen_2
         attribute: temperature
         name: Fussboden (Soll)
-        yaxis_id: first
         group_by:
           func: last
           duration: 1min
       - entity: sensor.301_heizkreis_wohnen_2_vorlauf
         name: Vorlauf
-        yaxis_id: first
         group_by:
           func: last
           duration: 1min
       - entity: sensor.301_heizkreis_wohnen_2_ruecklauf
         name: Ruecklauf
-        yaxis_id: first
         group_by:
           func: last
           duration: 1min
       - entity: sensor.301_heizkreis_wohnen_2_valve_position
         name: Ventil
-        yaxis_id: second
+        yaxis_id: percent
         type: area
         color: grey
         stroke_width: 0
@@ -50,7 +45,8 @@ entities:
         group_by:
           func: last
           duration: 1min
-  - entity: climate.floor_thermostat_wohnen_2
+  - type: custom:simple-thermostat
+    entity: climate.floor_thermostat_wohnen_2
     header:
       faults:
         - entity: switch.301_heizkreis_wohnen_2
@@ -69,9 +65,12 @@ entities:
         name: Fussboden
       - entity: sensor.301_heizkreis_wohnen_2_valve_position
         name: Ventil Position
-    type: custom:simple-thermostat
-  - entity: switch.301_heizkreis_wohnen_2
+  - type: custom:multiple-entity-row
     name: 301_Heizkreis-wohnen_2
+    entity: switch.301_heizkreis_wohnen_2
+    secondary_info: last-changed
+    show_state: false
+    state_color: true
     entities:
       - entity: sensor.301_heizkreis_wohnen_2_energy
         name: Total
@@ -91,7 +90,3 @@ entities:
       - entity: sensor.301_heizkreis_wohnen_2_power
         name: Power
         format: precision1
-    type: custom:multiple-entity-row
-    secondary_info: last-changed
-    show_state: false
-    state_color: true
