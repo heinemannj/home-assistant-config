@@ -69,22 +69,16 @@ cards:
             entity: light.sonoff_element_lights
           - type: template
             icon: |-
-              {% if is_state('binary_sensor.terrace_door', 'off') %}
-                mdi:door-closed
-              {% else %}
-                mdi:door-open
+              {% if is_state('binary_sensor.terrace_door', 'off') %} mdi:door-closed
+              {% else %} mdi:door-open
               {% endif %}
             content: |-
-              {% if is_state('binary_sensor.terrace_door', 'off') %}
-                Closed
-              {% else %}
-                Open
+              {% if is_state('binary_sensor.terrace_door', 'off') %} Closed
+              {% else %} Open
               {% endif %}
             icon_color: |-
-              {% if is_state('binary_sensor.terrace_door', 'off') %}
-                green
-              {% else %}
-                red
+              {% if is_state('binary_sensor.terrace_door', 'off') %} green
+              {% else %} red
               {% endif %}
             tap_action:
               action: more-info
