@@ -44,8 +44,8 @@ series:
       legend_value: false
     data_generator: |
       return entity.attributes.forecast.map((entry) => {
-            return [new Date(entry.period_start), entry.pv_estimate];
-          });
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
   - entity: sensor.solcast_forecast_tomorrow
     name: Forecast D2
     extend_to: false
@@ -53,21 +53,7 @@ series:
       legend_value: false
     data_generator: |
       return entity.attributes.forecast.map((entry) => {
-            return [new Date(entry.period_start), entry.pv_estimate];
-          });
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
 card_mod:
-  style: |
-    ha-card {
-      width: 470px;
-      height: 270px !important;
-      }
-    #header {
-        padding-top: 10px !important;
-        line-height: 1.0em !important;
-    }
-    #state__value > #state {
-        font-size: 1.0em !important;
-    }
-    #state__value > #uom {
-        font-size: 0.6em !important;
-    }
+  class: solar-forecast-chart-small-width

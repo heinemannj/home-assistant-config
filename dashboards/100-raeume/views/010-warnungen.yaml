@@ -1,5 +1,5 @@
 title: 010_Warnungen
-theme: 100_raeume
+theme: dashboards
 path: 010-warnungen
 icon: mdi:weather-cloudy-alert
 layout: {}

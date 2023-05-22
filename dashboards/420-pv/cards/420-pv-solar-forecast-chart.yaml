@@ -11,7 +11,7 @@ series:
     opacity: 0.6
     stroke_width: 0.8
     yaxis_id: capacity
-    unit: '%'
+    unit: "%"
     show:
       in_header: false
     group_by:
@@ -47,8 +47,8 @@ series:
       in_header: false
     data_generator: |
       return entity.attributes.forecast.map((entry) => {
-            return [new Date(entry.period_start), entry.pv_estimate];
-          });
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
   - entity: sensor.solcast_forecast_tomorrow
     name: Solar Forecast (D2)
     extend_to: false
@@ -57,8 +57,8 @@ series:
       in_header: false
     data_generator: |
       return entity.attributes.forecast.map((entry) => {
-            return [new Date(entry.period_start), entry.pv_estimate];
-          });
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
   - entity: sensor.solcast_forecast_d3
     name: Solar Forecast (D3)
     extend_to: false
@@ -67,8 +67,8 @@ series:
       in_header: false
     data_generator: |
       return entity.attributes.forecast.map((entry) => {
-            return [new Date(entry.period_start), entry.pv_estimate];
-          });
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
   - entity: sensor.solcast_forecast_today
     yaxis_id: header_only
     name: Solar Forecast (D1)
@@ -103,18 +103,4 @@ series:
     show:
       in_chart: false
 card_mod:
-  style: |
-    ha-card {
-      width: 915px !important;
-      height: 270px !important;
-    }
-    #header {
-        padding-top: 10px !important;
-        line-height: 1.0em !important;
-    }
-    #state__value > #state {
-        font-size: 1.0em !important;
-    }
-    #state__value > #uom {
-        font-size: 0.6em !important;
-    }
+  class: solar-forecast-chart

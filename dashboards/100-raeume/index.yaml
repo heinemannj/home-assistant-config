@@ -1,5 +1,5 @@
-kiosk_mode:
-  hide_header: false
+#kiosk_mode:
+#  hide_header: false
 title: 100_Raeume
 apexcharts_card_templates: !include /config/dashboards/100-raeume/templates/apexcharts_card_config.yaml
 views:

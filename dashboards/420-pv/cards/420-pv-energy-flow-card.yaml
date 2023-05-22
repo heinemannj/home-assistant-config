@@ -30,4 +30,5 @@ entities:
     display_zero: true
     name: Low-carbon
     state_type: kWh
-card_mod: !include /config/dashboards/420-pv/templates/420-pv-power-flow-card-mod.yaml
+card_mod:
+  class: power-energy-flow-card

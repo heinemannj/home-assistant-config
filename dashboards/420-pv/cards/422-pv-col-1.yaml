@@ -8,10 +8,7 @@ bar-card-defaults: &bar-card-template
     indicator: "off"
     value: inside
   card_mod:
-    style: |
-      ha-card {
-        border-style: none !important;
-      }
+    class: bar-card
 
 bar-card-style-defaults: &bar-card-style
   width: 12%

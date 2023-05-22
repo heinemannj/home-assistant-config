@@ -10,35 +10,26 @@ mushroom-template-card-defaults: &mushroom-template-card-template
 type: custom:vertical-stack-in-card
 cards:
   - <<: *mushroom-template-card-template
-    primary: >-
-      {{ states('sensor.battery_state_of_capacity_remaining_charge_time') }}
+    primary: "{{ states('sensor.battery_state_of_capacity_remaining_charge_time') }}"
     icon: mdi:battery-arrow-up
     entity: sensor.battery_state_of_capacity_remaining_charge_time
     icon_color: "#f06292"
     card_mod:
       class: small-icon-margin-top
   - <<: *mushroom-template-card-template
-    primary: >-
-      {{ states('number.battery_maximum_charging_power') }} W
+    primary: "{{ states('number.battery_maximum_charging_power') }} W"
     icon: mdi:battery-arrow-up
     entity: number.battery_maximum_charging_power
     icon_color: "#f06292"
   - <<: *mushroom-template-card-template
-    primary: >-
-      {{ states('sensor.battery_state_of_capacity_energy')|round(2) }} kWh
+    primary: "{{ states('sensor.battery_state_of_capacity_energy')|round(2) }} kWh"
     icon: mdi:battery-high
     entity: sensor.battery_state_of_capacity_energy
     icon_color: "#f06292"
   - <<: *mushroom-template-card-template
-    primary: >-
-      {{ states('sensor.battery_state_of_capacity_remaining_discharge_time') }}
+    primary: "{{ states('sensor.battery_state_of_capacity_remaining_discharge_time') }}"
     icon: mdi:battery-arrow-down
-    entity: >-
-      sensor.battery_state_of_capacity_remaining_discharge_time
+    entity: sensor.battery_state_of_capacity_remaining_discharge_time
     icon_color: "#4db6ac"
 card_mod:
-  style: |
-    ha-card {
-      width: 148px !important;
-      height: 100px !important;
-      }
+  class: vertical-stack-in-card

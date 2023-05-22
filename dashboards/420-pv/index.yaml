@@ -1,5 +1,5 @@
-kiosk_mode:
-  hide_header: false
+#kiosk_mode:
+#  hide_header: false
 title: 420_PV
 apexcharts_card_templates: !include /config/dashboards/420-pv/templates/apexcharts_card_config.yaml
 views:

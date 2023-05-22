@@ -1,6 +1,6 @@
 title: 034.20.1_HK1-Heizkoerper
 path: 034-20-1-HK1-Heizkoerper
-theme: 406_heizung
+theme: dashboards
 type: custom:masonry-layout
 icon: mdi:home-thermometer
 badges: []

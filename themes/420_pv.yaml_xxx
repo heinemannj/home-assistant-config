@@ -1,0 +1,154 @@
+# https://www.home-assistant.io/integrations/frontend/#defining-themes
+#
+# Based on Mushroom theme, the default HA theme since 2022.11
+#
+420_pv:
+  card-mod-theme: 420_pv
+  card-mod-card-yaml: |
+    $: |
+    /* ************************************************** */
+    /* #shadow-root                                       */
+    /* ************************************************** */
+        .card-header {
+            line-height: 0px !important;
+            padding-top: 18px !important;
+            padding-bottom: 20px !important;
+            color: var(--secondary-text-color) !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+        }
+
+    ha-gauge$: |
+        /* ************************************************** */
+        /* #shadow-root                                       */
+        /* ************************************************** */
+        svg text {
+            transform: scale(0.8) translateY(0px) !important;
+        }
+
+    .: |
+        /* ************************************************** */
+        /* ha-card Classes                                    */
+        /* ************************************************** */
+
+        /* ************************************************** */
+        /* Gauge Cards                                        */
+        /* ************************************************** */
+        ha-card.gauge-card-small {
+            width: 148px !important;
+            height: 100px !important;
+        }
+        ha-card.gauge-card-small .name {
+            font-size: 12px !important;
+            margin-top: 2px !important;
+        }
+        ha-card.gauge-card-small ha-gauge {
+            width: 120% !important;
+        }
+
+        /* ************************************************** */
+        /* Power Flow and Energy Flow Card Plus               */
+        /* ************************************************** */
+        ha-card.power-energy-flow-card .card-header {
+            line-height: 0px !important;
+            padding-top: 18px !important;
+            padding-bottom: 20px !important;
+            color: var(--secondary-text-color) !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+        }
+        ha-card.power-energy-flow-card {
+            width: 360px !important;
+            height: 380px !important;
+        }
+
+        /* ************************************************** */
+        /* Mushroom Status Cards                              */
+        /* ************************************************** */
+        ha-card.small-icon {
+            height: 1.5em !important;
+            padding: 0px 0px 0px 0px !important;
+            --card-primary-font-size: var(--mush-card-primary-font-size, 12px) !important;
+            --card-primary-font-weight: var(--mush-card-primary-font-weight, none) !important;
+            border-style: none !important;
+        }
+        ha-card.small-icon mushroom-shape-icon {
+            --shape-color: none !important;
+        }
+
+        ha-card.small-icon-margin-top {
+            height: 1.5em !important;
+            margin-top: 8px !important;
+            padding: 0px 0px 0px 0px !important;
+            --card-primary-font-size: var(--mush-card-primary-font-size, 12px) !important;
+            --card-primary-font-weight: var(--mush-card-primary-font-weight, none) !important;
+            border-style: none !important;
+        }
+        ha-card.small-icon-margin-top mushroom-shape-icon {
+            --shape-color: none !important;
+        }
+
+        ha-card.vertical-stack-in-card {
+            width: 148px !important;
+            height: 100px !important;
+        }
+
+        /* ************************************************** */
+        /* Apexchart Cards                                    */
+        /* ************************************************** */
+        ha-card.donut-chart {
+            width: 265px !important;
+            height: 300px !important;
+            }
+        ha-card.donut-chart #state__value > #state {
+            font-size: 0.8em !important;
+        }
+        ha-card.donut-chart #state__value > #uom {
+            font-size: 0.6em !important;
+        }
+
+        ha-card.donut-chart-large-width {
+            width: 295px !important;
+            height: 300px !important;
+        }
+        ha-card.donut-chart-large-width #state__value > #state {
+            font-size: 0.8em !important;
+        }
+        ha-card.donut-chart-large-width #state__value > #uom {
+            font-size: 0.6em !important;
+        }
+
+        /* ************************************************** */
+        /* Apexchart Solar Forecast Card                      */
+        /* ************************************************** */
+        ha-card.solar-forecast-chart {
+            width: 915px !important;
+            height: 270px !important;
+        }
+        ha-card.solar-forecast-chart #header {
+            padding-top: 10px !important;
+            line-height: 1.0em !important;
+        }
+        ha-card.solar-forecast-chart #state__value > #state {
+            font-size: 1.0em !important;
+        }
+        ha-card.solar-forecast-chart #state__value > #uom {
+            font-size: 0.6em !important;
+        }
+
+        /* ************************************************** */
+        /* Bar Cards                                          */
+        /* ************************************************** */
+        ha-card.bar-card {
+            border-style: none !important;
+        }
+
+  modes:
+    light: {}
+    dark: {}

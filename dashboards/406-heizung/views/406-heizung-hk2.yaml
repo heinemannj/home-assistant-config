@@ -1,6 +1,6 @@
 title: 034.20.2_HK2-Fussbodenheizung-Heizkreise
 path: 034-20-2-HK2-Fussbodenheizung-Heizkreise
-theme: 406_heizung
+theme: dashboards
 type: custom:grid-layout
 icon: mdi:heating-coil
 badges: []

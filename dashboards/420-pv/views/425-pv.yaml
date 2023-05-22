@@ -1,5 +1,5 @@
 title: 425-PV
-theme: 420_pv
+theme: dashboards
 path: 425-pv
 icon: mdi:solar-power-variant
 type: custom:grid-layout

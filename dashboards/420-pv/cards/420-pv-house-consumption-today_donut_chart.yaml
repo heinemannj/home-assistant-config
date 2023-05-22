@@ -17,4 +17,5 @@ series:
   - entity: sensor.battery_day_discharge_with_loss
     name: Bat-Out
     color: "#f06292"
-card_mod: !include /config/dashboards/420-pv/templates/420-pv-donut-chart-mod.yaml
+card_mod:
+  class: donut-chart

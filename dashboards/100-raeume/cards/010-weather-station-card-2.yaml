@@ -4,6 +4,8 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   icon_color: blue
+  card_mod:
+    class: normal-icon
 
 type: custom:vertical-stack-in-card
 cards:

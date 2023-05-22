@@ -33,4 +33,5 @@ series:
       let inv_yield = hass.states['sensor.inverter_daily_yield'].state;
       let inv_yield_self_use = hass.states['sensor.inverter_yield_self_use_daily'].state;
       return(inv_yield_self_use / inv_yield * 100);
-card_mod: !include /config/dashboards/420-pv/templates/420-pv-donut-chart-mod.yaml
+card_mod:
+  class: donut-chart

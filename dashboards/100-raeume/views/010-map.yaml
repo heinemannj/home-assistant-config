@@ -1,5 +1,5 @@
 title: 010_Map
-theme: 100_raeume
+theme: dashboards
 path: 010-map
 type: panel
 icon: mdi:map-marker-radius-outline

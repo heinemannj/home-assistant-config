@@ -10,12 +10,10 @@ mushroom-template-card-defaults: &mushroom-template-card-template
 type: custom:vertical-stack-in-card
 cards:
   - <<: *mushroom-template-card-template
-    primary: >-
-      {{ states('sensor.house_consumption_energy_daily_control')|round(2) }} kWh
+    primary: "{{ states('sensor.house_consumption_energy_daily_control')|round(2) }} kWh"
     icon: mdi:home-lightning-bolt
     entity: sensor.house_consumption_energy_daily_control
     icon_color: "#66CDAA"
-    #card_mod: !include /config/dashboards/420-pv/templates/420-pv-status-card-mod-1.yaml
     card_mod:
       class: small-icon-margin-top
   - <<: *mushroom-template-card-template
@@ -24,8 +22,4 @@ cards:
     entity: fan.xiaomi_smart_fan
     icon_color: "#ff9800"
 card_mod:
-  style: |
-    ha-card {
-      width: 148px !important;
-      height: 100px !important;
-      }
+  class: vertical-stack-in-card
