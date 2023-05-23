@@ -1,4 +1,4 @@
-{% macro pollenflug_icon_color(entity_id) %}
+{% macro icon_color(entity_id) %}
 {% set state = states(entity_id) | float %}
 {% if state < 2 %} green
 {% elif state < 5 %} yellow

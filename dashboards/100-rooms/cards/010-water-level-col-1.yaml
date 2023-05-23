@@ -115,8 +115,8 @@ cards:
     icon: mdi:waves-arrow-up
     entity: sensor.schermbeck_1_lippe_stage
     icon_color: >-
-      {% from '010-pegel.jinja' import pegel_icon_color %}
-      {{ pegel_icon_color('sensor.schermbeck_1_lippe_stage') }}
+      {% from '010-water-level.jinja' import icon_color %}
+      {{ icon_color('sensor.schermbeck_1_lippe_stage') }}
   - type: conditional
     conditions:
       - entity: sensor.schermbeck_1_lippe_flow
@@ -179,8 +179,8 @@ cards:
     icon: mdi:waves-arrow-up
     entity: sensor.daemmerwald_issel_ijssel_stage
     icon_color: >-
-      {% from '010-pegel.jinja' import pegel_icon_color %}
-      {{ pegel_icon_color('sensor.daemmerwald_issel_ijssel_stage') }}
+      {% from '010-water-level.jinja' import icon_color %}
+      {{ icon_color('sensor.daemmerwald_issel_ijssel_stage') }}
   - type: conditional
     conditions:
       - entity: sensor.daemmerwald_issel_ijssel_flow
@@ -243,8 +243,8 @@ cards:
     icon: mdi:waves-arrow-up
     entity: sensor.wesel_rhein_stage
     icon_color: |-
-      {% from '010-pegel.jinja' import pegel_icon_color %}
-      {{ pegel_icon_color('sensor.wesel_rhein_stage') }}
+      {% from '010-water-level.jinja' import icon_color %}
+      {{ icon_color('sensor.wesel_rhein_stage') }}
   - type: conditional
     conditions:
       - entity: sensor.wesel_rhein_flow

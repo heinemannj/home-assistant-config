@@ -1,8 +1,0 @@
-title: 010_Pegel
-theme: dashboards
-path: 010-pegel
-icon: mdi:waves
-badges: []
-cards:
-  - !include /config/dashboards/100-raeume/cards/010-pegel-col-1.yaml
-  - !include /config/dashboards/100-raeume/cards/010-pegel-col-2.yaml

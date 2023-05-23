@@ -1,0 +1,8 @@
+title: 010_Water-Level
+theme: dashboards
+path: 010-water-level
+icon: mdi:waves
+badges: []
+cards:
+  - !include /config/dashboards/100-rooms/cards/010-water-level-col-1.yaml
+  - !include /config/dashboards/100-rooms/cards/010-water-level-col-2.yaml

@@ -1,0 +1,22 @@
+#kiosk_mode:
+#  hide_header: false
+title: 100_Rooms
+apexcharts_card_templates: !include /config/dashboards/100-rooms/templates/apexcharts_card_config.yaml
+views:
+  - !include /config/dashboards/100-rooms/views/100-phone-home.yaml
+  - !include /config/dashboards/100-rooms/views/100-tablet-home.yaml
+  - !include /config/dashboards/100-rooms/views/010-weather.yaml
+  - !include /config/dashboards/100-rooms/views/010-sky.yaml
+  - !include /config/dashboards/100-rooms/views/010-alerts.yaml
+  - !include /config/dashboards/100-rooms/views/010-map.yaml
+  - !include /config/dashboards/100-rooms/views/010-pollen.yaml
+  - !include /config/dashboards/100-rooms/views/010-uvi.yaml
+  - !include /config/dashboards/100-rooms/views/010-water-level.yaml
+  - !include /config/dashboards/100-rooms/views/010-aqi.yaml
+  - !include /config/dashboards/100-rooms/views/010-infos.yaml
+  - !include /config/dashboards/100-rooms/views/085-1-1-presence.yaml
+  - !include /config/dashboards/100-rooms/views/101-buero.yaml
+  - !include /config/dashboards/100-rooms/views/204-schlafen.yaml
+  - !include /config/dashboards/100-rooms/views/301-kueche.yaml
+  - !include /config/dashboards/100-rooms/views/307-wohnen.yaml
+  - !include /config/dashboards/100-rooms/views/310-garten.yaml

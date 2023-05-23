@@ -1,4 +1,4 @@
-{% macro aqi_primary(entity_id) %}
+{% macro primary(entity_id) %}
 {% set state = states(entity_id) | float %}
 {% if state <= 50 %} AQI - Good
 {% elif state <= 100 %} AQI - Moderate
@@ -9,7 +9,7 @@
 {% endif %}
 {% endmacro %}
 
-{% macro aqi_icon_color(entity_id) %}
+{% macro icon_color(entity_id) %}
 {% set state = states(entity_id) | float %}
 {% if state <= 50 %} green
 {% elif state <= 100 %} yellow

@@ -82,14 +82,14 @@ cards:
       cards:
         - <<: *mushroom-template-card-template
           primary: >-
-            {% from '010-aqi.jinja' import aqi_primary %}
-            {{ aqi_primary('sensor.air_quality_index_borken') }}
+            {% from '010-aqi.jinja' import primary %}
+            {{ primary('sensor.air_quality_index_borken') }}
           secondary: "{{states('sensor.air_quality_index_borken')}}"
           icon: mdi:leaf
           entity: sensor.air_quality_index_borken
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.air_quality_index_borken') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.air_quality_index_borken') }}
         - <<: *bar-card-template
           entity: sensor.air_quality_index_borken
   - type: conditional
@@ -105,8 +105,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_borken
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.ozone_o3_borken') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.ozone_o3_borken') }}
         - <<: *bar-card-template
           entity: sensor.ozone_o3_borken
   - type: conditional
@@ -122,8 +122,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.particulate_matter_pm25_borken
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.particulate_matter_pm25_borken') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.particulate_matter_pm25_borken') }}
         - <<: *bar-card-template
           entity: sensor.particulate_matter_pm25_borken
   - type: conditional
@@ -139,8 +139,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.particulate_matter_pm10_borken
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.particulate_matter_pm10_borken') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.particulate_matter_pm10_borken') }}
         - <<: *bar-card-template
           entity: sensor.particulate_matter_pm10_borken
   - type: conditional
@@ -156,8 +156,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_borken
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.carbon_monoxide_co_borken') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.carbon_monoxide_co_borken') }}
         - <<: *bar-card-template
           entity: sensor.carbon_monoxide_co_borken
   - type: conditional
@@ -173,8 +173,8 @@ cards:
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_borken
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.sulphur_dioxide_so2_borken') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.sulphur_dioxide_so2_borken') }}
         - <<: *bar-card-template
           entity: sensor.sulphur_dioxide_so2_borken
   - type: conditional
@@ -190,8 +190,8 @@ cards:
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_borken
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_borken') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.nitrogen_dioxide_no2_borken') }}
         - <<: *bar-card-template
           entity: sensor.nitrogen_dioxide_no2_borken
   - type: custom:mushroom-title-card
@@ -206,14 +206,14 @@ cards:
       cards:
         - <<: *mushroom-template-card-template
           primary: >-
-            {% from '010-aqi.jinja' import aqi_primary %}
-            {{ aqi_primary('sensor.air_quality_index_schermbeck') }}
+            {% from '010-aqi.jinja' import primary %}
+            {{ primary('sensor.air_quality_index_schermbeck') }}
           secondary: "{{states('sensor.air_quality_index_schermbeck')}}"
           icon: mdi:leaf
           entity: sensor.air_quality_index_schermbeck
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.air_quality_index_schermbeck') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.air_quality_index_schermbeck') }}
         - <<: *bar-card-template
           entity: sensor.air_quality_index_schermbeck
   - type: conditional
@@ -229,8 +229,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_schermbeck
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.ozone_o3_schermbeck') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.ozone_o3_schermbeck') }}
         - <<: *bar-card-template
           entity: sensor.ozone_o3_schermbeck
   - type: conditional
@@ -246,8 +246,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.particulate_matter_pm25_schermbeck
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.particulate_matter_pm25_schermbeck') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.particulate_matter_pm25_schermbeck') }}
         - <<: *bar-card-template
           entity: sensor.particulate_matter_pm25_schermbeck
   - type: conditional
@@ -263,8 +263,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.particulate_matter_pm10_schermbeck
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.particulate_matter_pm10_schermbeck') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.particulate_matter_pm10_schermbeck') }}
         - <<: *bar-card-template
           entity: sensor.particulate_matter_pm10_schermbeck
   - type: conditional
@@ -280,8 +280,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_schermbeck
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.carbon_monoxide_co_schermbeck') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.carbon_monoxide_co_schermbeck') }}
         - <<: *bar-card-template
           entity: sensor.carbon_monoxide_co_schermbeck
   - type: conditional
@@ -297,8 +297,8 @@ cards:
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_schermbeck
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.sulphur_dioxide_so2_schermbeck') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.sulphur_dioxide_so2_schermbeck') }}
         - <<: *bar-card-template
           entity: sensor.sulphur_dioxide_so2_schermbeck
   - type: conditional
@@ -314,8 +314,8 @@ cards:
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_schermbeck
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_schermbeck') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.nitrogen_dioxide_no2_schermbeck') }}
         - <<: *bar-card-template
           entity: sensor.nitrogen_dioxide_no2_schermbeck
   - type: custom:mushroom-title-card
@@ -330,14 +330,14 @@ cards:
       cards:
         - <<: *mushroom-template-card-template
           primary: >-
-            {% from '010-aqi.jinja' import aqi_primary %}
-            {{ aqi_primary('sensor.air_quality_index_wesel') }}
+            {% from '010-aqi.jinja' import primary %}
+            {{ primary('sensor.air_quality_index_wesel') }}
           secondary: "{{states('sensor.air_quality_index_wesel')}}"
           icon: mdi:leaf
           entity: sensor.air_quality_index_wesel
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.air_quality_index_wesel') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.air_quality_index_wesel') }}
         - <<: *bar-card-template
           entity: sensor.air_quality_index_wesel
   - type: conditional
@@ -353,8 +353,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.ozone_o3_wesel
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.ozone_o3_wesel') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.ozone_o3_wesel') }}
         - <<: *bar-card-template
           entity: sensor.ozone_o3_wesel
   - type: conditional
@@ -370,8 +370,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.particulate_matter_pm25_wesel
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.particulate_matter_pm25_wesel') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.particulate_matter_pm25_wesel') }}
         - <<: *bar-card-template
           entity: sensor.particulate_matter_pm25_wesel
   - type: conditional
@@ -387,8 +387,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.particulate_matter_pm10_wesel
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.particulate_matter_pm10_wesel') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.particulate_matter_pm10_wesel') }}
         - <<: *bar-card-template
           entity: sensor.particulate_matter_pm10_wesel
   - type: conditional
@@ -404,8 +404,8 @@ cards:
           icon: mdi:skull-outline
           entity: sensor.carbon_monoxide_co_wesel
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.carbon_monoxide_co_wesel') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.carbon_monoxide_co_wesel') }}
         - <<: *bar-card-template
           entity: sensor.carbon_monoxide_co_wesel
   - type: conditional
@@ -421,8 +421,8 @@ cards:
           icon: mdi:smog
           entity: sensor.sulphur_dioxide_so2_wesel
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.sulphur_dioxide_so2_wesel') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.sulphur_dioxide_so2_wesel') }}
         - <<: *bar-card-template
           entity: sensor.sulphur_dioxide_so2_wesel
   - type: conditional
@@ -438,9 +438,9 @@ cards:
           icon: mdi:smog
           entity: sensor.nitrogen_dioxide_no2_wesel
           icon_color: >-
-            {% from '010-aqi.jinja' import aqi_icon_color %}
-            {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_wesel') }}
+            {% from '010-aqi.jinja' import icon_color %}
+            {{ icon_color('sensor.nitrogen_dioxide_no2_wesel') }}
         - <<: *bar-card-template
           entity: sensor.nitrogen_dioxide_no2_wesel
 card_mod:
-  class: vertical-stack-in-card-padding-bottom
+  class: mushroom-card-no-border-vertical-stack-in

@@ -7,12 +7,12 @@ badges: []
 cards:
   - type: vertical-stack
     cards:
-      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-1.yaml
-      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-2.yaml
-      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-3.yaml
-      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-4.yaml
-      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-5.yaml
-      - !include /config/dashboards/100-raeume/cards/100-phone-home-row-6.yaml
+      - !include /config/dashboards/100-rooms/cards/100-phone-home-row-1.yaml
+      - !include /config/dashboards/100-rooms/cards/100-phone-home-row-2.yaml
+      - !include /config/dashboards/100-rooms/cards/100-phone-home-row-3.yaml
+      - !include /config/dashboards/100-rooms/cards/100-phone-home-row-4.yaml
+      - !include /config/dashboards/100-rooms/cards/100-phone-home-row-5.yaml
+      - !include /config/dashboards/100-rooms/cards/100-phone-home-row-6.yaml
 
       - type: custom:mushroom-chips-card
         chips:
@@ -179,19 +179,19 @@ cards:
             layout: vertical
             tap_action:
               action: navigate
-              navigation_path: /100-raeume/101-buero
+              navigation_path: /100-rooms/101-buero
             fill_container: true
           - type: custom:mushroom-light-card
             entity: light.204_schlafen_licht_bett
             layout: vertical
             tap_action:
               action: navigate
-              navigation_path: /100-raeume/204-schlafen
+              navigation_path: /100-rooms/204-schlafen
           - type: custom:mushroom-light-card
             entity: light.301_wc_luftung_licht_decke
             tap_action:
               action: navigate
-              navigation_path: /100-raeume/307-wohnen
+              navigation_path: /100-rooms/307-wohnen
             layout: vertical
       - type: custom:mushroom-title-card
         title: Stromverbrauch

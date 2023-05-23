@@ -1,8 +1,0 @@
-title: 010_AQI
-theme: dashboards
-path: 010-aqi
-icon: mdi:leaf
-badges: []
-cards:
-  - !include /config/dashboards/100-raeume/cards/010-aqi-col-1.yaml
-  - !include /config/dashboards/100-raeume/cards/010-aqi-col-2.yaml

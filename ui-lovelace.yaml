@@ -9,19 +9,19 @@ mode: storage
 dashboards:
   100-raeume-yaml:
     mode: yaml
-    title: 100_Raeume
+    title: 100_Rooms
     icon: mdi:home
     show_in_sidebar: true
-    filename: dashboards/100-raeume/index.yaml
+    filename: dashboards/100-rooms/index.yaml
   420-pv-yaml:
     mode: yaml
     title: 420_PV
     icon: mdi:solar-power-variant
     show_in_sidebar: true
     filename: dashboards/420-pv/index.yaml
-  406-heizung-yaml:
+  406-heating-yaml:
     mode: yaml
-    title: 406_Heizung
+    title: 406_Heating
     icon: mdi:hvac
     show_in_sidebar: true
-    filename: dashboards/406-heizung/index.yaml
+    filename: dashboards/406-heating/index.yaml

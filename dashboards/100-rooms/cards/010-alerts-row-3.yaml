@@ -133,7 +133,7 @@ content: >-
   {# Start: DWD and NINA alerts #}
   {% if (dwd_current_count == 0 and dwd_advance_count == 0 and ns.nina_count == 0) %}
 
-  **<font color=#44739e>Keine DWD/NINA Warnungen</font>**
+  **<font color=#44739e>No DWD/NINA warnings</font>**
 
   {% else %}
     {% for i in range(dwd_current_count) %}

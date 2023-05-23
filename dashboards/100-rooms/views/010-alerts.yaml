@@ -1,0 +1,14 @@
+title: 010_Alerts
+theme: dashboards
+path: 010-alerts
+icon: mdi:weather-cloudy-alert
+layout: {}
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - !include /config/dashboards/100-rooms/cards/010-alerts-row-1.yaml
+      - !include /config/dashboards/100-rooms/cards/010-alerts-row-2.yaml
+      - !include /config/dashboards/100-rooms/cards/010-alerts-row-3.yaml
+      - !include /config/dashboards/100-rooms/cards/010-alerts-row-4.yaml
+      - !include /config/dashboards/100-rooms/cards/010-alerts-row-5.yaml

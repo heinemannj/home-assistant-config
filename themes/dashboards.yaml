@@ -133,6 +133,9 @@ dashboards:
       ha-card.mushroom-status-card-normal-icon {
         --card-primary-font-size: var(--mush-card-primary-font-size, 12px) !important;
       }
+      ha-card.mushroom-status-card-normal-icon .shape {
+        margin-right: 6x !important;
+      }
       ha-card.mushroom-status-card-normal-icon-vertical-stack-in {
         height: 160px !important;
         --mush-spacing: 5px 5px 6px 6px !important;

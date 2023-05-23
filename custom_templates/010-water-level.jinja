@@ -1,4 +1,4 @@
-{% macro pegel_icon_color(entity_id) %}
+{% macro icon_color(entity_id) %}
 {% set state = states(entity_id) | float %}
 {% if state == 0 %} green
 {% elif state <= 1 %} yellow

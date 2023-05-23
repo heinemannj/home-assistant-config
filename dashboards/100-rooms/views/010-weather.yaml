@@ -1,6 +1,6 @@
-title: 010_Wetter
+title: 010_Weather
 theme: dashboards
-path: 010-wetter
+path: 010-weather
 icon: mdi:weather-partly-cloudy
 badges: []
 cards:

@@ -1,0 +1,13 @@
+title: 100_Tablet-Home
+theme: dashboards
+path: 100-tablet-home
+type: custom:grid-layout
+icon: mdi:tablet-dashboard
+badges: []
+cards:
+  - !include /config/dashboards/100-rooms/cards/100-tablet-home-row-1.yaml
+  - !include /config/dashboards/100-rooms/cards/100-tablet-home-row-2.yaml
+  - !include /config/dashboards/100-rooms/cards/100-tablet-home-row-3.yaml
+  - !include /config/dashboards/100-rooms/cards/100-tablet-home-row-4.yaml
+  - !include /config/dashboards/100-rooms/cards/100-tablet-home-row-5.yaml
+  - !include /config/dashboards/100-rooms/cards/100-tablet-home-row-6.yaml

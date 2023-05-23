@@ -1,0 +1,7 @@
+#kiosk_mode:
+#  hide_header: false
+title: 406_Heizung
+apexcharts_card_templates: !include /config/dashboards/406-heating/templates/apexcharts_card_config.yaml
+views:
+  - !include /config/dashboards/406-heating/views/406-heating-hc1.yaml
+  - !include /config/dashboards/406-heating/views/406-heating-hc2.yaml

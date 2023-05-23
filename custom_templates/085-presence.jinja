@@ -1,4 +1,4 @@
-{% macro presence_secondary(entity_id) %}
+{% macro secondary(entity_id) %}
 {% if is_state('device_tracker.phone1', 'home') %} Home
 {% elif is_state('device_tracker.phone1', 'Work') %} Work
 {% elif is_state('device_tracker.phone1', 'Bar') %} Bar
@@ -6,7 +6,7 @@
 {% endif %}
 {% endmacro %}
 
-{% macro presence_icon(entity_id) %}
+{% macro icon(entity_id) %}
 {% if is_state('device_tracker.phone1', 'home') %} mdi:home-account
 {% elif is_state('device_tracker.phone1', 'work') %} mdi:desktop-classic
 {% elif is_state('device_tracker.phone1', 'Bar') %} mdi:beer
@@ -14,7 +14,7 @@
 {% endif %}
 {% endmacro %}
 
-{% macro presence_icon_color(entity_id) %}
+{% macro icon_color(entity_id) %}
 {% if is_state('device_tracker.phone1', 'home') %} green
 {% elif is_state('device_tracker.phone1', 'work') %} red
 {% elif is_state('device_tracker.phone1', 'Bar') %} orange

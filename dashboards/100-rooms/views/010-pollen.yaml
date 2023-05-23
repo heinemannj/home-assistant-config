@@ -1,0 +1,8 @@
+title: 010_Pollen
+theme: dashboards
+path: 010-pollen
+icon: mdi:tree-outline
+badges: []
+cards:
+  - !include /config/dashboards/100-rooms/cards/010-pollen-col-1.yaml
+  - !include /config/dashboards/100-rooms/cards/010-pollen-col-2.yaml

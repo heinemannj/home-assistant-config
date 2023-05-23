@@ -1,0 +1,15 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+cards:
+  - !include /config/dashboards/100-rooms/cards/084-garbage-card.yaml
+  - !include /config/dashboards/100-rooms/cards/010-weather-station-card-1.yaml
+  - !include /config/dashboards/100-rooms/cards/010-weather-station-card-2.yaml
+  - !include /config/dashboards/100-rooms/cards/010-weather-status-card-1.yaml
+  - !include /config/dashboards/100-rooms/cards/010-weather-status-card-2.yaml
+  - !include /config/dashboards/100-rooms/cards/010-weather-status-card-3.yaml
+  - !include /config/dashboards/100-rooms/cards/010-sun-status-card.yaml
+  - !include /config/dashboards/100-rooms/cards/010-aqi-status-card.yaml
+layout:
+  grid-template-columns: 190px 160px 160px 140px 140px 140px 140px 140px
+  margin: 0px;
+  padding: 0px;

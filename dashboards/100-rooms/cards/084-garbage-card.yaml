@@ -17,10 +17,10 @@ cards:
         entity: sensor.event_day_restmuell
         secondary: "{{ states('sensor.event_day_restmuell') }} d"
         badge_icon: >-
-          {% from '084-abfall.jinja' import badge_icon %}
+          {% from '084-garbage.jinja' import badge_icon %}
           {{ badge_icon('sensor.event_day_restmuell') }}
         badge_color: >-
-          {% from '084-abfall.jinja' import badge_color %}
+          {% from '084-garbage.jinja' import badge_color %}
           {{ badge_color('sensor.event_day_restmuell') }}
       - <<: *mushroom-template-card-template
         icon: mdi:trash-can-outline
@@ -28,10 +28,10 @@ cards:
         entity: sensor.event_day_papier
         secondary: "{{ states('sensor.event_day_papier') }} d"
         badge_icon: >-
-          {% from '084-abfall.jinja' import badge_icon %}
+          {% from '084-garbage.jinja' import badge_icon %}
           {{ badge_icon('sensor.event_day_papier') }}
         badge_color: >-
-          {% from '084-abfall.jinja' import badge_color %}
+          {% from '084-garbage.jinja' import badge_color %}
           {{ badge_color('sensor.event_day_papier') }}
   - type: horizontal-stack
     cards:
@@ -41,10 +41,10 @@ cards:
         entity: sensor.event_day_gelber_sack
         secondary: "{{ states('sensor.event_day_gelber_sack') }} d"
         badge_icon: >-
-          {% from '084-abfall.jinja' import badge_icon %}
+          {% from '084-garbage.jinja' import badge_icon %}
           {{ badge_icon('sensor.event_day_gelber_sack') }}
         badge_color: >-
-          {% from '084-abfall.jinja' import badge_color %}
+          {% from '084-garbage.jinja' import badge_color %}
           {{ badge_color('sensor.event_day_gelber_sack') }}
       - <<: *mushroom-template-card-template
         icon: mdi:trash-can-outline
@@ -52,10 +52,10 @@ cards:
         entity: sensor.event_day_schadstoffe
         secondary: "{{ states('sensor.event_day_schadstoffe') }} d"
         badge_icon: >-
-          {% from '084-abfall.jinja' import badge_icon %}
+          {% from '084-garbage.jinja' import badge_icon %}
           {{ badge_icon('sensor.event_day_schadstoffe') }}
         badge_color: >-
-          {% from '084-abfall.jinja' import badge_color %}
+          {% from '084-garbage.jinja' import badge_color %}
           {{ badge_color('sensor.event_day_schadstoffe') }}
   - <<: *mushroom-template-card-template
     icon: mdi:trash-can-outline
@@ -63,10 +63,10 @@ cards:
     entity: sensor.event_day_biomuell
     secondary: "{{ states('sensor.event_day_biomuell') }} d"
     badge_icon: >-
-      {% from '084-abfall.jinja' import badge_icon %}
+      {% from '084-garbage.jinja' import badge_icon %}
       {{ badge_icon('sensor.event_day_biomuell') }}
     badge_color: >-
-      {% from '084-abfall.jinja' import badge_color %}
+      {% from '084-garbage.jinja' import badge_color %}
       {{ badge_color('sensor.event_day_biomuell') }}
 card_mod:
   class: mushroom-status-card-normal-icon-vertical-stack-in

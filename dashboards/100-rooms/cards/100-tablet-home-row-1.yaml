@@ -1,0 +1,14 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+cards:
+  - !include /config/dashboards/100-rooms/cards/010-meteoalarm-cards.yaml
+  - !include /config/dashboards/100-rooms/cards/010-clock-weather-card-today.yaml
+  - !include /config/dashboards/100-rooms/cards/010-compass-card-wind-direction.yaml
+  - !include /config/dashboards/100-rooms/cards/010-clock-weather-card-forecast.yaml
+  - !include /config/dashboards/100-rooms/cards/010-compass-card-sun-azimuth.yaml
+  - !include /config/dashboards/100-rooms/cards/010-sun-card.yaml
+  - !include /config/dashboards/100-rooms/cards/010-moon-card.yaml
+layout:
+  grid-template-columns: 160px 220px 130px 250px 130px 220px 100px
+  margin: 0px 0px 0px 0px;
+  padding: 0px;

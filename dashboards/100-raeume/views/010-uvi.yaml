@@ -1,8 +1,0 @@
-title: 010_UVI
-theme: dashboards
-path: 010-uvi
-icon: mdi:weather-sunny
-badges: []
-cards:
-  - !include /config/dashboards/100-raeume/cards/010-uvi-col-1.yaml
-  - !include /config/dashboards/100-raeume/cards/010-uvi-col-2.yaml

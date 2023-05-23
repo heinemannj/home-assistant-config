@@ -53,8 +53,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_ambrosia') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_ambrosia') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_ambrosia') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_ambrosia
   - <<: *layout-card-template
@@ -65,8 +65,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_beifuss') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_beifuss') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_beifuss') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_beifuss
   - <<: *layout-card-template
@@ -77,8 +77,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_birke') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_birke') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_birke') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_birke
   - <<: *layout-card-template
@@ -89,8 +89,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_erle') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_erle') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_erle') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_erle
   - <<: *layout-card-template
@@ -101,8 +101,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_esche') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_esche') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_esche') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_esche
   - <<: *layout-card-template
@@ -113,8 +113,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_graeser') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_graeser') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_graeser') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_graeser
   - <<: *layout-card-template
@@ -125,8 +125,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_hasel') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_hasel') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_hasel') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_hasel
   - <<: *layout-card-template
@@ -137,8 +137,8 @@ cards:
         secondary: "{{states('sensor.dwd_pollen_roggen') }}"
         icon: mdi:tree-outline
         icon_color: >-
-          {% from '010-pollenflug.jinja' import pollenflug_icon_color %}
-          {{ pollenflug_icon_color('sensor.dwd_pollen_roggen') }}
+          {% from '010-pollen.jinja' import icon_color %}
+          {{ icon_color('sensor.dwd_pollen_roggen') }}
       - <<: *bar-card-template
         entity: sensor.dwd_pollen_roggen
 card_mod:

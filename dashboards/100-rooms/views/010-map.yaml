@@ -12,8 +12,8 @@ cards:
       - gdacs
       - usgs_earthquakes_feed
       - ingv_centro_nazionale_terremoti
-    dark_mode: true
-    default_zoom: 18
+    dark_mode: false
+    default_zoom: 5
     hours_to_show: 72
     aspect_ratio: 50%
     auto_fit: true
