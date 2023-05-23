@@ -33,7 +33,7 @@ cards:
                   width: 915px !important;
                   height: 100px !important;
                   }
-          - !include /config/dashboards/420-pv/cards/420-pv-solar-forecast-chart.yaml
+          - !include /config/dashboards/420-pv/cards/420-pv-solar-forecast-chart-large-width.yaml
       - !include /config/dashboards/420-pv/cards/420-pv-energy-flow-card.yaml
     layout:
       grid-template-columns: 365px 920px 365px

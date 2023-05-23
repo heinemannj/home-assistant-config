@@ -6,7 +6,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: small-icon
+    class: mushroom-status-card-small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -15,7 +15,7 @@ cards:
     icon: mdi:gauge
     entity: sensor.pressure_raesfeld_ka
     card_mod:
-      class: small-icon-margin-top
+      class: mushroom-status-card-small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('sensor.humidity_raesfeld_ka') }} %"
     icon: mdi:water-percent
@@ -41,4 +41,4 @@ cards:
     icon: mdi:eye
     entity: sensor.visibility_raesfeld_ka
 card_mod:
-  class: vertical-stack-in-card-small-spacing
+  class: mushroom-status-card-small-icon-vertical-stack-in

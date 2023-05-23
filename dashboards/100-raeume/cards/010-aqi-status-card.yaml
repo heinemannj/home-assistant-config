@@ -5,7 +5,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: small-icon
+    class: mushroom-status-card-small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -17,7 +17,7 @@ cards:
       {% from '010-aqi.jinja' import aqi_icon_color %}
       {{ aqi_icon_color('sensor.air_quality_index_borken') }}
     card_mod:
-      class: small-icon-margin-top
+      class: mushroom-status-card-small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "PM2.5: {{ states('sensor.particulate_matter_pm25_borken') }} AQI"
     icon: mdi:skull-outline
@@ -48,4 +48,4 @@ cards:
       {% from '010-aqi.jinja' import aqi_icon_color %}
       {{ aqi_icon_color('sensor.nitrogen_dioxide_no2_borken') }}
 card_mod:
-  class: vertical-stack-in-card-small-spacing
+  class: mushroom-status-card-small-icon-vertical-stack-in

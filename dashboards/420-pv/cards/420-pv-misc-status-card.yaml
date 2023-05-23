@@ -5,7 +5,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: small-icon
+    class: mushroom-pv-status-card
 
 type: custom:vertical-stack-in-card
 cards:
@@ -15,11 +15,11 @@ cards:
     entity: sensor.house_consumption_energy_daily_control
     icon_color: "#66CDAA"
     card_mod:
-      class: small-icon-margin-top
+      class: mushroom-pv-status-card-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('fan.xiaomi_smart_fan') }}"
     icon: mdi:fan
     entity: fan.xiaomi_smart_fan
     icon_color: "#ff9800"
 card_mod:
-  class: vertical-stack-in-card
+  class: mushroom-pv-status-card-vertical-stack-in

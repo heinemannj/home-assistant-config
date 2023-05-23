@@ -12,7 +12,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   fill_container: true
   multiline_secondary: true
   card_mod:
-    class: no-border
+    class: mushroom-card-no-border
 
 mushroom-entity-card-defaults: &mushroom-entity-card-template
   type: custom:mushroom-entity-card
@@ -20,7 +20,7 @@ mushroom-entity-card-defaults: &mushroom-entity-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: no-border
+    class: mushroom-card-no-border
 
 bar-card-defaults: &bar-card-template
   type: custom:bar-card
@@ -252,5 +252,3 @@ cards:
     card:
       <<: *mushroom-template-card-template
       entity: sensor.wesel_rhein_flow
-card_mod:
-  class: vertical-stack-in-card-padding-bottom

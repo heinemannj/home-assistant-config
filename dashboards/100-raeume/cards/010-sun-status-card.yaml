@@ -6,7 +6,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: small-icon
+    class: mushroom-status-card-small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -34,7 +34,7 @@ cards:
     icon: mdi:weather-sunny-alert
     entity: sensor.estimated_illuminance
     card_mod:
-      class: small-icon-margin-top
+      class: mushroom-status-card-small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('sensor.sun_irradiance_raesfeld_ka') }} W/m^2"
     icon: mdi:weather-sunny-alert
@@ -44,4 +44,4 @@ cards:
     icon: mdi:lightning-bolt
     entity: sensor.energy_current_hour
 card_mod:
-  class: vertical-stack-in-card-small-spacing
+  class: mushroom-status-card-small-icon-vertical-stack-in

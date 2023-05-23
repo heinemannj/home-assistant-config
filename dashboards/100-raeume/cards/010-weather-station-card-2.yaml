@@ -5,7 +5,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
   fill_container: true
   icon_color: blue
   card_mod:
-    class: normal-icon
+    class: mushroom-status-card-normal-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -25,4 +25,4 @@ cards:
     entity: sensor.teich_1_ph_voltage
     secondary: "{{ states('sensor.310_garten_wetter_ph_voltage') }} V"
 card_mod:
-  class: vertical-stack-in-card-normal-spacing
+  class: mushroom-status-card-normal-icon-vertical-stack-in

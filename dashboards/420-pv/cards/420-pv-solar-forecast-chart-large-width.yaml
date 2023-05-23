@@ -1,0 +1,106 @@
+type: custom:apexcharts-card
+config_templates: pv_solar_forecast_chart
+now:
+  show: false
+series:
+  - entity: sensor.battery_state_of_capacity
+    name: Battery
+    float_precision: 0
+    type: line
+    color: "#f06292"
+    opacity: 0.6
+    stroke_width: 0.8
+    yaxis_id: capacity
+    unit: "%"
+    show:
+      in_header: false
+    group_by:
+      func: last
+      duration: 5m
+  - entity: sensor.house_consumption_power
+    name: House Power
+    type: line
+    color: MediumAquaMarine
+    opacity: 0.8
+    stroke_width: 0.8
+    transform: return x/1000;
+    show:
+      in_header: false
+    group_by:
+      func: avg
+      duration: 5m
+  - entity: sensor.inverter_input_power
+    name: Solar Power
+    color: "#ff9800"
+    opacity: 0.4
+    transform: return x/1000;
+    show:
+      in_header: false
+    group_by:
+      func: avg
+      duration: 5m
+  - entity: sensor.solcast_forecast_today
+    name: Solar Forecast (D1)
+    extend_to: false
+    show:
+      legend_value: false
+      in_header: false
+    data_generator: |
+      return entity.attributes.forecast.map((entry) => {
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
+  - entity: sensor.solcast_forecast_tomorrow
+    name: Solar Forecast (D2)
+    extend_to: false
+    show:
+      legend_value: false
+      in_header: false
+    data_generator: |
+      return entity.attributes.forecast.map((entry) => {
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
+  - entity: sensor.solcast_forecast_d3
+    name: Solar Forecast (D3)
+    extend_to: false
+    show:
+      legend_value: false
+      in_header: false
+    data_generator: |
+      return entity.attributes.forecast.map((entry) => {
+        return [new Date(entry.period_start), entry.pv_estimate];
+      });
+  - entity: sensor.solcast_forecast_today
+    yaxis_id: header_only
+    name: Solar Forecast (D1)
+    unit: kWh
+    show:
+      in_chart: false
+  - entity: sensor.solcast_forecast_remaining_today_every_minute
+    yaxis_id: header_only
+    name: Forecast (D1 Remaining)
+    unit: kWh
+    show:
+      in_chart: false
+  - entity: sensor.solcast_forecast_tomorrow
+    yaxis_id: header_only
+    name: Forecast (D2)
+    unit: kWh
+    show:
+      in_chart: false
+  - entity: sensor.solcast_forecast_d3
+    yaxis_id: header_only
+    name: Solar Forecast (D3)
+    unit: kWh
+    show:
+      in_chart: false
+  - entity: sensor.solcast_api_last_polled
+    yaxis_id: header_only
+    name: Forecast (Last Update)
+    float_precision: 0
+    unit: " min."
+    transform: >-
+      return ((Date.now()) - (new Date(x).getTime())) / 60 / 60 / 24
+    show:
+      in_chart: false
+card_mod:
+  class: solar-forecast-chart-large-width

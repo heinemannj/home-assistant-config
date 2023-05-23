@@ -5,7 +5,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: small-icon
+    class: mushroom-pv-status-card
 
 type: custom:vertical-stack-in-card
 cards:
@@ -15,7 +15,7 @@ cards:
     entity: sensor.battery_state_of_capacity_remaining_charge_time
     icon_color: "#f06292"
     card_mod:
-      class: small-icon-margin-top
+      class: mushroom-pv-status-card-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('number.battery_maximum_charging_power') }} W"
     icon: mdi:battery-arrow-up
@@ -32,4 +32,4 @@ cards:
     entity: sensor.battery_state_of_capacity_remaining_discharge_time
     icon_color: "#4db6ac"
 card_mod:
-  class: vertical-stack-in-card
+  class: mushroom-pv-status-card-vertical-stack-in

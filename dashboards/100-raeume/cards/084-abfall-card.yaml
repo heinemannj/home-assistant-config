@@ -5,7 +5,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: no-border
+    class: mushroom-card-no-border
 
 type: custom:vertical-stack-in-card
 cards:
@@ -33,9 +33,6 @@ cards:
         badge_color: >-
           {% from '084-abfall.jinja' import badge_color %}
           {{ badge_color('sensor.event_day_papier') }}
-    card_mod:
-      class: vertical-stack-in-card-normal-spacing
-
   - type: horizontal-stack
     cards:
       - <<: *mushroom-template-card-template
@@ -72,4 +69,4 @@ cards:
       {% from '084-abfall.jinja' import badge_color %}
       {{ badge_color('sensor.event_day_biomuell') }}
 card_mod:
-  class: vertical-stack-in-card-normal-spacing
+  class: mushroom-status-card-normal-icon-vertical-stack-in

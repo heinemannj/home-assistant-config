@@ -16,10 +16,12 @@ entities:
     entity: sensor.inverter_input_power
   battery:
     entity: sensor.battery_charge_discharge_power_with_loss
+    invert_state: true
     state_of_charge: sensor.battery_state_of_capacity
     color_circle: true
   grid:
     entity: sensor.power_meter_active_power
+    invert_state: true
   fossil_fuel_percentage:
     entity: sensor.co2_signal_grid_fossil_fuel_percentage
     icon: mdi:pine-tree
@@ -27,6 +29,5 @@ entities:
     display_zero: true
     name: Low-carbon
     state_type: power
-inverted_entities: grid,battery
 card_mod:
   class: power-energy-flow-card

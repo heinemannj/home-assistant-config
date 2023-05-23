@@ -6,7 +6,7 @@ mushroom-template-card-defaults: &mushroom-template-card-template
     action: more-info
   fill_container: true
   card_mod:
-    class: small-icon
+    class: mushroom-status-card-small-icon
 
 type: custom:vertical-stack-in-card
 cards:
@@ -15,7 +15,7 @@ cards:
     icon: mdi:weather-sunset
     entity: sensor.sun_duration_raesfeld_ka
     card_mod:
-      class: small-icon-margin-top
+      class: mushroom-status-card-small-icon-margin-top
   - <<: *mushroom-template-card-template
     primary: "{{ states('sensor.cloud_coverage_raesfeld_ka') }} %"
     icon: mdi:cloud-percent-outline
@@ -37,4 +37,4 @@ cards:
       {% from '010-uvi.jinja' import ozone_icon_color %}
       {{ ozone_icon_color('sensor.current_ozone_level') }}
 card_mod:
-  class: vertical-stack-in-card-small-spacing
+  class: mushroom-status-card-small-icon-vertical-stack-in

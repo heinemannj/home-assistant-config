@@ -8,7 +8,7 @@ bar-card-defaults: &bar-card-template
     indicator: "off"
     value: inside
   card_mod:
-    class: bar-card
+    class: pv-bar-card
 
 bar-card-style-defaults: &bar-card-style
   width: 12%
@@ -29,83 +29,83 @@ elements:
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: "-4%"
+      top: "-2%"
     type: state-label
   - entity: sensor.inverter_inverter_state
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 0%
+      top: 2%
     type: state-label
   - entity: sensor.power_meter_status
     prefix: "Status: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 2%
+      top: 4%
     type: state-label
   - entity: sensor.inverter_alarms
     prefix: "Alarms: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 4%
+      top: 6%
     type: state-label
   - entity: sensor.power_meter_frequency
     prefix: "Frequency: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 8%
+      top: 10%
     type: state-label
   - entity: sensor.power_meter_power_factor
     prefix: "Power Factor: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 10%
+      top: 12%
     type: state-label
   - entity: sensor.power_meter_reactive_power
     prefix: "Reactive Power: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 12%
+      top: 14%
     type: state-label
   - entity: switch.battery_charge_from_grid
     prefix: "Battery Charge from grid: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 16%
+      top: 18%
     type: state-label
   - entity: number.battery_end_of_charge_soc
     prefix: "Battery End-of-charge SOC: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 18%
+      top: 20%
     type: state-label
   - entity: number.battery_end_of_discharge_soc
     prefix: "Battery End-of-discharge SOC: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 20%
+      top: 22%
     type: state-label
   - entity: number.battery_maximum_charging_power
     prefix: "Battery Maximum charging power: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 22%
+      top: 24%
     type: state-label
   - entity: number.battery_maximum_discharging_power
     prefix: "Battery Maximum discharging power: "
     style:
       <<: *state-label-style-flush-left
       left: 1%
-      top: 24%
+      top: 26%
     type: state-label
   - <<: *bar-card-template
     style:

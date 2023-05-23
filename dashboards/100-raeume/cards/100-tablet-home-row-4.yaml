@@ -9,11 +9,11 @@ mushroom-chips-card-defaults: &mushroom-chips-card-template
   type: custom:mushroom-chips-card
   alignment: center
   card_mod:
-    class: mushroom-chips-card
+    class: mushroom-room-status-card
 
 mushroom-chips-entity-defaults: &mushroom-chips-entity-template
   type: entity
-  icon_color: '#fdd835'
+  icon_color: "#fdd835"
   content_info: none
   tap_action:
     action: toggle
