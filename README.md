@@ -19,11 +19,63 @@ This configuration controls a couple of significant features in my smart home.
 
 ## Dashboards
 
-**YAML packages**: `<config>/packages`
+Copy the following folder
 
-**YAML dashboards**: `<config>/dashboards`<br>
-**Jinja templates used in cards**: `<config>/custom_templates`<br>
-**Card-Mod Theme** (css styles): `<config>/themes/dashboards.yaml`<br>
+- **YAML packages**: `<config>/packages`
+
+to your HA `<config>` folder and modify your `<config>/configuration.yaml`:
+
+```
+homeassistant:
+  customize_glob: !include customize_glob.yaml
+  customize: !include customize.yaml
+  packages:
+    dwd_pollenflug: !include packages/dwd-pollenflug-package.yaml
+    dwd_weather_warnings: !include packages/dwd-weather-warnings-package.yaml
+    geo_rss_feeds: !include packages/geo-rss-feeds-package.yaml
+    heating: !include packages/heating-package.yaml
+    hochwasser: !include packages/hochwasser-package.yaml
+    huawei_solar_yield: !include packages/huawei-solar-yield-package.yaml
+    huawei_solar_battery_card: !include packages/huawei-solar-battery-card-package.yaml
+    huawei_solar_battery_correction: !include packages/huawei-solar-battery-correction-package.yaml
+    huawei_solar_diagnostic: !include packages/huawei-solar-diagnostic-package.yaml
+    huawei_solar_power_flow_card: !include packages/huawei-solar-power-flow-card-package.yaml
+    huawei_solar_energy_flow_card: !include packages/huawei-solar-energy-flow-card-package.yaml
+    illuminance: !include packages/illuminance-package.yaml
+    local_calendar: !include packages/local-calendar-package.yaml
+    mold_indicator: !include packages/mold-indicator-package.yaml
+    moon_phase_image: !include packages/moon_phase_image-package.yaml
+    mqtt_sensor: !include packages/mqtt-sensor-package.yaml
+    powercalc: !include packages/powercalc-package.yaml
+    pulsemeter: !include packages/pulsemeter-package.yaml
+    shelly_light: !include packages/shelly-light-package.yaml
+    shelly_sockets: !include packages/shelly-sockets-package.yaml
+    # skyfield: !include packages/skyfield-package.yaml
+    solcast_solar: !include packages/solcast-solar-package.yaml
+    temperature_feels_like: !include packages/temperature-feels-like-package.yaml
+    xiaomi_miio_fan: !include packages/xiaomi-miio-fan-package.yaml
+```
+
+Copy the following folders
+
+- **YAML dashboards**: `<config>/dashboards`<br>
+- **Jinja templates used in cards**: `<config>/custom_templates`<br>
+- **Card-Mod theme** (css styles): `<config>/themes/dashboards.yaml`<br>
+- **Card background images**: `<config>/www/images`<br>
+
+to your HA `<config>` folder and modify your `<config>/configuration.yaml` and `<config>/ui-lovelace.yaml`:
+
+`<config>/configuration.yaml`
+
+```
+automation: !include automations.yaml
+group: !include groups.yaml
+lovelace: !include ui-lovelace.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+frontend:
+  themes: !include_dir_merge_named themes
+```
 
 `<config>/ui-lovelace.yaml`
 
