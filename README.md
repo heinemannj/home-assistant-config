@@ -17,20 +17,32 @@ This configuration controls a couple of significant features in my smart home.
 - Huawei SUN2000 solar inverter and connected Huawei LUNA2000 battery
 - ...
 
-## YAML Dashboards
+## Dashboards
+
+**YAML packages**: `<config>/packages`
+
+**YAML dashboards**: `<config>/dashboards`<br>
+**Jinja templates used in cards**: `<config>/custom_templates`<br>
+**Card-Mod Theme** (css styles): `<config>/themes/dashboards.yaml`<br>
 
 `<config>/ui-lovelace.yaml`
 
 ```
+# UI managed dashboards
+#
 mode: storage
-# Add yaml dashboards
+```
+
+```
+# Additional YAML dashboards
+#
 dashboards:
-  100-raeume-yaml:
+  100-rooms-yaml:
     mode: yaml
-    title: 100_Raeume
+    title: 100_Rooms
     icon: mdi:home
     show_in_sidebar: true
-    filename: dashboards/100-raeume/index.yaml
+    filename: dashboards/100-rooms/index.yaml
 ```
 
 ![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/100-tablet-home.png)
@@ -59,12 +71,12 @@ dashboards:
 ![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/423-pv.png)
 
 ```
-  406-heizung-yaml:
+  406-heating-yaml:
     mode: yaml
-    title: 406_Heizung
+    title: 406_Heating
     icon: mdi:hvac
     show_in_sidebar: true
-    filename: dashboards/406-heizung/index.yaml
+    filename: dashboards/406-heating/index.yaml
  ```
 
 ![image](https://github.com/heinemannj/home-assistant-config/blob/master/assets/034-20-2-HK2-Fussbodenheizung-Heizkreise.png)
