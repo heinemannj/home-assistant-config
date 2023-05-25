@@ -7,7 +7,7 @@ mode: storage
 # Additional YAML dashboards
 #
 dashboards:
-  100-raeume-yaml:
+  100-rooms-yaml:
     mode: yaml
     title: 100_Rooms
     icon: mdi:home
