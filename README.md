@@ -21,7 +21,7 @@ This configuration controls a couple of significant features in my smart home.
 
 Copy the following folder
 
-- **YAML packages**: `<config>/packages`
+- **YAML packages** `<config>/packages`
 
 to your HA `<config>` folder and modify your `<config>/configuration.yaml`:
 
@@ -58,12 +58,12 @@ homeassistant:
 
 Copy the following folders
 
-- **YAML dashboards**: `<config>/dashboards`<br>
-- **Jinja templates used in cards**: `<config>/custom_templates`<br>
-- **Card-Mod theme** (css styles): `<config>/themes/dashboards.yaml`<br>
-- **Card background images**: `<config>/www/images`<br>
+- **YAML dashboards** `<config>/dashboards`<br>
+- **Jinja templates used in cards** `<config>/custom_templates`<br>
+- **Card-Mod theme** (css styles) `<config>/themes/dashboards.yaml`<br>
+- **Card background images** `<config>/www/images`<br>
 
-to your HA `<config>` folder and modify your `<config>/configuration.yaml` and `<config>/ui-lovelace.yaml`:
+to your HA `<config>` folder and modify your `<config>/configuration.yaml` and `<config>/ui-lovelace.yaml`.
 
 `<config>/configuration.yaml`
 
